@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   Design System: Warm Editorial Canvas & Stadium Geometry
+   Inspired by DESIGN.md: Warm cream canvas (#F3F0EE), 40px radius,
+   Ink Black (#141413), Signal Orange (#CF4500 & #F37338) orbital arcs,
+   and 20px / 999px pill buttons.
+   ───────────────────────────────────────────────────────────── */
+
+@layer base {
+  :root {
+    /* Canvas & Surfaces */
+    --background: #F3F0EE;
+    --surface: #FFFFFF;
+    --surface-lifted: #FCFBFA;
+    --surface-muted: #EBE7E3;
+    --surface-dark: #141413;
+    --surface-dark-muted: #1E1E1C;
+
+    /* Primary & Brand Colors */
+    --ink: #141413;
+    --canvas-cream: #F3F0EE;
+    --signal-orange: #CF4500;
+    --signal-orange-light: #F37338;
+    --clay-brown: #9A3A0A;
+
+    /* UI Mapping */
+    --accent: #141413;
+    --accent-hover: #262627;
+    --accent-orange: #CF4500;
+    --accent-orange-light: #F37338;
+    --accent-soft: #FDEEE7;
+    --accent-subtle: #F37338;
+
+    /* Typography */
+    --foreground: #141413;
+    --foreground-muted: #555555;
+    --foreground-subtle: #696969;
+    --foreground-on-dark: #FFFFFF;
+    --foreground-muted-on-dark: rgba(255, 255, 255, 0.7);
+
+    /* Ghost Watermark Text */
+    --watermark-text: #E5DFD7;
+
+    /* Borders */
+    --border: rgba(20, 20, 19, 0.08);
+    --border-strong: rgba(20, 20, 19, 0.16);
+    --border-on-dark: rgba(255, 255, 255, 0.15);
+
+    /* Shadows: Large spread, atmospheric cushioning */
+    --shadow-level-1: 0px 4px 24px 0px rgba(0, 0, 0, 0.04);
+    --shadow-level-2: 0px 24px 48px 0px rgba(0, 0, 0, 0.08);
+    --shadow-level-3: 0px 70px 110px 0px rgba(0, 0, 0, 0.25);
+    --shadow-nav: 0px 4px 24px 0px rgba(0, 0, 0, 0.04);
+
+    /* Radii Scale: commit strictly to 6px, 20px, 40px, 50%, 999px */
+    --radius-xs: 6px;
+    --radius-btn: 20px;
+    --radius-card: 24px;
+    --radius-stadium: 40px;
+    --radius-circle: 50%;
+    --radius-pill: 999px;
+
+    /* Spacing */
+    --space-base: 8px;
+
+    /* Transitions */
+    --transition-fast: 140ms cubic-bezier(0.2, 0, 0, 1);
+    --transition-base: 220ms cubic-bezier(0.2, 0, 0, 1);
+    --transition-spring: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-weight: 450;
+    line-height: 1.5;
+  }
+}
+
+/* ─── Typography Rules from DESIGN.md ───────────────────────── */
+
+@layer base {
+  /* H1 Hero scale: 64px, 500 weight, -2% tracking, 1:1 line height */
+  .text-h1-hero {
+    font-size: clamp(2.5rem, 5.5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+
+  /* H2 Section scale: 36px, 500 weight, -2% tracking */
+  .text-h2-section {
+    font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+
+  /* H3 Card title: 24px, 500 weight, -2% tracking */
+  .text-h3-card {
+    font-size: 1.5rem;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+
+  /* Eyebrow: 14px, 700 weight, +4% tracking, uppercase with dot */
+  .text-eyebrow-master {
+    font-size: 0.875rem;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--foreground-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .text-eyebrow-dot::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--signal-orange-light);
+    margin-right: 2px;
+  }
+
+  /* Ghost Watermark Text: 72–128px, 500 weight, cream-on-cream */
+  .text-watermark {
+    font-size: clamp(4rem, 10vw, 8.5rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+    color: var(--watermark-text);
+    user-select: none;
+    pointer-events: none;
+  }
+}
+
+/* ─── Layout & Components Utilities ─────────────────────────── */
+
+@layer utilities {
+  .container-master {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+  }
+
+  .stadium-frame {
+    border-radius: var(--radius-stadium);
+    overflow: hidden;
+  }
+
+  .card-pill {
+    border-radius: var(--radius-pill);
+  }
+
+  .shadow-level-1 {
+    box-shadow: var(--shadow-level-1);
+  }
+
+  .shadow-level-2 {
+    box-shadow: var(--shadow-level-2);
+  }
+
+  .shadow-level-3 {
+    box-shadow: var(--shadow-level-3);
+  }
+}
