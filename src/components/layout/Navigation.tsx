@@ -9,25 +9,19 @@ import { cn } from '@/lib/utils';
 import { routes } from '@/config/routes';
 import { mainNav, type NavDropdown } from '@/data/navigation';
 
-const languages = [
-  { code: 'EN', name: 'English' },
-  { code: 'TH', name: 'ไทย' },
-  { code: 'KO', name: '한국어' },
-  { code: 'PT', name: 'Português' },
-  { code: 'JA', name: '日本語' },
-];
+import { useLanguage, languages } from '@/context/LanguageContext';
 
 function isDropdown(item: (typeof mainNav)[0]): item is NavDropdown & { isDropdown: true } {
   return 'isDropdown' in item && item.isDropdown === true;
 }
 
 export default function Navigation() {
+  const { language, setLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [langOpen, setLangOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState('EN');
   const pathname = usePathname();
   const navContainerRef = useRef<HTMLDivElement>(null);
   const langContainerRef = useRef<HTMLDivElement>(null);
@@ -163,7 +157,7 @@ export default function Navigation() {
                         aria-expanded={isOpen}
                         aria-haspopup="menu"
                       >
-                        <span>{item.label}</span>
+                        <span>{t(item.label)}</span>
                         <ChevronDown
                           className={cn('w-3.5 h-3.5 transition-transform duration-200', isOpen && 'rotate-180')}
                         />
@@ -191,11 +185,11 @@ export default function Navigation() {
                                 )}
                               >
                                 <span className="text-xs font-semibold text-[#141413] group-hover:text-[#CF4500]">
-                                  {subItem.label}
+                                  {t(subItem.label)}
                                 </span>
                                 {subItem.description && (
                                   <span className="text-[11px] text-[#696969] leading-tight">
-                                    {subItem.description}
+                                    {t(subItem.description)}
                                   </span>
                                 )}
                               </Link>
@@ -216,7 +210,7 @@ export default function Navigation() {
                       pathname === item.href && 'text-[#CF4500]'
                     )}
                   >
-                    {item.label}
+                    {t(item.label)}
                   </Link>
                 );
               })}
@@ -250,7 +244,7 @@ export default function Navigation() {
                 )}
               >
                 <Globe className="w-3.5 h-3.5 text-[#141413]" />
-                <span className="tracking-wide">{currentLang}</span>
+                <span className="tracking-wide">{language}</span>
               </button>
 
               <AnimatePresence>
@@ -264,13 +258,13 @@ export default function Navigation() {
                     role="listbox"
                   >
                     {languages.map((lang) => {
-                      const isSelected = currentLang === lang.code;
+                      const isSelected = language === lang.code;
                       return (
                         <button
                           key={lang.code}
                           type="button"
                           onClick={() => {
-                            setCurrentLang(lang.code);
+                            setLanguage(lang.code);
                             setLangOpen(false);
                           }}
                           role="option"
@@ -296,13 +290,13 @@ export default function Navigation() {
               href={routes.login}
               className="text-xs font-medium text-[#141413] hover:text-[#CF4500] transition-colors px-2"
             >
-              Sign In
+              {t('Sign In')}
             </Link>
             <Link
               href={routes.simulate}
               className="px-5 py-2.5 bg-[#141413] text-[#F3F0EE] border-[1.5px] border-[#141413] hover:bg-[#262627] text-xs font-medium rounded-[20px] shadow-sm transition-all inline-flex items-center gap-1.5"
             >
-              <span>Try Your Face</span>
+              <span>{t('Try Your Face')}</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -329,7 +323,7 @@ export default function Navigation() {
                   return (
                     <div key={item.label} className="border-b border-black/5 pb-2">
                       <div className="text-xs font-bold uppercase tracking-wider text-[#696969] px-3 py-2">
-                        {item.label}
+                        {t(item.label)}
                       </div>
                       <div className="flex flex-col gap-1 pl-3">
                         {item.items.map((sub) => (
@@ -338,7 +332,7 @@ export default function Navigation() {
                             href={sub.href}
                             className="py-2 text-base font-medium text-[#141413]"
                           >
-                            {sub.label}
+                            {t(sub.label)}
                           </Link>
                         ))}
                       </div>
@@ -351,7 +345,7 @@ export default function Navigation() {
                     href={item.href}
                     className="py-3 px-3 text-lg font-medium text-[#141413] border-b border-black/5"
                   >
-                    {item.label}
+                    {t(item.label)}
                   </Link>
                 );
               })}
@@ -360,23 +354,23 @@ export default function Navigation() {
               <div className="py-3 border-b border-black/5">
                 <div className="text-xs font-bold uppercase tracking-wider text-[#696969] px-3 py-1.5 flex items-center gap-2">
                   <Globe className="w-3.5 h-3.5" />
-                  <span>Language</span>
+                  <span>{t('Language')}</span>
                 </div>
                 <div className="grid grid-cols-2 gap-2 px-3 pt-2">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
                       type="button"
-                      onClick={() => setCurrentLang(lang.code)}
+                      onClick={() => setLanguage(lang.code)}
                       className={cn(
                         'flex items-center justify-between px-3 py-2 rounded-[16px] text-xs transition-colors cursor-pointer',
-                        currentLang === lang.code
+                        language === lang.code
                           ? 'bg-[#141413] text-[#F3F0EE] font-bold'
                           : 'bg-white border border-black/5 text-[#141413]'
                       )}
                     >
                       <span>{lang.name}</span>
-                      {currentLang === lang.code && <Check className="w-3.5 h-3.5" />}
+                      {language === lang.code && <Check className="w-3.5 h-3.5" />}
                     </button>
                   ))}
                 </div>
@@ -387,13 +381,13 @@ export default function Navigation() {
                   href={routes.simulate}
                   className="w-full py-3.5 bg-[#141413] text-[#F3F0EE] text-center font-medium rounded-[20px] text-sm"
                 >
-                  Try Your Face
+                  {t('Try Your Face')}
                 </Link>
                 <Link
                   href={routes.login}
                   className="w-full py-3.5 bg-white text-[#141413] border border-black/10 text-center font-medium rounded-[20px] text-sm"
                 >
-                  Sign In
+                  {t('Sign In')}
                 </Link>
               </div>
             </div>

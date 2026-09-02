@@ -7,6 +7,7 @@ import { procedures, procedureCategories, type ProcedureCategory } from '@/data/
 import { routes } from '@/config/routes';
 import { SatelliteButton } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/context/LanguageContext';
 
 const categoryOrder: ProcedureCategory[] = [
   'surgical',
@@ -18,6 +19,7 @@ const categoryOrder: ProcedureCategory[] = [
 ];
 
 export default function ProcedureExplorer() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<ProcedureCategory>('surgical');
   const displayed = procedures.filter((p) => p.category === activeCategory).slice(0, 6);
 
@@ -45,13 +47,13 @@ export default function ProcedureExplorer() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-xl space-y-3">
             <span className="text-eyebrow-master text-eyebrow-dot">
-              PROCEDURE CONSTELLATION
+              {t('PROCEDURE CONSTELLATION')}
             </span>
             <h2 className="text-h2-section text-[#141413]">
-              85+ procedural simulations.
+              {t('85+ procedural simulations.')}
             </h2>
             <p className="text-sm text-[#555555]">
-              Parametric visual models calculated client-side with 468 landmark tracking precision.
+              {t('Parametric visual models calculated client-side with 468 landmark tracking precision.')}
             </p>
           </div>
 
@@ -59,7 +61,7 @@ export default function ProcedureExplorer() {
             href={routes.procedures}
             className="px-6 py-2.5 rounded-[20px] bg-[#141413] text-[#F3F0EE] hover:bg-[#262627] text-xs font-medium tracking-tight transition-all inline-flex items-center gap-2 shrink-0"
           >
-            <span>View All Procedures</span>
+            <span>{t('View All Procedures')}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -79,7 +81,7 @@ export default function ProcedureExplorer() {
                   : 'bg-white text-[#141413] border-black/5 hover:bg-[#EBE7E3]'
               )}
             >
-              {procedureCategories[cat].label}
+              {t(procedureCategories[cat].label)}
             </button>
           ))}
         </div>
@@ -123,15 +125,15 @@ export default function ProcedureExplorer() {
               {/* Text Info Below Portrait */}
               <div className="space-y-2 max-w-xs">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-[#CF4500]">
-                  • {procedure.categoryLabel}
+                  • {t(procedure.categoryLabel)}
                 </span>
 
                 <h3 className="text-h3-card text-[#141413]">
-                  {procedure.name}
+                  {t(procedure.name)}
                 </h3>
 
                 <p className="text-xs text-[#555555] leading-relaxed line-clamp-2">
-                  {procedure.shortDescription}
+                  {t(procedure.shortDescription)}
                 </p>
               </div>
 
@@ -139,9 +141,10 @@ export default function ProcedureExplorer() {
               <div className="pt-2 border-t border-black/5 w-full flex justify-center">
                 <Link
                   href={routes.procedure(procedure.slug)}
-                  className="text-xs font-medium text-[#141413] hover:text-[#CF4500] transition-colors"
+                  className="text-xs font-medium text-[#141413] hover:text-[#CF4500] transition-colors inline-flex items-center gap-1 group-hover:gap-1.5"
                 >
-                  View Clinical Guide →
+                  <span>{t('View Clinical Guide')}</span>
+                  <span className="transition-transform group-hover:translate-x-0.5">→</span>
                 </Link>
               </div>
             </div>

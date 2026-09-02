@@ -1,50 +1,51 @@
-import { Camera, Cpu, SlidersHorizontal, MessageSquare } from 'lucide-react';
+'use client';
 
-const steps = [
-  {
-    number: '01',
-    icon: <Camera className="w-5 h-5" />,
-    title: 'Capture',
-    description:
-      'Take a standard front-facing photo with any smartphone or iPad in the consultation room.',
-  },
-  {
-    number: '02',
-    icon: <Cpu className="w-5 h-5" />,
-    title: 'Simulate',
-    description:
-      '468 anatomical landmarks are mapped in real time on-device with zero server round-trips.',
-  },
-  {
-    number: '03',
-    icon: <SlidersHorizontal className="w-5 h-5" />,
-    title: 'Align',
-    description:
-      'Adjust surgical and soft-tissue parameters side-by-side to align patient expectations.',
-  },
-  {
-    number: '04',
-    icon: <MessageSquare className="w-5 h-5" />,
-    title: 'Discuss',
-    description:
-      'Proceed with the consultation grounded in a clear visual plan agreed upon in the room.',
-  },
-];
+import { Camera, Cpu, SlidersHorizontal, MessageSquare } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function HowItWorks() {
+  const { t } = useLanguage();
+
+  const steps = [
+    {
+      number: '01',
+      icon: <Camera className="w-5 h-5" />,
+      title: t('Capture'),
+      description: t('Take a standard front-facing photo with any smartphone or iPad in the consultation room.'),
+    },
+    {
+      number: '02',
+      icon: <Cpu className="w-5 h-5" />,
+      title: t('Simulate'),
+      description: t('468 anatomical landmarks are mapped in real time on-device with zero server round-trips.'),
+    },
+    {
+      number: '03',
+      icon: <SlidersHorizontal className="w-5 h-5" />,
+      title: t('Align'),
+      description: t('Adjust surgical and soft-tissue parameters side-by-side to align patient expectations.'),
+    },
+    {
+      number: '04',
+      icon: <MessageSquare className="w-5 h-5" />,
+      title: t('Discuss'),
+      description: t('Proceed with the consultation grounded in a clear visual plan agreed upon in the room.'),
+    },
+  ];
+
   return (
     <section className="py-20 md:py-28 bg-[#F3F0EE] border-t border-black/5 relative overflow-hidden">
       <div className="container-master relative z-10">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
           <span className="text-eyebrow-master text-eyebrow-dot">
-            THE 60-SECOND PROTOCOL
+            {t('THE 60-SECOND PROTOCOL')}
           </span>
           <h2 className="text-h2-section text-[#141413]">
-            From photo to preview in 60 seconds.
+            {t('From photo to preview in 60 seconds.')}
           </h2>
           <p className="text-sm text-[#555555]">
-            Four steps. One consultation. 100% browser-native inference.
+            {t('Four steps. One consultation. 100% browser-native inference.')}
           </p>
         </div>
 

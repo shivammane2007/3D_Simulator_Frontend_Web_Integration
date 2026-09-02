@@ -7,8 +7,10 @@ import { faqs } from '@/data/faq';
 import { routes } from '@/config/routes';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function FAQSection() {
+  const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const featuredFaqs = faqs.slice(0, 6);
 
@@ -23,20 +25,20 @@ export default function FAQSection() {
           {/* Left Column */}
           <div className="space-y-4 lg:sticky lg:top-28">
             <span className="text-eyebrow-master text-eyebrow-dot">
-              GOT QUESTIONS?
+              {t('GOT QUESTIONS?')}
             </span>
             <h2 className="text-h2-section text-[#141413]">
-              Frequently asked questions.
+              {t('Frequently asked questions.')}
             </h2>
             <p className="text-sm text-[#555555] leading-relaxed">
-              Everything you need to know about our browser-native simulation technology, on-device data isolation, and clinic onboarding.
+              {t('Everything you need to know about our browser-native simulation technology, on-device data isolation, and clinic onboarding.')}
             </p>
             <div className="pt-2">
               <Link
                 href={routes.faq}
                 className="px-6 py-2.5 rounded-[20px] bg-white text-[#141413] border-[1.5px] border-[#141413] hover:bg-[#EBE7E3] text-xs font-medium tracking-tight transition-all inline-flex items-center gap-2"
               >
-                <span>View All FAQs</span>
+                <span>{t('View All FAQs')}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -60,7 +62,7 @@ export default function FAQSection() {
                     aria-expanded={isOpen}
                   >
                     <span className="font-medium text-sm md:text-base text-[#141413] tracking-[-0.02em]">
-                      {faq.question}
+                      {t(faq.question)}
                     </span>
                     <div
                       className={cn(
@@ -81,7 +83,7 @@ export default function FAQSection() {
                         transition={{ duration: 0.2, ease: [0.2, 0, 0, 1] }}
                       >
                         <div className="px-6 pb-6 text-xs md:text-sm text-[#555555] leading-relaxed border-t border-black/5 pt-4">
-                          {faq.answer}
+                          {t(faq.answer)}
                         </div>
                       </motion.div>
                     )}

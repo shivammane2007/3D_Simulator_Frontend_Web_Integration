@@ -1,36 +1,38 @@
+'use client';
+
 import Link from 'next/link';
 import { Cpu, ShieldCheck, ArrowRight, Zap } from 'lucide-react';
 import { routes } from '@/config/routes';
 import { siteConfig } from '@/config/site';
-
-const techFeatures = [
-  {
-    icon: <Zap className="w-5 h-5 text-[#CF4500]" />,
-    title: '468-Point Facial Mesh',
-    description:
-      'Continuous landmark tracking maps full anatomical geometry with 0.04mm RMSD sub-millimeter precision.',
-    metric: '0.04mm',
-    metricLabel: 'RMSD Precision',
-  },
-  {
-    icon: <Cpu className="w-5 h-5 text-[#CF4500]" />,
-    title: 'Real-Time Browser Inference',
-    description:
-      'All neural networks compile down to WebGL2 fragment shaders running on your local device GPU.',
-    metric: '<200ms',
-    metricLabel: 'Render Latency',
-  },
-  {
-    icon: <ShieldCheck className="w-5 h-5 text-[#CF4500]" />,
-    title: 'Zero Data Egress Architecture',
-    description:
-      'Facial photos never transmit across remote server networks during real-time simulation.',
-    metric: '0',
-    metricLabel: 'Server Roundtrips',
-  },
-];
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function TechnologySection() {
+  const { t } = useLanguage();
+
+  const techFeatures = [
+    {
+      icon: <Zap className="w-5 h-5 text-[#CF4500]" />,
+      title: t('468-Point Facial Mesh'),
+      description: t('Continuous landmark tracking maps full anatomical geometry with 0.04mm RMSD sub-millimeter precision.'),
+      metric: '0.04mm',
+      metricLabel: t('RMSD Precision'),
+    },
+    {
+      icon: <Cpu className="w-5 h-5 text-[#CF4500]" />,
+      title: t('Real-Time Browser Inference'),
+      description: t('All neural networks compile down to WebGL2 fragment shaders running on your local device GPU.'),
+      metric: '<200ms',
+      metricLabel: t('Render Latency'),
+    },
+    {
+      icon: <ShieldCheck className="w-5 h-5 text-[#CF4500]" />,
+      title: t('Zero Data Egress Architecture'),
+      description: t('Facial photos never transmit across remote server networks during real-time simulation.'),
+      metric: '0',
+      metricLabel: t('Server Roundtrips'),
+    },
+  ];
+
   return (
     <section className="py-20 md:py-28 bg-[#F3F0EE] border-t border-black/5">
       <div className="container-master">
@@ -38,15 +40,15 @@ export default function TechnologySection() {
         <div className="grid lg:grid-cols-2 gap-8 items-end mb-16">
           <div className="space-y-3">
             <span className="text-eyebrow-master text-eyebrow-dot">
-              ENGINEERING &amp; ARCHITECTURE
+              {t('ENGINEERING & ARCHITECTURE')}
             </span>
             <h2 className="text-h2-section text-[#141413]">
-              {siteConfig.stats.landmarks} landmarks. 0 server hops.
+              {t('468 landmarks. 0 server hops.')}
             </h2>
           </div>
           <div>
             <p className="text-sm text-[#555555] leading-relaxed">
-              Every simulation is powered by client-side WebGL2 neural shaders executing in browser memory. No cloud upload bottlenecks.
+              {t('Every simulation is powered by client-side WebGL2 neural shaders executing in browser memory. No cloud upload bottlenecks.')}
             </p>
           </div>
         </div>
@@ -88,10 +90,10 @@ export default function TechnologySection() {
             </div>
             <div>
               <span className="text-xs font-bold text-[#141413] block">
-                NVIDIA Inception Program Member
+                {t('NVIDIA Inception Program Member')}
               </span>
               <span className="text-[11px] text-[#696969]">
-                Accelerating medical graphics and on-device neural rendering.
+                {t('Accelerating medical graphics and on-device neural rendering.')}
               </span>
             </div>
           </div>
@@ -100,7 +102,7 @@ export default function TechnologySection() {
             href={routes.technology}
             className="px-5 py-2 rounded-[20px] bg-[#141413] text-[#F3F0EE] text-xs font-medium tracking-tight hover:bg-[#262627] transition-all inline-flex items-center gap-1.5 shrink-0"
           >
-            <span>Read Architecture Paper</span>
+            <span>{t('Read Architecture Paper')}</span>
             <ArrowRight className="w-3 h-3" />
           </Link>
         </div>

@@ -62,6 +62,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { LanguageProvider } from '@/context/LanguageContext';
+
 export default function RootLayout({
   children,
 }: {
@@ -81,13 +83,15 @@ export default function RootLayout({
         className="antialiased bg-[var(--background)] text-[var(--foreground)]"
         style={{ fontFamily: 'var(--font-dm-sans), system-ui, sans-serif' }}
       >
-        <LenisProvider>
-          <Navigation />
-          <main id="main-content" className="relative min-h-screen">
-            {children}
-          </main>
-          <Footer />
-        </LenisProvider>
+        <LanguageProvider>
+          <LenisProvider>
+            <Navigation />
+            <main id="main-content" className="relative min-h-screen">
+              {children}
+            </main>
+            <Footer />
+          </LenisProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

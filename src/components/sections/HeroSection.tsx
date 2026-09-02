@@ -7,7 +7,10 @@ import { ArrowRight } from 'lucide-react';
 import { routes } from '@/config/routes';
 import { SatelliteButton } from '@/components/ui/Button';
 
+import { useLanguage } from '@/context/LanguageContext';
+
 export default function HeroSection() {
+  const { t } = useLanguage();
   const heroRef = useRef<HTMLDivElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -126,21 +129,21 @@ export default function HeroSection() {
             {/* Eyebrow Label with Accent Dot */}
             <div>
               <span className="text-eyebrow-master text-eyebrow-dot">
-                85+ Surgical Simulators
+                {t('85+ Surgical Simulators')}
               </span>
             </div>
 
             {/* Headline: H1 */}
             <h1 className="text-h1-hero text-[#141413] text-balance">
-              Show the result{' '}
+              {t('Show the result')}{' '}
               <span className="italic font-medium text-[#CF4500]">
-                before the consult ends.
+                {t('before the consult ends.')}
               </span>
             </h1>
 
             {/* Body copy */}
             <p className="text-base sm:text-lg text-[#555555] leading-relaxed max-w-lg font-normal">
-              Browser-native 3D facial simulation across 85+ aesthetic procedures. Real-time inference executes on-device with zero cloud photo uploads.
+              {t('Browser-native 3D facial simulation across 85+ aesthetic procedures. Real-time inference executes on-device with zero cloud photo uploads.')}
             </p>
 
             {/* Primary & Secondary Pill Buttons (20px radius) */}
@@ -149,14 +152,14 @@ export default function HeroSection() {
                 href={routes.foundingPartners}
                 className="px-7 py-3 rounded-[20px] bg-[#141413] text-[#F3F0EE] border-[1.5px] border-[#141413] hover:bg-[#262627] text-sm font-medium tracking-[-0.02em] shadow-sm transition-all inline-flex items-center gap-2"
               >
-                <span>Apply for Founding Partner</span>
+                <span>{t('Apply for Founding Partner')}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href={routes.procedures}
                 className="px-7 py-3 rounded-[20px] bg-white text-[#141413] border-[1.5px] border-[#141413] hover:bg-[#F3F0EE] text-sm font-medium tracking-[-0.02em] transition-all inline-flex items-center gap-2"
               >
-                <span>Explore Procedures</span>
+                <span>{t('Explore Procedures')}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -165,12 +168,12 @@ export default function HeroSection() {
             <div className="pt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#696969]">
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#CF4500]" />
-                Client-Side GPU WebGL2
+                {t('Client-Side GPU WebGL2')}
               </span>
               <span>•</span>
-              <span>468 Anatomical Landmarks</span>
+              <span>{t('468 Anatomical Landmarks')}</span>
               <span>•</span>
-              <span>0.04mm RMSD Precision</span>
+              <span>{t('0.04mm RMSD Precision')}</span>
             </div>
           </motion.div>
 
@@ -200,7 +203,7 @@ export default function HeroSection() {
                   className="inline-flex items-center gap-1.5 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full border border-black/[0.07] shadow-sm text-[10px] font-bold uppercase tracking-[0.08em] text-[#141413]"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-[#CF4500] shrink-0" />
-                  468 Landmark Mesh
+                  {t('468 Landmark Mesh')}
                 </span>
               </div>
 

@@ -1,9 +1,13 @@
+'use client';
+
 import Link from 'next/link';
 import { ArrowRight, Stethoscope, Heart } from 'lucide-react';
-import { Section, Container } from '@/components/layout/Container';
 import { routes } from '@/config/routes';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function AudienceSplit() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-16 md:py-24 bg-[#F3F0EE] border-t border-black/5">
       <div className="container-master">
@@ -13,7 +17,7 @@ export default function AudienceSplit() {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-eyebrow-master text-eyebrow-dot">
-                  FOR SURGEONS
+                  {t('FOR SURGEONS')}
                 </span>
                 <div className="w-12 h-12 rounded-full bg-white text-[#141413] shadow-level-1 flex items-center justify-center">
                   <Stethoscope className="w-5 h-5" />
@@ -21,11 +25,11 @@ export default function AudienceSplit() {
               </div>
 
               <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-[#141413] font-display">
-                Close more consultations with visual certainty.
+                {t('Close more consultations with visual certainty.')}
               </h2>
 
               <p className="text-sm text-[#555555] leading-relaxed">
-                Show patients a real-time visual preview of their procedure options during the consultation. Uses any standard iPad or laptop with zero external hardware.
+                {t('Show patients a real-time visual preview of their procedure options during the consultation. Uses any standard iPad or laptop with zero external hardware.')}
               </p>
             </div>
 
@@ -34,7 +38,7 @@ export default function AudienceSplit() {
                 href={routes.surgeons}
                 className="px-6 py-2.5 rounded-[20px] bg-[#141413] text-[#F3F0EE] text-xs font-medium tracking-tight hover:bg-[#262627] transition-all inline-flex items-center gap-2"
               >
-                <span>Explore for Surgeons</span>
+                <span>{t('Explore for Surgeons')}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -45,7 +49,7 @@ export default function AudienceSplit() {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-eyebrow-master text-eyebrow-dot">
-                  FOR PATIENTS
+                  {t('FOR PATIENTS')}
                 </span>
                 <div className="w-12 h-12 rounded-full bg-white text-[#141413] shadow-level-1 flex items-center justify-center">
                   <Heart className="w-5 h-5 text-[#CF4500]" />
@@ -53,11 +57,11 @@ export default function AudienceSplit() {
               </div>
 
               <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-[#141413] font-display">
-                See possibilities before making your decision.
+                {t('See possibilities before making your decision.')}
               </h2>
 
               <p className="text-sm text-[#555555] leading-relaxed">
-                Explore 85+ procedure simulations directly from your phone browser. No app download, and real-time processing runs 100% on your device.
+                {t('Explore 85+ procedure simulations directly from your phone browser. No app download, and real-time processing runs 100% on your device.')}
               </p>
             </div>
 
@@ -66,7 +70,7 @@ export default function AudienceSplit() {
                 href={routes.patients}
                 className="px-6 py-2.5 rounded-[20px] bg-white text-[#141413] border-[1.5px] border-[#141413] hover:bg-[#F3F0EE] text-xs font-medium tracking-tight transition-all inline-flex items-center gap-2"
               >
-                <span>Explore for Patients</span>
+                <span>{t('Explore for Patients')}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>

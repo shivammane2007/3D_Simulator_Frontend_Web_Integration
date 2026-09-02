@@ -1,8 +1,11 @@
+'use client';
+
 import Link from 'next/link';
 import { MessageCircle, ShieldCheck, Award, ArrowUpRight, Globe } from 'lucide-react';
 import { footerNav } from '@/data/navigation';
 import { routes } from '@/config/routes';
 import { siteConfig } from '@/config/site';
+import { useLanguage } from '@/context/LanguageContext';
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -25,19 +28,21 @@ function LinkedinIcon({ className }: { className?: string }) {
 }
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-[#141413] text-[#F3F0EE] pt-20 pb-16 border-t border-white/10">
       <div className="container-master">
         {/* Large Conversational Headline as per DESIGN.md */}
         <div className="max-w-2xl mb-16 space-y-4">
           <span className="text-eyebrow-master text-eyebrow-dot text-white/60">
-            CONNECT WITH FACEIFY
+            {t('CONNECT WITH FACEIFY')}
           </span>
           <h2 className="text-3xl sm:text-4xl font-medium tracking-tight text-white font-display">
-            We&apos;re always here when you need us.
+            {t("We're always here when you need us.")}
           </h2>
           <p className="text-sm text-white/70 leading-relaxed max-w-xl">
-            Empowering aesthetic surgeons and patients worldwide with privacy-first visual planning tools.
+            {t('Empowering aesthetic surgeons and patients worldwide with privacy-first visual planning tools.')}
           </p>
         </div>
 
@@ -45,13 +50,13 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-12 pb-16">
           <div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-5">
-              • Product
+              • {t('Product')}
             </h3>
             <ul className="space-y-3">
               {footerNav.product.map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="text-sm text-white/80 hover:text-white transition-colors">
-                    {item.label}
+                    {t(item.label)}
                   </Link>
                 </li>
               ))}
@@ -60,13 +65,13 @@ export default function Footer() {
 
           <div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-5">
-              • Explore
+              • {t('Explore')}
             </h3>
             <ul className="space-y-3">
               {footerNav.explore.map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="text-sm text-white/80 hover:text-white transition-colors">
-                    {item.label}
+                    {t(item.label)}
                   </Link>
                 </li>
               ))}
@@ -75,13 +80,13 @@ export default function Footer() {
 
           <div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-5">
-              • Company
+              • {t('Company')}
             </h3>
             <ul className="space-y-3">
               {footerNav.company.map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="text-sm text-white/80 hover:text-white transition-colors">
-                    {item.label}
+                    {t(item.label)}
                   </Link>
                 </li>
               ))}
@@ -90,7 +95,7 @@ export default function Footer() {
 
           <div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-5">
-              • Need Help?
+              • {t('Need Help?')}
             </h3>
             <ul className="space-y-3">
               <li>
@@ -100,7 +105,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-sm text-white/80 hover:text-white transition-colors inline-flex items-center gap-1"
                 >
-                  <span>WhatsApp Priority</span>
+                  <span>{t('WhatsApp Priority')}</span>
                   <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
                 </a>
               </li>
@@ -137,7 +142,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center gap-4">
             {footerNav.legal.map((item) => (
               <Link key={item.href} href={item.href} className="hover:text-white transition-colors">
-                {item.label}
+                {t(item.label)}
               </Link>
             ))}
 

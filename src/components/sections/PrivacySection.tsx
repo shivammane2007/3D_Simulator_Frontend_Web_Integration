@@ -1,8 +1,13 @@
+'use client';
+
 import Link from 'next/link';
-import { Monitor, Cloud, Lock, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Monitor, Lock, ArrowRight } from 'lucide-react';
 import { routes } from '@/config/routes';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function PrivacySection() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-20 md:py-28 bg-[#F3F0EE] border-t border-black/5">
       <div className="container-master">
@@ -10,33 +15,33 @@ export default function PrivacySection() {
           {/* Left Column */}
           <div className="space-y-6">
             <span className="text-eyebrow-master text-eyebrow-dot">
-              PRIVACY ARCHITECTURE
+              {t('PRIVACY ARCHITECTURE')}
             </span>
             <h2 className="text-h2-section text-[#141413]">
-              What happens to your photo.
+              {t('What happens to your photo.')}
             </h2>
             <p className="text-sm text-[#555555] leading-relaxed">
-              The real-time simulator runs entirely on-device inside your web browser. Zero patient photos are uploaded or stored on any remote cloud server during simulation.
+              {t('The real-time simulator runs entirely on-device inside your web browser. Zero patient photos are uploaded or stored on any remote cloud server during simulation.')}
             </p>
 
             <div className="space-y-4 pt-2">
               <div className="p-6 rounded-[24px] bg-[#FCFBFA] border border-black/5 shadow-level-1 space-y-2">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#141413]">
                   <Monitor className="w-4 h-4 text-[#CF4500]" />
-                  <span>On-Device Execution (Always)</span>
+                  <span>{t('On-Device Execution (Always)')}</span>
                 </div>
                 <p className="text-xs text-[#555555] leading-relaxed">
-                  Landmark tracking (468 points), 3D mesh deformation, before/after slider comparison, and parameter adjustments run 100% locally.
+                  {t('Landmark tracking (468 points), 3D mesh deformation, before/after slider comparison, and parameter adjustments run 100% locally.')}
                 </p>
               </div>
 
               <div className="p-6 rounded-[24px] bg-white border border-black/5 shadow-level-1 space-y-2">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#141413]">
                   <Lock className="w-4 h-4 text-[#CF4500]" />
-                  <span>Permanent Zero-Training Commitment</span>
+                  <span>{t('Permanent Zero-Training Commitment')}</span>
                 </div>
                 <p className="text-xs text-[#555555] leading-relaxed">
-                  We never use patient photos to train machine learning models.
+                  {t('We never use patient photos to train machine learning models.')}
                 </p>
               </div>
             </div>
@@ -46,7 +51,7 @@ export default function PrivacySection() {
                 href={routes.trust}
                 className="px-6 py-2.5 rounded-[20px] bg-[#141413] text-[#F3F0EE] hover:bg-[#262627] text-xs font-medium tracking-tight transition-all inline-flex items-center gap-2"
               >
-                <span>Read Full Privacy Commitment</span>
+                <span>{t('Read Full Privacy Commitment')}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -56,10 +61,10 @@ export default function PrivacySection() {
           <div className="bg-[#FCFBFA] rounded-[40px] p-8 md:p-10 border border-black/5 shadow-level-2 space-y-6">
             <div className="text-center space-y-1">
               <span className="text-[10px] font-bold uppercase tracking-widest text-[#CF4500]">
-                ZERO DATA EGRESS
+                {t('ZERO DATA EGRESS')}
               </span>
               <h3 className="text-xl font-medium tracking-tight text-[#141413] font-display">
-                Device Isolation Boundary
+                {t('Device Isolation Boundary')}
               </h3>
             </div>
 
