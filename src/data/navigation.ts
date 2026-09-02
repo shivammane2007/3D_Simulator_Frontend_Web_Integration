@@ -58,23 +58,36 @@ export const mainNav: NavEntry[] = [
     href: routes.technology,
   },
   {
-    label: 'About',
+    label: 'More',
     isDropdown: true,
     items: [
       {
+        label: 'Case Gallery',
+        href: routes.gallery,
+      },
+      {
+        label: 'Technology',
+        href: routes.technology,
+      },
+      {
+        label: 'AI Face Analyzer',
+        href: routes.simulate,
+      },
+      {
+        label: 'Acne Assessment',
+        href: routes.analyse,
+      },
+      {
         label: 'Our Story',
         href: routes.ourStory,
-        description: 'Why Faceify was built',
       },
       {
         label: 'Trust & Privacy',
         href: routes.trust,
-        description: 'Our privacy architecture',
       },
       {
-        label: 'Surgeon Directory',
-        href: routes.directory,
-        description: 'Find Faceify-enabled clinics',
+        label: 'Blog',
+        href: routes.blog,
       },
     ],
   },

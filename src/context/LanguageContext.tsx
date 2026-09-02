@@ -76,6 +76,55 @@ export const dictionary: Record<string, Record<LanguageCode, string>> = {
     PT: 'Sobre',
     JA: '概要',
   },
+  'More': {
+    EN: 'More',
+    TH: 'เพิ่มเติม',
+    KO: '더보기',
+    PT: 'Mais',
+    JA: 'その他',
+  },
+  'Case Gallery': {
+    EN: 'Case Gallery',
+    TH: 'แกลเลอรีเคสตัวอย่าง',
+    KO: '시술 갤러리',
+    PT: 'Galeria de Casos',
+    JA: '症例ギャラリー',
+  },
+  'AI Face Analyzer': {
+    EN: 'AI Face Analyzer',
+    TH: 'ระบบวิเคราะห์ใบหน้า AI',
+    KO: 'AI 안면 분석기',
+    PT: 'Analisador Facial de IA',
+    JA: 'AI顔面分析ツール',
+  },
+  'Acne Assessment': {
+    EN: 'Acne Assessment',
+    TH: 'การประเมินปัญหาสิวและผิวพรรณ',
+    KO: '여드름 및 피부 진단',
+    PT: 'Avaliação de Acne',
+    JA: 'ニキビ・肌質診断',
+  },
+  'Blog': {
+    EN: 'Blog',
+    TH: 'บทความ',
+    KO: '블로그',
+    PT: 'Blog',
+    JA: 'ブログ',
+  },
+  'Our Story': {
+    EN: 'Our Story',
+    TH: 'เรื่องราวของเรา',
+    KO: '브랜드 스토리',
+    PT: 'Nossa História',
+    JA: '開発ストーリー',
+  },
+  'Trust & Privacy': {
+    EN: 'Trust & Privacy',
+    TH: 'ความน่าเชื่อถือและความเป็นส่วนตัว',
+    KO: '신뢰 및 개인정보 보호',
+    PT: 'Confiança e Privacidade',
+    JA: '信頼とプライバシー',
+  },
   'Overview': {
     EN: 'Overview',
     TH: 'ภาพรวม',
@@ -103,20 +152,6 @@ export const dictionary: Record<string, Record<LanguageCode, string>> = {
     KO: '파트너 프로그램',
     PT: 'Programa de Parceiros',
     JA: 'パートナープログラム',
-  },
-  'Our Story': {
-    EN: 'Our Story',
-    TH: 'เรื่องราวของเรา',
-    KO: '브랜드 스토리',
-    PT: 'Nossa História',
-    JA: '開発ストーリー',
-  },
-  'Trust & Privacy': {
-    EN: 'Trust & Privacy',
-    TH: 'ความน่าเชื่อถือและความเป็นส่วนตัว',
-    KO: '신뢰 및 개인정보 보호',
-    PT: 'Confiança e Privacidade',
-    JA: '信頼とプライバシー',
   },
   'Surgeon Directory': {
     EN: 'Surgeon Directory',
@@ -378,13 +413,6 @@ export const dictionary: Record<string, Record<LanguageCode, string>> = {
     PT: 'Ver Guia Clínico',
     JA: '臨床ガイドを見る',
   },
-  'View Clinical Guide →': {
-    EN: 'View Clinical Guide →',
-    TH: 'ดูคู่มือคลินิก →',
-    KO: '임상 가이드 보기 →',
-    PT: 'Ver Guia Clínico →',
-    JA: '臨床ガイドを見る →',
-  },
 
   // Procedure categories
   'Surgical': {
@@ -425,7 +453,7 @@ export const dictionary: Record<string, Record<LanguageCode, string>> = {
   'Hair': {
     EN: 'Hair',
     TH: 'เส้นผม',
-    KO: '모발 이식',
+    KO: 'โม발 이식',
     PT: 'Capilar',
     JA: '自毛植毛',
   },
@@ -531,13 +559,6 @@ export const dictionary: Record<string, Record<LanguageCode, string>> = {
     PT: 'Resultados clínicos validados em consultas diárias.',
     JA: '日々のカウンセリングで実証された臨床成果。',
   },
-  'Less Consult Time': {
-    EN: 'Less Consult Time',
-    TH: 'ประหยัดเวลาการปรึกษา',
-    KO: '상담 시간 단축',
-    PT: 'Menos Tempo de Consulta',
-    JA: 'カウンセリング時間短縮',
-  },
   'LESS CONSULT TIME': {
     EN: 'LESS CONSULT TIME',
     TH: 'ประหยัดเวลาการปรึกษา',
@@ -551,13 +572,6 @@ export const dictionary: Record<string, Record<LanguageCode, string>> = {
     KO: '진찰이 시작되기 전에 환자가 시각적으로 이해하고 동의합니다.',
     PT: 'Os pacientes chegam visualmente alinhados antes do início do exame.',
     JA: '診察開始前に患者と視覚的なイメージを共有。',
-  },
-  'Conversion Confidence': {
-    EN: 'Conversion Confidence',
-    TH: 'ความมั่นใจในการตัดสินใจ',
-    KO: '전환 확신도 향상',
-    PT: 'Confiança na Conversão',
-    JA: '成約率と納得感の向上',
   },
   'CONVERSION CONFIDENCE': {
     EN: 'CONVERSION CONFIDENCE',
@@ -573,17 +587,10 @@ export const dictionary: Record<string, Record<LanguageCode, string>> = {
     PT: 'Tenha discussões visuais informadas durante a consulta na sala.',
     JA: '診察室で具体的かつ視覚的な情報をもとに相談を実施。',
   },
-  'Higher Consultation Fees': {
-    EN: 'Higher Consultation Fees',
-    TH: 'ค่าบริการปรึกษาที่สูงขึ้น',
-    KO: '프리미엄 상담 가치 창출',
-    PT: 'Honorários de Consulta Mais Altos',
-    JA: 'プレミアムなカウンセリング価値',
-  },
   'HIGHER CONSULTATION FEES': {
     EN: 'HIGHER CONSULTATION FEES',
     TH: 'ค่าบริการปรึกษาที่สูงขึ้น',
-    KO: '프리미엄 상담 가치 창출',
+    KO: '프리มิ엄 상담 가치 창출',
     PT: 'HONORÁRIOS DE CONSULTA MAIS ALTOS',
     JA: 'プレミアムなカウンセリング価値',
   },
@@ -593,13 +600,6 @@ export const dictionary: Record<string, Record<LanguageCode, string>> = {
     KO: '3D 시뮬레이션을 활용하는 클리닉은 프리미엄 상담료를 인정받습니다.',
     PT: 'Clínicas que utilizam simulação cobram taxas de consulta premium.',
     JA: 'シミュレーションを導入したクリニックは高付加価値な相談料を設定可能。',
-  },
-  'Server Hops': {
-    EN: 'Server Hops',
-    TH: 'การส่งข้อมูลผ่านเซิร์ฟเวอร์',
-    KO: '서버 데이터 전송',
-    PT: 'Saltos de Servidor',
-    JA: '外部サーバー通信',
   },
   'SERVER HOPS': {
     EN: 'SERVER HOPS',
@@ -758,6 +758,55 @@ export const dictionary: Record<string, Record<LanguageCode, string>> = {
     KO: '현대 미용 클리닉들이 수천만 원대 하드웨어 장비에서 웹 기반 플랫폼으로 전환하는 이유.',
     PT: 'Por que clínicas estéticas modernas estão migrando de torres de hardware caras para plataformas web.',
     JA: '多くの美容クリニックが高額な専用ハードウェア機器からWebネイティブプラットフォームへと移行している理由。',
+  },
+  'Feature': {
+    EN: 'Feature',
+    TH: 'คุณสมบัติ',
+    KO: '주요 기능',
+    PT: 'Recurso',
+    JA: '機能',
+  },
+  'Hardware Investment': {
+    EN: 'Hardware Investment',
+    TH: 'การลงทุนด้านฮาร์ดแวร์',
+    KO: '하드웨어 투자 비용',
+    PT: 'Investimento em Hardware',
+    JA: '機器導入コスト',
+  },
+  'Inference Architecture': {
+    EN: 'Inference Architecture',
+    TH: 'สถาปัตยกรรมการประมวลผล',
+    KO: '추론 처리 아키텍처',
+    PT: 'Arquitetura de Inferência',
+    JA: '推論処理構造',
+  },
+  'Procedure Library': {
+    EN: 'Procedure Library',
+    TH: 'คลังหัตถการ',
+    KO: '지원 시술 라이브러리',
+    PT: 'Biblioteca de Procedimentos',
+    JA: '対応施術ライブラリ',
+  },
+  'Privacy Posture': {
+    EN: 'Privacy Posture',
+    TH: 'ระดับการรักษาความเป็นส่วนตัว',
+    KO: '개인정보 보호 수준',
+    PT: 'Postura de Privacidade',
+    JA: 'プライバシーセキュリティ',
+  },
+  'Starting Cost': {
+    EN: 'Starting Cost',
+    TH: 'ราคาเริ่มต้น',
+    KO: '시작 비용',
+    PT: 'Custo Inicial',
+    JA: '初期・月額費用',
+  },
+  'Browser-native, no hardware': {
+    EN: 'Browser-native, no hardware',
+    TH: 'ทำงานบนเบราว์เซอร์ ไม่ต้องใช้ฮาร์ดแวร์',
+    KO: '브라우저 네이티브, 하드웨어 불필요',
+    PT: 'Nativo no navegador, sem hardware',
+    JA: 'ブラウザネイティブ・専用機器不要',
   },
 
   // Privacy Section
@@ -957,7 +1006,7 @@ export const dictionary: Record<string, Record<LanguageCode, string>> = {
     JA: '• スマートフォン・iPad対応',
   },
 
-  // Footer
+  // Footer & Links
   'CONNECT WITH FACEIFY': {
     EN: 'CONNECT WITH FACEIFY',
     TH: 'ติดต่อกับ FACEIFY',
@@ -1035,13 +1084,6 @@ export const dictionary: Record<string, Record<LanguageCode, string>> = {
     PT: 'Registro de Cirurgiões',
     JA: '認定医登録簿',
   },
-  'Case Gallery': {
-    EN: 'Case Gallery',
-    TH: 'แกลเลอรีเคสตัวอย่าง',
-    KO: '시술 갤러리',
-    PT: 'Galeria de Casos',
-    JA: '症例ギャラリー',
-  },
   'Consultation': {
     EN: 'Consultation',
     TH: 'การปรึกษาแพทย์',
@@ -1090,13 +1132,6 @@ export const dictionary: Record<string, Record<LanguageCode, string>> = {
     KO: '상임 이사',
     PT: 'Diretor Executivo',
     JA: 'マネージングディレクター',
-  },
-  'Blog': {
-    EN: 'Blog',
-    TH: 'บทความ',
-    KO: '블로그',
-    PT: 'Blog',
-    JA: 'ブログ',
   },
 };
 

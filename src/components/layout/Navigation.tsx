@@ -170,12 +170,12 @@ export default function Navigation() {
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 4, scale: 0.96 }}
                             transition={{ duration: 0.15, ease: [0.2, 0, 0, 1] }}
-                            className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 bg-white rounded-[24px] shadow-level-2 border border-black/5 p-3 space-y-1 z-50"
+                            className="absolute top-full left-1/2 -translate-x-1/2 mt-3 min-w-[210px] bg-white rounded-[24px] shadow-level-2 border border-black/5 p-2.5 space-y-0.5 z-50"
                             role="menu"
                           >
                             {item.items.map((subItem) => (
                               <Link
-                                key={subItem.href}
+                                key={subItem.label + subItem.href}
                                 href={subItem.href}
                                 onClick={() => setActiveDropdown(null)}
                                 role="menuitem"
@@ -184,7 +184,7 @@ export default function Navigation() {
                                   pathname === subItem.href && 'bg-[#F3F0EE]'
                                 )}
                               >
-                                <span className="text-xs font-semibold text-[#141413] group-hover:text-[#CF4500]">
+                                <span className="text-sm font-medium text-[#141413] group-hover:text-[#CF4500] transition-colors">
                                   {t(subItem.label)}
                                 </span>
                                 {subItem.description && (
