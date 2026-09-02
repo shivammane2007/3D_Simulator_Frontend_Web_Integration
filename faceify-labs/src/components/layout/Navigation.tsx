@@ -15,16 +15,40 @@ function isDropdown(item: (typeof mainNav)[0]): item is NavDropdown & { isDropdo
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
   const navContainerRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 16);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 16);
+
+      if (currentScrollY <= 20) {
+        setVisible(true);
+      } else if (currentScrollY > lastScrollY.current && currentScrollY - lastScrollY.current > 5) {
+        // Scrolling down -> hide navbar
+        setVisible(false);
+      } else if (currentScrollY < lastScrollY.current && lastScrollY.current - currentScrollY > 5) {
+        // Scrolling up -> show navbar
+        setVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!visible) {
+      setActiveDropdown(null);
+    }
+  }, [visible]);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -74,7 +98,12 @@ export default function Navigation() {
       </a>
 
       {/* Floating Nav Pill Container */}
-      <header className="fixed top-4 md:top-6 left-0 right-0 z-50 pointer-events-none flex justify-center px-4">
+      <motion.header
+        initial={{ y: 0 }}
+        animate={{ y: visible || mobileOpen ? 0 : -120 }}
+        transition={{ duration: 0.3, ease: [0.2, 0, 0, 1] }}
+        className="fixed top-4 md:top-6 left-0 right-0 z-50 pointer-events-none flex justify-center px-4"
+      >
         <div className="w-full max-w-6xl flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr]">
           {/* Logo Mark (Outside Left) */}
           <div className="flex justify-start">
@@ -205,7 +234,7 @@ export default function Navigation() {
             </Link>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* Mobile Menu */}
       <AnimatePresence>
