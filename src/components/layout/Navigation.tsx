@@ -4,10 +4,18 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Search, ArrowRight, Globe } from 'lucide-react';
+import { Menu, X, ChevronDown, Search, ArrowRight, Globe, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { routes } from '@/config/routes';
 import { mainNav, type NavDropdown } from '@/data/navigation';
+
+const languages = [
+  { code: 'EN', name: 'English' },
+  { code: 'TH', name: 'ไทย' },
+  { code: 'KO', name: '한국어' },
+  { code: 'PT', name: 'Português' },
+  { code: 'JA', name: '日本語' },
+];
 
 function isDropdown(item: (typeof mainNav)[0]): item is NavDropdown & { isDropdown: true } {
   return 'isDropdown' in item && item.isDropdown === true;
@@ -18,8 +26,11 @@ export default function Navigation() {
   const [visible, setVisible] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [langOpen, setLangOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState('EN');
   const pathname = usePathname();
   const navContainerRef = useRef<HTMLDivElement>(null);
+  const langContainerRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
@@ -47,12 +58,14 @@ export default function Navigation() {
   useEffect(() => {
     if (!visible) {
       setActiveDropdown(null);
+      setLangOpen(false);
     }
   }, [visible]);
 
   useEffect(() => {
     setMobileOpen(false);
     setActiveDropdown(null);
+    setLangOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -64,16 +77,20 @@ export default function Navigation() {
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
-  // Click outside to close dropdown
+  // Click outside to close dropdowns
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (navContainerRef.current && !navContainerRef.current.contains(event.target as Node)) {
         setActiveDropdown(null);
       }
+      if (langContainerRef.current && !langContainerRef.current.contains(event.target as Node)) {
+        setLangOpen(false);
+      }
     }
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         setActiveDropdown(null);
+        setLangOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -219,6 +236,62 @@ export default function Navigation() {
 
           {/* Desktop Right CTA (Outside Right) */}
           <div className="hidden lg:flex items-center justify-end gap-3 pointer-events-auto pr-2 sm:pr-4">
+            {/* Language Selector Dropdown */}
+            <div className="relative" ref={langContainerRef}>
+              <button
+                type="button"
+                onClick={() => setLangOpen(!langOpen)}
+                aria-expanded={langOpen}
+                aria-haspopup="listbox"
+                aria-label="Select language"
+                className={cn(
+                  'flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md hover:bg-white text-xs font-bold text-[#141413] border border-black/5 shadow-level-1 transition-all cursor-pointer',
+                  langOpen && 'ring-1 ring-black/10'
+                )}
+              >
+                <Globe className="w-3.5 h-3.5 text-[#141413]" />
+                <span className="tracking-wide">{currentLang}</span>
+              </button>
+
+              <AnimatePresence>
+                {langOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 4, scale: 0.96 }}
+                    transition={{ duration: 0.15, ease: [0.2, 0, 0, 1] }}
+                    className="absolute top-full right-0 mt-2.5 w-40 bg-white rounded-[24px] shadow-level-2 border border-black/5 p-2 space-y-0.5 z-50"
+                    role="listbox"
+                  >
+                    {languages.map((lang) => {
+                      const isSelected = currentLang === lang.code;
+                      return (
+                        <button
+                          key={lang.code}
+                          type="button"
+                          onClick={() => {
+                            setCurrentLang(lang.code);
+                            setLangOpen(false);
+                          }}
+                          role="option"
+                          aria-selected={isSelected}
+                          className={cn(
+                            'w-full flex items-center justify-between px-3.5 py-2 rounded-[16px] text-xs transition-colors cursor-pointer text-left',
+                            isSelected
+                              ? 'bg-[#F3F0EE] font-bold text-[#141413]'
+                              : 'text-[#141413] hover:bg-[#F3F0EE]'
+                          )}
+                        >
+                          <span className={cn(isSelected ? 'font-bold' : 'font-medium')}>{lang.name}</span>
+                          {isSelected && <Check className="w-3.5 h-3.5 stroke-[2.5] text-[#141413]" />}
+                        </button>
+                      );
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             <Link
               href={routes.login}
               className="text-xs font-medium text-[#141413] hover:text-[#CF4500] transition-colors px-2"
@@ -282,6 +355,32 @@ export default function Navigation() {
                   </Link>
                 );
               })}
+
+              {/* Mobile Language Selector */}
+              <div className="py-3 border-b border-black/5">
+                <div className="text-xs font-bold uppercase tracking-wider text-[#696969] px-3 py-1.5 flex items-center gap-2">
+                  <Globe className="w-3.5 h-3.5" />
+                  <span>Language</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 px-3 pt-2">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      type="button"
+                      onClick={() => setCurrentLang(lang.code)}
+                      className={cn(
+                        'flex items-center justify-between px-3 py-2 rounded-[16px] text-xs transition-colors cursor-pointer',
+                        currentLang === lang.code
+                          ? 'bg-[#141413] text-[#F3F0EE] font-bold'
+                          : 'bg-white border border-black/5 text-[#141413]'
+                      )}
+                    >
+                      <span>{lang.name}</span>
+                      {currentLang === lang.code && <Check className="w-3.5 h-3.5" />}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
               <div className="pt-6 flex flex-col gap-3">
                 <Link
