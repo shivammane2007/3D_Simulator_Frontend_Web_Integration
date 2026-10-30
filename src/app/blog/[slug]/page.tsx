@@ -253,11 +253,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </article>
 
-      {/* Floating Action Button (Matches live website) */}
+      {/* Floating Action Button */}
       <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3 pointer-events-auto">
         <Link
           href="/procedures"
-          className="inline-flex items-center gap-2 bg-[#2D4B3E] hover:bg-[#233B31] text-white px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold shadow-level-2 transition-all hover:scale-105 active:scale-95"
+          className="inline-flex items-center gap-2 bg-[#CF4500] hover:bg-[#B33B00] text-white px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold shadow-level-2 transition-all hover:scale-105 active:scale-95"
         >
           Try Simulators
         </Link>
