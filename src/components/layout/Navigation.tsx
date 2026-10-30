@@ -137,7 +137,7 @@ export default function Navigation() {
           >
 
             {/* Desktop Center Links */}
-            <div className="hidden lg:flex items-center gap-6">
+            <div className="hidden lg:flex items-center gap-1">
               {mainNav.map((item) => {
                 if (isDropdown(item)) {
                   const isOpen = activeDropdown === item.label;
@@ -151,26 +151,29 @@ export default function Navigation() {
                       <button
                         onClick={() => toggleDropdown(item.label)}
                         className={cn(
-                          'flex items-center gap-1 py-1.5 text-sm font-medium tracking-[-0.02em] text-[#141413] hover:text-[#CF4500] transition-colors cursor-pointer',
-                          isOpen && 'text-[#CF4500]'
+                          'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium tracking-[-0.01em] text-[#141413] hover:text-[#CF4500] hover:bg-[#F3F0EE] transition-all cursor-pointer',
+                          isOpen && 'bg-[#F3F0EE] text-[#141413]'
                         )}
                         aria-expanded={isOpen}
                         aria-haspopup="menu"
                       >
                         <span>{t(item.label)}</span>
                         <ChevronDown
-                          className={cn('w-3.5 h-3.5 transition-transform duration-200', isOpen && 'rotate-180')}
+                          className={cn('w-3.5 h-3.5 transition-transform duration-200 text-[#696969]', isOpen && 'rotate-180 text-[#141413]')}
                         />
                       </button>
 
                       <AnimatePresence>
                         {isOpen && (
                           <motion.div
-                            initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                            initial={{ opacity: 0, y: 6, scale: 0.98 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 4, scale: 0.96 }}
+                            exit={{ opacity: 0, y: 4, scale: 0.98 }}
                             transition={{ duration: 0.15, ease: [0.2, 0, 0, 1] }}
-                            className="absolute top-full left-1/2 -translate-x-1/2 mt-3 min-w-[210px] bg-white rounded-[24px] shadow-level-2 border border-black/5 p-2.5 space-y-0.5 z-50"
+                            className={cn(
+                              'absolute top-full mt-2.5 min-w-[200px] w-52 bg-white rounded-[20px] shadow-level-2 border border-black/5 p-2 space-y-0.5 z-50',
+                              item.label === 'For Surgeons' ? 'left-0' : 'right-0'
+                            )}
                             role="menu"
                           >
                             {item.items.map((subItem) => (
@@ -180,18 +183,11 @@ export default function Navigation() {
                                 onClick={() => setActiveDropdown(null)}
                                 role="menuitem"
                                 className={cn(
-                                  'flex flex-col gap-0.5 px-4 py-2.5 rounded-[16px] transition-colors group hover:bg-[#F3F0EE]',
-                                  pathname === subItem.href && 'bg-[#F3F0EE]'
+                                  'flex items-center px-4 py-2.5 rounded-[14px] text-sm font-medium text-[#141413] hover:text-[#CF4500] hover:bg-[#F3F0EE] transition-colors',
+                                  pathname === subItem.href && 'bg-[#F3F0EE] text-[#CF4500] font-semibold'
                                 )}
                               >
-                                <span className="text-sm font-medium text-[#141413] group-hover:text-[#CF4500] transition-colors">
-                                  {t(subItem.label)}
-                                </span>
-                                {subItem.description && (
-                                  <span className="text-[11px] text-[#696969] leading-tight">
-                                    {t(subItem.description)}
-                                  </span>
-                                )}
+                                {t(subItem.label)}
                               </Link>
                             ))}
                           </motion.div>
@@ -206,8 +202,8 @@ export default function Navigation() {
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      'py-1.5 text-sm font-medium tracking-[-0.02em] text-[#141413] hover:text-[#CF4500] transition-colors',
-                      pathname === item.href && 'text-[#CF4500]'
+                      'flex items-center px-3 py-1.5 rounded-full text-sm font-medium tracking-[-0.01em] text-[#141413] hover:text-[#CF4500] hover:bg-[#F3F0EE] transition-all',
+                      pathname === item.href && 'text-[#141413] bg-[#F3F0EE] font-semibold'
                     )}
                   >
                     {t(item.label)}

@@ -24,24 +24,20 @@ export const mainNav: NavEntry[] = [
     isDropdown: true,
     items: [
       {
-        label: 'Overview',
+        label: 'Why Faceify',
         href: routes.surgeons,
-        description: 'How Faceify fits your clinical workflow',
       },
       {
         label: 'Use Cases',
         href: routes.useCases,
-        description: 'How clinics use Faceify',
       },
       {
         label: 'Pricing',
         href: routes.pricing,
-        description: 'Plans for solo and multi-surgeon practices',
       },
       {
-        label: 'Partner Program',
-        href: routes.partners,
-        description: 'Become a founding partner',
+        label: 'Find a Surgeon',
+        href: routes.directory,
       },
     ],
   },
@@ -50,12 +46,8 @@ export const mainNav: NavEntry[] = [
     href: routes.patients,
   },
   {
-    label: 'Procedures',
+    label: 'Procedure Guides',
     href: routes.procedures,
-  },
-  {
-    label: 'Technology',
-    href: routes.technology,
   },
   {
     label: 'More',

@@ -125,6 +125,20 @@ export const dictionary: Record<string, Record<LanguageCode, string>> = {
     PT: 'Confiança e Privacidade',
     JA: '信頼とプライバシー',
   },
+  'Why Faceify': {
+    EN: 'Why Faceify',
+    TH: 'ทำไมต้อง Faceify',
+    KO: 'Faceify를 선택해야 하는 이유',
+    PT: 'Por que Faceify',
+    JA: 'Faceifyを選ぶ理由',
+  },
+  'Find a Surgeon': {
+    EN: 'Find a Surgeon',
+    TH: 'ค้นหาศัลยแพทย์',
+    KO: '외과의 찾기',
+    PT: 'Encontrar um Cirurgião',
+    JA: '外科医を探す',
+  },
   'Overview': {
     EN: 'Overview',
     TH: 'ภาพรวม',
