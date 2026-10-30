@@ -1,52 +1,104 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Calendar, Clock, ArrowRight, BookOpen } from 'lucide-react';
+import { BookOpen, ArrowRight, Rss, Bell } from 'lucide-react';
 import { routes } from '@/config/routes';
 
 export const metadata: Metadata = {
   title: 'Blog & Clinical Insights — Faceify Labs',
   description:
-    'Research, technical engineering articles, and clinical perspectives on browser-native AI facial simulation and medical imaging.',
+    'Case studies, clinical deep-dives, and product updates written for plastic surgeons and aesthetic practitioners.',
 };
 
-const articles = [
+const latestArticles = [
   {
-    slug: 'browser-native-inference-medical-privacy',
-    title: 'Why Zero Data Egress Architecture is the Future of Clinical Software',
-    date: 'February 2026',
-    readTime: '5 min read',
-    category: 'Engineering & Privacy',
-    excerpt:
-      'How WebGL2 shaders and quantized client-side models enable high-fidelity 3D simulation without transferring patient photos across cloud networks.',
-    href: routes.trust,
-  },
-  {
-    slug: 'anatomical-constraints-in-rhinoplasty-simulation',
-    title: 'The Role of Anatomical Clamps in Rhinoplasty Previews',
-    date: 'January 2026',
+    slug: 'privacy-first-surgical-simulation',
+    title: 'Why Privacy-First Matters in Surgical Simulation Software',
+    date: 'March 17, 2026',
     readTime: '6 min read',
-    category: 'Clinical Methodology',
+    category: 'Privacy',
     excerpt:
-      'Why unconstrained 2D image warping creates unrealistic patient expectations, and how 468-point 3D landmark constraints solve the consultation alignment problem.',
-    href: routes.procedure('rhinoplasty'),
+      'Most plastic surgery simulators upload patient photos to cloud servers. Learn why Faceify Labs processes photos on-device by default and why surgeons prefer minimal-egress simulation.',
+    href: '/blog/privacy-first-surgical-simulation',
   },
   {
-    slug: 'nvidia-inception-gpu-acceleration-web',
-    title: 'Accelerating Facial Landmark Triangulation on Mobile GPUs',
-    date: 'December 2025',
-    readTime: '4 min read',
-    category: 'GPU Performance',
+    slug: 'how-accurate-are-plastic-surgery-simulators',
+    title: 'How Accurate Are Plastic Surgery Simulators in 2026?',
+    date: 'March 15, 2026',
+    readTime: '5 min read',
+    category: 'Technology',
     excerpt:
-      'A deep dive into sub-millimeter RMSD precision tracking across modern Safari and Chrome mobile graphics pipelines.',
-    href: routes.technology,
+      'Patients and surgeons want to know: can you really preview surgical results? We break down the technology behind AI surgical simulation and what to expect.',
+    href: '/blog/how-accurate-are-plastic-surgery-simulators',
   },
+  {
+    slug: 'patient-images-dont-belong-in-the-cloud',
+    title: "Your Patient's Face Doesn't Belong in the Cloud",
+    date: 'March 14, 2026',
+    readTime: '5 min read',
+    category: 'Technology',
+    excerpt:
+      "Most simulation platforms upload patient photos to remote servers to process them. Here's why that trade-off is worth examining, and what privacy-first, on-device inference changes.",
+    href: '/blog/patient-images-dont-belong-in-the-cloud',
+  },
+  {
+    slug: 'best-plastic-surgery-simulators-2026',
+    title: 'Best Plastic Surgery Simulators in 2026: Complete Comparison Guide',
+    date: 'March 12, 2026',
+    readTime: '8 min read',
+    category: 'Industry',
+    excerpt:
+      'Compare the top plastic surgery simulation tools for surgeons and patients. Side-by-side analysis of Crisalix, FaceTouchUp, AEDIT, and browser-native alternatives.',
+    href: '/blog/best-plastic-surgery-simulators-2026',
+  },
+  {
+    slug: 'surgical-simulation-for-patient-consultations',
+    title: 'How Surgical Simulation Increases Consultation Conversion Rates',
+    date: 'March 10, 2026',
+    readTime: '5 min read',
+    category: 'Practice Growth',
+    excerpt:
+      'Data shows practices using simulation tools see 30-40% higher consultation-to-surgery conversion. Learn how to integrate simulation into your patient workflow.',
+    href: '/blog/surgical-simulation-for-patient-consultations',
+  },
+  {
+    slug: 'plastic-surgery-simulation-bangkok-seoul-singapore',
+    title: 'Plastic Surgery Simulation for APAC Clinics: Bangkok, Seoul, Singapore & Mumbai',
+    date: 'March 8, 2026',
+    readTime: '6 min read',
+    category: 'APAC',
+    excerpt:
+      'How aesthetic clinics in Asia-Pacific are using browser-native simulation to enhance patient consultations. Available in Thai, Korean, Japanese, and English.',
+    href: '/blog/plastic-surgery-simulation-bangkok-seoul-singapore',
+  },
+];
+
+const upcomingArticles = [
+  {
+    category: 'Case Study',
+    title: 'How Real-Time Simulation Changed Our Consultation Conversion Rate',
+    excerpt: 'A Bangkok clinic shares 90 days of data after adopting Faceify for rhinoplasty consultations.',
+  },
+  {
+    category: 'Clinical Insight',
+    title: 'The Anatomical Limits of Nasal Tip Projection, and Why Your Software Should Know Them',
+    excerpt: 'Why cartilage mechanics matter for simulation accuracy and patient trust.',
+  },
+];
+
+const topics = [
+  'Clinical Simulation',
+  'Rhinoplasty',
+  'Blepharoplasty',
+  'Practice Growth',
+  'Patient Communication',
+  'APAC Aesthetics',
 ];
 
 export default function BlogPage() {
   return (
     <div className="bg-[#F3F0EE] min-h-screen pt-32 pb-24">
-      {/* Editorial Header Hero */}
-      <section className="pb-16 relative overflow-hidden">
+      {/* Centered Editorial Header */}
+      <section className="pb-16 px-4 relative overflow-hidden text-center">
         {/* Subtle decorative orbital arc */}
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none z-0"
@@ -65,90 +117,150 @@ export default function BlogPage() {
           <circle cx="980" cy="200" r="3.5" fill="#CF4500" opacity="0.4" />
         </svg>
 
-        <div className="container-master relative z-10">
-          <div className="max-w-3xl space-y-6">
-            <span className="text-eyebrow-master text-eyebrow-dot">
-              INSIGHTS &amp; ENGINEERING
-            </span>
-            <h1 className="text-h1-hero text-[#141413]">
-              Clinical insights and{' '}
-              <span className="italic font-medium text-[#CF4500]">
-                technology breakthroughs.
-              </span>
-            </h1>
-            <p className="text-base sm:text-lg text-[#555555] leading-relaxed max-w-2xl font-normal">
-              Explore engineering deep-dives, clinical adoption studies, and the technology powering on-device facial simulation.
-            </p>
-          </div>
+        <div className="container-master relative z-10 max-w-3xl mx-auto space-y-4">
+          <span className="text-eyebrow-master text-eyebrow-dot justify-center">
+            Clinical Insights
+          </span>
+
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-normal font-serif tracking-tight text-[#141413] leading-[1.1]">
+            Thoughts on simulation,{' '}
+            <span className="italic">surgery, and trust.</span>
+          </h1>
+
+          <p className="pt-2 text-base sm:text-lg text-[#555555] font-normal max-w-[58ch] mx-auto leading-relaxed">
+            Case studies, clinical deep-dives, and product updates written for plastic surgeons and aesthetic practitioners.
+          </p>
         </div>
       </section>
 
-      {/* Articles Grid Section */}
-      <section className="py-16 md:py-20 bg-[#F3F0EE] border-t border-black/5">
-        <div className="container-master">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.map((art) => (
-              <Link
-                key={art.slug}
-                href={art.href}
-                className="bg-[#FCFBFA] p-8 sm:p-10 rounded-[32px] sm:rounded-[40px] border border-black/5 shadow-level-1 hover:shadow-level-2 transition-all flex flex-col justify-between space-y-6 group cursor-pointer"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FDEEE7] text-[#CF4500] text-xs font-semibold uppercase tracking-wider">
-                      {art.category}
-                    </span>
-                    <span className="text-xs font-medium text-[#696969] flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5 text-[#CF4500]" />
-                      {art.readTime}
-                    </span>
+      {/* Main Blog Container */}
+      <section className="px-4">
+        <div className="max-w-3xl mx-auto">
+          {/* Latest Section */}
+          <div className="mb-14">
+            <p className="text-xs md:text-sm font-semibold text-[#696969] uppercase tracking-wider mb-6">
+              Latest
+            </p>
+
+            <div className="space-y-5">
+              {latestArticles.map((art) => (
+                <Link
+                  key={art.slug}
+                  href={art.href}
+                  className="group block bg-[#FCFBFA] border border-black/5 rounded-[20px] p-6 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 shadow-level-1 cursor-pointer"
+                >
+                  <div className="flex gap-4 items-start">
+                    <div className="w-10 h-10 rounded-[12px] bg-[#E8EFEA] text-[#2C5339] flex items-center justify-center shrink-0 mt-0.5">
+                      <BookOpen className="w-5 h-5 text-[#2C5339]" />
+                    </div>
+
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-[#696969]">
+                        <span className="font-bold text-[#2C5339] uppercase tracking-wider text-[11px]">
+                          {art.category}
+                        </span>
+                        <span>·</span>
+                        <span>{art.readTime}</span>
+                        <span>·</span>
+                        <span>{art.date}</span>
+                      </div>
+
+                      <h2 className="text-base md:text-lg font-semibold text-[#141413] mt-1 mb-2 leading-snug group-hover:text-[#CF4500] transition-colors font-display">
+                        {art.title}
+                      </h2>
+
+                      <p className="text-xs sm:text-sm text-[#555555] leading-relaxed font-normal">
+                        {art.excerpt}
+                      </p>
+
+                      <span className="inline-flex items-center gap-1.5 mt-3 text-xs font-semibold text-[#2C5339] group-hover:text-[#CF4500] transition-colors">
+                        <span>Read article</span>
+                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </div>
                   </div>
+                </Link>
+              ))}
+            </div>
+          </div>
 
-                  <h2 className="text-xl sm:text-2xl font-medium tracking-tight text-[#141413] group-hover:text-[#CF4500] transition-colors font-display line-clamp-2">
-                    {art.title}
-                  </h2>
+          {/* More Coming Soon Divider */}
+          <div className="flex items-center justify-center gap-3 my-12">
+            <div className="flex items-center gap-2 px-4 py-2 bg-[#E8EFEA] border border-[#2C5339]/20 rounded-full">
+              <Rss className="w-3.5 h-3.5 text-[#2C5339]" />
+              <span className="text-xs font-bold text-[#2C5339] tracking-wider uppercase">
+                More coming soon
+              </span>
+            </div>
+          </div>
 
-                  <p className="text-sm text-[#555555] leading-relaxed font-normal">
-                    {art.excerpt}
+          {/* Coming Up Section */}
+          <div className="space-y-4 mb-14">
+            <p className="text-xs md:text-sm font-semibold text-[#696969] uppercase tracking-wider mb-6">
+              Coming up
+            </p>
+
+            {upcomingArticles.map((item, i) => (
+              <div
+                key={i}
+                className="bg-[#FCFBFA] border border-black/5 rounded-[20px] p-5 flex gap-4 items-start shadow-level-1"
+              >
+                <div className="w-9 h-9 rounded-lg bg-[#E8EFEA] text-[#2C5339] flex items-center justify-center shrink-0 mt-0.5">
+                  <BookOpen className="w-4 h-4 text-[#2C5339]" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-[#2C5339] uppercase tracking-widest">
+                    {item.category}
+                  </span>
+                  <h3 className="text-sm font-semibold text-[#141413] mt-1 mb-1 leading-snug font-display">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-[#555555] leading-relaxed">
+                    {item.excerpt}
                   </p>
                 </div>
-
-                <div className="pt-6 border-t border-black/5 flex items-center justify-between text-xs text-[#696969]">
-                  <div className="flex items-center gap-1.5 font-medium">
-                    <Calendar className="w-3.5 h-3.5 text-[#696969]" />
-                    <span>{art.date}</span>
-                  </div>
-
-                  <span className="inline-flex items-center gap-1.5 font-semibold text-[#141413] group-hover:text-[#CF4500] transition-colors">
-                    <span>Read Article</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </div>
-              </Link>
+              </div>
             ))}
           </div>
 
-          {/* Research Archive Banner */}
-          <div className="p-8 md:p-12 rounded-[40px] bg-[#141413] text-white border border-black/5 flex flex-col md:flex-row items-center justify-between gap-8 shadow-level-2 mt-16">
-            <div className="space-y-3">
-              <span className="text-[10px] font-bold tracking-widest uppercase text-[#F37338]">
-                CLINICAL RESEARCH ARCHIVE
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-medium font-display text-white">
-                Interested in technical whitepapers &amp; algorithms?
-              </h3>
-              <p className="text-sm text-white/70 max-w-xl font-normal leading-relaxed">
-                Receive clinical accuracy reports, GPU benchmarking whitepapers, and 468-point deformation algorithm documentation.
-              </p>
+          {/* Topics We Cover Section */}
+          <div className="mb-14">
+            <p className="text-[10px] font-bold text-[#696969] uppercase tracking-widest mb-4">
+              Topics we cover
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {topics.map((t) => (
+                <span
+                  key={t}
+                  className="text-xs font-medium text-[#555555] bg-white border border-black/10 px-3.5 py-1.5 rounded-full shadow-sm"
+                >
+                  {t}
+                </span>
+              ))}
             </div>
+          </div>
 
-            <Link
-              href={routes.foundingPartners}
-              className="px-7 py-3 rounded-[20px] bg-white text-[#141413] hover:bg-[#F3F0EE] text-sm font-medium tracking-tight transition-all shrink-0 inline-flex items-center gap-2"
-            >
-              <span>Apply for Research Access</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+          {/* Get Notified When We Publish Card */}
+          <div className="bg-[#141413] rounded-[24px] p-8 sm:p-12 text-center relative overflow-hidden shadow-level-2">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[360px] h-[180px] bg-[#CF4500]/15 rounded-full blur-[80px] pointer-events-none" />
+            <div className="relative z-10 space-y-4">
+              <Bell className="w-6 h-6 text-[#CF4500] mx-auto mb-2" />
+              <h3 className="text-xl sm:text-2xl font-serif text-white">
+                Get notified when we publish.
+              </h3>
+              <p className="text-white/70 text-sm max-w-sm mx-auto leading-relaxed font-normal">
+                One email per article. No newsletters, no digests. Just the piece itself when it&apos;s ready.
+              </p>
+              <div className="pt-2">
+                <Link
+                  href={routes.surgeons}
+                  className="inline-flex items-center gap-2 px-7 py-3 bg-[#CF4500] hover:bg-[#b03b00] text-white text-sm font-bold rounded-full transition-all shadow-sm"
+                >
+                  <span>Join the Pilot</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

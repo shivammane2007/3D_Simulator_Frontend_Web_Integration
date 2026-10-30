@@ -32,6 +32,7 @@ export const routes = {
   gallery: '/gallery',
   faq: '/faq',
   blog: '/blog',
+  blogPost: (slug: string) => `/blog/${slug}`,
   ourStory: '/our-story',
 
   // Trust
