@@ -56,7 +56,7 @@ export default function HeroSection() {
         <div className="below">
           <p className="sub">
             Real-time photorealistic surgical outcome simulation on your consultation device.
-            86 procedures, 486 facial landmarks, zero cloud uploads. Built for plastic surgeons.
+            85+ procedures, 468 facial landmarks, zero cloud uploads. Built for plastic surgeons.
           </p>
           <div className="buttons">
             <ButtonWithIcon
@@ -71,26 +71,26 @@ export default function HeroSection() {
             </Link>
           </div>
           <div className="readout">
-            <h2>Session 0814 · 30 s · Rhinoplasty</h2>
-            <dl>
-              <div>
-                <dt>Landmarks</dt>
-                <dd>486 points · 0.34 s</dd>
-              </div>
-              <div>
-                <dt>Deformation model</dt>
-                <dd>Dorsal reduction</dd>
-              </div>
-              <div>
-                <dt>Inference</dt>
-                <dd>Local device RAM</dd>
-              </div>
-              <div>
-                <dt>Cloud upload</dt>
-                <dd className="hot">0 KB (Zero server)</dd>
-              </div>
-            </dl>
-          </div>
+  <h2>FACIAL ANALYSIS · RHINOPLASTY</h2>
+  <dl>
+    <div>
+      <dt>Dorsal Profile</dt>
+      <dd>-2.4 mm</dd>
+    </div>
+    <div>
+      <dt>Tip Elevation</dt>
+      <dd>104°</dd>
+    </div>
+    <div>
+      <dt>Facial Landmarks</dt>
+      <dd>468 Points</dd>
+    </div>
+    <div>
+      <dt>Data Privacy</dt>
+      <dd className="hot">100% On-Device</dd>
+    </div>
+  </dl>
+</div>
         </div>
       </main>
     </div>
