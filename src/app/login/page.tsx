@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Lock, Mail, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 import { Section, Container } from '@/components/layout/Container';
 import { Eyebrow, Heading, Prose } from '@/components/ui/Typography';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { routes } from '@/config/routes';
 
 export default function LoginPage() {

@@ -7,6 +7,7 @@ import Link from "next/link";
 import GrinIris from "@/components/ui/hero-51/grin-iris";
 import "@/components/originkit/hero-51.css";
 import { routes } from "@/config/routes";
+import { ButtonWithIcon } from "@/components/ui/button-witn-icon";
 
 export default function HeroSection() {
   return (
@@ -58,19 +59,13 @@ export default function HeroSection() {
             86 procedures, 486 facial landmarks, zero cloud uploads. Built for plastic surgeons.
           </p>
           <div className="buttons">
-            <Link className="btn" href={routes.simulate}>
-              Try the simulator{" "}
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-              >
-                <path d="M3 8h10M9 4l4 4-4 4" />
-              </svg>
-            </Link>
+            <ButtonWithIcon
+              href={routes.simulate}
+              className="bg-[#FF2400] hover:bg-[#15110E] text-white h-[52px] text-sm sm:text-base font-semibold shadow-level-1 transition-all duration-500 border-0"
+              iconClassName="w-10 h-10 bg-white text-[#FF2400]"
+            >
+              Try the simulator
+            </ButtonWithIcon>
             <Link className="link" href={routes.consultation}>
               Book a consultation demo
             </Link>

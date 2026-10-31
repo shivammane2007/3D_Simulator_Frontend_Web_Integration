@@ -6,7 +6,7 @@ import { Search, ArrowRight, Sparkles } from 'lucide-react';
 import { procedures, procedureCategories, type ProcedureCategory } from '@/data/procedures';
 import { routes } from '@/config/routes';
 import { cn } from '@/lib/utils';
-import { SatelliteButton } from '@/components/ui/Button';
+import { SatelliteButton } from '@/components/ui/button';
 
 export default function ProceduresPage() {
   const [searchQuery, setSearchQuery] = useState('');

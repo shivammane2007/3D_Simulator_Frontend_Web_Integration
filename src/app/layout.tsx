@@ -1,24 +1,9 @@
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans, DM_Sans } from 'next/font/google';
 import './globals.css';
 import { siteConfig } from '@/config/site';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import LenisProvider from '@/components/motion/LenisProvider';
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-plus-jakarta',
-  display: 'swap',
-});
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-dm-sans',
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: {
@@ -74,10 +59,11 @@ export default function RootLayout({
       lang="en"
       data-scroll-behavior="smooth"
       suppressHydrationWarning
-      className={`${plusJakartaSans.variable} ${dmSans.variable}`}
     >
       <head>
         <meta name="theme-color" content="#FAFAF7" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body
         className="antialiased bg-[var(--background)] text-[var(--foreground)]"

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { procedures, procedureCategories, type ProcedureCategory } from '@/data/procedures';
 import { routes } from '@/config/routes';
-import { SatelliteButton } from '@/components/ui/Button';
+import { SatelliteButton } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 

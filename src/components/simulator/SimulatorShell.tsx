@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Camera, Sliders, Eye, RefreshCw, Download, Share2, CheckCircle2, ShieldAlert, Sparkles, Check } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import BeforeAfterSlider from '@/components/media/BeforeAfterSlider';
 import { procedures, type Procedure } from '@/data/procedures';
 import { cn } from '@/lib/utils';
