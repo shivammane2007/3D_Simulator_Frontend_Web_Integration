@@ -13,12 +13,6 @@ export default function FinalCTA() {
       <div className="container-master">
         {/* 40px Stadium Dark Card */}
         <div className="bg-[#141413] text-white rounded-[40px] p-10 md:p-20 text-center shadow-level-2 relative overflow-hidden">
-          {/* Subtle Orange Radial Glow */}
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full blur-[140px] pointer-events-none opacity-20 bg-[#CF4500]"
-            aria-hidden="true"
-          />
-
           <div className="max-w-2xl mx-auto space-y-6 relative z-10">
             <span className="text-eyebrow-master text-eyebrow-dot text-white/60">
               {t('EXPERIENCE THE PREVIEW')}
