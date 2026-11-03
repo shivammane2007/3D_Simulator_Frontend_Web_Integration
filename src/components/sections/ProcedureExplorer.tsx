@@ -6,6 +6,7 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import { procedures, procedureCategories, type ProcedureCategory } from '@/data/procedures';
 import { routes } from '@/config/routes';
 import { SatelliteButton } from '@/components/ui/button';
+import ProcedureIllustration from '@/components/procedures/ProcedureIllustration';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -97,20 +98,7 @@ export default function ProcedureExplorer() {
               <div className="relative w-[180px] h-[180px] my-2">
                 {/* Circular image mask */}
                 <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-white via-[#EBE7E3] to-[#DFD9D2] border border-black/5 flex items-center justify-center p-3">
-                  <svg className="w-full h-full" viewBox="0 0 160 160" fill="none">
-                    <ellipse cx="80" cy="80" rx="42" ry="54" stroke="#141413" strokeWidth="1.2" fill="rgba(255,255,255,0.5)" />
-                    <ellipse cx="65" cy="70" rx="8" ry="5" stroke="#141413" strokeWidth="1" fill="#fff" />
-                    <ellipse cx="95" cy="70" rx="8" ry="5" stroke="#141413" strokeWidth="1" fill="#fff" />
-                    <circle cx="65" cy="70" r="2" fill="#CF4500" />
-                    <circle cx="95" cy="70" r="2" fill="#CF4500" />
-                    <path d="M80 60 L77 78 Q80 82 83 78 L80 60" stroke="#141413" strokeWidth="1" fill="none" />
-                    <path d="M70 95 Q80 100 90 95" stroke="#141413" strokeWidth="1.2" strokeLinecap="round" fill="none" />
-                    {/* Landmark points */}
-                    <circle cx="80" cy="50" r="1.5" fill="#CF4500" />
-                    <circle cx="55" cy="85" r="1.5" fill="#F37338" />
-                    <circle cx="105" cy="85" r="1.5" fill="#F37338" />
-                    <circle cx="80" cy="110" r="1.5" fill="#CF4500" />
-                  </svg>
+                  <ProcedureIllustration slug={procedure.slug} category={procedure.category} />
                 </div>
 
                 {/* Attached Satellite Micro-CTA (docks bottom-right) */}
