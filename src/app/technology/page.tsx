@@ -580,30 +580,8 @@ export default function TechnologyPage() {
         </div>
       </section>
 
-      {/* ── 7. NVIDIA Inception Recognition ── */}
-      <section className="py-16 bg-[#F3F0EE]">
-        <div className="container-master">
-          <div className="p-8 md:p-12 rounded-[32px] bg-[#141413] text-white border border-black/5 flex flex-col md:flex-row items-center gap-8 shadow-level-2">
-            <div className="w-16 h-16 rounded-[20px] bg-[#76b900] flex items-center justify-center text-white text-3xl font-black shrink-0">
-              N
-            </div>
-            <div className="space-y-2 text-center md:text-left">
-              <span className="text-[10px] font-bold tracking-widest uppercase text-[#F37338]">
-                Ecosystem Recognition
-              </span>
-              <h3 className="text-xl sm:text-2xl font-display font-medium text-white">
-                Member of the NVIDIA Inception Program
-              </h3>
-              <p className="text-xs sm:text-sm text-white/70 leading-relaxed max-w-2xl font-normal">
-                Faceify Labs is part of NVIDIA Inception, a program nurturing cutting-edge startups revolutionizing medical imaging and web-native GPU acceleration.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 8. Bottom CTA ── */}
-      <section className="py-12 bg-[#F3F0EE]">
+      {/* ── 7. Bottom CTA ── */}
+      <section className="py-16 sm:py-20 bg-[#F3F0EE]">
         <div className="container-master">
           <div className="max-w-3xl mx-auto text-center bg-[#141413] rounded-[32px] p-10 sm:p-14 relative overflow-hidden shadow-level-2">
             <div className="relative z-10 space-y-4">
