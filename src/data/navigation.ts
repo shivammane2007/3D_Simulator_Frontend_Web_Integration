@@ -63,7 +63,7 @@ export const mainNav: NavEntry[] = [
       },
       {
         label: 'AI Face Analyzer',
-        href: routes.simulate,
+        href: routes.analyse,
       },
       {
         label: 'Acne Assessment',
