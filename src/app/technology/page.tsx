@@ -21,8 +21,6 @@ import {
   Check,
   Zap,
   ArrowRight,
-  ChevronLeft,
-  ChevronRight,
 } from 'lucide-react';
 import { routes } from '@/config/routes';
 
@@ -31,13 +29,6 @@ export default function TechnologyPage() {
   const [sliderPosition, setSliderPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const featureCardsRef = useRef<HTMLDivElement>(null);
-  const standardsScrollRef = useRef<HTMLDivElement>(null);
-
-  const scrollStandards = (direction: 'left' | 'right') => {
-    if (!standardsScrollRef.current) return;
-    const scrollAmount = direction === 'left' ? -360 : 360;
-    standardsScrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -308,61 +299,42 @@ export default function TechnologyPage() {
         </div>
       </section>
 
-      {/* ── 3. Built for Clinical Environments (Carousel) ── */}
-      <section className="py-20 bg-[#F3F0EE] border-b border-black/5 overflow-hidden">
-        <div className="container-master mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="max-w-xl">
+      {/* ── 3. Built for Clinical Environments (Bento Grid) ── */}
+      <section className="py-20 bg-[#F3F0EE] border-b border-black/5">
+        <div className="container-master mb-12">
+          <div className="max-w-2xl space-y-3">
             <span className="text-eyebrow-master text-eyebrow-dot uppercase tracking-wider text-[#696969] text-xs font-semibold">
               ENTERPRISE COMPLIANCE
             </span>
-            <h2 className="text-3xl md:text-4xl font-display font-medium text-[#141413] tracking-tight mt-2 mb-2">
+            <h2 className="text-3xl md:text-4xl font-display font-medium text-[#141413] tracking-tight">
               Built for Clinical Environments
             </h2>
             <p className="text-[#555555] text-sm sm:text-base leading-relaxed">
               Enterprise-grade privacy, compliance, and accuracy standards — so you can integrate Faceify into your practice with confidence.
             </p>
           </div>
-
-          {/* Navigation Controls */}
-          <div className="hidden md:flex items-center gap-3 shrink-0">
-            <button
-              onClick={() => scrollStandards('left')}
-              aria-label="Previous standard"
-              className="w-10 h-10 rounded-full bg-white border border-black/10 hover:border-black/20 shadow-level-1 flex items-center justify-center text-[#141413] hover:text-[#CF4500] hover:scale-105 active:scale-95 transition-all cursor-pointer"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={() => scrollStandards('right')}
-              aria-label="Next standard"
-              className="w-10 h-10 rounded-full bg-white border border-black/10 hover:border-black/20 shadow-level-1 flex items-center justify-center text-[#141413] hover:text-[#CF4500] hover:scale-105 active:scale-95 transition-all cursor-pointer"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
         </div>
 
-        {/* Horizontal Carousel */}
-        <div className="relative w-full">
-          <div
-            ref={standardsScrollRef}
-            className="flex overflow-x-auto pb-6 gap-6 snap-x snap-mandatory container-master scrollbar-hide no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-          >
+        {/* Bento Grid */}
+        <div className="container-master">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {STANDARDS.map((std, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.35 }}
-                className="snap-start shrink-0 w-[280px] sm:w-[320px] md:w-[340px] bg-white p-6 sm:p-7 rounded-[28px] border border-black/5 shadow-level-1 hover:shadow-level-2 hover:border-[#CF4500]/25 transition-all group flex flex-col justify-between"
+                transition={{ delay: i * 0.06, duration: 0.35 }}
+                className="bg-white p-7 sm:p-8 rounded-[32px] border border-black/5 shadow-level-1 hover:shadow-level-2 hover:border-[#CF4500]/25 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-[#F3F0EE] flex items-center justify-center mb-5 group-hover:bg-[#FDEEE7] transition-colors">
-                    <std.icon className="w-6 h-6 text-[#141413] group-hover:text-[#CF4500] transition-colors" />
+                  <div className="w-12 h-12 rounded-2xl bg-[#FDEEE7] flex items-center justify-center mb-6 text-[#CF4500] group-hover:bg-[#CF4500] group-hover:text-white transition-colors shadow-sm">
+                    <std.icon className="w-6 h-6" />
                   </div>
-                  <h3 className="text-lg font-bold text-[#141413] mb-2">{std.title}</h3>
-                  <p className="text-xs sm:text-sm text-[#555555] leading-relaxed">
+                  <h3 className="text-xl font-display font-medium text-[#141413] mb-2.5">
+                    {std.title}
+                  </h3>
+                  <p className="text-sm text-[#555555] leading-relaxed">
                     {std.desc}
                   </p>
                 </div>
