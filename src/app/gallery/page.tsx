@@ -230,7 +230,7 @@ function BeforeAfterStatic({
           priority={priority}
           draggable={false}
         />
-        <div className="absolute top-3 right-3 bg-[#1F3A34]/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full z-10 shadow-sm">
+        <div className="absolute top-3 right-3 bg-[#CF4500] text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full z-10 shadow-sm">
           {afterLabel}
         </div>
       </div>
@@ -244,7 +244,7 @@ function BeforeAfterStatic({
       {/* Source Badge (Bottom Center) */}
       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
         {isAI ? (
-          <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#1F3A34]/90 backdrop-blur-sm text-white border border-white/20 shadow-sm">
+          <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#141413]/85 backdrop-blur-sm text-[#F37338] border border-white/20 shadow-sm">
             AI Simulation
           </span>
         ) : (
@@ -338,7 +338,7 @@ export default function GalleryPage() {
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-normal font-display tracking-tight text-[#141413] leading-[1.1]">
             Before &amp;{' '}
-            <span className="italic font-medium text-[#234A3E]">
+            <span className="italic font-medium text-[#CF4500]">
               After
             </span>{' '}
             Gallery
@@ -411,7 +411,7 @@ export default function GalleryPage() {
                       <span
                         className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
                           c.type === 'Surgical'
-                            ? 'text-[#234A3E] bg-[#234A3E]/10 border-[#234A3E]/20'
+                            ? 'text-[#CF4500] bg-[#CF4500]/10 border-[#CF4500]/20'
                             : 'text-[#9A3A0A] bg-[#9A3A0A]/10 border-[#9A3A0A]/20'
                         }`}
                       >
@@ -426,12 +426,12 @@ export default function GalleryPage() {
 
                   <div className="flex items-center justify-between pt-2 border-t border-black/5 mt-auto">
                     <p className="text-[11px] text-[#696969] flex items-center gap-1">
-                      <MapPin className="w-3 h-3 text-[#234A3E]" aria-hidden="true" />
+                      <MapPin className="w-3 h-3 text-[#CF4500]" aria-hidden="true" />
                       {c.region}
                     </p>
                     {c.status === 'live' ? (
-                      <span className="text-[10px] font-bold text-[#234A3E] bg-[#234A3E]/10 px-2 py-0.5 rounded-full border border-[#234A3E]/20 flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#234A3E] animate-pulse" />
+                      <span className="text-[10px] font-bold text-[#CF4500] bg-[#CF4500]/10 px-2 py-0.5 rounded-full border border-[#CF4500]/20 flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#CF4500] animate-pulse" />
                         Live
                       </span>
                     ) : (
