@@ -191,4 +191,17 @@
   .shadow-level-3 {
     box-shadow: var(--shadow-level-3);
   }
+
+  /* Scrollbar hiding utilities */
+  .scrollbar-hide,
+  .no-scrollbar,
+  .scrollbar-none {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar,
+  .no-scrollbar::-webkit-scrollbar,
+  .scrollbar-none::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
 }
