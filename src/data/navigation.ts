@@ -67,7 +67,7 @@ export const mainNav: NavEntry[] = [
       },
       {
         label: 'Acne Assessment',
-        href: routes.analyse,
+        href: routes.acneAnalyse,
       },
       {
         label: 'Our Story',
@@ -98,6 +98,7 @@ export const footerNav = {
     { label: 'Rhinoplasty', href: routes.procedure('rhinoplasty') },
     { label: 'Blepharoplasty', href: routes.procedure('blepharoplasty') },
     { label: 'Facelift', href: routes.procedure('facelift') },
+    { label: 'Acne Assessment', href: routes.acneAnalyse },
     { label: 'Case Gallery', href: routes.gallery },
     { label: 'FAQ', href: routes.faq },
     { label: 'Consultation', href: routes.consultation },

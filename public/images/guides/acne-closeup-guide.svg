@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" fill="none">
+  <!-- Full-face selfie (left) -->
+  <g transform="translate(30, 20)">
+    <rect x="0" y="0" width="240" height="260" rx="12" fill="#EDE8E0" stroke="#D8D0C5" stroke-width="2"/>
+    <!-- Face outline -->
+    <ellipse cx="120" cy="120" rx="55" ry="75" fill="none" stroke="#8C8480" stroke-width="2" stroke-dasharray="6,3"/>
+    <!-- Eyes -->
+    <circle cx="100" cy="105" r="6" fill="none" stroke="#8C8480" stroke-width="1.5"/>
+    <circle cx="140" cy="105" r="6" fill="none" stroke="#8C8480" stroke-width="1.5"/>
+    <!-- Nose -->
+    <path d="M120 115 L120 135 L115 140" stroke="#8C8480" stroke-width="1.5" fill="none"/>
+    <!-- Mouth -->
+    <path d="M105 155 Q120 165 135 155" stroke="#8C8480" stroke-width="1.5" fill="none"/>
+    <!-- Zone dots -->
+    <circle cx="120" cy="60" r="2" fill="#7C9082"/>
+    <circle cx="170" cy="110" r="2" fill="#7C9082"/>
+    <circle cx="70" cy="110" r="2" fill="#7C9082"/>
+    <circle cx="120" cy="140" r="2" fill="#7C9082"/>
+    <circle cx="120" cy="180" r="2" fill="#7C9082"/>
+    <!-- Label -->
+    <text x="120" y="245" text-anchor="middle" fill="#6C6460" font-size="11" font-family="system-ui">Full-face selfie</text>
+    <text x="120" y="258" text-anchor="middle" fill="#8C8480" font-size="9" font-family="system-ui">For zone mapping</text>
+    <!-- Checkmark -->
+    <circle cx="220" cy="15" r="10" fill="#7C9082"/>
+    <path d="M215 15 L218 18 L225 12" stroke="white" stroke-width="1.5" fill="none"/>
+    <!-- Arrow -->
+    <path d="M240 130 L300 130" stroke="#7C9082" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <text x="270" y="120" text-anchor="middle" fill="#7C9082" font-size="9" font-family="system-ui">then</text>
+  </g>
+
+  <!-- Close-up (right) -->
+  <g transform="translate(320, 20)">
+    <rect x="0" y="0" width="240" height="260" rx="12" fill="#EDE8E0" stroke="#7C9082" stroke-width="2"/>
+    <!-- Close-up framing — zoomed in on a cheek zone -->
+    <circle cx="120" cy="120" r="70" fill="none" stroke="#7C9082" stroke-width="2"/>
+    <!-- Skin detail marks -->
+    <circle cx="100" cy="100" r="4" fill="#9a7d2e" opacity="0.4"/>
+    <circle cx="135" cy="90" r="3" fill="#9a7d2e" opacity="0.3"/>
+    <circle cx="115" cy="130" r="5" fill="#9a7d2e" opacity="0.35"/>
+    <circle cx="140" cy="135" r="3" fill="#9a7d2e" opacity="0.25"/>
+    <circle cx="95" cy="120" r="3.5" fill="#9a7d2e" opacity="0.3"/>
+    <!-- Distance indicator -->
+    <path d="M170 80 Q190 60 170 40" stroke="#8C8480" stroke-width="1" fill="none"/>
+    <line x1="170" y1="80" x2="180" y2="80" stroke="#8C8480" stroke-width="1"/>
+    <line x1="170" y1="40" x2="180" y2="40" stroke="#8C8480" stroke-width="1"/>
+    <text x="195" y="63" fill="#6C6460" font-size="9" font-family="system-ui">15–30 cm</text>
+    <!-- Label -->
+    <text x="120" y="245" text-anchor="middle" fill="#2C2C2C" font-size="11" font-family="system-ui">Close-up of worst area</text>
+    <text x="120" y="258" text-anchor="middle" fill="#6C6460" font-size="9" font-family="system-ui">For acne type detection</text>
+    <!-- Star -->
+    <circle cx="220" cy="15" r="10" fill="#9a7d2e"/>
+    <path d="M220 10 L221 13 L224 13.5 L221.5 15.5 L222 18.5 L220 17 L218 18.5 L218.5 15.5 L216 13.5 L219 13 Z" fill="white"/>
+  </g>
+
+  <!-- Arrow marker def -->
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10" fill="#7C9082"/>
+    </marker>
+  </defs>
+</svg>

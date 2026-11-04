@@ -286,7 +286,7 @@ export default function FaceAnalyserPage() {
 
           {/* Acne Skin Assessment Card */}
           <Link
-            href={routes.analyse}
+            href={routes.acneAnalyse}
             className="group flex items-center gap-4 bg-white border border-black/10 rounded-[24px] p-5 shadow-level-1 hover:border-[#CF4500]/30 hover:shadow-level-2 transition-all"
           >
             <div className="w-12 h-12 rounded-2xl bg-[#FDEEE7] flex items-center justify-center text-[#CF4500] shrink-0 group-hover:bg-[#CF4500] group-hover:text-white transition-colors shadow-sm">

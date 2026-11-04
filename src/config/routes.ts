@@ -59,6 +59,7 @@ export const routes = {
 
   // Analyse
   analyse: '/analyse',
+  acneAnalyse: '/analyse/acne',
 } as const;
 
 export type Route = typeof routes;
