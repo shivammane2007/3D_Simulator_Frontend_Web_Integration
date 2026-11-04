@@ -242,7 +242,6 @@ export default function BlogPage() {
 
           {/* Get Notified When We Publish Card */}
           <div className="bg-[#141413] rounded-[24px] p-8 sm:p-12 text-center relative overflow-hidden shadow-level-2">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[360px] h-[180px] bg-[#CF4500]/15 rounded-full blur-[80px] pointer-events-none" />
             <div className="relative z-10 space-y-4">
               <Bell className="w-6 h-6 text-[#CF4500] mx-auto mb-2" />
               <h3 className="text-xl sm:text-2xl font-serif text-white">
