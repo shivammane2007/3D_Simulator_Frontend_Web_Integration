@@ -614,35 +614,51 @@ export default function TrustPage() {
       {/* ── Regulatory Disclaimer & Cross Links ── */}
       <section className="container-master relative z-10 max-w-3xl mx-auto px-4">
         <div className="bg-[#FCFBFA] rounded-[32px] p-8 sm:p-10 border border-black/10 shadow-level-1 space-y-6 text-center">
-          <p className="text-xs text-[#696969] leading-relaxed max-w-2xl mx-auto">
+          <p className="text-xs sm:text-sm text-[#696969] leading-relaxed max-w-2xl mx-auto">
             Faceify Labs is an educational visual planning tool designed to facilitate patient-surgeon communication. It is{' '}
             <span className="font-semibold text-[#141413]">
               not regulated as a medical device
             </span>{' '}
-            under the U.S. FDA, the Thai FDA, the Korean MFDS, ANVISA (Brazil), or the PMDA (Japan). All previews are visualisations of the requested change — not predictions of surgical outcome, clinical diagnoses, or treatment recommendations.
+            under the U.S. FDA, the Thai FDA, the Korean MFDS, ANVISA (Brazil), or the PMDA (Japan). All previews are visualisations of the requested change — not predictions of surgical outcome, clinical diagnoses, or treatment recommendations.{' '}
+            <Link
+              href="/clinical-safety"
+              className="underline text-[#141413] hover:text-[#CF4500] transition-colors"
+            >
+              Read our full clinical posture &rarr;
+            </Link>
           </p>
 
-          <div className="border-t border-black/10 pt-5 flex flex-wrap items-center justify-center gap-3 text-xs text-[#555555]">
-            <Link
-              href={routes.privacy}
-              className="underline text-[#141413] hover:text-[#CF4500] transition-colors"
-            >
-              Privacy Policy
-            </Link>
-            <span>·</span>
-            <Link
-              href={routes.terms}
-              className="underline text-[#141413] hover:text-[#CF4500] transition-colors"
-            >
-              Terms of Service
-            </Link>
-            <span>·</span>
-            <Link
-              href={routes.consultation}
-              className="underline text-[#141413] hover:text-[#CF4500] transition-colors"
-            >
-              Clinical Consultation
-            </Link>
+          <div className="border-t border-black/10 pt-5 text-center">
+            <p className="text-xs sm:text-sm text-[#696969]">
+              Related:{' '}
+              <Link
+                href="/security"
+                className="underline text-[#141413] hover:text-[#CF4500] transition-colors"
+              >
+                Security &amp; procurement posture
+              </Link>
+              {' · '}
+              <Link
+                href={routes.privacy}
+                className="underline text-[#141413] hover:text-[#CF4500] transition-colors"
+              >
+                Privacy policy
+              </Link>
+              {' · '}
+              <Link
+                href="/clinical-safety"
+                className="underline text-[#141413] hover:text-[#CF4500] transition-colors"
+              >
+                Clinical safety
+              </Link>
+              {' · '}
+              <Link
+                href="/surgeon/vr-setup"
+                className="underline text-[#141413] hover:text-[#CF4500] transition-colors"
+              >
+                VR consult mode setup guide
+              </Link>
+            </p>
           </div>
         </div>
       </section>

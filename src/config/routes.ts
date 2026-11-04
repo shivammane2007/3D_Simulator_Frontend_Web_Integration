@@ -37,6 +37,7 @@ export const routes = {
 
   // Trust
   trust: '/trust',
+  clinicalSafety: '/clinical-safety',
   privacy: '/privacy',
   terms: '/terms',
   refundPolicy: '/refund-policy',
