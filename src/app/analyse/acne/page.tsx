@@ -708,37 +708,6 @@ export default function AcneAssessmentPage() {
             </div>
           </div>
         )}
-
-        {/* ── 4. Cross-Navigation Card (Return to Proportion Explorer) ── */}
-        {!analyzed && (
-          <div className="pt-10 pb-8 max-w-xl mx-auto">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="flex-1 h-px bg-black/10" />
-              <span className="text-xs font-semibold tracking-widest uppercase text-[#696969]">
-                MORE ANALYSERS
-              </span>
-              <div className="flex-1 h-px bg-black/10" />
-            </div>
-
-            <Link
-              href={routes.analyse}
-              className="group flex items-center gap-4 bg-white border border-black/10 rounded-[24px] p-5 shadow-level-1 hover:border-[#CF4500]/30 hover:shadow-level-2 transition-all"
-            >
-              <div className="w-12 h-12 rounded-2xl bg-[#FDEEE7] flex items-center justify-center text-[#CF4500] shrink-0 group-hover:bg-[#CF4500] group-hover:text-white transition-colors shadow-sm">
-                <Sparkles className="w-5 h-5" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-bold text-[#141413] leading-tight">
-                  Facial Proportion Explorer
-                </p>
-                <p className="text-xs text-[#555555] mt-1 leading-relaxed">
-                  Golden ratio &amp; vertical thirds symmetry analysis to explore aesthetic proportions.
-                </p>
-              </div>
-              <ArrowRight className="w-4 h-4 text-[#696969] group-hover:text-[#CF4500] group-hover:translate-x-1 transition-all shrink-0" />
-            </Link>
-          </div>
-        )}
       </div>
 
       {/* ── 5. Floating Pill: Try Simulators ── */}
