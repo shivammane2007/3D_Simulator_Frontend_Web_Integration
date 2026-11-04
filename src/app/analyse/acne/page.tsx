@@ -233,20 +233,20 @@ export default function AcneAssessmentPage() {
       </svg>
 
       {/* ── 1. Header ── */}
-      <div className="container-master relative z-10 text-center max-w-3xl mx-auto pt-6 pb-6 space-y-3.5">
+      <div className="relative z-10 text-center max-w-xl mx-auto pt-6 pb-6 px-4 space-y-3">
         <h1 className="text-4xl sm:text-5xl font-display font-normal tracking-tight text-[#141413] leading-[1.15]">
           Acne Skin Assessment
         </h1>
 
-        <p className="pt-1 text-base sm:text-lg text-[#555555] font-normal max-w-[56ch] mx-auto leading-relaxed">
+        <p className="pt-1 text-sm sm:text-base text-[#555555] font-normal max-w-[440px] mx-auto leading-relaxed">
           Get a personalised cosmetic skin assessment in seconds. All analysis runs locally in your browser: no images leave your device.
         </p>
       </div>
 
-      {/* ── 2. Main Content Container ── */}
-      <div className="container-master relative z-10 max-w-2xl mx-auto px-4">
+      {/* ── 2. Main Content Container (Proper spacing on both sides: max-w-[480px]) ── */}
+      <div className="relative z-10 w-full mx-auto px-4">
         {!analyzed ? (
-          <div className="space-y-4">
+          <div className="w-full max-w-[480px] mx-auto space-y-4">
             {/* Guide Accordion: HOW TO GET THE BEST RESULTS */}
             <div className="bg-white rounded-[24px] border border-black/10 shadow-level-1 overflow-hidden transition-all">
               <button
@@ -514,7 +514,7 @@ export default function AcneAssessmentPage() {
           </div>
         ) : (
           /* ── 3. Results Scorecard ── */
-          <div className="space-y-6 animate-in fade-in duration-300">
+          <div className="w-full max-w-[600px] mx-auto space-y-6 animate-in fade-in duration-300">
             {/* Top Bar: Assessment Overview & Reset */}
             <div className="bg-white border border-black/10 rounded-[28px] p-6 sm:p-8 shadow-level-1 space-y-6">
               <div className="flex items-center justify-between border-b border-black/5 pb-4">
