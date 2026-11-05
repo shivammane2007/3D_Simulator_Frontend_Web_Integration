@@ -1,163 +1,192 @@
-'use client';
+"use client";
 
-import { useState, useMemo } from 'react';
-import Link from 'next/link';
-import { Search, ArrowRight, Sparkles } from 'lucide-react';
-import { procedures, procedureCategories, type ProcedureCategory } from '@/data/procedures';
-import { routes } from '@/config/routes';
-import { cn } from '@/lib/utils';
-import { SatelliteButton } from '@/components/ui/button';
-import ProcedureIllustration from '@/components/procedures/ProcedureIllustration';
+import { useState } from "react";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import {
+  PROCEDURES,
+  PROCEDURE_CATEGORIES,
+  isProcedureSaleReady,
+  type ProcedureCategoryKey,
+  type Procedure,
+} from "@/data/procedures";
+import ProcedureIcon from "@/components/ProcedureIcon";
 
-export default function ProceduresPage() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+const CATEGORY_COLORS: Record<ProcedureCategoryKey, { bg: string; text: string }> = {
+  surgical: { bg: "bg-[#3d6b5e]/10", text: "text-[#3d6b5e]" },
+  "non-surgical": { bg: "bg-[#9a7d2e]/10", text: "text-[#9a7d2e]" },
+  injectable: { bg: "bg-[#e8705a]/10", text: "text-[#e8705a]" },
+  dental: { bg: "bg-[#243847]/10", text: "text-[#243847]" },
+  "body-contouring": { bg: "bg-[#e8705a]/10", text: "text-[#e8705a]" },
+  "hair-restoration": { bg: "bg-[#9a7d2e]/10", text: "text-[#9a7d2e]" },
+};
 
-  const filteredProcedures = useMemo(() => {
-    return procedures.filter((p) => {
-      const matchesSearch =
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.shortDescription.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesCategory =
-        selectedCategory === 'all' || p.category === selectedCategory;
-      return matchesSearch && matchesCategory;
-    });
-  }, [searchQuery, selectedCategory]);
+const CATEGORY_NAMES: Record<ProcedureCategoryKey, string> = {
+  surgical: "SURGICAL",
+  "non-surgical": "NON-SURGICAL",
+  injectable: "INJECTABLE",
+  dental: "DENTAL",
+  "body-contouring": "BODY CONTOURING",
+  "hair-restoration": "HAIR RESTORATION",
+};
+
+function ProcedureCard({ procedure }: { procedure: Procedure }) {
+  const colors = CATEGORY_COLORS[procedure.category] || CATEGORY_COLORS.surgical;
+  // Sale-ready globally? When false, the procedure is /demo-only —
+  // surface a non-judgemental "Demo preview" badge so patients
+  // browsing the catalog know the marketplace doesn't carry paid
+  // offerings for it (yet). Doesn't hide the card — these are still
+  // legitimate demos, just not for sale through the platform.
+  const isDemoOnly = !isProcedureSaleReady(procedure.slug);
 
   return (
-    <div className="bg-[#F3F0EE] min-h-screen pt-32 pb-20">
-      {/* Header */}
-      <section className="pb-16 relative overflow-hidden">
-        <div className="container-master relative z-10">
-          <div className="max-w-3xl space-y-4">
-            <span className="text-eyebrow-master text-eyebrow-dot">
-              PROCEDURE CATALOG
-            </span>
-            <h1 className="text-h1-hero text-[#141413]">
-              All 85+ simulated procedures.
-            </h1>
-            <p className="text-base sm:text-lg text-[#555555] leading-relaxed max-w-2xl font-normal">
-              Explore parametric visual simulations across surgical, injectable, non-surgical, dental, body contouring, and hair restoration disciplines.
-            </p>
+    <Link href={`/procedures/${procedure.slug}`} className="group block h-full">
+      <motion.div
+        layout
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 12 }}
+        className="bg-white rounded-[20px] border border-slate-200 p-6 hover:-translate-y-1 hover:shadow-md hover:border-[#3d6b5e]/40 transition-all duration-300 h-full flex flex-col justify-between"
+      >
+        <div>
+          <div className="flex items-center gap-2 mb-3">
+            <ProcedureIcon slug={procedure.slug} category={procedure.category} size={40} />
+            {procedure.isNew && (
+              <span className="text-[0.6rem] font-semibold bg-[#3d6b5e] text-white px-2 py-0.5 rounded-full uppercase tracking-wider">
+                New
+              </span>
+            )}
+            {isDemoOnly && (
+              <span className="text-[0.6rem] font-semibold bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                Demo
+              </span>
+            )}
           </div>
+          <span
+            className={`inline-block text-[0.65rem] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full mb-3 ${colors.bg} ${colors.text}`}
+          >
+            {CATEGORY_NAMES[procedure.category] || procedure.categoryLabel}
+          </span>
+          <h3 className="font-semibold text-[#141413] text-sm mb-1 flex items-center justify-between">
+            {procedure.shortName}
+            <ArrowRight className="w-4 h-4 opacity-50 group-hover:opacity-100 translate-x-0 group-hover:translate-x-1 transition-all duration-300 text-[#3d6b5e]" />
+          </h3>
+          <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">
+            {procedure.description}
+          </p>
+        </div>
+      </motion.div>
+    </Link>
+  );
+}
 
-          {/* Search & Filter Bar */}
-          <div className="mt-12 flex flex-col md:flex-row gap-6 items-center justify-between">
-            {/* Search Input */}
-            <div className="relative w-full md:max-w-md">
-              <Search className="w-4 h-4 absolute left-5 top-1/2 -translate-y-1/2 text-[#555555]" />
-              <input
-                type="text"
-                placeholder="Search procedures (e.g. Rhinoplasty, Botox)..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-5 py-3.5 rounded-[999px] bg-white border border-black/5 text-sm text-[#141413] placeholder:text-[#555555] focus-visible:outline-none focus-visible:border-black/20 shadow-level-1 transition-all"
-              />
-            </div>
+export default function ProceduresPage() {
+  const [activeCategory, setActiveCategory] = useState<ProcedureCategoryKey | "all">("all");
+  const filtered =
+    activeCategory === "all"
+      ? PROCEDURES
+      : PROCEDURES.filter((p) => p.category === activeCategory);
 
-            {/* Category Pills */}
-            <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
-              <button
-                onClick={() => setSelectedCategory('all')}
-                className={cn(
-                  'px-5 py-2.5 rounded-[999px] text-xs font-medium whitespace-nowrap transition-all border cursor-pointer',
-                  selectedCategory === 'all'
-                    ? 'bg-[#141413] text-[#F3F0EE] border-[#141413] shadow-level-1'
-                    : 'bg-white text-[#141413] border-black/5 hover:bg-[#EBE7E3]'
-                )}
-              >
-                All ({procedures.length})
-              </button>
-
-              {(Object.keys(procedureCategories) as ProcedureCategory[]).map((cat) => {
-                const count = procedures.filter((p) => p.category === cat).length;
-                return (
-                  <button
-                    key={cat}
-                    onClick={() => setSelectedCategory(cat)}
-                    className={cn(
-                      'px-5 py-2.5 rounded-[999px] text-xs font-medium whitespace-nowrap transition-all border cursor-pointer',
-                      selectedCategory === cat
-                        ? 'bg-[#141413] text-[#F3F0EE] border-[#141413] shadow-level-1'
-                        : 'bg-white text-[#141413] border-black/5 hover:bg-[#EBE7E3]'
-                    )}
-                  >
-                    {procedureCategories[cat].label} ({count})
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+  return (
+    <div className="bg-[#FAF7F2] min-h-screen">
+      {/* Hero Header */}
+      <section className="pt-36 md:pt-40 pb-10 px-5 md:px-12 text-center">
+        <div className="max-w-[720px] mx-auto">
+          <h1 className="font-serif text-[clamp(2.5rem,5.5vw,3.75rem)] font-normal tracking-tight text-[#141413] leading-[1.1]">
+            <em className="italic font-serif">{PROCEDURES.length} procedures</em>. One platform.
+          </h1>
+          <p className="mt-4 text-base md:text-lg text-slate-600 font-light max-w-[540px] mx-auto leading-relaxed">
+            Explore {PROCEDURES.length} aesthetic procedures powered by AI simulation.
+          </p>
         </div>
       </section>
 
-      {/* Procedures Catalog Grid */}
-      <section className="py-12 border-t border-black/5 bg-[#F3F0EE]">
-        <div className="container-master">
-          {filteredProcedures.length > 0 ? (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-              {filteredProcedures.map((proc) => (
-                <div
-                  key={proc.slug}
-                  className="bg-[#FCFBFA] rounded-[32px] p-6 border border-black/5 shadow-level-1 flex flex-col justify-between space-y-6 hover:shadow-level-2 transition-all group items-center text-center"
+      {/* Main Content Area */}
+      <section className="px-5 md:px-12 pb-24">
+        <div className="max-w-[1140px] mx-auto">
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap justify-center gap-2 mb-12">
+            <button
+              onClick={() => setActiveCategory("all")}
+              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer ${
+                activeCategory === "all"
+                  ? "bg-[#3d6b5e] text-white shadow-sm"
+                  : "bg-white border border-slate-200 text-slate-600 hover:text-[#141413]"
+              }`}
+            >
+              All <span className="ml-1 text-xs opacity-70">({PROCEDURES.length})</span>
+            </button>
+            {PROCEDURE_CATEGORIES.map((cat) => {
+              const count = PROCEDURES.filter((p) => p.category === cat.key).length;
+              const displayLabel = cat.key === "dental" ? "Dental" : cat.label;
+              return (
+                <button
+                  key={cat.key}
+                  onClick={() => setActiveCategory(cat.key)}
+                  className={`px-5 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer ${
+                    activeCategory === cat.key
+                      ? "bg-[#3d6b5e] text-white shadow-sm"
+                      : "bg-white border border-slate-200 text-slate-600 hover:text-[#141413]"
+                  }`}
                 >
-                  {/* Circular Portrait with Satellite Micro-CTA */}
-                  <div className="relative w-[180px] h-[180px] my-2">
-                    <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-white via-[#EBE7E3] to-[#DFD9D2] border border-black/5 flex items-center justify-center p-3">
-                      <ProcedureIllustration slug={proc.slug} category={proc.category} />
-                    </div>
+                  {cat.icon} {displayLabel}{" "}
+                  <span className="ml-1 text-xs opacity-70">({count})</span>
+                </button>
+              );
+            })}
+          </div>
 
-                    {/* Attached Satellite Micro-CTA (docks bottom-right) */}
-                    <div className="absolute -bottom-1 -right-1">
-                      <SatelliteButton
-                        href={routes.simulateProcedure(proc.simulatorSlug)}
-                        ariaLabel={`Simulate ${proc.name}`}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Text Info Below Portrait */}
-                  <div className="space-y-2 max-w-xs">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#CF4500]">
-                      • {proc.categoryLabel}
-                    </span>
-
-                    <h3 className="text-h3-card text-[#141413]">
-                      {proc.name}
-                    </h3>
-
-                    <p className="text-xs text-[#555555] leading-relaxed line-clamp-2">
-                      {proc.shortDescription}
-                    </p>
-                  </div>
-
-                  {/* Secondary Link to Guide */}
-                  <div className="pt-2 border-t border-black/5 w-full flex justify-center">
-                    <Link
-                      href={routes.procedure(proc.slug)}
-                      className="text-xs font-medium text-[#141413] hover:text-[#CF4500] transition-colors"
-                    >
-                      View Clinical Guide →
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-24 bg-white rounded-[40px] border border-black/5 p-8 shadow-level-1">
-              <p className="text-base font-medium text-[#141413] font-display">No procedures found matching &quot;{searchQuery}&quot;</p>
-              <p className="text-sm text-[#555555] mt-2">Try clearing your search query or selecting another category.</p>
-              <button
-                onClick={() => {
-                  setSearchQuery('');
-                  setSelectedCategory('all');
-                }}
-                className="mt-6 px-6 py-2.5 rounded-[20px] bg-[#141413] text-[#F3F0EE] hover:bg-[#262627] text-sm font-medium transition-all"
+          {/* Catalog Grid View */}
+          <AnimatePresence mode="wait">
+            {activeCategory === "all" ? (
+              <motion.div
+                key="all"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
               >
-                Reset Filters
-              </button>
-            </div>
-          )}
+                {PROCEDURE_CATEGORIES.map((cat, idx) => {
+                  const catProcedures = PROCEDURES.filter((p) => p.category === cat.key);
+                  if (catProcedures.length === 0) return null;
+                  const displayLabel = cat.key === "dental" ? "Dental" : cat.label;
+                  return (
+                    <div key={cat.key}>
+                      {idx > 0 && <hr className="border-slate-200 my-10" />}
+                      <div className="flex items-center gap-2 mb-6">
+                        <span className="text-xl" aria-hidden="true">
+                          {cat.icon}
+                        </span>
+                        <h2 className="font-semibold text-[#141413] text-lg">
+                          {displayLabel}
+                        </h2>
+                        <span className="text-sm text-slate-500">
+                          ({catProcedures.length})
+                        </span>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        {catProcedures.map((p) => (
+                          <ProcedureCard key={p.slug} procedure={p} />
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </motion.div>
+            ) : (
+              <motion.div
+                key={activeCategory}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+              >
+                {filtered.map((p) => (
+                  <ProcedureCard key={p.slug} procedure={p} />
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </section>
     </div>

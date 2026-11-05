@@ -3,25 +3,25 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Sparkles } from 'lucide-react';
-import { procedures, procedureCategories, type ProcedureCategory } from '@/data/procedures';
+import { procedures, procedureCategories, type ProcedureCategoryKey } from '@/data/procedures';
 import { routes } from '@/config/routes';
 import { SatelliteButton } from '@/components/ui/button';
 import ProcedureIllustration from '@/components/procedures/ProcedureIllustration';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/context/LanguageContext';
 
-const categoryOrder: ProcedureCategory[] = [
+const categoryOrder: ProcedureCategoryKey[] = [
   'surgical',
   'non-surgical',
   'injectable',
   'dental',
-  'body',
-  'hair',
+  'body-contouring',
+  'hair-restoration',
 ];
 
 export default function ProcedureExplorer() {
   const { t } = useLanguage();
-  const [activeCategory, setActiveCategory] = useState<ProcedureCategory>('surgical');
+  const [activeCategory, setActiveCategory] = useState<ProcedureCategoryKey>('surgical');
   const displayed = procedures.filter((p) => p.category === activeCategory).slice(0, 6);
 
   return (

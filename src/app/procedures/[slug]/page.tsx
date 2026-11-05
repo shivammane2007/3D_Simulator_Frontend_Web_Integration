@@ -102,7 +102,7 @@ export default async function ProcedureDetailPage({ params }: ProcedurePageProps
 
               <div className="flex flex-wrap items-center gap-3.5 pt-2">
                 <Link
-                  href={routes.simulateProcedure(procedure.simulatorSlug)}
+                  href={routes.simulateProcedure(procedure.simulatorSlug || procedure.simulateSlug || procedure.slug)}
                   className="px-7 py-3 rounded-[20px] bg-[#141413] text-[#F3F0EE] border-[1.5px] border-[#141413] hover:bg-[#262627] text-sm font-medium tracking-[-0.02em] shadow-sm transition-all inline-flex items-center gap-2"
                 >
                   <Sparkles className="w-4 h-4 text-[#CF4500]" />
