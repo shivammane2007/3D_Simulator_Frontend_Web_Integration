@@ -14,12 +14,12 @@ import {
 import ProcedureIcon from "@/components/ProcedureIcon";
 
 const CATEGORY_COLORS: Record<ProcedureCategoryKey, { bg: string; text: string }> = {
-  surgical: { bg: "bg-[#3d6b5e]/10", text: "text-[#3d6b5e]" },
-  "non-surgical": { bg: "bg-[#9a7d2e]/10", text: "text-[#9a7d2e]" },
-  injectable: { bg: "bg-[#e8705a]/10", text: "text-[#e8705a]" },
-  dental: { bg: "bg-[#243847]/10", text: "text-[#243847]" },
-  "body-contouring": { bg: "bg-[#e8705a]/10", text: "text-[#e8705a]" },
-  "hair-restoration": { bg: "bg-[#9a7d2e]/10", text: "text-[#9a7d2e]" },
+  surgical: { bg: "bg-[#FDEEE7]", text: "text-[#CF4500]" },
+  "non-surgical": { bg: "bg-[#FDF3E7]", text: "text-[#9A6428]" },
+  injectable: { bg: "bg-[#FDEEE7]", text: "text-[#CF4500]" },
+  dental: { bg: "bg-[#EDF2F7]", text: "text-[#243847]" },
+  "body-contouring": { bg: "bg-[#FDEEE7]", text: "text-[#CF4500]" },
+  "hair-restoration": { bg: "bg-[#FDF3E7]", text: "text-[#9A6428]" },
 };
 
 const CATEGORY_NAMES: Record<ProcedureCategoryKey, string> = {
@@ -47,18 +47,18 @@ function ProcedureCard({ procedure }: { procedure: Procedure }) {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 12 }}
-        className="bg-white rounded-[20px] border border-slate-200 p-6 hover:-translate-y-1 hover:shadow-md hover:border-[#3d6b5e]/40 transition-all duration-300 h-full flex flex-col justify-between"
+        className="bg-white rounded-[20px] border border-black/5 p-6 hover:-translate-y-1 hover:shadow-level-2 hover:border-[#CF4500]/40 transition-all duration-300 h-full flex flex-col justify-between"
       >
         <div>
           <div className="flex items-center gap-2 mb-3">
             <ProcedureIcon slug={procedure.slug} category={procedure.category} size={40} />
             {procedure.isNew && (
-              <span className="text-[0.6rem] font-semibold bg-[#3d6b5e] text-white px-2 py-0.5 rounded-full uppercase tracking-wider">
+              <span className="text-[0.6rem] font-semibold bg-[#CF4500] text-white px-2 py-0.5 rounded-full uppercase tracking-wider">
                 New
               </span>
             )}
             {isDemoOnly && (
-              <span className="text-[0.6rem] font-semibold bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full uppercase tracking-wider">
+              <span className="text-[0.6rem] font-semibold bg-[#EBE7E3] text-[#555555] px-2 py-0.5 rounded-full uppercase tracking-wider">
                 Demo
               </span>
             )}
@@ -68,11 +68,11 @@ function ProcedureCard({ procedure }: { procedure: Procedure }) {
           >
             {CATEGORY_NAMES[procedure.category] || procedure.categoryLabel}
           </span>
-          <h3 className="font-semibold text-[#141413] text-sm mb-1 flex items-center justify-between">
+          <h3 className="font-semibold text-[#141413] text-sm mb-1 flex items-center justify-between group-hover:text-[#CF4500] transition-colors">
             {procedure.shortName}
-            <ArrowRight className="w-4 h-4 opacity-50 group-hover:opacity-100 translate-x-0 group-hover:translate-x-1 transition-all duration-300 text-[#3d6b5e]" />
+            <ArrowRight className="w-4 h-4 opacity-50 group-hover:opacity-100 translate-x-0 group-hover:translate-x-1 transition-all duration-300 text-[#CF4500]" />
           </h3>
-          <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">
+          <p className="text-xs text-[#555555] leading-relaxed line-clamp-2">
             {procedure.description}
           </p>
         </div>
@@ -89,14 +89,17 @@ export default function ProceduresPage() {
       : PROCEDURES.filter((p) => p.category === activeCategory);
 
   return (
-    <div className="bg-[#FAF7F2] min-h-screen">
+    <div className="bg-[#F3F0EE] min-h-screen">
       {/* Hero Header */}
       <section className="pt-36 md:pt-40 pb-10 px-5 md:px-12 text-center">
-        <div className="max-w-[720px] mx-auto">
+        <div className="max-w-[720px] mx-auto space-y-4">
+          <span className="text-eyebrow-master text-eyebrow-dot justify-center">
+            PROCEDURE CATALOG
+          </span>
           <h1 className="font-serif text-[clamp(2.5rem,5.5vw,3.75rem)] font-normal tracking-tight text-[#141413] leading-[1.1]">
-            <em className="italic font-serif">{PROCEDURES.length} procedures</em>. One platform.
+            <em className="italic font-serif text-[#CF4500]">{PROCEDURES.length} procedures</em>. One platform.
           </h1>
-          <p className="mt-4 text-base md:text-lg text-slate-600 font-light max-w-[540px] mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-[#555555] font-normal max-w-[540px] mx-auto leading-relaxed">
             Explore {PROCEDURES.length} aesthetic procedures powered by AI simulation.
           </p>
         </div>
@@ -111,8 +114,8 @@ export default function ProceduresPage() {
               onClick={() => setActiveCategory("all")}
               className={`px-5 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer ${
                 activeCategory === "all"
-                  ? "bg-[#3d6b5e] text-white shadow-sm"
-                  : "bg-white border border-slate-200 text-slate-600 hover:text-[#141413]"
+                  ? "bg-[#141413] text-[#F3F0EE] shadow-level-1"
+                  : "bg-white border border-black/5 text-[#555555] hover:text-[#141413] hover:border-black/15 shadow-sm"
               }`}
             >
               All <span className="ml-1 text-xs opacity-70">({PROCEDURES.length})</span>
@@ -120,18 +123,19 @@ export default function ProceduresPage() {
             {PROCEDURE_CATEGORIES.map((cat) => {
               const count = PROCEDURES.filter((p) => p.category === cat.key).length;
               const displayLabel = cat.key === "dental" ? "Dental" : cat.label;
+              const isActive = activeCategory === cat.key;
               return (
                 <button
                   key={cat.key}
                   onClick={() => setActiveCategory(cat.key)}
                   className={`px-5 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer ${
-                    activeCategory === cat.key
-                      ? "bg-[#3d6b5e] text-white shadow-sm"
-                      : "bg-white border border-slate-200 text-slate-600 hover:text-[#141413]"
+                    isActive
+                      ? "bg-[#141413] text-[#F3F0EE] shadow-level-1"
+                      : "bg-white border border-black/5 text-[#555555] hover:text-[#141413] hover:border-black/15 shadow-sm"
                   }`}
                 >
                   {cat.icon} {displayLabel}{" "}
-                  <span className="ml-1 text-xs opacity-70">({count})</span>
+                  <span className={`ml-1 text-xs ${isActive ? "opacity-70" : "text-[#696969]"}`}>({count})</span>
                 </button>
               );
             })}
@@ -152,7 +156,7 @@ export default function ProceduresPage() {
                   const displayLabel = cat.key === "dental" ? "Dental" : cat.label;
                   return (
                     <div key={cat.key}>
-                      {idx > 0 && <hr className="border-slate-200 my-10" />}
+                      {idx > 0 && <hr className="border-black/5 my-10" />}
                       <div className="flex items-center gap-2 mb-6">
                         <span className="text-xl" aria-hidden="true">
                           {cat.icon}
@@ -160,7 +164,7 @@ export default function ProceduresPage() {
                         <h2 className="font-semibold text-[#141413] text-lg">
                           {displayLabel}
                         </h2>
-                        <span className="text-sm text-slate-500">
+                        <span className="text-sm text-[#696969]">
                           ({catProcedures.length})
                         </span>
                       </div>
