@@ -1,0 +1,740 @@
+{
+  "cast": {
+    "korean-b": {
+      "describedAs": "Korean woman, late twenties",
+      "provenance": "AI-generated model face, made with Runway (model gemini-3-pro-image) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayImageId": "dd2231c6-4ed9-43ab-ad47-c4cd8db5470b",
+      "heroFile": "/images/cast/korean-b.webp",
+      "heroSize": 1200,
+      "anchors": {
+        "midDorsum": [
+          0.4995,
+          0.4904
+        ],
+        "noseTip": [
+          0.5003,
+          0.5494
+        ],
+        "upperLip": [
+          0.5052,
+          0.6468
+        ],
+        "lips": [
+          0.5055,
+          0.6731
+        ],
+        "upperLidImageLeft": [
+          0.3779,
+          0.4027
+        ],
+        "eyeImageLeft": [
+          0.3797,
+          0.42
+        ],
+        "eyeImageRight": [
+          0.6186,
+          0.4127
+        ]
+      },
+      "anchorsNote": "Fractions of the hero image width and height, from MediaPipe landmarks measured on the hero file itself."
+    },
+    "lebanese-a": {
+      "describedAs": "Lebanese man, early thirties",
+      "provenance": "AI-generated model face, made with Runway (model gemini-3-pro-image) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayImageId": "df0e9d32-9800-4839-a60d-7f361cdf02d7",
+      "heroFile": "/images/cast/lebanese-a.webp",
+      "heroSize": 1200,
+      "anchors": {
+        "midDorsum": [
+          0.5018,
+          0.4774
+        ],
+        "noseTip": [
+          0.5017,
+          0.5377
+        ],
+        "upperLip": [
+          0.5008,
+          0.6399
+        ],
+        "lips": [
+          0.501,
+          0.6604
+        ],
+        "upperLidImageLeft": [
+          0.3848,
+          0.3907
+        ],
+        "eyeImageLeft": [
+          0.3878,
+          0.4059
+        ],
+        "eyeImageRight": [
+          0.6137,
+          0.4055
+        ]
+      },
+      "anchorsNote": "Fractions of the hero image width and height, from MediaPipe landmarks measured on the hero file itself."
+    },
+    "black-c": {
+      "describedAs": "Black woman of Nigerian descent, early thirties",
+      "provenance": "AI-generated model face, made with Runway (model gemini-3-pro-image) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayImageId": "6578d0f3-d3ba-4365-8c5b-be477e7a7508",
+      "heroFile": "/images/cast/black-c.webp",
+      "heroSize": 1200,
+      "anchors": {
+        "midDorsum": [
+          0.5096,
+          0.4773
+        ],
+        "noseTip": [
+          0.5096,
+          0.5316
+        ],
+        "upperLip": [
+          0.5097,
+          0.6317
+        ],
+        "lips": [
+          0.5091,
+          0.6701
+        ],
+        "upperLidImageLeft": [
+          0.382,
+          0.3967
+        ],
+        "eyeImageLeft": [
+          0.3834,
+          0.4136
+        ],
+        "eyeImageRight": [
+          0.63,
+          0.4131
+        ]
+      },
+      "anchorsNote": "Fractions of the hero image width and height, from MediaPipe landmarks measured on the hero file itself."
+    },
+    "thai-a": {
+      "describedAs": "Thai woman, late twenties",
+      "provenance": "AI-generated model face, made with Runway (model gemini-3-pro-image) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayImageId": "bf875ff3-06eb-406e-878b-2a7831ae467f",
+      "heroFile": "/images/cast/thai-a.webp",
+      "heroSize": 1200,
+      "anchors": {
+        "midDorsum": [
+          0.4974,
+          0.49
+        ],
+        "noseTip": [
+          0.4969,
+          0.5503
+        ],
+        "upperLip": [
+          0.4981,
+          0.6471
+        ],
+        "lips": [
+          0.4984,
+          0.6733
+        ],
+        "upperLidImageLeft": [
+          0.3742,
+          0.3967
+        ],
+        "eyeImageLeft": [
+          0.3763,
+          0.4136
+        ],
+        "eyeImageRight": [
+          0.6208,
+          0.4124
+        ]
+      },
+      "anchorsNote": "Fractions of the hero image width and height, from MediaPipe landmarks measured on the hero file itself."
+    },
+    "jpman-a": {
+      "describedAs": "Japanese man, mid thirties",
+      "provenance": "AI-generated model face, made with Runway (model gemini-3-pro-image) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayImageId": "2f267713-3c6b-4259-8254-460dfd7971c5",
+      "heroFile": "/images/cast/jpman-a.webp",
+      "heroSize": 1200,
+      "anchors": {
+        "midDorsum": [
+          0.5043,
+          0.4757
+        ],
+        "noseTip": [
+          0.5041,
+          0.5341
+        ],
+        "upperLip": [
+          0.5042,
+          0.6418
+        ],
+        "lips": [
+          0.5039,
+          0.6644
+        ],
+        "upperLidImageLeft": [
+          0.3835,
+          0.391
+        ],
+        "eyeImageLeft": [
+          0.3854,
+          0.4049
+        ],
+        "eyeImageRight": [
+          0.6224,
+          0.4058
+        ]
+      },
+      "anchorsNote": "Fractions of the hero image width and height, from MediaPipe landmarks measured on the hero file itself."
+    },
+    "latina-a": {
+      "describedAs": "Colombian Latina woman, early thirties",
+      "provenance": "AI-generated model face, made with Runway (model gemini-3-pro-image) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayImageId": "ba8b3954-9fdf-43fb-9688-ded63baba94b",
+      "heroFile": "/images/cast/latina-a.webp",
+      "heroSize": 1200,
+      "anchors": {
+        "midDorsum": [
+          0.5024,
+          0.4817
+        ],
+        "noseTip": [
+          0.5025,
+          0.5393
+        ],
+        "upperLip": [
+          0.5033,
+          0.6405
+        ],
+        "lips": [
+          0.5032,
+          0.6667
+        ],
+        "upperLidImageLeft": [
+          0.3782,
+          0.3963
+        ],
+        "eyeImageLeft": [
+          0.3807,
+          0.4133
+        ],
+        "eyeImageRight": [
+          0.6226,
+          0.4085
+        ]
+      },
+      "anchorsNote": "Fractions of the hero image width and height, from MediaPipe landmarks measured on the hero file itself."
+    },
+    "indian-a": {
+      "describedAs": "Indian woman, early thirties",
+      "provenance": "AI-generated model face, made with Runway (model gemini-3-pro-image) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayImageId": "9343e02a-2b63-4e1e-8c2f-b07d6ee5b3c5",
+      "heroFile": "/images/cast/indian-a.webp",
+      "heroSize": 1200,
+      "anchors": {
+        "midDorsum": [
+          0.5036,
+          0.4878
+        ],
+        "noseTip": [
+          0.5049,
+          0.5467
+        ],
+        "upperLip": [
+          0.5074,
+          0.6438
+        ],
+        "lips": [
+          0.5074,
+          0.6714
+        ],
+        "upperLidImageLeft": [
+          0.3787,
+          0.4
+        ],
+        "eyeImageLeft": [
+          0.3815,
+          0.4184
+        ],
+        "eyeImageRight": [
+          0.6208,
+          0.4126
+        ]
+      },
+      "anchorsNote": "Fractions of the hero image width and height, from MediaPipe landmarks measured on the hero file itself."
+    },
+    "british-b": {
+      "describedAs": "white British woman, 56",
+      "provenance": "AI-generated model face, made with Runway (model gemini-3-pro-image) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayImageId": "14c38220-7ffb-47cb-9b29-c9c2cc0e8ee3",
+      "heroFile": "/images/cast/british-b.webp",
+      "heroSize": 1200,
+      "anchors": {
+        "midDorsum": [
+          0.5034,
+          0.4665
+        ],
+        "noseTip": [
+          0.5032,
+          0.5219
+        ],
+        "upperLip": [
+          0.5014,
+          0.64
+        ],
+        "lips": [
+          0.5016,
+          0.6612
+        ],
+        "upperLidImageLeft": [
+          0.3773,
+          0.3867
+        ],
+        "eyeImageLeft": [
+          0.3798,
+          0.4026
+        ],
+        "eyeImageRight": [
+          0.6219,
+          0.4055
+        ]
+      },
+      "anchorsNote": "Fractions of the hero image width and height, from MediaPipe landmarks measured on the hero file itself."
+    },
+    "jpwoman62-b": {
+      "describedAs": "Japanese woman, 62",
+      "provenance": "AI-generated model face, made with Runway (model gemini-3-pro-image) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayImageId": "46851400-5f0e-4f4e-9386-159c5a93e92f",
+      "heroFile": "/images/cast/jpwoman62-b.webp",
+      "heroSize": 1200,
+      "anchors": {
+        "midDorsum": [
+          0.4996,
+          0.4852
+        ],
+        "noseTip": [
+          0.4994,
+          0.5436
+        ],
+        "upperLip": [
+          0.5024,
+          0.6538
+        ],
+        "lips": [
+          0.5023,
+          0.6759
+        ],
+        "upperLidImageLeft": [
+          0.3817,
+          0.3965
+        ],
+        "eyeImageLeft": [
+          0.3834,
+          0.4124
+        ],
+        "eyeImageRight": [
+          0.6167,
+          0.41
+        ]
+      },
+      "anchorsNote": "Fractions of the hero image width and height, from MediaPipe landmarks measured on the hero file itself."
+    },
+    "blackman-c": {
+      "describedAs": "Black man of Ghanaian descent, mid thirties",
+      "provenance": "AI-generated model face, made with Runway (model gemini-3-pro-image) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayImageId": "467275b9-676e-4c6c-bad9-de0f3d81092b",
+      "heroFile": "/images/cast/blackman-c.webp",
+      "heroSize": 1200,
+      "anchors": {
+        "midDorsum": [
+          0.4979,
+          0.4567
+        ],
+        "noseTip": [
+          0.4971,
+          0.507
+        ],
+        "upperLip": [
+          0.4957,
+          0.6144
+        ],
+        "lips": [
+          0.4959,
+          0.6527
+        ],
+        "upperLidImageLeft": [
+          0.3722,
+          0.3822
+        ],
+        "eyeImageLeft": [
+          0.3738,
+          0.3985
+        ],
+        "eyeImageRight": [
+          0.6255,
+          0.3988
+        ]
+      },
+      "anchorsNote": "Fractions of the hero image width and height, from MediaPipe landmarks measured on the hero file itself."
+    },
+    "indman-b": {
+      "describedAs": "Indian man, early forties",
+      "provenance": "AI-generated model face, made with Runway (model gemini-3-pro-image) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayImageId": "ff6f274f-b8c3-4e64-8590-837526f4ee94",
+      "heroFile": null
+    },
+    "european-a": {
+      "describedAs": "white European woman, late forties",
+      "provenance": "AI-generated model face, made with Runway (model gemini-3-pro-image) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayImageId": "be679acb-0881-4c9e-a4de-445f95a6626a",
+      "heroFile": null
+    },
+    "thaiprof-b": {
+      "describedAs": "Thai woman, late twenties, strict lateral profile generated as the same identity as thai-a",
+      "provenance": "AI-generated model face, made with Runway (model gemini-3-pro-image) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayImageId": "2248b30a-b4b2-4546-8af9-0bae5f6c7704",
+      "heroFile": null
+    },
+    "bul-a": {
+      "describedAs": "Indian man, early thirties",
+      "provenance": "AI-generated model face, made with Runway (model nano-banana-pro) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayTaskId": "facdfd00-46a2-4b55-9ebf-9a2b284b89a7",
+      "runwayImageId": "c7669fd5-cd6e-44f4-acd4-e649706713fd",
+      "heroFile": null
+    },
+    "wb-b": {
+      "describedAs": "Filipina woman, early thirties",
+      "provenance": "AI-generated model face, made with Runway (model nano-banana-pro) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayTaskId": "ee104509-0d08-4b3b-8462-62093d966f7e",
+      "runwayImageId": "190c2552-2f6c-4fc2-9e50-2f66b7ab386c",
+      "heroFile": null
+    },
+    "hump-c": {
+      "describedAs": "Middle Eastern woman, late twenties",
+      "provenance": "AI-generated model face, made with Runway (model gemini-3-pro-image) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayTaskId": "140f1954-8d95-49de-8cde-962208bef9fc",
+      "runwayImageId": "ca15cd2d-a5bb-45ef-98cb-86d626b40c51",
+      "heroFile": null
+    },
+    "ngprof-a": {
+      "describedAs": "Nigerian man, early fifties",
+      "provenance": "AI-generated model face, made with Runway (model gemini-3-pro-image) on 2026-10-18 from a text prompt for a photorealistic clinical editorial portrait. Not a photograph of a real person.",
+      "runwayTaskId": "0ceddcf8-3497-41de-aa90-bcde3f975840",
+      "runwayImageId": "4ce98cf5-c92c-4514-bddb-34361731bd7a",
+      "heroFile": null
+    },
+    "cn-a": {
+      "describedAs": "Chinese woman, early thirties",
+      "provenance": "AI-generated model face, made with Runway (model nano-banana-2.1) on 2026-10-18 from a text prompt for an unretouched clinical consultation photograph. Not a photograph of a real person.",
+      "runwayTaskId": "8a9650e8-d943-4750-8a08-a0f7b45c600d",
+      "runwayImageId": "bc7c3187-a624-4474-9e8f-3007c0ce5c57",
+      "heroFile": null
+    }
+  },
+  "capturedFrom": "http://localhost:3300 dev server. Lip and blepharoplasty from the ungated /demo route; rhinoplasty from /simulate/rhinoplasty with the repo e2e auth pattern (signed session cookie, mocked GET access routes). Every non-GET request to /api/ was aborted, so nothing was saved and no image left the page.",
+  "capturedAt": "2026-10-18",
+  "framing": "Front pairs are the simulator's own 1024x1024 output from a 1024 source and the side pair is 1200x1200 from a 1200 source; nothing upscaled. Overlays are cropped screenshots of the simulator canvas. Cases are the same square crop of before and after around the nose, taken from the simulator's own output (1024x1024 front, 1200x1200 side) with no resampling.",
+  "pairs": [
+    {
+      "procedure": "rhinoplasty",
+      "view": "front",
+      "face": "cn-a",
+      "files": {
+        "before": "rhinoplasty-cn-a-before.webp",
+        "after": "rhinoplasty-cn-a-after.webp"
+      },
+      "size": {
+        "width": 1024,
+        "height": 1024
+      },
+      "controls": [
+        {
+          "label": "Tip Width",
+          "before": "0",
+          "after": "Refined 0.9mm"
+        },
+        {
+          "label": "Alar Base Width",
+          "before": "0",
+          "after": "Narrower 1.2mm"
+        }
+      ],
+      "controlsNote": "Before is every control at neutral. Slider positions tip -30 and nostrils -30 on the -100 to 100 scale, with dorsal width left at neutral; the after readouts are exactly what the sliders print. Captured from the surgeon session of /simulate/rhinoplasty on a local production build of this branch.",
+      "pixelChange": {
+        "changedFraction": 0.092,
+        "meanAbsChangeInChangedRegion": 7.84,
+        "maxAbs": 116.7,
+        "threshold": "a pixel counts as changed when its mean per-channel absolute difference exceeds 2, measured on the lossless captures"
+      },
+      "kept": true
+    },
+    {
+      "procedure": "lip-augmentation",
+      "view": "front",
+      "face": "black-c",
+      "files": {
+        "before": "lip-augmentation-black-c-before.webp",
+        "after": "lip-augmentation-black-c-after.webp"
+      },
+      "size": {
+        "width": 1024,
+        "height": 1024
+      },
+      "controls": [
+        {
+          "label": "Lip Volume",
+          "before": "0",
+          "after": "+70"
+        }
+      ],
+      "controlsNote": "Before is every control at neutral, taken from the simulator compare view. Only Lip Volume is moved; the after readouts are exactly what the sliders print.",
+      "pixelChange": {
+        "beforeVersusSourceChangedFraction": 0.0929,
+        "beforeVersusSourceMeanAbs": 2.98,
+        "changedFraction": 0.0968,
+        "meanAbsChangeInChangedRegion": 8.54,
+        "maxAbs": 110,
+        "threshold": "a pixel counts as changed when its mean per-channel absolute difference exceeds 2, measured on the lossless captures"
+      },
+      "kept": true
+    },
+    {
+      "procedure": "blepharoplasty",
+      "view": "front",
+      "face": "jpwoman62-b",
+      "files": {
+        "before": "blepharoplasty-jpwoman62-b-before.webp",
+        "after": "blepharoplasty-jpwoman62-b-after.webp"
+      },
+      "size": {
+        "width": 1024,
+        "height": 1024
+      },
+      "controls": [
+        {
+          "label": "Eyelid Definition",
+          "before": "0",
+          "after": "40%"
+        }
+      ],
+      "controlsNote": "Before is every control at neutral, taken from the simulator compare view. Only Eyelid Definition is moved; the after readouts are exactly what the sliders print.",
+      "pixelChange": {
+        "beforeVersusSourceChangedFraction": 0.0561,
+        "beforeVersusSourceMeanAbs": 2.93,
+        "changedFraction": 0.0417,
+        "meanAbsChangeInChangedRegion": 4.37,
+        "maxAbs": 106,
+        "threshold": "a pixel counts as changed when its mean per-channel absolute difference exceeds 2, measured on the lossless captures"
+      },
+      "kept": true
+    },
+    {
+      "procedure": "rhinoplasty",
+      "view": "side",
+      "face": "thaiprof-b",
+      "files": {
+        "before": "rhinoplasty-thaiprof-b-side-before.webp",
+        "after": "rhinoplasty-thaiprof-b-side-after.webp"
+      },
+      "size": {
+        "width": 1200,
+        "height": 1200
+      },
+      "controls": [
+        {
+          "label": "Dorsal Height",
+          "before": "0",
+          "after": "Larger 2.8mm"
+        },
+        {
+          "label": "Tip Projection",
+          "before": "0",
+          "after": "Projected 2.3mm"
+        }
+      ],
+      "controlsNote": "A strict lateral profile photo the simulator classified as a profile, so it offered the profile controls. The input is a square crop of the generated image with no other edit. Before is every control at neutral. Slider positions Dorsal Height (size) +70 and Tip Projection (project) +45; the after readouts are exactly what the sliders print. Captured from the surgeon session of /simulate/rhinoplasty.",
+      "pixelChange": {
+        "changedFraction": 0.1314,
+        "meanAbsChangeInChangedRegion": 16.09,
+        "maxAbs": 205,
+        "threshold": "a pixel counts as changed when its mean per-channel absolute difference exceeds 2, measured on the lossless captures"
+      },
+      "kept": true
+    }
+  ],
+  "overlays": [
+    {
+      "procedure": "rhinoplasty",
+      "view": "front",
+      "face": "korean-b",
+      "file": "rhinoplasty-korean-b-front-overlay.webp",
+      "size": {
+        "width": 1776,
+        "height": 888
+      },
+      "drawn": "The untouched before frame with the Alar/IC Ratio layer on, captured at device scale 3 and cropped to the nose. Cropping only; nothing redrawn.",
+      "printed": [
+        "Alar/IC: 0.95  (ideal 0.85–1.15)"
+      ],
+      "kept": true
+    }
+  ],
+  "notProduced": {
+    "hairline-lowering": "Held back: the drawn hairline lands 400 to 480 px down the frame, which is eye level on this portrait (the blepharoplasty change sits in the same band). Needs a check of the hairline simulator before it is shown. Captured at How Much to Lower 3.0 cm; the files were not kept.",
+    "rhinoplasty-low-bridge": "Held back: on three AI profiles, Dorsal Height toward Larger (0.8 to 3.2mm, with and without Tip Projection) adds a rounded bulge at the lower dorsum just above the supratip while the radix stays low, so the after reads as an added hump, not a raised bridge. Needs a look at the augmentation direction of the simulator before it is shown.",
+    "rhinoplasty-crooked": "Held back: Deviation correction mostly moves the middle of the bridge. On the one AI face it straightened cleanly (crk-a, -40, ← 1.2mm) the lean is so mild that before and after look alike at page size; on faces whose whole line runs diagonally it bends the upper bridge into an S. Needs a face with a clear C-shaped bridge."
+  },
+  "cases": [
+    {
+      "procedure": "rhinoplasty",
+      "type": "dorsalHump",
+      "view": "side",
+      "face": "hump-c",
+      "files": {
+        "before": "rhinoplasty-hump-hump-c-before.webp",
+        "after": "rhinoplasty-hump-hump-c-after.webp"
+      },
+      "size": {
+        "width": 640,
+        "height": 640
+      },
+      "controls": [
+        {
+          "label": "Dorsal Height",
+          "before": "0",
+          "after": "Smaller 2.2mm"
+        }
+      ],
+      "controlsNote": "Before is every control at neutral. Slider position size -55 on the -100 to 100 scale; the after readout is exactly what the slider prints. Captured from the surgeon session of /simulate/rhinoplasty, from the whole generated frame resized to 1200. Levels -40 (Smaller 1.6mm) and -70 (Smaller 2.8mm) were also captured; -55 reads as a straight dorsum at phone size. A small step at the radix end shows only at about 3x zoom. The crop starts 110 px in, so the 1 to 2 px sliver the size control leaves at the left frame edge is outside it.",
+      "crop": {
+        "x": 110,
+        "y": 160,
+        "width": 640,
+        "height": 640,
+        "from": {
+          "width": 1200,
+          "height": 1200
+        }
+      },
+      "pixelChange": {
+        "changedFraction": 0.023464,
+        "threshold": "a pixel counts as changed when its mean per-channel absolute difference exceeds 2, measured on the lossless 1024 captures before cropping"
+      },
+      "kept": true
+    },
+    {
+      "procedure": "rhinoplasty",
+      "type": "bulbousTip",
+      "view": "front",
+      "face": "bul-a",
+      "files": {
+        "before": "rhinoplasty-bulbous-bul-a-before.webp",
+        "after": "rhinoplasty-bulbous-bul-a-after.webp"
+      },
+      "size": {
+        "width": 640,
+        "height": 640
+      },
+      "controls": [
+        {
+          "label": "Tip Width",
+          "before": "0",
+          "after": "Refined 1.8mm"
+        }
+      ],
+      "controlsNote": "Before is every control at neutral. Slider position tip -60 on the -100 to 100 scale; the after readout is exactly what the slider prints. Captured from the surgeon session of /simulate/rhinoplasty. Levels -40 (Refined 1.2mm) and -80 (Refined 2.4mm) were also captured; -60 reads clearly at phone size without softening the alar groove.",
+      "crop": {
+        "x": 198,
+        "y": 225,
+        "width": 640,
+        "height": 640,
+        "from": {
+          "width": 1024,
+          "height": 1024
+        }
+      },
+      "pixelChange": {
+        "changedFraction": 0.088954,
+        "threshold": "a pixel counts as changed when its mean per-channel absolute difference exceeds 2, measured on the lossless 1024 captures before cropping"
+      },
+      "kept": true
+    },
+    {
+      "procedure": "rhinoplasty",
+      "type": "wideNostrils",
+      "view": "front",
+      "face": "wb-b",
+      "files": {
+        "before": "rhinoplasty-wide-base-wb-b-before.webp",
+        "after": "rhinoplasty-wide-base-wb-b-after.webp"
+      },
+      "size": {
+        "width": 640,
+        "height": 640
+      },
+      "controls": [
+        {
+          "label": "Alar Base Width",
+          "before": "0",
+          "after": "Narrower 2.2mm"
+        }
+      ],
+      "controlsNote": "Before is every control at neutral. Slider position nostrils -55 on the -100 to 100 scale; the after readout is exactly what the slider prints. Captured from the surgeon session of /simulate/rhinoplasty. Levels -35 (Narrower 1.4mm) and -75 (Narrower 3.0mm) were also captured; -35 is too faint at phone size and -75 starts to pinch the nostril openings.",
+      "crop": {
+        "x": 188,
+        "y": 240,
+        "width": 640,
+        "height": 640,
+        "from": {
+          "width": 1024,
+          "height": 1024
+        }
+      },
+      "pixelChange": {
+        "changedFraction": 0.079849,
+        "threshold": "a pixel counts as changed when its mean per-channel absolute difference exceeds 2, measured on the lossless 1024 captures before cropping"
+      },
+      "kept": true
+    },
+    {
+      "procedure": "rhinoplasty",
+      "type": "droopingTip",
+      "view": "side",
+      "face": "ngprof-a",
+      "files": {
+        "before": "rhinoplasty-drooping-ngprof-a-before.webp",
+        "after": "rhinoplasty-drooping-ngprof-a-after.webp"
+      },
+      "size": {
+        "width": 640,
+        "height": 640
+      },
+      "controls": [
+        {
+          "label": "Nasolabial Angle (Rotation)",
+          "before": "0",
+          "after": "Up 5°"
+        }
+      ],
+      "controlsNote": "Before is every control at neutral. Slider position angle 30 on the -100 to 100 scale; the after readout is exactly what the slider prints. Captured from the surgeon session of /simulate/rhinoplasty. Levels 15 (Up 2°) to 70 (Up 11°) were also captured; above 30 a dark sliver at the left frame edge widens. The crop starts 130 px in, so that edge is outside it.",
+      "crop": {
+        "x": 130,
+        "y": 200,
+        "width": 640,
+        "height": 640,
+        "from": {
+          "width": 1200,
+          "height": 1200
+        }
+      },
+      "pixelChange": {
+        "changedFraction": 0.090622,
+        "threshold": "a pixel counts as changed when its mean per-channel absolute difference exceeds 2, measured on the lossless 1024 captures before cropping"
+      },
+      "kept": true
+    }
+  ]
+}

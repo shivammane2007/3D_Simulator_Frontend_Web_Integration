@@ -1,13 +1,15 @@
 // ---------------------------------------------------------------------------
-// Procedure Registry — Single Source of Truth
+// Procedure Registry. Single source of truth.
 // Used by BOTH /procedures pages (educational) and /simulate pages (tools)
 // ---------------------------------------------------------------------------
+
+import { CONSULT_ONLY_SLUGS } from '@/lib/simulator-redirects';
 
 export type ProcedureCategoryKey = 'surgical' | 'non-surgical' | 'injectable' | 'dental' | 'body-contouring' | 'hair-restoration';
 
 export interface ProcedureCategory {
     key: ProcedureCategoryKey;
-    /** English fallback label — prefer `labelKey` with `useTranslations("procedureCategories")` in components */
+    /** English fallback label. Prefer `labelKey` with `useTranslations("procedureCategories")` in components. */
     label: string;
     /** i18n key: use with `useTranslations("procedureCategories")(category.key)` */
     labelKey: string;
@@ -45,7 +47,7 @@ export const REGIONS: Record<Region, RegionInfo> = {
     singapore: { id: 'singapore', name: 'Singapore', flag: '\u{1F1F8}\u{1F1EC}', currency: 'USD', currencySymbol: '$' },
 };
 
-// All prices in USD for consistency — converted from local currencies at 2025 rates
+// All prices in USD for consistency, converted from local currencies at 2025 rates.
 // Thailand: 1 USD ≈ 34 THB | South Korea: 1 USD ≈ 1,350 KRW | India: 1 USD ≈ 85 INR | Singapore: 1 USD ≈ 1.35 SGD
 
 export interface PriceRange {
@@ -62,10 +64,6 @@ export const DEFAULT_REGION: Region = 'us';
 // ============================================================
 
 export interface Procedure {
-    simulatorSlug?: string;
-    shortDescription?: string;
-    relatedProcedures?: string[];
-    disclaimer?: string;
     slug: string;
     name: string;
     shortName: string;
@@ -88,7 +86,7 @@ export interface Procedure {
     order: number;
     /** Slug used in the /simulate/ route (may differ from procedure slug) */
     simulateSlug: string;
-    /** Popularity indicator for UI badges — drives user engagement */
+    /** Popularity indicator for UI badges. Drives user engagement. */
     popularity?: 'high' | 'medium' | 'low';
     /**
      * Marks a simulator as production-ready for surgeons + patients to
@@ -97,7 +95,7 @@ export interface Procedure {
      *   - whether the procedure surfaces in the public deals marketplace
      *   - whether the day-pass checkout shows the procedure
      *
-     * Default: undefined → treated as TRUE (backward-compat — every sim
+     * Default: undefined, treated as TRUE (backward compatible: every sim
      * that's been through the QA sweep is sale-ready unless explicitly
      * flagged otherwise). Set to FALSE for sims that pass the smoke
      * test but haven't been clinically polished. Updated via
@@ -108,7 +106,7 @@ export interface Procedure {
      * Quality tier for marketing and UX focus.
      * A = flagship (full-quality, no SimplifiedModeBanner)
      * B = working simulator, SimplifiedModeBanner OK (default if unset)
-     * C = no real simulation — show info + waitlist + deals
+     * C = no real simulation. Show info, a waitlist and deals.
      */
     tier?: 'A' | 'B' | 'C';
     /**
@@ -134,7 +132,7 @@ export const PROCEDURES: Procedure[] = [
         categoryLabel: 'Surgical',
         simulatorType: '2d',
         description: 'Nose reshaping simulation with tip rotation, dorsal height, alar base parameters, and 468-point anatomical mesh accuracy.',
-        longDescription: `Rhinoplasty is one of the most requested facial plastic surgery procedures worldwide. It addresses both aesthetic concerns — such as dorsal humps, bulbous tips, and asymmetry — and functional issues like a deviated septum or impaired nasal airflow.
+        longDescription: `Rhinoplasty is one of the most requested facial plastic surgery procedures worldwide. It addresses both aesthetic concerns (such as dorsal humps, bulbous tips, and asymmetry) and functional issues like a deviated septum or impaired nasal airflow.
 
 Modern rhinoplasty techniques range from open approaches (with a small external incision) to closed approaches (entirely through the nostrils). Your surgeon selects the approach based on the degree of change needed and the complexity of the nasal anatomy.
 
@@ -185,7 +183,7 @@ Faceify Labs' simulation uses a 468-point facial mesh to model tip projection, r
         categoryLabel: 'Surgical',
         simulatorType: '2d',
         description: 'Chin projection, height, and width adjustment using Goode\'s ratio constraints and Ricketts E-line profile balancing.',
-        longDescription: `Chin augmentation — also called genioplasty or mentoplasty — improves facial balance by increasing chin projection, adjusting vertical height, or correcting asymmetry. It is frequently combined with rhinoplasty to achieve overall profile harmony.
+        longDescription: `Chin augmentation, also called genioplasty or mentoplasty, improves facial balance by increasing chin projection, adjusting vertical height, or correcting asymmetry. It is frequently combined with rhinoplasty to achieve overall profile harmony.
 
 Two main approaches exist: silicone or porous polyethylene implants placed through a small incision inside the mouth or beneath the chin, and sliding genioplasty where the chin bone itself is repositioned. Your surgeon will recommend the most suitable approach based on your anatomy and aesthetic goals.
 
@@ -249,7 +247,7 @@ Our simulation models mandibular angle reduction, bigonial width narrowing, chin
         ],
         pros: [
             'Creates a slimmer, more defined V-shaped facial contour permanently',
-            'All incisions inside the mouth — no visible external scars',
+            'All incisions inside the mouth: no visible external scars',
             'Can dramatically improve facial proportions and symmetry',
             'Results are permanent once bone is reshaped',
             'Effective for square jaws that resist non-surgical treatments',
@@ -284,7 +282,7 @@ Our simulation models mandibular angle reduction, bigonial width narrowing, chin
         categoryLabel: 'Surgical',
         simulatorType: '2d',
         description: 'Cheek slimming with buccal fat pad reduction, hollowing depth control, and identity-preserving symmetry correction.',
-        longDescription: `Buccal fat removal is a minimally invasive procedure that reduces fullness in the lower cheeks by extracting the buccal fat pads — walnut-sized fat deposits located between the cheekbone and jawbone. The result is a more sculpted, contoured midface.
+        longDescription: `Buccal fat removal is a minimally invasive procedure that reduces fullness in the lower cheeks by extracting the buccal fat pads, walnut-sized fat deposits located between the cheekbone and jawbone. The result is a more sculpted, contoured midface.
 
 The procedure is performed through small incisions inside the mouth (no external scars). It typically takes 30-60 minutes under local anesthesia. Results become fully apparent as post-operative swelling resolves over several weeks.
 
@@ -297,13 +295,13 @@ Our simulator visualizes the degree of cheek hollowing while preserving the pati
         ],
         pros: [
             'Creates slimmer, more defined cheekbones and jawline permanently',
-            'No visible scars — incisions are inside the mouth',
+            'No visible scars: incisions are inside the mouth',
             'Quick recovery of 3–5 days with minimal pain',
             'Short procedure time with minimal downtime',
         ],
         cons: [
             'Removing fat pads can cause premature hollowness by your 40s',
-            'Completely irreversible — removed fat cannot be replaced',
+            'Completely irreversible: removed fat cannot be replaced',
             '~15% of patients seek corrective fat grafting within 5 years',
             'Not suitable for naturally thin faces or those who may lose volume with age',
             '25% complication rate including edema, jaw stiffness, and persistent pain',
@@ -353,7 +351,7 @@ Our simulator models palpebral fissure height, supratarsal crease positioning, c
         cons: [
             'Removing too much skin or fat creates results that are hard to reverse',
             'Temporary dry eye, irritation, and light sensitivity are common',
-            'Results do not last forever — additional surgery may be needed with aging',
+            'Results do not last forever: additional surgery may be needed with aging',
             'Rare but serious risks include blurred vision and difficulty closing eyes',
             'Important cultural considerations about preserving ethnic identity with double eyelid surgery',
         ],
@@ -362,7 +360,7 @@ Our simulator models palpebral fissure height, supratarsal crease positioning, c
         procedureDuration: '1-2 hours',
         costRange: '$3,000 - $6,000',
         pricing: {
-            us: { min: 3000, max: 7000 },
+            us: { min: 3000, max: 6000 },
             thailand: { min: 1200, max: 3000 },
             'south-korea': { min: 1500, max: 5000 },
             india: { min: 800, max: 2000 },
@@ -403,7 +401,7 @@ Our simulator models tissue repositioning, skin re-draping, and volumetric chang
         cons: [
             'Major surgery requiring general anesthesia with 2-week initial recovery',
             'Significant cost ($7,000–$15,000+) and not covered by insurance',
-            'Does not stop aging — turns back the clock but aging continues',
+            'Does not stop aging: turns back the clock but aging continues',
             'Risks include nerve damage, hematoma, infection, and hair loss near incisions',
             'Visible scarring possible around ears and hairline',
         ],
@@ -445,12 +443,12 @@ Our simulator models philtral column shortening, vermilion show increase, cupid'
         ],
         pros: [
             'Permanent results that create a more youthful mouth appearance',
-            'Natural enhancement without fillers — restores visible lip show',
+            'Natural enhancement without fillers: restores visible lip show',
             '92% of patients rate the procedure as "worth it"',
             'Results last 10+ years, more cost-effective than repeated fillers',
         ],
         cons: [
-            'Scarring is the #1 concern — 60% of complaints are scar-related',
+            'Scarring is the #1 concern: 60% of complaints are scar-related',
             'Scars at the nose base can be visible if healing is suboptimal',
             'Risk of nerve damage affecting lip sensation or movement',
             'Cannot be easily reversed if you dislike the result',
@@ -477,15 +475,15 @@ Our simulator models philtral column shortening, vermilion show increase, cupid'
     //
     // DISAMBIGUATION NOTE (lip-lift vs dental):
     // The 'lip-lift' slug above (order: 7) refers to the SURGICAL lip lift
-    // (subnasal bullhorn, corner, or Italian technique — philtral shortening).
+    // (subnasal bullhorn, corner, or Italian technique, i.e. philtral shortening).
     // This is a facial plastic surgery procedure in the 'surgical' category.
     //
     // It is NOT related to dental procedures. The dental category (order: 14-17)
-    // covers smile-design, teeth-whitening, veneers, and gummy-smile — none of
+    // covers smile-design, teeth-whitening, veneers, and gummy-smile, none of
     // which share the 'lip-lift' slug.
     //
     // The /simulate/lip-lift route renders LipLiftSimulator (surgical, active).
-    // The comingSoon flag is NOT set here — this simulator is fully built.
+    // The comingSoon flag is NOT set here. This simulator is fully built.
     // Do not add comingSoon to lip-lift unless explicitly removing the simulator.
     {
         slug: 'chemical-peels',
@@ -510,7 +508,7 @@ Our simulator assesses your Fitzpatrick skin type and Glogau photoaging scale sc
         pros: [
             'Versatile treatment for acne, wrinkles, sun damage, and pigmentation',
             'Multiple depth options to match specific concerns and tolerance',
-            'Light peels have minimal downtime — a "lunchtime procedure"',
+            'Light peels have minimal downtime: a "lunchtime procedure"',
             'More affordable than laser treatments',
             'Decades of clinical evidence supporting effectiveness',
         ],
@@ -596,7 +594,7 @@ Our simulator models the expected improvement across 5 laser types, accounting f
         description: 'Non-surgical lift trajectory visualization for midface, jowl, and brow repositioning with PDO, PLLA, and PCL thread options.',
         longDescription: `A thread lift is a minimally invasive procedure that lifts and tightens sagging facial tissue using absorbable sutures. Barbed or smooth threads are inserted beneath the skin to physically lift tissue and stimulate collagen production for ongoing improvement.
 
-Three main thread materials are used: PDO (polydioxanone) — absorbed in 6-8 months with results lasting 1-2 years; PLLA (poly-L-lactic acid) — stronger collagen stimulation lasting 2-3 years; and PCL (polycaprolactone) — the longest-lasting option with results up to 3-4 years.
+Three main thread materials are used: PDO (polydioxanone), absorbed in 6-8 months with results lasting 1-2 years; PLLA (poly-L-lactic acid), stronger collagen stimulation lasting 2-3 years; and PCL (polycaprolactone), the longest-lasting option with results up to 3-4 years.
 
 Our simulator visualizes thread placement trajectories and the resulting lift effect on the midface, jowls, nasolabial folds, neck, and brow. It models the degree of lift achievable with each thread type and the expected collagen stimulation timeline.`,
         benefits: [
@@ -606,18 +604,18 @@ Our simulator visualizes thread placement trajectories and the resulting lift ef
             'Reversible and adjustable results',
         ],
         pros: [
-            'Minimally invasive — most patients resume activities within 24–48 hours',
+            'Minimally invasive: most patients resume activities within 24–48 hours',
             'Immediate visible lift with additional collagen-building improvement over time',
-            'Lower risk profile than surgical facelift — no general anesthesia needed',
+            'Lower risk profile than surgical facelift: no general anesthesia needed',
             'Shorter procedure time, typically under an hour',
             'Significantly less expensive upfront than a surgical facelift',
         ],
         cons: [
             'Results last only 1–3 years, requiring repeat treatments',
-            'Not effective for significant skin laxity — provides only subtle lifting',
+            'Not effective for significant skin laxity: provides only subtle lifting',
             'Risk of thread migration, skin puckering, or visible threads beneath skin',
             'Achieving symmetry can be challenging with potential for uneven results',
-            'Results are highly practitioner-dependent — skill directly impacts quality',
+            'Results are highly practitioner-dependent: skill directly impacts quality',
         ],
         idealFor: 'Patients with early to moderate facial sagging who want visible lift without the downtime and cost of a surgical facelift.',
         recoveryTime: '2-5 days',
@@ -645,7 +643,7 @@ Our simulator visualizes thread placement trajectories and the resulting lift ef
         categoryLabel: 'Injectable',
         simulatorType: '2d',
         description: 'Injection zone mapping and wrinkle reduction preview for forehead, glabella, crow\'s feet, and other treatment areas.',
-        longDescription: `Botox (botulinum toxin) and other neuromodulators (Dysport, Xeomin, Jeuveau) temporarily relax targeted facial muscles to smooth dynamic wrinkles — lines that form from repeated facial expressions like frowning, squinting, and raising the eyebrows.
+        longDescription: `Botox (botulinum toxin) and other neuromodulators (Dysport, Xeomin, Jeuveau) temporarily relax targeted facial muscles to smooth dynamic wrinkles, lines that form from repeated facial expressions like frowning, squinting, and raising the eyebrows.
 
 Treatment areas include forehead lines, glabellar (frown) lines, crow's feet, bunny lines, lip flip, chin dimpling, masseter reduction (facial slimming), and hyperhidrosis (excessive sweating). Results typically appear within 3-7 days and last 3-4 months.
 
@@ -654,21 +652,21 @@ Our simulator maps injection zones on your face and visualizes the expected wrin
             'Smooth forehead lines, frown lines, and crow\'s feet',
             'Quick treatment with no downtime',
             'Preventive when started early',
-            'Non-permanent — adjustable with each session',
+            'Non-permanent: adjustable with each session',
             'Can slim the face via masseter reduction',
         ],
         pros: [
-            'Quick "lunchtime procedure" with no downtime — resume activities immediately',
+            'Quick "lunchtime procedure" with no downtime: resume activities immediately',
             'Effective for forehead lines, crow\'s feet, and frown lines within days',
             'Proven medical uses: chronic migraines, excessive sweating, muscle spasms',
-            'Preventive benefit — long-term use slows formation of new wrinkles',
+            'Preventive benefit: long-term use slows formation of new wrinkles',
             'Well-established safety profile with decades of FDA-approved use',
         ],
         cons: [
-            'Results are temporary (3–6 months), requiring ongoing treatments',
+            'Results are temporary (3–4 months), requiring ongoing treatments',
             'Common side effects: injection site pain, swelling, occasionally drooping eyelids',
             'Long-term heavy use may cause wavy skin texture over treated muscles',
-            'Results highly dependent on injector skill — poor technique causes frozen expressions',
+            'Results highly dependent on injector skill: poor technique causes frozen expressions',
             'Ongoing cumulative cost adds up significantly over years',
         ],
         idealFor: 'Patients with dynamic wrinkles (lines that appear with facial expressions) or those seeking preventive anti-aging treatment.',
@@ -696,7 +694,7 @@ Our simulator maps injection zones on your face and visualizes the expected wrin
         categoryLabel: 'Injectable',
         simulatorType: '2d',
         description: '8-zone volume enhancement with hyaluronic acid filler simulation for lips, cheeks, jawline, and tear trough.',
-        longDescription: `Dermal fillers are injectable gels — most commonly hyaluronic acid (HA) — used to restore volume, smooth wrinkles, and enhance facial contours. Unlike Botox (which relaxes muscles), fillers physically add volume beneath the skin.
+        longDescription: `Dermal fillers are injectable gels, most commonly hyaluronic acid (HA), used to restore volume, smooth wrinkles, and enhance facial contours. Unlike Botox (which relaxes muscles), fillers physically add volume beneath the skin.
 
 Treatment zones include lips (volume and definition), cheeks (midface volume restoration), nasolabial folds, marionette lines, tear troughs (under-eye hollows), jawline (definition and contouring), chin (projection), and temples. Results are immediate and last 6-18 months depending on the product and area treated.
 
@@ -710,7 +708,7 @@ Our simulator models volume addition across 8 facial zones, visualizing the shap
         ],
         pros: [
             'Immediate, visible results with no surgery and minimal downtime',
-            'Highly versatile — lips, cheeks, chin, under-eyes, jawline, and more',
+            'Highly versatile: lips, cheeks, chin, under-eyes, jawline, and more',
             'Hyaluronic acid fillers are reversible if results are unsatisfactory',
             'Results last 6 months to 2 years depending on type and location',
             'Non-permanent nature allows adjustments as your face changes',
@@ -718,7 +716,7 @@ Our simulator models volume addition across 8 facial zones, visualizing the shap
         cons: [
             'Temporary results require repeat treatments with cumulative costs',
             'Rare but serious risk of vascular occlusion causing skin necrosis or blindness',
-            'Results are highly technique-dependent — unskilled injection causes asymmetry',
+            'Results are highly technique-dependent: unskilled injection causes asymmetry',
             'Common side effects: bruising, swelling, tenderness, and lumpiness',
             'Over-filling ("pillow face") is a growing concern with repeated treatments',
         ],
@@ -753,20 +751,20 @@ The procedure involves three steps: liposuction harvest from a donor site, centr
 
 When available, our simulator will model the expected volume addition and facial contouring effects of fat grafting, accounting for typical fat survival rates. It will visualize projected improvements in cheek volume, under-eye hollows, nasolabial folds, temples, and jawline contouring.`,
         benefits: [
-            'Uses your own tissue — no allergic reactions',
+            'Uses your own tissue: no allergic reactions',
             'Long-lasting results (surviving fat is permanent)',
             'Natural feel and appearance',
             'Simultaneous body contouring at the donor site',
         ],
         pros: [
-            'Uses your own tissue — no risk of allergic reaction or rejection',
+            'Uses your own tissue: no risk of allergic reaction or rejection',
             'Provides both volume restoration and skin quality improvement via stem cells',
             'Long-lasting results once transferred fat establishes blood supply',
             'More natural look and feel compared to synthetic fillers',
             'Can address multiple facial areas in a single session',
         ],
         cons: [
-            'Unpredictable fat survival rate — sometimes requiring multiple sessions',
+            'Unpredictable fat survival rate: sometimes requiring multiple sessions',
             'Requires a separate liposuction donor site, adding a second procedure area',
             'Risk of fat overgrowth, necrosis, cyst formation, and asymmetry',
             'Forehead and temple injections carry the highest risk of serious complications',
@@ -818,11 +816,11 @@ Our simulator applies facial harmony principles to design optimal tooth proporti
         cons: [
             'Actual results may vary from the digital preview in complex cases',
             'Higher upfront costs due to advanced technology required',
-            'Digital design is a planning tool only — dental work carries its own risks',
+            'Digital design is a planning tool only: dental work carries its own risks',
             'Limited availability in some regions outside major cities',
             'Long-term impact of AI-generated designs on satisfaction still being studied',
         ],
-        idealFor: 'Patients considering comprehensive dental aesthetics — veneers, crowns, orthodontics, or gum contouring — who want to preview the final result before committing.',
+        idealFor: 'Patients considering comprehensive dental aesthetics (veneers, crowns, orthodontics, or gum contouring) who want to preview the final result before committing.',
         recoveryTime: 'Varies by treatment plan',
         procedureDuration: '30-60 minutes (design consultation)',
         costRange: '$500 - $1,500 (design fee; treatments separate)',
@@ -866,7 +864,7 @@ Our simulator previews the expected shade improvement for your teeth, modeling t
         ],
         cons: [
             'Increased tooth sensitivity is the most common side effect',
-            'Results are temporary — teeth re-stain from coffee, tea, wine, and foods',
+            'Results are temporary: teeth re-stain from coffee, tea, wine, and foods',
             'Overuse can damage enamel and cause permanent sensitivity',
             'Not effective on dental restorations (crowns, veneers), creating color mismatches',
             'Over-the-counter products can cause uneven whitening',
@@ -895,11 +893,11 @@ Our simulator previews the expected shade improvement for your teeth, modeling t
         categoryLabel: 'Dental Aesthetics',
         simulatorType: '2d',
         description: 'Preview porcelain or composite veneer placement with tooth shape selection, shade matching, and smile proportion analysis.',
-        longDescription: `Dental veneers are thin shells of porcelain or composite resin bonded to the front surface of teeth to improve their appearance. They address chipped teeth, gaps, discoloration, misalignment, and irregular tooth shapes — creating a uniform, natural-looking smile.
+        longDescription: `Dental veneers are thin shells of porcelain or composite resin bonded to the front surface of teeth to improve their appearance. They address chipped teeth, gaps, discoloration, misalignment, and irregular tooth shapes, creating a uniform, natural-looking smile.
 
 Porcelain veneers are custom-fabricated in a dental lab and offer superior durability, stain resistance, and natural light reflection. Composite veneers are applied directly chairside at a lower cost but may require more maintenance. Both typically require minimal tooth preparation (0.3-0.7mm of enamel removal).
 
-Our simulator previews veneer placement with different tooth shapes, shade options, and proportions. It models how veneers change the overall smile line, tooth uniformity, and facial harmony — helping patients choose the look that best suits their features.`,
+Our simulator previews veneer placement with different tooth shapes, shade options, and proportions. It models how veneers change the overall smile line, tooth uniformity, and facial harmony, helping patients choose the look that best suits their features.`,
         benefits: [
             'Transform your smile in just 2 appointments',
             'Fix chips, gaps, stains, and misalignment',
@@ -909,16 +907,16 @@ Our simulator previews veneer placement with different tooth shapes, shade optio
         pros: [
             'Address multiple concerns at once: discoloration, chips, gaps, and misalignment',
             'Porcelain veneers are highly stain-resistant with natural light reflection',
-            'High survival rate — porcelain veneers last 10–15 years with proper care',
+            'High survival rate: porcelain veneers last 10–15 years with proper care',
             'More conservative than crowns with less natural tooth removal',
             'Dramatic smile transformation achievable in just 2–3 visits',
         ],
         cons: [
-            'Irreversible — requires permanent enamel removal',
+            'Irreversible: requires permanent enamel removal',
             'Expensive and typically not covered by dental insurance',
             'Can chip or crack from hard foods, grinding, or trauma',
             'Tooth sensitivity after enamel removal is common',
-            'Color matching can be challenging — poor execution looks artificial',
+            'Color matching can be challenging: poor execution looks artificial',
         ],
         idealFor: 'Patients with chipped, stained, gapped, or misaligned front teeth who want a complete smile transformation with minimal tooth alteration.',
         recoveryTime: 'None to 1-2 days (sensitivity)',
@@ -944,7 +942,7 @@ Our simulator previews veneer placement with different tooth shapes, shade optio
         categoryLabel: 'Dental Aesthetics',
         simulatorType: '2d',
         description: 'Simulate gummy smile reduction through crown lengthening, lip repositioning, or Botox injection approaches.',
-        longDescription: `A "gummy smile" — clinically known as excessive gingival display — occurs when more than 3-4mm of gum tissue is visible above the upper teeth during a full smile. It affects approximately 10% of the population and can cause self-consciousness despite having otherwise healthy teeth.
+        longDescription: `A "gummy smile" (clinically known as excessive gingival display) occurs when more than 3-4mm of gum tissue is visible above the upper teeth during a full smile. It affects approximately 10% of the population and can cause self-consciousness despite having otherwise healthy teeth.
 
 Treatment options depend on the cause: crown lengthening surgery (gingivectomy) reshapes the gum line to expose more tooth surface; lip repositioning surgery limits how high the upper lip rises when smiling; orthognathic surgery corrects underlying skeletal issues; and Botox injections offer a temporary non-surgical option by relaxing the upper lip elevator muscles.
 
@@ -999,7 +997,7 @@ Our simulator models the expected improvement from gummy smile correction, visua
 
 Modern techniques offer a range of implant profiles (low to extra-high), shapes (round or anatomical/teardrop), and placement planes (subglandular, submuscular, or dual-plane). The choice depends on the patient\u2019s chest wall anatomy, tissue thickness, and desired outcome.
 
-Our simulator lets you visualize how different implant volumes (100\u2013800cc), profiles, and placements would look on a specific body photo. Independent left/right symmetry controls address the pre-existing asymmetry that affects up to 53% of patients. All processing happens in the browser \u2014 no images are uploaded.`,
+Our simulator lets you visualize how different implant volumes (100\u2013800cc), profiles, and placements would look on a specific body photo. Independent left/right symmetry controls address the pre-existing asymmetry that affects up to 53% of patients. All processing happens in the browser by default: no images are uploaded unless you choose to save a simulation to your account.`,
         benefits: [
             'Enhance breast volume and projection',
             'Correct asymmetry with independent L/R controls',
@@ -1016,7 +1014,7 @@ Our simulator lets you visualize how different implant volumes (100\u2013800cc),
         ],
         cons: [
             'Capsular contracture (scar tissue hardening) is the most common long-term complication',
-            'Implants are not lifetime devices — eventually require replacement or removal',
+            'Implants are not lifetime devices: eventually require replacement or removal',
             'Breast Implant Illness (BII) symptoms reported: fatigue, brain fog, joint pain',
             'Rare but documented risk of BIA-ALCL (implant-associated lymphoma)',
             'Loss of nipple sensation can occur and may be permanent',
@@ -1049,7 +1047,7 @@ Our simulator lets you visualize how different implant volumes (100\u2013800cc),
 
 VASER liposuction uses ultrasonic energy to selectively emulsify fat while preserving surrounding tissues, resulting in better skin retraction (53\u201362% vs 17% with traditional methods). Hi-Def liposuction goes further by selectively removing fat to reveal underlying muscle definition, popular for \u201Csix-pack\u201D sculpting.
 
-Our simulator supports multi-zone treatment \u2014 abdomen, flanks, inner/outer thighs, arms, chin, back, and chest \u2014 each with independent intensity controls. The Hi-Def mode overlays muscle definition lines for athletic contouring visualization.`,
+Our simulator supports multi-zone treatment (abdomen, flanks, inner/outer thighs, arms, chin, back, and chest), each with independent intensity controls. The Hi-Def mode overlays muscle definition lines for athletic contouring visualization.`,
         benefits: [
             'Remove stubborn fat deposits resistant to diet and exercise',
             'Treat multiple body zones in a single session',
@@ -1059,14 +1057,14 @@ Our simulator supports multi-zone treatment \u2014 abdomen, flanks, inner/outer 
         ],
         pros: [
             'Effectively reduces stubborn fat deposits resistant to diet and exercise',
-            'Fat cells removed do not regenerate — permanent reduction in treated areas',
+            'Fat cells removed do not regenerate: permanent reduction in treated areas',
             'Small incisions result in minimal, easily concealed scarring',
-            'Relatively short recovery — most return to work within 1 week',
+            'Relatively short recovery: most return to work within 1 week',
             'Most popular body contouring procedure with a well-established safety profile',
         ],
         cons: [
-            'Not a weight-loss solution — designed for contouring, not significant fat reduction',
-            'Does not address loose skin — poor elasticity may need additional procedures',
+            'Not a weight-loss solution: designed for contouring, not significant fat reduction',
+            'Does not address loose skin: poor elasticity may need additional procedures',
             'Final results take 3–6 months to appear as swelling subsides',
             'Weight gain after surgery can compromise results',
             'Risks include fat embolism, contour irregularities, and fluid accumulation',
@@ -1096,7 +1094,7 @@ Our simulator supports multi-zone treatment \u2014 abdomen, flanks, inner/outer 
         categoryLabel: 'Body Contouring',
         simulatorType: '2d',
         description: 'Visualize tummy tuck results. Compare mini, full, and extended abdominoplasty with diastasis repair and incision preview.',
-        longDescription: `Abdominoplasty (tummy tuck) removes excess abdominal skin and fat while tightening the underlying musculature. Rectus diastasis \u2014 the separation of the abdominal muscles \u2014 affects approximately 40% of women six months postpartum and can only be corrected surgically.
+        longDescription: `Abdominoplasty (tummy tuck) removes excess abdominal skin and fat while tightening the underlying musculature. Rectus diastasis, the separation of the abdominal muscles, affects approximately 40% of women six months postpartum and can only be corrected surgically.
 
 Three main types address different degrees of concern: mini abdominoplasty targets only the lower abdomen with a shorter incision; full abdominoplasty addresses the entire abdominal panel with belly button repositioning; and extended abdominoplasty includes flank and lower back contouring for patients with significant excess tissue.
 
@@ -1199,7 +1197,7 @@ Our simulator shows both the buttock enhancement and the donor area slimming in 
         categoryLabel: 'Hair Restoration',
         simulatorType: '2d',
         description: 'Visualize hair transplant results with adjustable hairline design, graft density, and growth timeline. Compare FUE, FUT, and DHI techniques.',
-        longDescription: `Hair transplantation involves extracting hair follicles from a donor area (back and sides of the scalp) and implanting them into thinning or bald areas. FUE (Follicular Unit Extraction) accounts for 75% of all procedures \u2014 individual follicles are extracted with a micro-punch (0.6\u20131.0mm). FUT (Follicular Unit Transplant) removes a strip of scalp for graft dissection. DHI (Direct Hair Implantation) uses a Choi implanter pen for simultaneous extraction and placement.
+        longDescription: `Hair transplantation involves extracting hair follicles from a donor area (back and sides of the scalp) and implanting them into thinning or bald areas. FUE (Follicular Unit Extraction) accounts for 75% of all procedures: individual follicles are extracted with a micro-punch (0.6\u20131.0mm). FUT (Follicular Unit Transplant) removes a strip of scalp for graft dissection. DHI (Direct Hair Implantation) uses a Choi implanter pen for simultaneous extraction and placement.
 
 Typical graft counts range from 1,500 to 5,000 per session. Natural scalp density is 60\u201380 follicular units per cm\u00B2, with transplanted density goals of 30\u201350 FU/cm\u00B2. Graft survival rates reach 90\u201398% for FUE. Hair grows approximately 1cm per month, with visible results at 6\u201312 months post-procedure.
 
@@ -1220,9 +1218,9 @@ Our simulator lets you design your new hairline shape, select coverage zones, ad
         ],
         cons: [
             'Results take 6–12 months to fully appear as follicles go through shedding and regrowth',
-            'Limited by donor hair availability — extensive baldness may not have enough donor follicles',
+            'Limited by donor hair availability: extensive baldness may not have enough donor follicles',
             'FUT leaves a linear scar visible with short haircuts',
-            'Does not stop ongoing hair loss — may need additional medical treatment',
+            'Does not stop ongoing hair loss: may need additional medical treatment',
             'Expensive ($3,000–$15,000+) and typically not covered by insurance',
         ],
         idealFor: 'Men and women experiencing pattern hair loss (Norwood 2-6), with sufficient donor hair density on the back and sides of the scalp.',
@@ -1241,7 +1239,7 @@ Our simulator lets you design your new hairline shape, select coverage zones, ad
         order: 22,
         simulateSlug: 'hair-transplant',
         popularity: 'high',
-        // Re-enabled 2026-05-03 — patient component now derives the face
+        // Re-enabled 2026-05-03. Patient component now derives the face
         // bounding box from MediaPipe FaceLandmarker instead of the
         // hardcoded 25%/15%/50%/55% rectangle. Math fallback only fires
         // when MediaPipe explicitly fails (off-frame face, very obscure
@@ -1255,7 +1253,7 @@ Our simulator lets you design your new hairline shape, select coverage zones, ad
         categoryLabel: 'Hair Restoration',
         simulatorType: '2d',
         description: 'Simulate eyebrow transplant and microblading results. Design brow shape, adjust density, and compare techniques.',
-        longDescription: `Eyebrow restoration includes two primary approaches: eyebrow transplant (permanent) and microblading (semi-permanent). Transplant involves 250\u2013500 single-hair grafts per brow harvested from the scalp, each angled at 10\u201315\u00B0 to mimic natural growth patterns. Hair changes direction along the brow \u2014 upward near the nose, crisscross at the center, and lateral-downward at the tail.
+        longDescription: `Eyebrow restoration includes two primary approaches: eyebrow transplant (permanent) and microblading (semi-permanent). Transplant involves 250\u2013500 single-hair grafts per brow harvested from the scalp, each angled at 10\u201315\u00B0 to mimic natural growth patterns. Hair changes direction along the brow: upward near the nose, crisscross at the center, and lateral-downward at the tail.
 
 Microblading is a form of semi-permanent tattooing using a handheld blade to create hair-like strokes in the epidermis. It lasts 1\u20133 years and fades over time. Especially popular in Korea, where straight/soft-angled brows are preferred over Western high arches.
 
@@ -1325,11 +1323,11 @@ Our simulator lets you preview different SMP goals including the buzzcut look, d
             'Effective for thinning, receding hairlines, alopecia, and scar concealment',
         ],
         cons: [
-            'Does not actually grow hair — creates an illusion of a close-shaved look only',
-            'Limits hairstyle options — existing hair must be kept very short',
+            'Does not actually grow hair: creates an illusion of a close-shaved look only',
+            'Limits hairstyle options, existing hair must be kept very short',
             'Fading is inevitable, requiring touch-ups every 1–2 years',
             'Difficult and painful to remove if you change your mind',
-            'Results are extremely practitioner-dependent — poor execution looks unnatural',
+            'Results are extremely practitioner-dependent: poor execution looks unnatural',
         ],
         idealFor: 'Patients with any degree of hair loss who want a non-surgical solution, those wanting to add density to thinning areas, or camouflage existing scars.',
         recoveryTime: '3-5 days per session (minimal)',
@@ -1368,7 +1366,7 @@ Our simulator offers preset styles (full beard, goatee, chinstrap, Van Dyke, and
             'Growing fast in Middle East and Asian markets',
         ],
         pros: [
-            'Permanent results — transplanted hair grows naturally and can be groomed',
+            'Permanent results: transplanted hair grows naturally and can be groomed',
             'Effectively fills patchy or uneven facial hair',
             'Uses your own hair for realistic, natural-looking results',
             'Relatively quick procedure with mostly manageable discomfort',
@@ -1376,7 +1374,7 @@ Our simulator offers preset styles (full beard, goatee, chinstrap, Van Dyke, and
         ],
         cons: [
             'Success rate of 60–80%, meaning a second transplant may be needed',
-            'Requires adequate scalp donor hair — not suitable for extensive scalp hair loss',
+            'Requires adequate scalp donor hair: not suitable for extensive scalp hair loss',
             'Swelling, redness, and puffiness common for 2–3 days post-surgery',
             'Recovery takes up to 2 weeks with careful aftercare needed',
             'Transplanted hair may have slightly different texture than native facial hair',
@@ -1405,7 +1403,7 @@ Our simulator offers preset styles (full beard, goatee, chinstrap, Van Dyke, and
         categoryLabel: 'Hair Restoration',
         simulatorType: '2d',
         description: 'Visualize hairline lowering results. Compare surgical advancement vs transplant grafting. Adjust forehead height and hairline shape.',
-        longDescription: `Hairline lowering addresses a high or disproportionately large forehead. Two primary methods exist: surgical hairline advancement involves an incision at the existing hairline, pulling the scalp forward, and excising excess forehead skin \u2014 lowering by 1\u20133cm with a thin scar along the hairline. Hairline transplant uses FUE/DHI grafts to create a lower hairline without surgery, achieving 2\u20135cm of lowering with 1,500\u20133,000+ grafts.
+        longDescription: `Hairline lowering addresses a high or disproportionately large forehead. Two primary methods exist: surgical hairline advancement involves an incision at the existing hairline, pulling the scalp forward, and excising excess forehead skin, lowering by 1\u20133cm with a thin scar along the hairline. Hairline transplant uses FUE/DHI grafts to create a lower hairline without surgery, achieving 2\u20135cm of lowering with 1,500\u20133,000+ grafts.
 
 This procedure is extremely popular in Korea where smaller foreheads are culturally preferred. It\u2019s often combined with hair transplant for temple corner filling. Ideal forehead height is 5\u20136cm for women and 6\u20137cm for men, measured from the brow to the hairline at center.
 
@@ -1422,14 +1420,14 @@ Our simulator shows dramatic before/after forehead proportion changes with Korea
             'Low complication rate (<1%) based on published meta-analysis',
             'Permanent results that enhance facial balance',
             'Can be combined with hair transplant for additional density',
-            'Single procedure — no waiting months for hair growth',
+            'Single procedure: no waiting months for hair growth',
         ],
         cons: [
             'Leaves a scar along the new hairline that may show if hair recedes with age',
             'Risk of temporary or permanent hair loss around the incision site',
             'Numbness and altered forehead sensation are common',
             'Not suitable for patients with active or progressive hair loss',
-            'Limited advancement possible — determined by individual scalp laxity',
+            'Limited advancement possible: determined by individual scalp laxity',
         ],
         idealFor: 'Patients with a high forehead or large forehead-to-face ratio, especially popular among women and Korean aesthetic patients.',
         recoveryTime: '7-14 days (surgical), 7-10 days (transplant)',
@@ -1446,7 +1444,7 @@ Our simulator shows dramatic before/after forehead proportion changes with Korea
         isNew: true,
         order: 26,
         simulateSlug: 'hairline-lowering',
-        // Re-enabled 2026-05-03 — forehead-reduction.ts now anchors the
+        // Re-enabled 2026-05-03. forehead-reduction.ts now anchors the
         // hairline band off MediaPipe forehead-top landmarks instead of
         // a canvas-relative `height * 0.18`. Safely no-ops when landmarks
         // are missing (no more cheek/eye stripes on non-portrait crops).
@@ -1461,14 +1459,14 @@ Our simulator shows dramatic before/after forehead proportion changes with Korea
         description: 'Visualize eyebrow elevation and forehead rejuvenation. Preview lateral, medial, and overall brow position adjustments.',
         longDescription: `A brow lift (forehead lift) raises the eyebrows and smooths forehead wrinkles, restoring a more alert, refreshed, and youthful appearance. The procedure addresses drooping brows that may partially hood the upper eyelids, deep forehead creases, and the frown lines between the brows.
 
-Several techniques are available: the endoscopic brow lift uses small incisions and a camera for minimal scarring and shorter recovery; the temporal (lateral) brow lift targets outer brow descent through hairline incisions; and the classic coronal lift — less common today — involves a single incision across the top of the scalp for maximal lift.
+Several techniques are available: the endoscopic brow lift uses small incisions and a camera for minimal scarring and shorter recovery; the temporal (lateral) brow lift targets outer brow descent through hairline incisions; and the classic coronal lift, less common today, involves a single incision across the top of the scalp for maximal lift.
 
 Our simulator visualizes brow position changes, forehead line reduction, and the interplay between brow height and upper eyelid appearance. Adjust medial brow height, lateral brow arch, and overall elevation to explore different aesthetic outcomes.`,
         benefits: [
             'Elevate drooping or flat brows for a more alert expression',
             'Smooth forehead lines and frown creases',
             'Reduce upper eyelid hooding caused by brow ptosis',
-            'Long-lasting results — typically 5–10 years',
+            'Long-lasting results: typically 5–10 years',
             'Can be combined with blepharoplasty for comprehensive upper-face rejuvenation',
         ],
         pros: [
@@ -1510,21 +1508,21 @@ Our simulator visualizes brow position changes, forehead line reduction, and the
         description: 'Simulate lip volume, shape, and definition changes with filler or implant augmentation. Adjust upper-to-lower lip ratio and cupid\'s bow.',
         longDescription: `Lip augmentation enhances the size, shape, and definition of the lips using injectable fillers (most commonly hyaluronic acid such as Juvederm or Restylane), fat transfer, or surgical implants. The goal is to create fuller, more balanced, and defined lips proportional to the rest of the face.
 
-Key parameters include overall volume (upper and lower lip independently), cupid's bow definition, vermilion border sharpening, upper lip height (philtrum relationship), and corner lift. HA filler results are temporary — lasting 6–12 months — and fully reversible with hyaluronidase, making it the most popular approach for first-time patients.
+Key parameters include overall volume (upper and lower lip independently), cupid's bow definition, vermilion border sharpening, upper lip height (philtrum relationship), and corner lift. HA filler results are temporary, lasting 6–12 months, and fully reversible with hyaluronidase, making it the most popular approach for first-time patients.
 
-Our simulator maps volume and shape changes across the upper and lower lip using anatomical landmarks. Adjust individual parameters to preview different augmentation levels — from a subtle definition enhancement to a fuller, more dramatic result — while maintaining natural proportions.`,
+Our simulator maps volume and shape changes across the upper and lower lip using anatomical landmarks. Adjust individual parameters to preview different augmentation levels (from a subtle definition enhancement to a fuller, more dramatic result) while maintaining natural proportions.`,
         benefits: [
             'Fuller, more defined lips with natural-looking results',
             'Improve upper-to-lower lip ratio and cupid\'s bow shape',
             'Reversible HA filler option for first-time patients',
             'No downtime for injectable augmentation',
-            'Customizable volume — subtle enhancement to significant fullness',
+            'Customizable volume: subtle enhancement to significant fullness',
         ],
         pros: [
             'Multiple approaches (fillers, fat transfer, implants) to match different goals',
             'HA fillers offer immediate results and are reversible with hyaluronidase',
             'Quick procedure (10–30 minutes for fillers) in a single office visit',
-            'Gradual enhancement possible — build volume over multiple sessions',
+            'Gradual enhancement possible: build volume over multiple sessions',
             'Fat transfer provides longer-lasting results using your own tissue',
         ],
         cons: [
@@ -1532,7 +1530,7 @@ Our simulator maps volume and shape changes across the upper and lower lip using
             'Overfilling is a common concern, creating an unnatural "duck lip" appearance',
             'Bruising and swelling at injection sites are nearly universal for several days',
             'Vascular occlusion risk with fillers (rare but can cause tissue damage)',
-            'Fat transfer results are unpredictable — variable survival means uneven outcomes',
+            'Fat transfer results are unpredictable: variable survival means uneven outcomes',
         ],
         idealFor: 'Patients with naturally thin lips, asymmetric lips, age-related lip volume loss, or those seeking improved lip definition and a more balanced lip-to-face ratio.',
         recoveryTime: '1–3 days minor swelling',
@@ -1565,21 +1563,21 @@ Our simulator maps volume and shape changes across the upper and lower lip using
         categoryLabel: 'Surgical',
         simulatorType: '2d',
         description: 'Ear pinning, reshaping, and prominence correction to create a more proportionate facial profile. One of the most predictable and high-satisfaction facial procedures.',
-        longDescription: `Otoplasty corrects prominent or asymmetrical ears by reshaping the cartilage and bringing the ear closer to the side of the head. It is one of the most commonly performed facial procedures in children but is equally suitable for adults — the cartilage finishes developing by age 5–6, after which the procedure is anatomically straightforward.
+        longDescription: `Otoplasty corrects prominent or asymmetrical ears by reshaping the cartilage and bringing the ear closer to the side of the head. It is one of the most commonly performed facial procedures in children but is equally suitable for adults: the cartilage finishes developing by age 5–6, after which the procedure is anatomically straightforward.
 
 The most common technique uses a small incision behind the ear to access the cartilage, which is then folded, scored, or sutured into a more natural anti-helical fold. Modern techniques minimize visible scarring by hiding all incisions behind the ear. The procedure can be performed under local anesthesia with sedation in most adult cases.
 
-Our planning tool models conchal-mastoid distance reduction, anti-helical fold creation, and earlobe positioning relative to the standard 1.5–2cm protrusion target. Symmetry between ears is the primary aesthetic measure — surgeons aim for a sub-3mm bilateral difference at the helical apex.`,
+Our planning tool models conchal-mastoid distance reduction, anti-helical fold creation, and earlobe positioning relative to the standard 1.5–2cm protrusion target. Symmetry between ears is the primary aesthetic measure: surgeons aim for a sub-3mm bilateral difference at the helical apex.`,
         benefits: [
             'Reduce ear prominence and improve facial proportions',
             'Correct asymmetry between left and right ears',
-            'Predictable, long-lasting results — one of the highest-satisfaction facial surgeries',
+            'Predictable, long-lasting results: one of the highest-satisfaction facial surgeries',
             'Hidden incisions behind the ear leave no visible scars',
             'Suitable for both children (after age 5) and adults',
         ],
         pros: [
             'High patient satisfaction rates (>90% in most published series)',
-            'Permanent results — cartilage maintains its new shape long-term',
+            'Permanent results: cartilage maintains its new shape long-term',
             'Outpatient procedure with relatively quick recovery',
             'No visible scarring when performed by an experienced surgeon',
             'Significant psychological benefit, especially for children with self-consciousness about ear shape',
@@ -1615,11 +1613,11 @@ Our planning tool models conchal-mastoid distance reduction, anti-helical fold c
         categoryLabel: 'Body Contouring',
         simulatorType: '2d',
         description: 'Non-surgical fat reduction by controlled cooling. Treats stubborn fat pockets in flanks, abdomen, thighs, arms, submental area, and more without incisions or downtime.',
-        longDescription: `Cryolipolysis (commercially known as CoolSculpting) reduces localized fat by exposing adipose tissue to controlled cooling. Fat cells are more sensitive to cold than surrounding tissues — they undergo apoptosis (programmed cell death) at temperatures that don't damage skin, nerves, or muscle. The body then clears the dead fat cells through normal lymphatic and metabolic pathways over 2–4 months.
+        longDescription: `Cryolipolysis (commercially known as CoolSculpting) reduces localized fat by exposing adipose tissue to controlled cooling. Fat cells are more sensitive to cold than surrounding tissues; they undergo apoptosis (programmed cell death) at temperatures that don't damage skin, nerves, or muscle. The body then clears the dead fat cells through normal lymphatic and metabolic pathways over 2–4 months.
 
-Each treatment session targets one or more "pinchable" fat pockets — common areas include the flanks ("love handles"), lower abdomen, inner/outer thighs, upper arms, submental area (double chin), and bra rolls. A vacuum applicator pulls the tissue into a cooling chamber for 35–60 minutes per area. Most patients see a 20–25% fat reduction per treatment in the targeted area; multiple sessions are often combined for 2–3× that result.
+Each treatment session targets one or more "pinchable" fat pockets: common areas include the flanks ("love handles"), lower abdomen, inner/outer thighs, upper arms, submental area (double chin), and bra rolls. A vacuum applicator pulls the tissue into a cooling chamber for 35–60 minutes per area. Most patients see a 20–25% fat reduction per treatment in the targeted area; multiple sessions are often combined for 2–3× that result.
 
-The procedure does NOT shrink existing fat cells (as diet and exercise do) — it permanently removes a portion of them. This makes it durable as long as overall weight is maintained. It is not a weight-loss tool; ideal candidates are within 10–15kg of their target weight with discrete, treatment-resistant fat deposits.`,
+The procedure does NOT shrink existing fat cells (as diet and exercise do); it permanently removes a portion of them. This makes it durable as long as overall weight is maintained. It is not a weight-loss tool; ideal candidates are within 10–15kg of their target weight with discrete, treatment-resistant fat deposits.`,
         benefits: [
             'Non-surgical with no incisions, anesthesia, or recovery time',
             'Permanent fat-cell reduction (~20–25% per session)',
@@ -1628,18 +1626,18 @@ The procedure does NOT shrink existing fat cells (as diet and exercise do) — i
             'Return to normal activity immediately after treatment',
         ],
         pros: [
-            'No downtime — return to work and exercise the same day',
+            'No downtime: return to work and exercise the same day',
             'No needles, no incisions, no scarring',
             'Durable results when weight is maintained',
             'Wide range of treatment areas including the submental fat / "double chin"',
             'FDA-cleared for several body areas with extensive safety data',
         ],
         cons: [
-            'Modest fat reduction (~20–25%) — multiple sessions often needed for visible change',
+            'Modest fat reduction (~20–25%): multiple sessions often needed for visible change',
             'Results take 2–4 months to fully appear',
-            'Rare but documented risk of paradoxical adipose hyperplasia (PAH) — fat enlargement in the treated area, more common in men',
+            'Rare but documented risk of paradoxical adipose hyperplasia (PAH): fat enlargement in the treated area, more common in men',
             'Numbness, bruising, and tingling for 1–2 weeks post-treatment',
-            'Not suitable for visceral fat or significant weight loss — only "pinchable" subcutaneous fat',
+            'Not suitable for visceral fat or significant weight loss: only "pinchable" subcutaneous fat',
         ],
         idealFor: 'Patients near their target weight with localized, treatment-resistant fat pockets who want non-surgical body contouring without downtime.',
         recoveryTime: 'No downtime; mild numbness/swelling for 1–2 weeks',
@@ -1667,7 +1665,7 @@ The procedure does NOT shrink existing fat cells (as diet and exercise do) — i
         categoryLabel: 'Non-Surgical',
         simulatorType: '2d',
         description: 'Non-surgical face and neck lifting using focused ultrasound energy to stimulate collagen production at SMAS depth. The closest non-surgical equivalent to a facelift.',
-        longDescription: `HIFU (High-Intensity Focused Ultrasound), branded by various devices including Ultherapy, delivers focused ultrasound energy to precise depths below the skin to trigger collagen remodeling. Unlike radiofrequency or laser, HIFU can reach the SMAS (Superficial Musculoaponeurotic System) — the same fibrous layer surgeons tighten in a traditional facelift — without disturbing the surface of the skin.
+        longDescription: `HIFU (High-Intensity Focused Ultrasound), branded by various devices including Ultherapy, delivers focused ultrasound energy to precise depths below the skin to trigger collagen remodeling. Unlike radiofrequency or laser, HIFU can reach the SMAS (Superficial Musculoaponeurotic System), the same fibrous layer surgeons tighten in a traditional facelift, without disturbing the surface of the skin.
 
 Energy is delivered through a transducer placed on the skin, creating thermal coagulation points at three depths (1.5mm, 3.0mm, and 4.5mm) corresponding to dermal, subdermal, and SMAS-level tissue. The body responds with a months-long collagen-and-elastin remodeling cascade. Most patients see visible lift improvement at 2–3 months, peaking at 6 months, with results lasting 12–18 months.
 
@@ -1683,13 +1681,13 @@ Common treatment zones include the brow, mid-face, jawline, jowls, and submental
             'Closest non-surgical equivalent to a facelift in mechanism',
             'No incisions, scars, or anesthesia',
             'Treatment usually a single 60–90 minute session',
-            'Results build gradually — no obvious "post-procedure" appearance',
+            'Results build gradually: no obvious "post-procedure" appearance',
             'Multiple FDA-cleared devices with extensive long-term safety data',
         ],
         cons: [
             'Discomfort during treatment (described as deep, sharp heat at SMAS-depth points)',
             'Mild redness, swelling, and tenderness for 1–2 days post-treatment',
-            'Results are subtle compared to a surgical facelift — not a substitute for severe laxity',
+            'Results are subtle compared to a surgical facelift: not a substitute for severe laxity',
             'Full effect takes 3–6 months; impatient patients may feel underwhelmed initially',
             'Very rare but documented risk of bruising, nerve irritation, or muscle weakness from incorrect transducer placement',
         ],
@@ -1719,11 +1717,11 @@ Common treatment zones include the brow, mid-face, jawline, jowls, and submental
         categoryLabel: 'Non-Surgical',
         simulatorType: '2d',
         description: 'Controlled micro-injuries with fine needles trigger natural collagen production. Treats acne scars, fine lines, enlarged pores, stretch marks, and skin texture concerns.',
-        longDescription: `Microneedling — also known as Collagen Induction Therapy or Skin Needling — uses an array of very fine needles (0.25–3.0mm depending on indication) to create thousands of controlled micro-injuries in the skin. These tiny punctures trigger the body's natural wound-healing cascade, stimulating fibroblasts to produce new collagen and elastin without damaging the epidermis.
+        longDescription: `Microneedling, also known as Collagen Induction Therapy or Skin Needling, uses an array of very fine needles (0.25–3.0mm depending on indication) to create thousands of controlled micro-injuries in the skin. These tiny punctures trigger the body's natural wound-healing cascade, stimulating fibroblasts to produce new collagen and elastin without damaging the epidermis.
 
-The procedure can be performed with manual rollers (less precise), automated pens (the modern standard), or radiofrequency-enabled devices (RF microneedling — more aggressive, treats deeper layers). Treatment depth is calibrated to the indication: 0.5mm for surface texture and pore size, 1.5–2mm for fine lines, and 2.5–3mm for acne scars and stretch marks.
+The procedure can be performed with manual rollers (less precise), automated pens (the modern standard), or radiofrequency-enabled devices (RF microneedling: more aggressive, treats deeper layers). Treatment depth is calibrated to the indication: 0.5mm for surface texture and pore size, 1.5–2mm for fine lines, and 2.5–3mm for acne scars and stretch marks.
 
-Most patients require 3–6 sessions spaced 4–6 weeks apart for optimal results. Improvements continue for 3–6 months after the final session as collagen remodels. Microneedling is one of the most versatile non-surgical treatments — appropriate for nearly all skin types and tones (including darker skin where lasers carry pigmentation risks).`,
+Most patients require 3–6 sessions spaced 4–6 weeks apart for optimal results. Improvements continue for 3–6 months after the final session as collagen remodels. Microneedling is one of the most versatile non-surgical treatments, appropriate for nearly all skin types and tones (including darker skin where lasers carry pigmentation risks).`,
         benefits: [
             'Improve acne scars, fine lines, enlarged pores, and skin texture',
             'Safe for all skin types, including darker skin tones where lasers may risk pigmentation',
@@ -1735,13 +1733,13 @@ Most patients require 3–6 sessions spaced 4–6 weeks apart for optimal result
             'Effective on a wide range of skin concerns with minimal risk',
             'Safe for all Fitzpatrick skin types (I–VI)',
             'Far less expensive than ablative laser treatments',
-            'Multiple device options — from at-home rollers to in-office RF microneedling',
+            'Multiple device options: from at-home rollers to in-office RF microneedling',
             'Synergistic with topicals (results enhanced by PRP, hyaluronic acid, or peptides)',
         ],
         cons: [
-            'Requires 3–6 sessions for best results — not a one-time fix',
+            'Requires 3–6 sessions for best results: not a one-time fix',
             'Mild redness, pinpoint bleeding, and sensitivity for 1–3 days post-session',
-            'Results are gradual and subtle — peak effect at 3–6 months',
+            'Results are gradual and subtle: peak effect at 3–6 months',
             'At-home rollers carry infection risk if not properly sanitized',
             'Less aggressive than ablative lasers for severe scarring or deep wrinkles',
         ],
@@ -1769,9 +1767,9 @@ Most patients require 3–6 sessions spaced 4–6 weeks apart for optimal result
         categoryLabel: 'Body Contouring',
         simulatorType: '2d',
         description: 'Surgical reduction of breast size to relieve back/shoulder pain, improve posture, and achieve proportionate body contour. Often medically necessary and insurance-covered.',
-        longDescription: `Breast reduction (reduction mammoplasty) removes excess breast tissue, fat, and skin to create smaller, lighter, better-proportioned breasts. Unlike most cosmetic procedures, breast reduction often qualifies as medically necessary for women with documented physical symptoms — chronic back/shoulder/neck pain, postural issues, skin irritation under the breast crease, or grooves from bra straps — and is covered by many insurance plans when those symptoms are properly documented.
+        longDescription: `Breast reduction (reduction mammoplasty) removes excess breast tissue, fat, and skin to create smaller, lighter, better-proportioned breasts. Unlike most cosmetic procedures, breast reduction often qualifies as medically necessary for women with documented physical symptoms (chronic back/shoulder/neck pain, postural issues, skin irritation under the breast crease, or grooves from bra straps) and is covered by many insurance plans when those symptoms are properly documented.
 
-The most common technique uses an anchor or vertical (lollipop) incision pattern, removing tissue and repositioning the nipple-areola complex on its own blood supply. For patients seeking modest reduction with minimal scarring, scarless or short-scar approaches are sometimes possible. Recovery is significant — 2-3 weeks before resuming most activities and 6 weeks before strenuous exercise — but patient satisfaction rates are among the highest in plastic surgery (>95% in published series).`,
+The most common technique uses an anchor or vertical (lollipop) incision pattern, removing tissue and repositioning the nipple-areola complex on its own blood supply. For patients seeking modest reduction with minimal scarring, scarless or short-scar approaches are sometimes possible. Recovery is significant (2-3 weeks before resuming most activities and 6 weeks before strenuous exercise), but patient satisfaction rates are among the highest in plastic surgery (>95% in published series).`,
         benefits: [
             'Relieves chronic back, neck, and shoulder pain',
             'Improves posture and ability to exercise',
@@ -1790,7 +1788,7 @@ The most common technique uses an anchor or vertical (lollipop) incision pattern
             'Permanent scars in anchor or lollipop pattern',
             'Loss of nipple sensation in 5-10% of cases',
             'Reduced ability to breastfeed afterwards (varies by technique)',
-            'Recovery is significant — 2-3 weeks limited activity, 6 weeks no strenuous exercise',
+            'Recovery is significant: 2-3 weeks limited activity, 6 weeks no strenuous exercise',
             'Risk of asymmetry, hematoma, infection, and wound healing issues',
         ],
         idealFor: 'Women with disproportionately large breasts experiencing back/shoulder/neck pain, postural issues, exercise limitations, or skin irritation. Insurance coverage typically requires documented symptoms.',
@@ -1819,9 +1817,9 @@ The most common technique uses an anchor or vertical (lollipop) incision pattern
         categoryLabel: 'Body Contouring',
         simulatorType: '2d',
         description: 'Reshapes and elevates sagging breasts by removing excess skin and tightening surrounding tissue. Restores a youthful breast contour without changing volume.',
-        longDescription: `Breast lift (mastopexy) addresses ptosis — the medical term for breast sag — by removing excess skin and reshaping the underlying breast tissue. Unlike breast reduction, mastopexy does not significantly change breast volume; it primarily restores shape and position. Common causes of ptosis include pregnancy, breastfeeding, weight fluctuation, aging, and gravity over time.
+        longDescription: `Breast lift (mastopexy) addresses ptosis, the medical term for breast sag, by removing excess skin and reshaping the underlying breast tissue. Unlike breast reduction, mastopexy does not significantly change breast volume; it primarily restores shape and position. Common causes of ptosis include pregnancy, breastfeeding, weight fluctuation, aging, and gravity over time.
 
-Surgeons select the incision pattern based on the degree of ptosis: a circumareolar (donut) lift for mild cases, vertical (lollipop) for moderate, and anchor (Wise pattern) for severe. Many patients combine mastopexy with breast augmentation (mastopexy-augmentation) when both shape correction and volume restoration are desired — this is one of the most technically demanding procedures in cosmetic breast surgery and patient outcomes vary significantly with surgeon experience.`,
+Surgeons select the incision pattern based on the degree of ptosis: a circumareolar (donut) lift for mild cases, vertical (lollipop) for moderate, and anchor (Wise pattern) for severe. Many patients combine mastopexy with breast augmentation (mastopexy-augmentation) when both shape correction and volume restoration are desired; this is one of the most technically demanding procedures in cosmetic breast surgery and patient outcomes vary significantly with surgeon experience.`,
         benefits: [
             'Restores a more youthful, lifted breast contour',
             'Repositions the nipple-areola complex to a higher position',
@@ -1869,9 +1867,9 @@ Surgeons select the incision pattern based on the degree of ptosis: a circumareo
         categoryLabel: 'Surgical',
         simulatorType: '2d',
         description: 'Targeted surgery to address neck laxity, "turkey wattle" banding, and submental fullness. Often combined with facelift or done as a standalone for younger candidates.',
-        longDescription: `Neck lift surgery addresses the specific anatomy of the neck rather than the face overall — making it appropriate for patients whose primary aging concerns are centered below the jaw. The procedure typically combines two techniques: cervicoplasty (removing excess skin) and platysmaplasty (tightening the platysma muscle responsible for visible vertical neck bands, sometimes called "turkey wattle"). Submental liposuction or direct fat excision is often added when neck fullness is the primary concern.
+        longDescription: `Neck lift surgery addresses the specific anatomy of the neck rather than the face overall, making it appropriate for patients whose primary aging concerns are centered below the jaw. The procedure typically combines two techniques: cervicoplasty (removing excess skin) and platysmaplasty (tightening the platysma muscle responsible for visible vertical neck bands, sometimes called "turkey wattle"). Submental liposuction or direct fat excision is often added when neck fullness is the primary concern.
 
-Incisions are placed behind the ear and sometimes under the chin, hidden in natural creases. For patients with significant skin laxity, neck lift is often combined with facelift for harmonious results — addressing the neck alone in someone with significant midface aging can create a "good neck on an old face" disparity. Younger patients with isolated neck concerns are excellent standalone candidates.`,
+Incisions are placed behind the ear and sometimes under the chin, hidden in natural creases. For patients with significant skin laxity, neck lift is often combined with facelift for harmonious results, addressing the neck alone in someone with significant midface aging can create a "good neck on an old face" disparity. Younger patients with isolated neck concerns are excellent standalone candidates.`,
         benefits: [
             'Eliminates "turkey wattle" vertical neck banding',
             'Restores defined jawline and cervicomental angle',
@@ -1893,7 +1891,7 @@ Incisions are placed behind the ear and sometimes under the chin, hidden in natu
             'May highlight midface aging when neck is corrected alone',
             'Permanent results require maintaining stable weight',
         ],
-        idealFor: 'Patients with isolated neck concerns — turkey wattle, submental fullness, or loss of jawline definition — who want targeted correction without full facelift.',
+        idealFor: 'Patients with isolated neck concerns (turkey wattle, submental fullness, or loss of jawline definition) who want targeted correction without full facelift.',
         recoveryTime: '10-14 days (return to work), 4-6 weeks (full activity)',
         procedureDuration: '2-3 hours',
         costRange: '$6,000 - $13,000',
@@ -1916,10 +1914,10 @@ Incisions are placed behind the ear and sometimes under the chin, hidden in natu
         category: 'body-contouring',
         categoryLabel: 'Body Contouring',
         simulatorType: '2d',
-        description: 'Reshaping of the labia minora and/or majora to address discomfort, asymmetry, or aesthetic concerns. The simulator is an expectation visualizer — it shows post-procedure healing texture and tone, not precise geometric outcome (the surgeon is the source of truth on shape).',
-        longDescription: `Labiaplasty reshapes the labia minora (inner) and/or labia majora (outer) tissues. Indications range from physical discomfort during exercise, intercourse, or wearing tight clothing, to aesthetic preferences and post-childbirth changes. The procedure is one of the fastest-growing cosmetic surgeries globally — driven by increased patient awareness, surgeon expertise, and reduced stigma around discussing genital concerns.
+        description: 'Reshaping of the labia minora and/or majora to address discomfort, asymmetry, or aesthetic concerns. The simulator is an expectation visualizer; it shows post-procedure healing texture and tone, not precise geometric outcome (the surgeon is the source of truth on shape).',
+        longDescription: `Labiaplasty reshapes the labia minora (inner) and/or labia majora (outer) tissues. Indications range from physical discomfort during exercise, intercourse, or wearing tight clothing, to aesthetic preferences and post-childbirth changes. The procedure is one of the fastest-growing cosmetic surgeries globally, driven by increased patient awareness, surgeon expertise, and reduced stigma around discussing genital concerns.
 
-Two main techniques exist for the labia minora: trim (linear excision of excess tissue along the edge) and wedge (V-shaped removal preserving the natural edge). Wedge resection generally preserves more sensation and produces a more natural-looking edge but is technically more demanding. Recovery is shorter than most surgeries — most patients return to desk work in 3-7 days, exercise in 4-6 weeks, and intercourse in 6-8 weeks.`,
+Two main techniques exist for the labia minora: trim (linear excision of excess tissue along the edge) and wedge (V-shaped removal preserving the natural edge). Wedge resection generally preserves more sensation and produces a more natural-looking edge but is technically more demanding. Recovery is shorter than most surgeries: most patients return to desk work in 3-7 days, exercise in 4-6 weeks, and intercourse in 6-8 weeks.`,
         benefits: [
             'Eliminates discomfort during exercise, sex, or with tight clothing',
             'Improves confidence and intimate well-being',
@@ -1935,7 +1933,7 @@ Two main techniques exist for the labia minora: trim (linear excision of excess 
             'Procedure technique has matured significantly with high safety',
         ],
         cons: [
-            'Risk of over-resection (trim technique) — irreversible',
+            'Risk of over-resection (trim technique): irreversible',
             'Wound dehiscence risk in early healing',
             'Sexual abstinence required for 6-8 weeks',
             'Stigma around discussing the procedure delays many candidates',
@@ -1965,28 +1963,28 @@ Two main techniques exist for the labia minora: trim (linear excision of excess 
         category: 'body-contouring',
         categoryLabel: 'Body Contouring',
         simulatorType: '2d',
-        description: 'High-intensity focused electromagnetic (HIFEM) energy that triggers ~20,000 supramaximal muscle contractions per session. Builds muscle and reduces fat simultaneously — non-invasive.',
-        longDescription: `Emsculpt (and the newer EmSculpt NEO with added radiofrequency) uses High-Intensity Focused Electromagnetic (HIFEM) energy to trigger supramaximal muscle contractions far beyond what voluntary effort can produce. A single 30-minute session delivers approximately 20,000 contractions — the equivalent, by some marketing claims, of doing thousands of crunches or squats.
+        description: 'High-intensity focused electromagnetic (HIFEM) energy that triggers ~20,000 supramaximal muscle contractions per session. Builds muscle and reduces fat simultaneously, non-invasive.',
+        longDescription: `Emsculpt (and the newer EmSculpt NEO with added radiofrequency) uses High-Intensity Focused Electromagnetic (HIFEM) energy to trigger supramaximal muscle contractions far beyond what voluntary effort can produce. A single 30-minute session delivers approximately 20,000 contractions, the equivalent, by some marketing claims, of doing thousands of crunches or squats.
 
 Most commonly applied to the abdomen, buttocks, thighs, and arms, the technology builds muscle mass (~16% increase per typical 4-session protocol) while simultaneously reducing fat in the treated area (~19% reduction with NEO's added RF). It's not a weight-loss tool but rather a body-contouring and muscle-toning intervention. Best results occur in patients already near their target weight who want enhanced muscle definition without time-intensive gym work.`,
         benefits: [
             'Builds muscle mass (~16% increase) without exercise time',
             'Reduces fat in treated area (~19% with NEO)',
-            'Non-invasive — no needles, no incisions, no downtime',
+            'Non-invasive: no needles, no incisions, no downtime',
             'Treats abdomen, buttocks, thighs, arms, and calves',
             'Each session ~30 minutes; standard protocol is 4 sessions',
         ],
         pros: [
             'Combines muscle building and fat reduction in one technology',
-            'No downtime — return to normal activity immediately',
+            'No downtime: return to normal activity immediately',
             'Non-invasive with extensive safety data',
             'Time-efficient compared to gym-based muscle building',
             'Can target areas difficult to isolate with traditional exercise',
         ],
         cons: [
-            'Expensive — typical 4-session course $3,000-$5,000',
+            'Expensive: typical 4-session course $3,000-$5,000',
             'Maintenance sessions needed every 3-6 months for best results',
-            'Not a weight-loss tool — best for already-fit patients',
+            'Not a weight-loss tool: best for already-fit patients',
             'Muscle soreness for 1-2 days after each session',
             'Contraindicated for patients with metal implants near treatment area or pacemakers',
         ],
@@ -2015,14 +2013,14 @@ Most commonly applied to the abdomen, buttocks, thighs, and arms, the technology
         category: 'injectable',
         categoryLabel: 'Injectable',
         simulatorType: '2d',
-        description: 'FDA-approved injectable (deoxycholic acid) that destroys submental fat cells under the chin. Permanently reduces "double chin" appearance — alternative to surgical or cryolipolysis approaches.',
-        longDescription: `Kybella (deoxycholic acid) is an injectable solution FDA-approved specifically for the reduction of submental (under-chin) fat — what most patients call a "double chin". The active ingredient is a synthetic version of a naturally occurring bile acid that destroys fat-cell membranes, causing those cells to be permanently removed via the body's lymphatic system.
+        description: 'FDA-approved injectable (deoxycholic acid) that destroys submental fat cells under the chin. Permanently reduces "double chin" appearance, alternative to surgical or cryolipolysis approaches.',
+        longDescription: `Kybella (deoxycholic acid) is an injectable solution FDA-approved specifically for the reduction of submental (under-chin) fat, what most patients call a "double chin". The active ingredient is a synthetic version of a naturally occurring bile acid that destroys fat-cell membranes, causing those cells to be permanently removed via the body's lymphatic system.
 
-Treatment involves a series of small injections into the fat under the chin — typically 20-50 injections per session — performed in the office in 15-30 minutes. Most patients require 2-4 sessions spaced 4-6 weeks apart for visible reduction. Once destroyed, the fat cells do not regenerate, making results durable as long as overall weight is maintained. Side effects include significant swelling that can last 1-2 weeks, hardness in the area for several weeks, and occasional bruising — all expected and resolve on their own.`,
+Treatment involves a series of small injections into the fat under the chin, typically 20-50 injections per session, performed in the office in 15-30 minutes. Most patients require 2-4 sessions spaced 4-6 weeks apart for visible reduction. Once destroyed, the fat cells do not regenerate, making results durable as long as overall weight is maintained. Side effects include significant swelling that can last 1-2 weeks, hardness in the area for several weeks, and occasional bruising, all expected and resolve on their own.`,
         benefits: [
             'FDA-approved specifically for submental (chin) fat',
             'Permanent destruction of fat cells in the treated area',
-            'Non-surgical — no incisions, no general anesthesia',
+            'Non-surgical: no incisions, no general anesthesia',
             'Each session is 15-30 minutes in-office',
             'Alternative for patients who prefer not to do CoolSculpting',
         ],
@@ -2063,12 +2061,12 @@ Treatment involves a series of small injections into the fat under the chin — 
         category: 'injectable',
         categoryLabel: 'Injectable',
         simulatorType: '2d',
-        description: 'Collagen-stimulating injectable that gradually restores facial volume over 3-4 months. Results last 2-3+ years — much longer than hyaluronic acid fillers.',
+        description: 'Collagen-stimulating injectable that gradually restores facial volume over 3-4 months. Results last 2-3+ years, much longer than hyaluronic acid fillers.',
         longDescription: `Sculptra is a poly-L-lactic acid (PLLA) injectable that works fundamentally differently from hyaluronic acid fillers. Rather than directly adding volume, PLLA microparticles are injected into the deep dermis where they trigger a controlled inflammatory response that stimulates the patient's own collagen production. Volume builds gradually over 3-4 months as the body deposits new collagen around the PLLA particles, which themselves are slowly absorbed.
 
-The technology is FDA-approved for nasolabial folds and HIV-related facial fat loss, with widespread off-label use for general facial volume restoration, temple hollowing, and even body areas like buttocks (Sculptra Butt Lift / non-surgical BBL). Treatment requires a series of sessions spaced 4-6 weeks apart, with full results visible at 4-6 months. Once achieved, results typically last 2-3+ years — significantly longer than hyaluronic acid fillers' 6-18 months.`,
+The technology is FDA-approved for nasolabial folds and HIV-related facial fat loss, with widespread off-label use for general facial volume restoration, temple hollowing, and even body areas like buttocks (Sculptra Butt Lift / non-surgical BBL). Treatment requires a series of sessions spaced 4-6 weeks apart, with full results visible at 4-6 months. Once achieved, results typically last 2-3+ years, significantly longer than hyaluronic acid fillers' 6-18 months.`,
         benefits: [
-            'Stimulates the patient\'s own collagen — gradual, natural-looking results',
+            'Stimulates the patient\'s own collagen: gradual, natural-looking results',
             'Lasts 2-3+ years versus 6-18 months for HA fillers',
             'Treats deep volume loss in temples, cheeks, jawline, and other areas',
             'Non-surgical body sculpting (Sculptra BBL) for buttock enhancement',
@@ -2084,7 +2082,7 @@ The technology is FDA-approved for nasolabial folds and HIV-related facial fat l
         cons: [
             'Results take 3-6 months to appear (not immediate like HA fillers)',
             'Multiple sessions typically required (2-4 spaced 4-6 weeks apart)',
-            'Not reversible — unlike HA fillers, no enzyme can dissolve PLLA',
+            'Not reversible: unlike HA fillers, no enzyme can dissolve PLLA',
             'Risk of palpable nodules if not properly massaged post-injection',
             'Total cost ($800-$1,500 per vial × multiple vials × multiple sessions) is significant',
         ],
@@ -2112,9 +2110,9 @@ The technology is FDA-approved for nasolabial folds and HIV-related facial fat l
         categoryLabel: 'Injectable',
         simulatorType: '2d',
         description: 'Innovative hyaluronic acid bio-remodelling injectable that improves skin quality, hydration, and elasticity rather than adding volume. Treats skin laxity from within.',
-        longDescription: `Profhilo represents a different category of injectable — neither a traditional volumizing filler nor a collagen stimulator like Sculptra. It contains highly concentrated, ultra-pure hyaluronic acid (32 mg/ml) in both low and high molecular weight forms, hybridized into a stable gel that disperses slowly after injection. The treatment improves skin quality, hydration, and elasticity by stimulating fibroblast activity and remodelling extracellular matrix proteins.
+        longDescription: `Profhilo represents a different category of injectable: neither a traditional volumizing filler nor a collagen stimulator like Sculptra. It contains highly concentrated, ultra-pure hyaluronic acid (32 mg/ml) in both low and high molecular weight forms, hybridized into a stable gel that disperses slowly after injection. The treatment improves skin quality, hydration, and elasticity by stimulating fibroblast activity and remodelling extracellular matrix proteins.
 
-Treatment uses a "BAP" (Bio Aesthetic Points) protocol — five precise injection points per side of the face that allow the product to spread across treatment zones rather than staying localized. Two sessions are typical (spaced 4 weeks apart) with annual maintenance. Profhilo is particularly suited to patients who don't yet need volume restoration but want to address overall skin quality, fine lines, and early laxity. It pairs well with traditional fillers and toxin treatments rather than replacing them.`,
+Treatment uses a "BAP" (Bio Aesthetic Points) protocol: five precise injection points per side of the face that allow the product to spread across treatment zones rather than staying localized. Two sessions are typical (spaced 4 weeks apart) with annual maintenance. Profhilo is particularly suited to patients who don't yet need volume restoration but want to address overall skin quality, fine lines, and early laxity. It pairs well with traditional fillers and toxin treatments rather than replacing them.`,
         benefits: [
             'Improves skin hydration, elasticity, and overall quality',
             'Treats early skin laxity without adding volume',
@@ -2123,7 +2121,7 @@ Treatment uses a "BAP" (Bio Aesthetic Points) protocol — five precise injectio
             'Works on face, neck, décolletage, hands',
         ],
         pros: [
-            'Targets skin quality rather than just adding volume — different category',
+            'Targets skin quality rather than just adding volume: different category',
             'Minimally invasive technique (only 5 points per side)',
             'Natural, gradual improvement without "filled" appearance',
             'Suitable for patients who don\'t want traditional volumizing fillers',
@@ -2131,12 +2129,12 @@ Treatment uses a "BAP" (Bio Aesthetic Points) protocol — five precise injectio
         ],
         cons: [
             'Multiple sessions required (typically 2 initial + annual maintenance)',
-            'Results are subtle — focused on quality not visible volume change',
+            'Results are subtle: focused on quality not visible volume change',
             'Cost adds up: $600-$1,500 per session × multiple sessions × annual maintenance',
             'Not widely available outside of Europe and parts of Asia (limited US availability as of 2026)',
             'Mild swelling and bruising at the 5 injection points typical for 2-3 days',
         ],
-        idealFor: 'Patients in their 30s-50s with concerns about skin quality, early laxity, fine lines, or hydration — particularly those wanting an alternative to traditional volumizing fillers.',
+        idealFor: 'Patients in their 30s-50s with concerns about skin quality, early laxity, fine lines, or hydration: particularly those wanting an alternative to traditional volumizing fillers.',
         recoveryTime: 'No downtime; mild swelling/bruising at injection points for 2-3 days',
         procedureDuration: '15-20 minutes per session',
         costRange: '$600 - $1,500 per session',
@@ -2160,9 +2158,9 @@ Treatment uses a "BAP" (Bio Aesthetic Points) protocol — five precise injectio
         categoryLabel: 'Injectable',
         simulatorType: '2d',
         description: 'Botulinum toxin injection into the masseter muscle to slim the lower face, soften a square jawline, and treat bruxism (teeth grinding). Extremely popular in East Asia.',
-        longDescription: `Masseter botox uses botulinum toxin to weaken and gradually atrophy the masseter — the prominent jaw muscle that becomes overdeveloped through chronic clenching, grinding, or genetic factors. As the muscle atrophies over 4-8 weeks following injection, the lower face narrows visibly, creating a slimmer V-shape or oval contour. The treatment also relieves chronic jaw clenching, teeth grinding (bruxism), and TMJ-associated pain.
+        longDescription: `Masseter botox uses botulinum toxin to weaken and gradually atrophy the masseter, the prominent jaw muscle that becomes overdeveloped through chronic clenching, grinding, or genetic factors. As the muscle atrophies over 4-8 weeks following injection, the lower face narrows visibly, creating a slimmer V-shape or oval contour. The treatment also relieves chronic jaw clenching, teeth grinding (bruxism), and TMJ-associated pain.
 
-The procedure has both aesthetic and functional applications, making it one of the few injectables routinely used by both cosmetic and dental/medical practitioners. East Asian aesthetic markets (South Korea, Japan, Thailand) heavily feature masseter botox as part of "V-line" treatment plans — typically combined with chin filler or jaw filler to achieve the desired tapered profile. Each session uses ~20-30 units per side (depending on muscle bulk); results last 4-6 months and require maintenance.`,
+The procedure has both aesthetic and functional applications, making it one of the few injectables routinely used by both cosmetic and dental/medical practitioners. East Asian aesthetic markets (South Korea, Japan, Thailand) heavily feature masseter botox as part of "V-line" treatment plans, typically combined with chin filler or jaw filler to achieve the desired tapered profile. Each session uses ~20-30 units per side (depending on muscle bulk); results last 4-6 months and require maintenance.`,
         benefits: [
             'Slims the lower face and softens a square or wide jawline',
             'Relieves teeth grinding (bruxism) and TMJ-related jaw pain',
@@ -2172,14 +2170,14 @@ The procedure has both aesthetic and functional applications, making it one of t
         ],
         pros: [
             'Dual aesthetic + functional benefit (jaw slimming AND bruxism relief)',
-            'Reversible — effect wears off if you stop treatment',
+            'Reversible: effect wears off if you stop treatment',
             'Quick procedure with no downtime',
             'Less invasive than V-line jaw bone surgery',
             'Highly studied and safe with extensive use globally',
         ],
         cons: [
             'Results take 4-8 weeks to fully develop',
-            'Effects last 4-6 months — requires ongoing maintenance',
+            'Effects last 4-6 months: requires ongoing maintenance',
             'Repeated long-term use needed to maintain reduced jaw size',
             'Risk of asymmetric smile or paradoxical muscle bulging if injection technique is incorrect',
             'Cost adds up: $400-$900 per session × 2-3 sessions per year',
@@ -2207,28 +2205,28 @@ The procedure has both aesthetic and functional applications, making it one of t
         category: 'dental',
         categoryLabel: 'Dental Aesthetics',
         simulatorType: '2d',
-        description: 'Surgically placed titanium roots fused with the jawbone that hold replacement teeth (crowns). The gold-standard solution for missing teeth — function, appearance, and bone preservation.',
-        longDescription: `Dental implants replace missing teeth with titanium screws surgically placed into the jawbone. Through osseointegration — the natural process by which bone fuses with titanium — the implant becomes a permanent foundation that supports a crown, bridge, or full-arch denture. Unlike traditional bridges or removable dentures, implants preserve adjacent teeth and prevent the bone resorption that follows tooth loss.
+        description: 'Surgically placed titanium roots fused with the jawbone that hold replacement teeth (crowns). The gold-standard solution for missing teeth: function, appearance, and bone preservation.',
+        longDescription: `Dental implants replace missing teeth with titanium screws surgically placed into the jawbone. Through osseointegration, the natural process by which bone fuses with titanium, the implant becomes a permanent foundation that supports a crown, bridge, or full-arch denture. Unlike traditional bridges or removable dentures, implants preserve adjacent teeth and prevent the bone resorption that follows tooth loss.
 
 Treatment typically involves three phases: (1) surgical placement of the titanium fixture, (2) a 3-6 month osseointegration period during which bone fuses with the implant, and (3) crown attachment via an abutment. Modern techniques like immediate-load implants compress this timeline; in select cases, a temporary crown can be placed the same day as surgery. Long-term success rates exceed 95% for a single implant over 10 years, and 98%+ for full-arch reconstruction in healthy candidates.`,
         benefits: [
-            'Permanent solution for missing teeth — looks, feels, and functions like a natural tooth',
+            'Permanent solution for missing teeth: looks, feels, and functions like a natural tooth',
             'Preserves the jawbone (prevents the bone loss that follows tooth loss)',
             'Doesn\'t damage adjacent teeth (unlike traditional bridges)',
             'Can support single crowns, bridges, or full-arch reconstructions',
             'Long-term success rate >95% over 10 years',
         ],
         pros: [
-            'Most durable replacement option — 20-30+ years with proper care',
+            'Most durable replacement option: 20-30+ years with proper care',
             'Maintains jawbone density, preventing the "sunken" facial appearance of long-term tooth loss',
             'Indistinguishable from natural teeth in appearance and function',
             'No special cleaning required (just regular brushing and flossing)',
             'Can be combined into "all-on-4" or "all-on-6" full-arch reconstructions',
         ],
         cons: [
-            'Treatment timeline is long — often 4-9 months from start to crown placement',
+            'Treatment timeline is long: often 4-9 months from start to crown placement',
             'Requires sufficient jawbone density; bone grafting may be needed first',
-            'Cost is significant — $3,000-$6,000 per single implant + crown',
+            'Cost is significant: $3,000-$6,000 per single implant + crown',
             'Surgical risks: infection, nerve injury (lower jaw), sinus involvement (upper jaw)',
             'Smokers and uncontrolled diabetics have lower success rates',
         ],
@@ -2260,9 +2258,9 @@ Treatment typically involves three phases: (1) surgical placement of the titaniu
         description: 'Series of custom-made transparent plastic aligners that gradually shift teeth into proper position. The leading aesthetic alternative to traditional braces.',
         longDescription: `Invisalign and similar clear-aligner systems (ClearCorrect, SmileDirectClub, etc.) replace traditional metal braces with a series of custom-fabricated transparent plastic trays. Each tray is worn for ~1-2 weeks before being replaced with the next, gradually moving teeth toward their planned final position. A complete treatment uses 20-50+ trays depending on case complexity.
 
-Treatment begins with 3D scanning of the patient's teeth, after which orthodontic software generates the entire movement sequence. The orthodontist or dentist reviews and adjusts the treatment plan before manufacturing begins. Patients are advised to wear the aligners 22+ hours per day, removing them only for eating, drinking (other than water), and brushing. Treatment time varies from 6 months for minor corrections to 24+ months for complex cases — generally comparable to traditional braces.`,
+Treatment begins with 3D scanning of the patient's teeth, after which orthodontic software generates the entire movement sequence. The orthodontist or dentist reviews and adjusts the treatment plan before manufacturing begins. Patients are advised to wear the aligners 22+ hours per day, removing them only for eating, drinking (other than water), and brushing. Treatment time varies from 6 months for minor corrections to 24+ months for complex cases, generally comparable to traditional braces.`,
         benefits: [
-            'Nearly invisible — most people won\'t notice you\'re wearing them',
+            'Nearly invisible: most people won\'t notice you\'re wearing them',
             'Removable for eating, special occasions, and brushing',
             'No food restrictions (unlike traditional braces)',
             'Easier to keep teeth clean during treatment',
@@ -2276,7 +2274,7 @@ Treatment begins with 3D scanning of the patient's teeth, after which orthodonti
             'Suitable for most adult patients (children and complex cases may still need braces)',
         ],
         cons: [
-            'Requires patient compliance — must wear 22+ hours/day or treatment fails',
+            'Requires patient compliance: must wear 22+ hours/day or treatment fails',
             'Not suitable for severe orthodontic cases (bite issues, severely rotated teeth)',
             'Cost is comparable to or higher than traditional braces',
             'Lisp/slurred speech for first 1-2 weeks while adapting',
@@ -2308,14 +2306,14 @@ Treatment begins with 3D scanning of the patient's teeth, after which orthodonti
         categoryLabel: 'Non-Surgical',
         simulatorType: '2d',
         description: 'Q-switched / picosecond laser treatment that breaks down tattoo ink particles for clearance through the lymphatic system. The standard method for tattoo removal worldwide.',
-        longDescription: `Laser tattoo removal uses pulsed laser energy at specific wavelengths to break down ink particles in the dermis, after which the body's lymphatic system clears the fragments over weeks. Q-switched lasers (nanosecond pulses) and the newer picosecond lasers each target different ink colors via wavelength specificity — black ink absorbs broadly, while reds, greens, and blues require specific wavelengths.
+        longDescription: `Laser tattoo removal uses pulsed laser energy at specific wavelengths to break down ink particles in the dermis, after which the body's lymphatic system clears the fragments over weeks. Q-switched lasers (nanosecond pulses) and the newer picosecond lasers each target different ink colors via wavelength specificity: black ink absorbs broadly, while reds, greens, and blues require specific wavelengths.
 
 Treatment is gradual: most professional tattoos require 6-12 sessions spaced 6-8 weeks apart, while amateur tattoos clear in 4-8 sessions. Picosecond lasers shorten timelines and improve clearance of stubborn colors compared to Q-switched. Older tattoos and those on the chest/back clear faster than fresh or extremity tattoos. Complete removal is realistic for most professional tattoos but darker skin tones (Fitzpatrick IV-VI) require careful wavelength selection to avoid hypopigmentation.`,
         benefits: [
             'Permanent removal of unwanted tattoos',
             'Works on all colors with appropriate wavelength selection',
             'Picosecond technology improves clearance and reduces session count',
-            'Non-invasive — no surgery, no incisions',
+            'Non-invasive: no surgery, no incisions',
             'Can be combined with other modalities for optimal clearance',
         ],
         pros: [
@@ -2358,7 +2356,7 @@ Treatment is gradual: most professional tattoos require 6-12 sessions spaced 6-8
         categoryLabel: 'Surgical',
         simulatorType: '2d',
         description: 'Surgical reduction of forehead height by advancing the hairline forward. Restores facial proportions for patients with naturally tall foreheads or post-childbirth recession.',
-        longDescription: `Forehead reduction (also called hairline lowering or hairline advancement) reduces forehead height by 1-3 cm through a trichophytic incision along the hairline. Excess skin is removed, the hair-bearing scalp is advanced forward, and the incision heals as a hidden line within the new hairline — over time, hair grows through the scar making it nearly invisible.
+        longDescription: `Forehead reduction (also called hairline lowering or hairline advancement) reduces forehead height by 1-3 cm through a trichophytic incision along the hairline. Excess skin is removed, the hair-bearing scalp is advanced forward, and the incision heals as a hidden line within the new hairline. Over time, hair grows through the scar making it nearly invisible.
 
 The procedure is most popular among women whose foreheads are disproportionately tall relative to lower facial thirds (the "rule of thirds" being a classical aesthetic guide). It's also performed for patients undergoing facial feminization surgery and for those whose hairlines have receded after pregnancy or due to traction alopecia. Many candidates initially consult about hair transplant before discovering this single-stage alternative produces faster, more predictable results.`,
         benefits: [
@@ -2396,7 +2394,7 @@ The procedure is most popular among women whose foreheads are disproportionately
         tier: 'C',
         comingSoon: true,
         popularity: 'medium',
-        // Re-enabled 2026-05-03 — buildHairlineMask now anchors off
+        // Re-enabled 2026-05-03. buildHairlineMask now anchors off
         // MediaPipe forehead-top landmarks (10, 109, 67, 103, 338, 297,
         // 332) and safely no-ops without landmarks.
     },
@@ -2408,19 +2406,19 @@ The procedure is most popular among women whose foreheads are disproportionately
         categoryLabel: 'Surgical',
         simulatorType: '2d',
         description: 'Solid silicone or porous polyethylene implants placed over the cheekbone to add volume, projection, and definition. Permanent alternative to cheek fillers.',
-        longDescription: `Cheek implants restore or enhance midface volume by placing a solid implant over the malar (cheek) bone, accessed through a small incision inside the upper mouth. Common materials include silicone, porous polyethylene (Medpor), and ePTFE — each with different tissue integration profiles. The procedure is appropriate for patients with naturally flat cheekbones, age-related midface volume loss, or those who've found temporary fillers don't deliver the projection they want.
+        longDescription: `Cheek implants restore or enhance midface volume by placing a solid implant over the malar (cheek) bone, accessed through a small incision inside the upper mouth. Common materials include silicone, porous polyethylene (Medpor), and ePTFE, each with different tissue integration profiles. The procedure is appropriate for patients with naturally flat cheekbones, age-related midface volume loss, or those who've found temporary fillers don't deliver the projection they want.
 
-Modern surgical planning uses 3D imaging to size and position implants symmetrically, and revision rates have dropped significantly with improved technique. Recovery involves 1-2 weeks of swelling and a soft-food diet during the first week. Once integrated, results are essentially permanent — though the surrounding face continues to age normally.`,
+Modern surgical planning uses 3D imaging to size and position implants symmetrically, and revision rates have dropped significantly with improved technique. Recovery involves 1-2 weeks of swelling and a soft-food diet during the first week. Once integrated, results are essentially permanent, though the surrounding face continues to age normally.`,
         benefits: [
             'Permanent volume and projection (vs filler\'s 1-2 year duration)',
             'Restores age-related midface volume loss',
             'Multiple shapes and sizes for individualized results',
-            'Hidden incision inside the mouth — no external scarring',
+            'Hidden incision inside the mouth: no external scarring',
         ],
         pros: [
             'Long-term cost vs repeated filler is significantly lower',
             'Predictable, sculptural results once healed',
-            'Reversible — implants can be removed if needed',
+            'Reversible: implants can be removed if needed',
             'Often combined with chin implant for comprehensive midface harmony',
         ],
         cons: [
@@ -2455,11 +2453,11 @@ Modern surgical planning uses 3D imaging to size and position implants symmetric
         description: 'Targeted lift of the cheek and mid-face area to address sagging cheeks, deepening nasolabial folds, and lower-eyelid hollowing. Less invasive than full facelift.',
         longDescription: `A mid-facelift focuses on the cheek and mid-face region rather than the lower face and neck. Techniques include endoscopic approaches (small incisions in the temple and inside the mouth) and limited-incision lifts. The cheek pad is repositioned over the malar bone to soften the nasolabial fold, restore cheek projection, and improve the tear trough.
 
-This procedure is particularly suited to patients in their 40s-50s with isolated mid-face concerns who don't yet need a full facelift. It's often combined with lower blepharoplasty (eye-bag removal) since the techniques share anatomical territory. Recovery is shorter than full facelift — typically 1-2 weeks for return to work and 4-6 weeks for full activity.`,
+This procedure is particularly suited to patients in their 40s-50s with isolated mid-face concerns who don't yet need a full facelift. It's often combined with lower blepharoplasty (eye-bag removal) since the techniques share anatomical territory. Recovery is shorter than full facelift, typically 1-2 weeks for return to work and 4-6 weeks for full activity.`,
         benefits: [
             'Lifts sagging cheeks and softens nasolabial folds',
             'Improves the cheek-eyelid junction (tear trough hollowing)',
-            'Less invasive than full facelift — shorter recovery',
+            'Less invasive than full facelift: shorter recovery',
             'Often combined with lower eyelid surgery',
         ],
         pros: [
@@ -2474,7 +2472,7 @@ This procedure is particularly suited to patients in their 40s-50s with isolated
             'Bruising and swelling for 2-3 weeks',
             'Results may be subtle compared to full facelift',
         ],
-        idealFor: 'Patients in their 40s-50s with isolated mid-face aging — flat cheeks, deep nasolabial folds, tear trough hollowing — who don\'t yet need a full facelift.',
+        idealFor: 'Patients in their 40s-50s with isolated mid-face aging (flat cheeks, deep nasolabial folds, tear trough hollowing) who don\'t yet need a full facelift.',
         recoveryTime: '1-2 weeks (return to work), 4-6 weeks (full activity)',
         procedureDuration: '2-3 hours',
         costRange: '$6,000 - $13,000',
@@ -2498,14 +2496,14 @@ This procedure is particularly suited to patients in their 40s-50s with isolated
         categoryLabel: 'Surgical',
         simulatorType: '2d',
         description: 'Surgical repair of stretched, torn, or split earlobes (commonly from heavy earrings or gauges) and reduction of elongated earlobes. Quick outpatient procedure.',
-        longDescription: `Earlobe repair addresses the most common ear-related concerns: torn or stretched piercings (from heavy earrings, accidents, or stretched lobes/gauges) and elongated earlobes from genetic factors or aging. The procedure is brief — typically 30-45 minutes per ear under local anesthesia — with sutures removed at 7-10 days.
+        longDescription: `Earlobe repair addresses the most common ear-related concerns: torn or stretched piercings (from heavy earrings, accidents, or stretched lobes/gauges) and elongated earlobes from genetic factors or aging. The procedure is brief, typically 30-45 minutes per ear under local anesthesia, with sutures removed at 7-10 days.
 
 For stretched piercings, the lobe is excised and reconstructed with a fresh closure that can be re-pierced after 6-8 weeks. Elongated earlobes are reshaped by removing a wedge of tissue and recontouring. Patient satisfaction rates are extremely high (>97% in published series) because the procedure delivers exactly what most patients seek: a refreshed, normal-looking earlobe with a hidden incision.`,
         benefits: [
             'Repairs torn or stretched earlobes from earrings or gauges',
             'Reduces elongated or sagging earlobes',
             'Quick outpatient procedure (30-45 minutes per ear)',
-            'Local anesthesia — no general sedation needed',
+            'Local anesthesia: no general sedation needed',
         ],
         pros: [
             'High patient satisfaction rates (>97%)',
@@ -2562,7 +2560,7 @@ The procedure delivers reliably tighter, more contoured thighs but trades that f
         ],
         cons: [
             'Permanent scar (groin and/or vertical along inner thigh)',
-            'Recovery is significant — 2-3 weeks restricted, 4-6 weeks before exercise',
+            'Recovery is significant: 2-3 weeks restricted, 4-6 weeks before exercise',
             'Risk of wound healing problems given skin tension and groin location',
             'Not insurance-covered unless tied to massive weight loss with documented complications',
         ],
@@ -2591,10 +2589,10 @@ The procedure delivers reliably tighter, more contoured thighs but trades that f
         category: 'body-contouring',
         categoryLabel: 'Body Contouring',
         simulatorType: '2d',
-        description: 'Combined surgery addressing post-pregnancy body changes — typically tummy tuck, breast lift/augmentation, and liposuction in a single operative session. Restores pre-pregnancy contour.',
-        longDescription: `Mommy makeover is not a single procedure but a customized combination — typically tummy tuck (or extended abdominoplasty for diastasis recti repair), breast lift and/or augmentation, and liposuction of stubborn fat areas. Combining procedures means one anesthesia, one recovery period, and a coordinated overall result rather than staged operations.
+        description: 'Combined surgery addressing post-pregnancy body changes, typically tummy tuck, breast lift/augmentation, and liposuction in a single operative session. Restores pre-pregnancy contour.',
+        longDescription: `Mommy makeover is not a single procedure but a customized combination: typically tummy tuck (or extended abdominoplasty for diastasis recti repair), breast lift and/or augmentation, and liposuction of stubborn fat areas. Combining procedures means one anesthesia, one recovery period, and a coordinated overall result rather than staged operations.
 
-Ideal candidates are mothers who have completed their family planning, are within 10-15 lbs of their target weight, and have stabilized for 6+ months postpartum. Candidates breastfeeding should wait 6 months after weaning before considering breast surgery. Recovery is significant — 2-3 weeks before light activity, 6-8 weeks before exercise — and patients should arrange childcare help for at least the first 2 weeks. The combined approach delivers higher patient satisfaction than staged procedures because the body returns to its new contour all at once.`,
+Ideal candidates are mothers who have completed their family planning, are within 10-15 lbs of their target weight, and have stabilized for 6+ months postpartum. Candidates breastfeeding should wait 6 months after weaning before considering breast surgery. Recovery is significant (2-3 weeks before light activity, 6-8 weeks before exercise), and patients should arrange childcare help for at least the first 2 weeks. The combined approach delivers higher patient satisfaction than staged procedures because the body returns to its new contour all at once.`,
         benefits: [
             'Restores pre-pregnancy body contour in one operative session',
             'Single anesthesia and recovery vs multiple staged procedures',
@@ -2608,10 +2606,10 @@ Ideal candidates are mothers who have completed their family planning, are withi
             'Higher patient satisfaction than staged approaches',
         ],
         cons: [
-            'Major combined surgery — 4-6 hour operation',
+            'Major combined surgery: 4-6 hour operation',
             'Significant recovery requiring childcare help for 2-3 weeks',
             'Higher complication risk than any single procedure alone',
-            'Cost is significant — $15,000-$30,000+ for the combination',
+            'Cost is significant: $15,000-$30,000+ for the combination',
         ],
         idealFor: 'Mothers who have completed family planning, are 6+ months postpartum (and 6+ months post-weaning if breastfeeding), within 10-15 lbs of target weight, and have stable health.',
         recoveryTime: '2-3 weeks (light activity), 6-8 weeks (full exercise)',
@@ -2639,10 +2637,10 @@ Ideal candidates are mothers who have completed their family planning, are withi
         description: 'Patented multi-step facial treatment combining cleansing, exfoliation, extraction, and serum infusion in one ~30-minute session. Visible glow with zero downtime.',
         longDescription: `HydraFacial is a branded multi-step facial treatment that uses a vacuum-tip device to perform cleansing, gentle chemical peel, painless extractions, and infusion of hydrating/antioxidant serums in a single 30-45 minute session. The active ingredients are delivered via a vortex-fusion handpiece that simultaneously exfoliates and infuses serums into the cleared pores.
 
-Unlike traditional facials, HydraFacial is medical-grade — performed by aestheticians or skin therapists in clinical settings — but with no downtime, redness, or peeling. Most patients see immediate improvement in skin clarity, hydration, and glow. Best results come from a series of treatments (typically monthly) plus add-on boosters tailored to specific concerns (anti-aging, brightening, acne control). It's especially popular for pre-event glow ("get-it-now" appearance refresh) and as part of a maintenance regimen.`,
+Unlike traditional facials, HydraFacial is medical-grade, performed by aestheticians or skin therapists in clinical settings, but with no downtime, redness, or peeling. Most patients see immediate improvement in skin clarity, hydration, and glow. Best results come from a series of treatments (typically monthly) plus add-on boosters tailored to specific concerns (anti-aging, brightening, acne control). It's especially popular for pre-event glow ("get-it-now" appearance refresh) and as part of a maintenance regimen.`,
         benefits: [
             'Immediate visible glow and improved skin clarity',
-            'Zero downtime — return to normal activities immediately',
+            'Zero downtime: return to normal activities immediately',
             'Customizable boosters for anti-aging, brightening, or acne',
             'Suitable for all skin types including sensitive',
         ],
@@ -2658,7 +2656,7 @@ Unlike traditional facials, HydraFacial is medical-grade — performed by aesthe
             'Doesn\'t address deep wrinkles, scarring, or significant pigmentation',
             'Best as part of a regimen, not a standalone solution',
         ],
-        idealFor: 'Anyone seeking immediate skin glow with zero downtime — pre-event prep, monthly skincare maintenance, or first introduction to medical-grade facials.',
+        idealFor: 'Anyone seeking immediate skin glow with zero downtime: pre-event prep, monthly skincare maintenance, or first introduction to medical-grade facials.',
         recoveryTime: 'No downtime',
         procedureDuration: '30-45 minutes',
         costRange: '$150 - $350 per session',
@@ -2682,7 +2680,7 @@ Unlike traditional facials, HydraFacial is medical-grade — performed by aesthe
         categoryLabel: 'Non-Surgical',
         simulatorType: '2d',
         description: 'Intense pulsed light treatment that targets sun damage, age spots, broken capillaries, redness, and rosacea. Multi-wavelength alternative to laser for pigmentation and vascular concerns.',
-        longDescription: `IPL (Intense Pulsed Light) uses broadband light energy across multiple wavelengths to target chromophores in the skin — melanin (causing pigmentation) and hemoglobin (causing visible blood vessels). Unlike single-wavelength lasers, IPL treats multiple skin concerns simultaneously: sun damage, freckles, age spots, broken capillaries, rosacea, and overall complexion irregularity.
+        longDescription: `IPL (Intense Pulsed Light) uses broadband light energy across multiple wavelengths to target chromophores in the skin: melanin (causing pigmentation) and hemoglobin (causing visible blood vessels). Unlike single-wavelength lasers, IPL treats multiple skin concerns simultaneously: sun damage, freckles, age spots, broken capillaries, rosacea, and overall complexion irregularity.
 
 Treatment requires 3-5 sessions spaced 4 weeks apart for cumulative results. Each session is 20-30 minutes, with the sensation often described as "rubber band snaps" against the skin. Pigmented spots typically darken before sloughing off over 7-14 days post-treatment. Best results are in patients with Fitzpatrick I-III skin types; darker skin requires careful provider selection or alternative treatments to avoid hypopigmentation.`,
         benefits: [
@@ -2694,7 +2692,7 @@ Treatment requires 3-5 sessions spaced 4 weeks apart for cumulative results. Eac
         pros: [
             'Treats both pigmentation AND vascular concerns simultaneously',
             'Each session is brief (20-30 minutes)',
-            'No downtime — return to normal activities immediately',
+            'No downtime: return to normal activities immediately',
             'Highly effective on sun damage and age spots',
         ],
         cons: [
@@ -2703,7 +2701,7 @@ Treatment requires 3-5 sessions spaced 4 weeks apart for cumulative results. Eac
             'Pigmented spots darken visibly before sloughing for 7-14 days',
             'Strict sun avoidance required for 4-6 weeks post-treatment',
         ],
-        idealFor: 'Patients with sun damage, freckles, age spots, redness, rosacea, or broken capillaries — particularly those with lighter skin tones (Fitzpatrick I-III).',
+        idealFor: 'Patients with sun damage, freckles, age spots, redness, rosacea, or broken capillaries: particularly those with lighter skin tones (Fitzpatrick I-III).',
         recoveryTime: 'No downtime; pigmented spots darken/slough for 7-14 days',
         procedureDuration: '20-30 minutes per session; typically 3-5 sessions',
         costRange: '$300 - $700 per session',
@@ -2726,7 +2724,7 @@ Treatment requires 3-5 sessions spaced 4 weeks apart for cumulative results. Eac
         category: 'non-surgical',
         categoryLabel: 'Non-Surgical',
         simulatorType: '2d',
-        description: 'Combines microneedling with radiofrequency energy delivered at controlled depths to remodel deeper skin layers. More aggressive than standard microneedling — treats moderate-to-severe wrinkles and laxity.',
+        description: 'Combines microneedling with radiofrequency energy delivered at controlled depths to remodel deeper skin layers. More aggressive than standard microneedling. Treats moderate-to-severe wrinkles and laxity.',
         longDescription: `RF (radiofrequency) microneedling combines two technologies: traditional microneedling that creates micro-channels in the skin, and radiofrequency energy delivered through the needle tips at controlled depths (0.5-4mm). The RF heats the dermis to ~60-70°C, triggering significant collagen remodeling and tissue tightening that standard microneedling cannot achieve.
 
 Branded systems include Morpheus8, Genius RF, Vivace, and Secret RF. Treatment is more aggressive than non-RF microneedling: 1-3 sessions spaced 4-6 weeks apart, with 3-7 days of redness and pinpoint scabbing afterward. Results continue building for 3-6 months as collagen remodels. Particularly effective for moderate skin laxity, acne scars, stretch marks, and submental laxity. RF energy can be delivered safely in darker skin tones (Fitzpatrick I-VI) where standard ablative lasers are risky.`,
@@ -2774,7 +2772,7 @@ Branded systems include Morpheus8, Genius RF, Vivace, and Secret RF. Treatment i
         description: 'Manual exfoliation using a sterile surgical scalpel to remove dead skin cells and vellus hair (peach fuzz). Immediate smooth, glowing skin with no downtime.',
         longDescription: `Dermaplaning is a manual exfoliation technique using a sterile surgical scalpel held at a precise angle to gently remove the topmost layer of dead skin and vellus hair. The procedure takes 20-30 minutes, requires no anesthesia, and produces immediate skin smoothness with the bonus of removing facial peach fuzz that traps oil and makeup.
 
-Despite intuitive concerns, vellus hair regrows at the same rate, color, and texture as before treatment — it does not grow back darker or thicker (a common myth). Treatment is best done monthly and is often combined with chemical peel, hydrafacial, or LED therapy in the same session. Suitable for nearly all skin types, though active acne breakouts and sensitive rosacea should wait until those concerns are calm.`,
+Despite intuitive concerns, vellus hair regrows at the same rate, color, and texture as before treatment; it does not grow back darker or thicker (a common myth). Treatment is best done monthly and is often combined with chemical peel, hydrafacial, or LED therapy in the same session. Suitable for nearly all skin types, though active acne breakouts and sensitive rosacea should wait until those concerns are calm.`,
         benefits: [
             'Immediate visibly smoother skin',
             'Removes peach fuzz that traps oil and makeup',
@@ -2788,12 +2786,12 @@ Despite intuitive concerns, vellus hair regrows at the same rate, color, and tex
             'Suitable for most skin types',
         ],
         cons: [
-            'Effects last 3-4 weeks — requires monthly maintenance',
+            'Effects last 3-4 weeks: requires monthly maintenance',
             'Not suitable during active acne breakouts (can worsen)',
             'Risk of nicks/cuts if performed by inexperienced practitioner',
             'Doesn\'t address deep wrinkles, scarring, or pigmentation',
         ],
-        idealFor: 'Anyone wanting smoother skin and peach-fuzz removal — particularly before makeup application or events where flawless skin matters.',
+        idealFor: 'Anyone wanting smoother skin and peach-fuzz removal: particularly before makeup application or events where flawless skin matters.',
         recoveryTime: 'No downtime',
         procedureDuration: '20-30 minutes',
         costRange: '$75 - $200 per session',
@@ -2816,10 +2814,10 @@ Despite intuitive concerns, vellus hair regrows at the same rate, color, and tex
         category: 'body-contouring',
         categoryLabel: 'Body Contouring',
         simulatorType: '2d',
-        description: 'Targeted treatments addressing the dimpled appearance of cellulite by releasing the fibrous bands tethering skin to underlying tissue. Multiple modalities — surgical, injectable, and laser.',
+        description: 'Targeted treatments addressing the dimpled appearance of cellulite by releasing the fibrous bands tethering skin to underlying tissue. Multiple modalities: surgical, injectable, and laser.',
         longDescription: `Cellulite is caused by fibrous bands (septae) that tether skin to underlying muscle while fat cells push up against them, creating the dimpled appearance most common in thighs and buttocks. Diet and exercise alone cannot resolve cellulite because the issue is structural rather than fat-related. Modern treatments target the septae directly:
 
-Cellfina is a minimally-invasive subcision device that mechanically releases septae — single treatment, results lasting 5+ years. QWO was an injectable enzyme that dissolved septae but was discontinued in 2023 due to inconsistent results. Cellulaze is a laser device delivered through small cannulas that simultaneously releases septae, melts fat, and stimulates collagen. Newer non-invasive options like Emtone use thermal and acoustic shockwave energy. Best candidates are women near their target weight with discrete cellulite dimples — none of these treatments address generalized texture irregularity well.`,
+Cellfina is a minimally-invasive subcision device that mechanically releases septae: single treatment, results lasting 5+ years. QWO was an injectable enzyme that dissolved septae but was discontinued in 2023 due to inconsistent results. Cellulaze is a laser device delivered through small cannulas that simultaneously releases septae, melts fat, and stimulates collagen. Newer non-invasive options like Emtone use thermal and acoustic shockwave energy. Best candidates are women near their target weight with discrete cellulite dimples; none of these treatments address generalized texture irregularity well.`,
         benefits: [
             'Reduces visible cellulite dimples in thighs and buttocks',
             'Single-treatment options (Cellfina) with long-lasting results',
@@ -2838,7 +2836,7 @@ Cellfina is a minimally-invasive subcision device that mechanically releases sep
             'Not effective for generalized texture (best for discrete dimples)',
             'Cost is significant ($3,500-$7,500 per session) and not insurance-covered',
         ],
-        idealFor: 'Women near their target weight with discrete cellulite dimples in thighs or buttocks — particularly those who haven\'t responded to conservative measures.',
+        idealFor: 'Women near their target weight with discrete cellulite dimples in thighs or buttocks: particularly those who haven\'t responded to conservative measures.',
         recoveryTime: '1-3 weeks (bruising and tenderness)',
         procedureDuration: '30-90 minutes',
         costRange: '$3,500 - $7,500 per session',
@@ -2863,13 +2861,13 @@ Cellfina is a minimally-invasive subcision device that mechanically releases sep
         category: 'non-surgical',
         categoryLabel: 'Non-Surgical',
         simulatorType: '2d',
-        description: 'Laser energy targets hair follicle melanin to inhibit future hair growth. The standard for permanent hair reduction — works on face, body, and most skin types with appropriate device.',
+        description: 'Laser energy targets hair follicle melanin to inhibit future hair growth. The standard for permanent hair reduction: works on face, body, and most skin types with appropriate device.',
         longDescription: `Laser hair removal uses laser energy specifically attracted to melanin in the hair follicle. Heat damages the follicle's growth structure, leading to permanent reduction in hair density over a series of treatments. Different lasers serve different skin types: alexandrite (755nm) for lighter skin and finer hair, diode (810nm) for medium skin, Nd:YAG (1064nm) for darker skin tones (Fitzpatrick V-VI) where alternative wavelengths risk burns.
 
-Most patients require 6-10 sessions spaced 4-8 weeks apart for optimal hair reduction. Hair must be in active growth phase (anagen) to respond, which is why multiple spaced sessions are needed — at any moment, only a portion of hair is in anagen. Light hair (blonde, red, gray, white) does not respond well because there's insufficient melanin to absorb laser energy. Modern devices with appropriate cooling are well-tolerated; numbing cream is optional.`,
+Most patients require 6-10 sessions spaced 4-8 weeks apart for optimal hair reduction. Hair must be in active growth phase (anagen) to respond, which is why multiple spaced sessions are needed: at any moment, only a portion of hair is in anagen. Light hair (blonde, red, gray, white) does not respond well because there's insufficient melanin to absorb laser energy. Modern devices with appropriate cooling are well-tolerated; numbing cream is optional.`,
         benefits: [
             'Permanent reduction in hair density (>80% in most patients)',
-            'Treats face, underarms, legs, bikini, back, chest — virtually any area',
+            'Treats face, underarms, legs, bikini, back, chest: virtually any area',
             'Modern devices safe for darker skin tones (with Nd:YAG)',
             'Each session covers large areas in 15-45 minutes',
         ],
@@ -2913,16 +2911,16 @@ Most patients require 6-10 sessions spaced 4-8 weeks apart for optimal hair redu
         description: 'Patient\'s own concentrated platelets injected into the scalp to stimulate dormant hair follicles. Non-surgical treatment for early-stage androgenetic alopecia and thinning.',
         longDescription: `PRP (Platelet-Rich Plasma) for hair loss involves drawing the patient's blood, centrifuging it to concentrate platelets and growth factors, then injecting the resulting plasma into thinning areas of the scalp. The growth factors (PDGF, VEGF, EGF, and others) signal dormant hair follicles to re-enter the active growth phase, increase blood supply, and prolong the active hair cycle.
 
-Treatment requires 3-4 initial sessions spaced 4 weeks apart, followed by quarterly maintenance. Best results are in patients with early androgenetic alopecia (male or female pattern hair loss) where follicles are miniaturized but not yet permanently lost. PRP works synergistically with finasteride (men) or spironolactone (women) and topical minoxidil — combination therapy outperforms PRP alone. Once hair follicles are completely lost (advanced Norwood VI-VII or Ludwig III), PRP cannot reverse the loss; hair transplant is the only option.`,
+Treatment requires 3-4 initial sessions spaced 4 weeks apart, followed by quarterly maintenance. Best results are in patients with early androgenetic alopecia (male or female pattern hair loss) where follicles are miniaturized but not yet permanently lost. PRP works synergistically with finasteride (men) or spironolactone (women) and topical minoxidil: combination therapy outperforms PRP alone. Once hair follicles are completely lost (advanced Norwood VI-VII or Ludwig III), PRP cannot reverse the loss; hair transplant is the only option.`,
         benefits: [
             'Stimulates dormant follicles in early-stage hair loss',
-            'Uses the patient\'s own blood — no allergic reactions or rejection',
+            'Uses the patient\'s own blood: no allergic reactions or rejection',
             'Each session is 30-45 minutes in-office',
             'Combines synergistically with finasteride/minoxidil for better results',
         ],
         pros: [
             'Non-surgical with no incisions or downtime',
-            'Autologous treatment — uses patient\'s own biological material',
+            'Autologous treatment: uses patient\'s own biological material',
             'Can delay or prevent need for hair transplant in early-stage cases',
             'Safe for both men and women (unlike finasteride which is male-only)',
         ],
@@ -2930,7 +2928,7 @@ Treatment requires 3-4 initial sessions spaced 4 weeks apart, followed by quarte
             'Multiple sessions required (3-4 initial + quarterly maintenance)',
             'Cost adds up: $400-$1,200 per session × ongoing maintenance',
             'Cannot regenerate completely lost follicles (advanced cases)',
-            'Results vary significantly by patient — no guaranteed response',
+            'Results vary significantly by patient: no guaranteed response',
         ],
         idealFor: 'Patients with early-stage androgenetic alopecia (thinning but not bald), post-pregnancy hair loss, or those wanting to maintain density alongside topical treatments.',
         recoveryTime: 'Mild scalp tenderness for 1-2 days',
@@ -2957,13 +2955,13 @@ Treatment requires 3-4 initial sessions spaced 4 weeks apart, followed by quarte
         category: 'body-contouring',
         categoryLabel: 'Body Contouring',
         simulatorType: '2d',
-        description: 'Comprehensive 360° body contouring after major weight loss — lifts the abdomen, flanks, lower back, and outer thighs simultaneously. The most extensive body procedure.',
-        longDescription: `Body lift (also called belt lipectomy or circumferential abdominoplasty) addresses excess skin and fat across the entire 360° of the trunk after major weight loss — combining tummy tuck, lateral thigh lift, and lower back lift into a single coordinated procedure. The incision typically runs around the entire waistline (hidden under clothing/swimwear) and the underlying tissues are tightened comprehensively.
+        description: 'Comprehensive 360° body contouring after major weight loss: lifts the abdomen, flanks, lower back, and outer thighs simultaneously. The most extensive body procedure.',
+        longDescription: `Body lift (also called belt lipectomy or circumferential abdominoplasty) addresses excess skin and fat across the entire 360° of the trunk after major weight loss, combining tummy tuck, lateral thigh lift, and lower back lift into a single coordinated procedure. The incision typically runs around the entire waistline (hidden under clothing/swimwear) and the underlying tissues are tightened comprehensively.
 
-Most candidates have lost 75+ lbs through bariatric surgery, lifestyle change, or pregnancy. Recovery is significant — 4-6 weeks before return to work, 8-12 weeks before strenuous exercise — and the procedure carries higher complication rates than any single component (tummy tuck alone). It's typically the most expensive cosmetic procedure most patients undergo, but for severe post-weight-loss skin laxity it's often the only durable solution.`,
+Most candidates have lost 75+ lbs through bariatric surgery, lifestyle change, or pregnancy. Recovery is significant (4-6 weeks before return to work, 8-12 weeks before strenuous exercise), and the procedure carries higher complication rates than any single component (tummy tuck alone). It's typically the most expensive cosmetic procedure most patients undergo, but for severe post-weight-loss skin laxity it's often the only durable solution.`,
         benefits: ['Comprehensive 360° contour restoration', 'Eliminates skin folds across abdomen, flanks, back, and thighs', 'Often combined with breast lift and brachioplasty for full body contouring', 'Permanent results when weight is maintained'],
         pros: ['Most comprehensive body restoration option', 'Single recovery period vs staged procedures', 'High satisfaction in post-bariatric patients', 'Hidden incision under clothing/swimwear'],
-        cons: ['Major surgery — 6-8 hour operation, often two surgeons', 'High complication rate vs single procedures', 'Long recovery (4-6 weeks restricted, 8-12 weeks before exercise)', 'Cost is significant ($15,000-$30,000)'],
+        cons: ['Major surgery: 6-8 hour operation, often two surgeons', 'High complication rate vs single procedures', 'Long recovery (4-6 weeks restricted, 8-12 weeks before exercise)', 'Cost is significant ($15,000-$30,000)'],
         idealFor: 'Post-bariatric patients with severe 360° skin laxity who have stabilized at goal weight for 12+ months.',
         recoveryTime: '4-6 weeks (return to work), 8-12 weeks (full exercise)',
         procedureDuration: '6-8 hours',
@@ -3009,10 +3007,10 @@ Common indications include bodybuilders or athletes whose calf muscles haven't r
         category: 'surgical',
         categoryLabel: 'Surgical',
         simulatorType: '2d',
-        description: 'Surgical and non-surgical techniques to improve the appearance of unsightly scars from prior surgery, trauma, or burns. Multiple modalities — excision, laser, steroids, and silicone.',
+        description: 'Surgical and non-surgical techniques to improve the appearance of unsightly scars from prior surgery, trauma, or burns. Multiple modalities: excision, laser, steroids, and silicone.',
         longDescription: `Scar revision encompasses multiple approaches to improve scars that are wide, raised, depressed, hyperpigmented, or otherwise cosmetically problematic. Surgical excision repositions the scar in a more favorable orientation or breaks up linear scars with z-plasty/w-plasty geometric closures. Laser resurfacing softens raised or pigmented scars. Steroid injections flatten keloid or hypertrophic scars. Silicone sheeting and pressure garments prevent and improve early scars.
 
-Treatment selection depends on scar type, age, and patient skin type. New scars (under 1 year) often improve dramatically with non-surgical interventions; older scars typically need surgical revision. Best candidates have realistic expectations — scar revision improves but never erases scars. Treatment timing matters: it's generally best to wait 12-18 months after the original injury for the scar to fully mature before surgical revision.`,
+Treatment selection depends on scar type, age, and patient skin type. New scars (under 1 year) often improve dramatically with non-surgical interventions; older scars typically need surgical revision. Best candidates have realistic expectations: scar revision improves but never erases scars. Treatment timing matters: it's generally best to wait 12-18 months after the original injury for the scar to fully mature before surgical revision.`,
         benefits: ['Significantly improves appearance of unsightly scars', 'Multiple modalities to match scar type', 'Often combines surgical + non-surgical for best results', 'Can address keloid and hypertrophic scars'],
         pros: ['Treatments tailored to scar type and skin', 'Non-surgical options have minimal recovery', 'Multiple sessions improve results progressively', 'Significant satisfaction in well-selected cases'],
         cons: ['Cannot erase scars completely', 'Surgical revision creates a new scar (better but still present)', 'Multiple sessions often needed', 'Keloid scars frequently recur despite treatment'],
@@ -3036,13 +3034,13 @@ Treatment selection depends on scar type, age, and patient skin type. New scars 
         categoryLabel: 'Surgical',
         simulatorType: '2d',
         description: 'Surgical or laser removal of moles for cosmetic or medical (suspected malignancy) reasons. Each technique has cosmetic and pathology trade-offs.',
-        longDescription: `Mole removal can be performed surgically (excision with sutures) or via shave excision (raised moles) or laser ablation (small flat moles). Surgical excision provides a complete tissue specimen for pathology — important when there's any concern about melanoma — and produces the most predictable cosmetic outcome with linear scarring. Shave excision removes raised moles flush with the skin but leaves a small flat round scar and may not get the full mole depth. Laser is suitable only for small, flat, clearly benign moles in patients seeking pure cosmetic removal.
+        longDescription: `Mole removal can be performed surgically (excision with sutures) or via shave excision (raised moles) or laser ablation (small flat moles). Surgical excision provides a complete tissue specimen for pathology (important when there's any concern about melanoma) and produces the most predictable cosmetic outcome with linear scarring. Shave excision removes raised moles flush with the skin but leaves a small flat round scar and may not get the full mole depth. Laser is suitable only for small, flat, clearly benign moles in patients seeking pure cosmetic removal.
 
-Any mole with concerning features (asymmetry, irregular borders, color variation, large size, recent change) MUST be excised surgically with pathology. The other techniques destroy the tissue and prevent definitive diagnosis. Cost varies dramatically by technique — laser is least expensive but least diagnostic; surgical excision is most expensive but provides full pathology assessment.`,
+Any mole with concerning features (asymmetry, irregular borders, color variation, large size, recent change) MUST be excised surgically with pathology. The other techniques destroy the tissue and prevent definitive diagnosis. Cost varies dramatically by technique: laser is least expensive but least diagnostic; surgical excision is most expensive but provides full pathology assessment.`,
         benefits: ['Removes cosmetically problematic moles', 'Surgical excision provides full pathology', 'Multiple techniques to match indication', 'Quick outpatient procedure (15-30 min)'],
         pros: ['Surgical excision is the gold standard for any concerning mole', 'Multiple techniques for different mole types', 'Local anesthesia only', 'Patient satisfaction high in straightforward cases'],
         cons: ['Surgical excision leaves a linear scar', 'Shave/laser cannot diagnose malignancy', 'Risk of incomplete removal with shave/laser', 'Very rare risk of malignancy missed by destruction techniques'],
-        idealFor: 'Patients with cosmetically unwanted moles. ANY suspicious mole must be excised surgically with pathology — not removed by shave or laser.',
+        idealFor: 'Patients with cosmetically unwanted moles. ANY suspicious mole must be excised surgically with pathology, not removed by shave or laser.',
         recoveryTime: '7-14 days (sutures), 1-2 weeks (laser/shave)',
         procedureDuration: '15-30 minutes',
         costRange: '$100 - $800 per mole',
@@ -3062,11 +3060,11 @@ Any mole with concerning features (asymmetry, irregular borders, color variation
         categoryLabel: 'Injectable',
         simulatorType: '2d',
         description: 'Small dose of botulinum toxin injected at the upper lip border that subtly rolls the lip outward. A natural-looking alternative to lip filler with no volume change.',
-        longDescription: `Lip flip uses a small dose of botulinum toxin (typically 4-8 units) injected at strategic points along the upper lip's vermilion border. The toxin relaxes the orbicularis oris muscle just enough to allow the upper lip to "flip" or "roll" outward, creating the appearance of a fuller lip without adding volume. Results are subtle — visible but not obvious — and last 6-8 weeks before reinjection is needed.
+        longDescription: `Lip flip uses a small dose of botulinum toxin (typically 4-8 units) injected at strategic points along the upper lip's vermilion border. The toxin relaxes the orbicularis oris muscle just enough to allow the upper lip to "flip" or "roll" outward, creating the appearance of a fuller lip without adding volume. Results are subtle (visible but not obvious) and last 6-8 weeks before reinjection is needed.
 
 The procedure is popular among patients who want lip enhancement without the commitment of HA filler, those whose upper lip "disappears" when smiling (gummy smile patients), and those seeking complementary results to existing lip filler. Treatment takes <5 minutes and has no downtime. Cost is significantly lower than filler ($150-$400 per session) but maintenance frequency is much higher.`,
         benefits: ['Subtle lip enhancement without volume change', 'Faster, cheaper, less commitment than lip filler', 'No bruising or swelling typical of fillers', 'Can complement existing filler for refined results'],
-        pros: ['Quick procedure (<5 minutes)', 'Reversible — wears off naturally', 'Significantly cheaper than lip filler', 'Subtle and natural-looking results'],
+        pros: ['Quick procedure (<5 minutes)', 'Reversible: wears off naturally', 'Significantly cheaper than lip filler', 'Subtle and natural-looking results'],
         cons: ['Effects last only 6-8 weeks (filler lasts 6-18 months)', 'Frequent reinjection needed', 'Can affect drinking from straws or making certain sounds for first week', 'Less dramatic enhancement than filler'],
         idealFor: 'Patients wanting subtle lip enhancement without filler, those with thin upper lip from gummy smile, or as a complement to existing lip filler.',
         recoveryTime: 'No downtime; effects develop over 4-7 days',
@@ -3085,13 +3083,13 @@ The procedure is popular among patients who want lip enhancement without the com
         category: 'injectable',
         categoryLabel: 'Injectable',
         simulatorType: '2d',
-        description: 'Botulinum toxin injection to treat excessive underarm, palm, or forehead sweating. Blocks sweat-gland nerve signals — FDA-approved and life-changing for severe hyperhidrosis.',
+        description: 'Botulinum toxin injection to treat excessive underarm, palm, or forehead sweating. Blocks sweat-gland nerve signals; FDA-approved and life-changing for severe hyperhidrosis.',
         longDescription: `Hyperhidrosis (excessive sweating) affects 4-5% of the population and can be socially debilitating. Botulinum toxin blocks the nerve signals that activate sweat glands, dramatically reducing sweating in the treated area for 4-9 months per session. The treatment is FDA-approved for axillary (underarm) hyperhidrosis but is widely used off-label for palmar (palm), plantar (foot), and forehead sweating.
 
-Treatment uses 50-100 units per axilla — significantly more than cosmetic facial botox. Each underarm requires 15-20 small injections. The procedure is moderately uncomfortable but relief is dramatic: most patients see ~75-90% reduction in sweating within 1-2 weeks. The high unit count makes treatment expensive ($1,000-$2,500 per session per area), but for severe hyperhidrosis it is genuinely transformative — many patients describe it as life-changing.`,
+Treatment uses 50-100 units per axilla, significantly more than cosmetic facial botox. Each underarm requires 15-20 small injections. The procedure is moderately uncomfortable but relief is dramatic: most patients see ~75-90% reduction in sweating within 1-2 weeks. The high unit count makes treatment expensive ($1,000-$2,500 per session per area), but for severe hyperhidrosis it is genuinely transformative; many patients describe it as life-changing.`,
         benefits: ['~75-90% reduction in sweating within 1-2 weeks', 'Treatment lasts 4-9 months per session', 'FDA-approved for underarms; effective off-label elsewhere', 'Dramatic improvement in social/professional confidence'],
         pros: ['Often life-changing for severe hyperhidrosis patients', 'Better tolerated than oral anticholinergic medications', 'No surgical alternative as safe and effective', 'Often covered by insurance for severe cases (with documentation)'],
-        cons: ['Expensive due to high unit count ($1,000-$2,500/session/area)', 'Multiple injections per area (uncomfortable)', 'Requires repeat treatment every 4-9 months', 'Palm injections particularly painful — nerve block usually used'],
+        cons: ['Expensive due to high unit count ($1,000-$2,500/session/area)', 'Multiple injections per area (uncomfortable)', 'Requires repeat treatment every 4-9 months', 'Palm injections particularly painful: nerve block usually used'],
         idealFor: 'Patients with severe hyperhidrosis (excessive sweating affecting daily life) who haven\'t responded to topical antiperspirants or oral medications.',
         recoveryTime: 'No downtime; effects develop over 1-2 weeks',
         procedureDuration: '20-30 minutes per area',
@@ -3112,7 +3110,7 @@ Treatment uses 50-100 units per axilla — significantly more than cosmetic faci
         categoryLabel: 'Injectable',
         simulatorType: '2d',
         description: 'Multiple small injections of vitamins, amino acids, hyaluronic acid, and growth factors into the mesoderm layer of the skin. Used for facial rejuvenation, hair loss, and body contouring.',
-        longDescription: `Mesotherapy delivers small doses of customized cocktails — typically vitamins (B-complex, C), amino acids, hyaluronic acid, peptides, and growth factors — directly into the mesoderm layer (between dermis and subcutaneous tissue) via numerous small injections. The localized delivery achieves higher target tissue concentrations than oral or topical routes.
+        longDescription: `Mesotherapy delivers small doses of customized cocktails, typically vitamins (B-complex, C), amino acids, hyaluronic acid, peptides, and growth factors, directly into the mesoderm layer (between dermis and subcutaneous tissue) via numerous small injections. The localized delivery achieves higher target tissue concentrations than oral or topical routes.
 
 Treatments target three main indications: facial rejuvenation (improved skin tone, texture, hydration), hair loss (scalp injections to stimulate follicles), and body contouring (claimed lipolytic effects, though clinical evidence is limited). A typical course is 6-10 sessions spaced 1-2 weeks apart, with maintenance every 1-2 months. Mesotherapy has more research support for hair indications than for fat reduction. Patient experience varies dramatically by formulation, practitioner technique, and individual response.`,
         benefits: ['Direct delivery of vitamins/HA/growth factors to skin', 'Customizable formulations per indication', 'Treats face, hair, or body areas', 'Combines well with other treatments'],
@@ -3137,14 +3135,14 @@ Treatments target three main indications: facial rejuvenation (improved skin ton
         category: 'non-surgical',
         categoryLabel: 'Non-Surgical',
         simulatorType: '2d',
-        description: 'Targeted plasma energy creates micro-injuries that contract the skin and stimulate collagen. Treats eyelid laxity, fine lines, and skin tags — non-surgical alternative to blepharoplasty for some patients.',
-        longDescription: `Plasma fibroblast therapy uses a hand-held device that ionizes air to create a small electrical arc (plasma) at the device tip. The plasma creates precisely controlled micro-injuries on the skin surface, causing immediate skin contraction and triggering a collagen-remodeling response over the following months. The technology is particularly suited to small areas — eyelid skin, fine lines around the mouth, skin tags, age spots, and small areas of laxity.
+        description: 'Targeted plasma energy creates micro-injuries that contract the skin and stimulate collagen. Treats eyelid laxity, fine lines, and skin tags, non-surgical alternative to blepharoplasty for some patients.',
+        longDescription: `Plasma fibroblast therapy uses a hand-held device that ionizes air to create a small electrical arc (plasma) at the device tip. The plasma creates precisely controlled micro-injuries on the skin surface, causing immediate skin contraction and triggering a collagen-remodeling response over the following months. The technology is particularly suited to small areas: eyelid skin, fine lines around the mouth, skin tags, age spots, and small areas of laxity.
 
 For many patients with mild upper-eyelid laxity, plasma fibroblast offers a non-surgical alternative to blepharoplasty. The treatment leaves small black "carbon dots" on the skin that crust over for 5-7 days before flaking off naturally. Most patients require 1-3 sessions spaced 8-12 weeks apart, with results building over 3-6 months as collagen remodels. Best candidates have lighter skin tones (darker skin has higher hyperpigmentation risk).`,
         benefits: ['Non-surgical alternative to blepharoplasty for mild laxity', 'Treats fine lines, skin tags, age spots', 'Visible immediate skin contraction', 'Stimulates collagen for ongoing improvement'],
         pros: ['Avoids surgical risks for mild cases', 'Cheaper than blepharoplasty', 'Outpatient with topical anesthesia only', 'Multiple treatable concerns in one session'],
         cons: ['5-7 days of visible "carbon dots" crusting', 'Risk of hyperpigmentation, especially in darker skin', 'Not suitable for moderate-severe laxity', 'Results subtle compared to surgical alternatives'],
-        idealFor: 'Patients with mild upper-eyelid laxity, fine lines, or skin tags who want a non-surgical alternative — particularly those with lighter skin tones.',
+        idealFor: 'Patients with mild upper-eyelid laxity, fine lines, or skin tags who want a non-surgical alternative: particularly those with lighter skin tones.',
         recoveryTime: '5-7 days (carbon dots), 2-3 weeks (full healing)',
         procedureDuration: '30-90 minutes per session',
         costRange: '$500 - $2,500 per session',
@@ -3167,10 +3165,10 @@ For many patients with mild upper-eyelid laxity, plasma fibroblast offers a non-
         longDescription: `Radiesse is a calcium hydroxylapatite (CaHA) injectable that combines two mechanisms: immediate volumization from the calcium microspheres suspended in a gel carrier, and long-term collagen stimulation as the spheres are gradually resorbed. The dual action makes it longer-lasting (12-18 months) than most HA fillers (6-12 months) and gives it characteristic "skin booster" effects beyond simple volume.
 
 Common applications include deep nasolabial folds, jawline contouring, hand rejuvenation (where age-related volume loss makes veins prominent), and chest decollete. It is generally NOT suitable for lip enhancement (visible white lumps can occur) or fine line treatment. The product can be diluted ("hyperdilute Radiesse") for skin-quality treatment that resembles Sculptra but with faster onset.`,
-        benefits: ['Lasts 12-18 months — longer than most HA fillers', 'Dual action: immediate volume + collagen stimulation', 'Excellent for jawline, hands, and deep folds', 'Hyperdilute version provides skin-quality improvement'],
+        benefits: ['Lasts 12-18 months: longer than most HA fillers', 'Dual action: immediate volume + collagen stimulation', 'Excellent for jawline, hands, and deep folds', 'Hyperdilute version provides skin-quality improvement'],
         pros: ['Longer-lasting than HA fillers', 'FDA-approved with extensive safety data', 'Particularly effective on jawline and hands', 'Versatile dilution for different indications'],
         cons: ['NOT suitable for lips (visible nodules)', 'Cannot be reversed (no enzyme dissolves it)', 'More expensive than HA fillers ($800-$1,500 per syringe)', 'Bruising more common than with HA'],
-        idealFor: 'Patients with deep nasolabial folds, jawline contouring needs, hand volume loss, or wanting longer-lasting filler than HA — but NOT for lip treatment.',
+        idealFor: 'Patients with deep nasolabial folds, jawline contouring needs, hand volume loss, or wanting longer-lasting filler than HA: but NOT for lip treatment.',
         recoveryTime: 'No downtime; bruising/swelling for 3-7 days',
         procedureDuration: '20-30 minutes',
         costRange: '$800 - $1,500 per syringe',
@@ -3212,13 +3210,13 @@ Eyelash transplant is a surgical procedure where individual hair follicles (typi
         categoryLabel: 'Body Contouring',
         simulatorType: '2d',
         description: 'Surgical lift and reduction of the mons pubis (pubic mound) area following major weight loss or aging. Often combined with tummy tuck or labiaplasty for comprehensive lower-body restoration.',
-        longDescription: `The mons pubis is the soft tissue mound covering the pubic bone. Following major weight loss, pregnancy, or aging, this area can develop excess skin and fat that creates a prominent bulge under clothing — sometimes called "FUPA" colloquially. Mons pubis lift removes excess tissue and tightens remaining skin, often combined with simultaneous tummy tuck since the incisions can share an anatomical zone.
+        longDescription: `The mons pubis is the soft tissue mound covering the pubic bone. Following major weight loss, pregnancy, or aging, this area can develop excess skin and fat that creates a prominent bulge under clothing, sometimes called "FUPA" colloquially. Mons pubis lift removes excess tissue and tightens remaining skin, often combined with simultaneous tummy tuck since the incisions can share an anatomical zone.
 
-The procedure uses an incision typically hidden in or just above the underwear line. Recovery is similar to tummy tuck — 2-3 weeks before light activity, 4-6 weeks before exercise — and most patients combine it with other procedures rather than doing it standalone. Patient satisfaction is high in well-selected cases, particularly post-bariatric patients.`,
+The procedure uses an incision typically hidden in or just above the underwear line. Recovery is similar to tummy tuck (2-3 weeks before light activity, 4-6 weeks before exercise), and most patients combine it with other procedures rather than doing it standalone. Patient satisfaction is high in well-selected cases, particularly post-bariatric patients.`,
         benefits: ['Reduces prominent mons pubis bulge under clothing', 'Often combined with tummy tuck for shared incision', 'Restores body confidence after major weight loss', 'Permanent results when weight is maintained'],
         pros: ['Hidden incision under underwear/clothing', 'High satisfaction in post-weight-loss patients', 'Often combinable with tummy tuck or labiaplasty', 'Single-stage procedure'],
         cons: ['Permanent scar (though hidden by clothing)', '2-3 weeks restricted activity', 'Risk of wound healing problems given location', 'Not insurance-covered (cosmetic indication)'],
-        idealFor: 'Post-weight-loss patients or post-pregnancy patients with prominent mons pubis bulge — often as part of mommy makeover or after bariatric surgery.',
+        idealFor: 'Post-weight-loss patients or post-pregnancy patients with prominent mons pubis bulge: often as part of mommy makeover or after bariatric surgery.',
         recoveryTime: '2-3 weeks (light activity), 4-6 weeks (full exercise)',
         procedureDuration: '1-2 hours (standalone); 4-6 hours (combined with tummy tuck)',
         costRange: '$3,500 - $8,000 (standalone)',
@@ -3239,11 +3237,11 @@ The procedure uses an incision typically hidden in or just above the underwear l
         description: 'Surgical creation of cheek dimples by attaching a small portion of cheek muscle to the inner skin. A growing trend particularly popular in Korea and Southeast Asia.',
         longDescription: `Dimpleplasty creates artificial cheek dimples by suturing a small portion of the buccinator muscle to the inner cheek skin, causing a depression to form when the patient smiles. The procedure is performed entirely through a small incision inside the mouth, leaving no external scars. The depth and position of the dimple are customized at consultation, and patients can preview the proposed dimple location with a marker test.
 
-For the first 4-6 weeks post-procedure, the dimple appears even when the face is at rest (not just when smiling) — this is expected and gradually evolves to a smile-only dimple as the surgical adhesions mature. The procedure is technically simple but requires precision: misplaced dimples are difficult to revise, and over-deep dimples can look unnatural. Particularly popular in South Korea, Thailand, and parts of South Asia where dimples are considered an attractive feature.`,
+For the first 4-6 weeks post-procedure, the dimple appears even when the face is at rest (not just when smiling); this is expected and gradually evolves to a smile-only dimple as the surgical adhesions mature. The procedure is technically simple but requires precision: misplaced dimples are difficult to revise, and over-deep dimples can look unnatural. Particularly popular in South Korea, Thailand, and parts of South Asia where dimples are considered an attractive feature.`,
         benefits: ['Permanent cheek dimples that appear when smiling', 'Outpatient procedure with quick recovery', 'No external scarring (intraoral approach)', 'Customizable dimple depth and position'],
         pros: ['Quick procedure (~30-45 minutes)', 'Hidden intraoral incision', 'Permanent result', 'Local anesthesia option'],
         cons: ['Dimple visible at rest for 4-6 weeks (expected)', 'Difficult to revise if positioned poorly', 'Risk of asymmetry between left and right dimples', 'Not insurance-covered (purely cosmetic)'],
-        idealFor: 'Patients without natural dimples who want permanent cheek dimples — particularly popular in East Asian and South Asian aesthetic markets.',
+        idealFor: 'Patients without natural dimples who want permanent cheek dimples: particularly popular in East Asian and South Asian aesthetic markets.',
         recoveryTime: 'Soft food for 5-7 days; full normalization in 4-6 weeks',
         procedureDuration: '30-45 minutes',
         costRange: '$1,500 - $4,000',
@@ -3261,9 +3259,9 @@ For the first 4-6 weeks post-procedure, the dimple appears even when the face is
         categoryLabel: 'Body Contouring',
         simulatorType: '2d',
         description: 'Surgical reduction of enlarged male breast tissue (gynecomastia). Combines liposuction with direct glandular excision for a flat, masculine chest contour.',
-        longDescription: `Gynecomastia surgery addresses enlarged male breast tissue — a condition affecting 30-60% of men at some point in life, often persisting from puberty or developing during weight gain, hormonal changes, certain medications, or anabolic steroid use. The procedure combines liposuction (for fatty tissue) with direct glandular excision (for dense breast tissue), producing a flat, masculine chest contour.
+        longDescription: `Gynecomastia surgery addresses enlarged male breast tissue, a condition affecting 30-60% of men at some point in life, often persisting from puberty or developing during weight gain, hormonal changes, certain medications, or anabolic steroid use. The procedure combines liposuction (for fatty tissue) with direct glandular excision (for dense breast tissue), producing a flat, masculine chest contour.
 
-Most cases use a small incision around the lower areola edge for glandular removal plus 2-3 small puncture sites for liposuction. Severe cases with significant skin laxity may need additional skin excision (similar to a male mastectomy pattern). Recovery is typically 1-2 weeks for return to work and 4-6 weeks before resuming chest exercises. Patient satisfaction is among the highest in male cosmetic surgery — the condition is often a source of significant psychological distress, and the surgical fix is durable.`,
+Most cases use a small incision around the lower areola edge for glandular removal plus 2-3 small puncture sites for liposuction. Severe cases with significant skin laxity may need additional skin excision (similar to a male mastectomy pattern). Recovery is typically 1-2 weeks for return to work and 4-6 weeks before resuming chest exercises. Patient satisfaction is among the highest in male cosmetic surgery: the condition is often a source of significant psychological distress, and the surgical fix is durable.`,
         benefits: ['Flat, masculine chest contour', 'High patient satisfaction (often life-changing)', 'Combines lipo + glandular excision in one session', 'Can be done with local + sedation'],
         pros: ['Outpatient procedure', 'Minimal scarring (hidden at areolar edge)', 'Permanent results when weight is maintained', 'Resolves long-standing psychological burden'],
         cons: ['Possible asymmetry or contour irregularity', 'Risk of nipple sensation changes', 'Permanent scars (small but present)', 'Recurrence possible with significant weight gain'],
@@ -3288,13 +3286,13 @@ Most cases use a small incision around the lower areola edge for glandular remov
         categoryLabel: 'Surgical',
         simulatorType: '2d',
         description: 'Functional surgery to straighten a deviated nasal septum and improve breathing. Often combined with rhinoplasty (septorhinoplasty) for both functional and cosmetic outcomes.',
-        longDescription: `Septoplasty straightens a deviated nasal septum — the wall of cartilage and bone between the nostrils that, when displaced, can obstruct airflow, cause chronic congestion, and contribute to sinus issues. Unlike rhinoplasty (cosmetic nose reshaping), septoplasty is purely functional and is therefore typically covered by insurance when documented breathing difficulties are present.
+        longDescription: `Septoplasty straightens a deviated nasal septum, the wall of cartilage and bone between the nostrils that, when displaced, can obstruct airflow, cause chronic congestion, and contribute to sinus issues. Unlike rhinoplasty (cosmetic nose reshaping), septoplasty is purely functional and is therefore typically covered by insurance when documented breathing difficulties are present.
 
-The procedure works through small incisions inside the nostrils — no external scars. Surgeons remove or reposition deviated portions of the septum while preserving structural support. Most patients see significant breathing improvement immediately after splints are removed at 5-7 days. Septoplasty is frequently combined with cosmetic rhinoplasty (called "septorhinoplasty") so patients address both concerns in a single recovery — common after sports injuries that cause both breathing issues and visible deformity.`,
+The procedure works through small incisions inside the nostrils, no external scars. Surgeons remove or reposition deviated portions of the septum while preserving structural support. Most patients see significant breathing improvement immediately after splints are removed at 5-7 days. Septoplasty is frequently combined with cosmetic rhinoplasty (called "septorhinoplasty") so patients address both concerns in a single recovery, common after sports injuries that cause both breathing issues and visible deformity.`,
         benefits: ['Significant breathing improvement', 'Often insurance-covered (functional indication)', 'Can be combined with cosmetic rhinoplasty', 'No external scarring'],
         pros: ['Insurance coverage typical for documented obstruction', 'Pure functional benefit (or combined functional + cosmetic)', 'Hidden incisions inside the nostrils', 'High satisfaction for breathing improvement'],
         cons: ['Recovery includes 1-2 weeks of internal congestion', 'Risk of septal perforation (rare but serious)', 'Splints uncomfortable for first 5-7 days', 'Improvement can be incomplete if other airway issues exist'],
-        idealFor: 'Patients with documented nasal obstruction from a deviated septum — chronic congestion, mouth breathing, sleep disturbance, or recurrent sinus issues.',
+        idealFor: 'Patients with documented nasal obstruction from a deviated septum: chronic congestion, mouth breathing, sleep disturbance, or recurrent sinus issues.',
         recoveryTime: '5-7 days (splint removal), 2-3 weeks (full breathing recovery)',
         procedureDuration: '45-90 minutes',
         costRange: '$3,000 - $6,000 (often insurance-covered)',
@@ -3312,14 +3310,14 @@ The procedure works through small incisions inside the nostrils — no external 
         category: 'body-contouring',
         categoryLabel: 'Body Contouring',
         simulatorType: '2d',
-        description: 'Surgical or non-surgical procedures to address vaginal laxity after childbirth or aging. Includes vaginoplasty (surgical tightening) and laser/RF treatments. The simulator is an expectation visualizer — it shows post-procedure healing texture, not a precise geometric outcome.',
-        longDescription: `Vaginal rejuvenation refers to multiple procedures that address vaginal laxity, dryness, and related concerns — usually after childbirth, aging-related estrogen decline, or major weight loss. The umbrella term covers both surgical (vaginoplasty) and non-surgical (laser/RF) interventions, distinct from labiaplasty (which addresses external labial tissue).
+        description: 'Surgical or non-surgical procedures to address vaginal laxity after childbirth or aging. Includes vaginoplasty (surgical tightening) and laser/RF treatments. The simulator is an expectation visualizer; it shows post-procedure healing texture, not a precise geometric outcome.',
+        longDescription: `Vaginal rejuvenation refers to multiple procedures that address vaginal laxity, dryness, and related concerns, usually after childbirth, aging-related estrogen decline, or major weight loss. The umbrella term covers both surgical (vaginoplasty) and non-surgical (laser/RF) interventions, distinct from labiaplasty (which addresses external labial tissue).
 
 Surgical vaginoplasty tightens the vaginal canal by removing excess tissue from the posterior vaginal wall and reconstructing the underlying muscle. Non-surgical options use fractional CO2 laser (MonaLisa Touch), RF (ThermiVa), or PRP (O-Shot) to stimulate tissue remodeling without surgery. Patient satisfaction is high among well-selected candidates, but stigma around discussing the procedures keeps many women from seeking treatment despite real concerns.`,
-        benefits: ['Addresses postpartum vaginal laxity', 'Improves intimate sensation and confidence', 'Multiple modalities — surgical and non-surgical options', 'Can resolve mild urinary stress incontinence'],
+        benefits: ['Addresses postpartum vaginal laxity', 'Improves intimate sensation and confidence', 'Multiple modalities: surgical and non-surgical options', 'Can resolve mild urinary stress incontinence'],
         pros: ['High patient satisfaction in well-selected cases', 'Multiple options to match severity', 'Non-surgical options have minimal recovery', 'Often combined with labiaplasty in single session'],
         cons: ['Surgical recovery includes 6 weeks of pelvic rest', 'Stigma delays many candidates from seeking treatment', 'Non-surgical results subtle compared to surgical', 'Not insurance-covered (cosmetic indication)'],
-        idealFor: 'Women with vaginal laxity from childbirth, aging, or weight loss — particularly those experiencing intimate dissatisfaction or mild stress incontinence.',
+        idealFor: 'Women with vaginal laxity from childbirth, aging, or weight loss: particularly those experiencing intimate dissatisfaction or mild stress incontinence.',
         recoveryTime: 'Surgical: 6 weeks pelvic rest. Non-surgical: 2-3 days mild discomfort',
         procedureDuration: 'Surgical: 1-2 hours. Non-surgical: 30 minutes',
         costRange: 'Surgical: $4,500-$9,000. Non-surgical: $1,500-$3,500/session',
@@ -3337,10 +3335,10 @@ Surgical vaginoplasty tightens the vaginal canal by removing excess tissue from 
         category: 'body-contouring',
         categoryLabel: 'Body Contouring',
         simulatorType: '2d',
-        description: 'Less invasive variant of tummy tuck that addresses only the lower abdomen below the navel. Smaller incision, shorter recovery — ideal for patients with localized lower-belly concerns.',
-        longDescription: `Mini tummy tuck addresses only the area between the pubic bone and navel, in contrast to full abdominoplasty which extends from pubic bone to rib cage. The procedure removes a smaller skin/fat segment, leaves the navel intact (no umbilical relocation), and uses a shorter incision similar in length to a C-section scar — typically 4-6 inches vs the 12-18 inches of a full tummy tuck.
+        description: 'Less invasive variant of tummy tuck that addresses only the lower abdomen below the navel. Smaller incision, shorter recovery. Ideal for patients with localized lower-belly concerns.',
+        longDescription: `Mini tummy tuck addresses only the area between the pubic bone and navel, in contrast to full abdominoplasty which extends from pubic bone to rib cage. The procedure removes a smaller skin/fat segment, leaves the navel intact (no umbilical relocation), and uses a shorter incision similar in length to a C-section scar, typically 4-6 inches vs the 12-18 inches of a full tummy tuck.
 
-Ideal candidates have isolated lower-abdominal skin laxity or fat (often post-pregnancy) without significant upper abdominal concerns or diastasis recti. Recovery is meaningfully shorter than full abdominoplasty: most patients return to work in 7-10 days vs 2-3 weeks. Cost is also reduced. Limitations are real, though — patients with significant upper-abdominal laxity or muscle separation will be disappointed by the limited correction; for them, full abdominoplasty is the right answer.`,
+Ideal candidates have isolated lower-abdominal skin laxity or fat (often post-pregnancy) without significant upper abdominal concerns or diastasis recti. Recovery is meaningfully shorter than full abdominoplasty: most patients return to work in 7-10 days vs 2-3 weeks. Cost is also reduced. Limitations are real, though: patients with significant upper-abdominal laxity or muscle separation will be disappointed by the limited correction; for them, full abdominoplasty is the right answer.`,
         benefits: ['Shorter scar (similar to C-section)', 'Faster recovery than full tummy tuck', 'Lower cost', 'Hidden incision under underwear/swimwear'],
         pros: ['Outpatient procedure (often local + sedation)', '7-10 days return to work', 'Less aggressive surgical experience', 'Suitable for fit patients with localized concerns'],
         cons: ['Cannot address upper abdomen', 'No diastasis recti repair (muscle separation stays)', 'Limited fat/skin removal vs full tummy tuck', 'Wrong choice for patients with significant abdominal concerns'],
@@ -3366,11 +3364,11 @@ Ideal candidates have isolated lower-abdominal skin laxity or fat (often post-pr
         description: 'Surgical reduction of enlarged or stretched areolas. Often performed alone or combined with breast lift/reduction/augmentation. Quick outpatient procedure.',
         longDescription: `Areola reduction surgery decreases the diameter of enlarged or stretched areolas (the pigmented circular area surrounding the nipple). Common indications include: areolas enlarged from pregnancy or weight changes, congenitally large areolas, or asymmetry between left and right. The procedure is performed alone or combined with breast lift, reduction, or augmentation when overall breast reshaping is desired.
 
-The technique uses a circumferential (donut) excision around the areola, with a smaller circular incision drawn within and the intervening skin removed. The remaining tissue is closed in a circular pattern. Sensation usually preserves well since the underlying nerve supply is preserved by the technique. Recovery is brief — most patients return to work within a few days; the breast tissue heals in 4-6 weeks before strenuous exercise. The scar is hidden at the areola edge and typically fades to a pale line over 12-18 months.`,
+The technique uses a circumferential (donut) excision around the areola, with a smaller circular incision drawn within and the intervening skin removed. The remaining tissue is closed in a circular pattern. Sensation usually preserves well since the underlying nerve supply is preserved by the technique. Recovery is brief: most patients return to work within a few days; the breast tissue heals in 4-6 weeks before strenuous exercise. The scar is hidden at the areola edge and typically fades to a pale line over 12-18 months.`,
         benefits: ['Reduces enlarged or stretched areolas', 'Corrects asymmetry between left and right', 'Quick outpatient procedure', 'Often combined with other breast surgery'],
         pros: ['Hidden scar at the areola edge', 'Preserves nipple sensation in most cases', 'Brief recovery (return to work in days)', 'High patient satisfaction'],
         cons: ['Possible reduction in nipple sensation', 'Future pregnancy/breastfeeding can re-stretch areolas', 'Permanent (though usually fading) scar', 'Not insurance-covered (cosmetic)'],
-        idealFor: 'Patients with enlarged or asymmetric areolas — often post-pregnancy or post-weight loss — wanting more proportionate breast appearance.',
+        idealFor: 'Patients with enlarged or asymmetric areolas, often post-pregnancy or post-weight loss, wanting more proportionate breast appearance.',
         recoveryTime: '3-7 days (light activity), 4-6 weeks (chest exercise)',
         procedureDuration: '45-90 minutes',
         costRange: '$2,000 - $5,000',
@@ -3390,9 +3388,9 @@ The technique uses a circumferential (donut) excision around the areola, with a 
         categoryLabel: 'Body Contouring',
         simulatorType: '2d',
         description: 'Solid silicone implants placed in the buttocks to add volume and projection. Alternative to BBL fat transfer for patients without enough fat to harvest, or who prefer firmer feel.',
-        longDescription: `Buttock implants use solid silicone implants placed beneath the gluteal muscle to add permanent volume and projection. Unlike BBL (Brazilian Butt Lift, which uses fat transfer), implants don't require fat harvest — making them an option for thin patients without enough donor fat. They also provide more predictable, consistent volume since fat transfer has variable retention rates.
+        longDescription: `Buttock implants use solid silicone implants placed beneath the gluteal muscle to add permanent volume and projection. Unlike BBL (Brazilian Butt Lift, which uses fat transfer), implants don't require fat harvest, making them an option for thin patients without enough donor fat. They also provide more predictable, consistent volume since fat transfer has variable retention rates.
 
-Implants come in various shapes (round, oval, anatomical) and sizes (200-700cc range). Recovery is significant — patients cannot sit directly on their buttocks for 4-6 weeks, and full healing takes 3 months. The procedure carries higher complication rates than BBL (infection, implant migration, capsular contracture) and the recovery is more demanding. Patient selection is critical: thin patients without fat donor sites benefit most, while patients with adequate fat are usually better served by BBL.`,
+Implants come in various shapes (round, oval, anatomical) and sizes (200-700cc range). Recovery is significant: patients cannot sit directly on their buttocks for 4-6 weeks, and full healing takes 3 months. The procedure carries higher complication rates than BBL (infection, implant migration, capsular contracture) and the recovery is more demanding. Patient selection is critical: thin patients without fat donor sites benefit most, while patients with adequate fat are usually better served by BBL.`,
         benefits: ['Permanent volume that doesn\'t require fat reabsorption', 'Suitable for thin patients without donor fat', 'Predictable, firmer projection', 'Longer-lasting than BBL\'s natural fat-loss decline'],
         pros: ['No need for fat harvest (lipo) elsewhere', 'Predictable, firm volume', 'Customizable shapes and sizes', 'Permanent enhancement'],
         cons: ['Cannot sit directly on buttocks for 4-6 weeks (recovery is demanding)', 'Higher complication rate than BBL (infection, migration)', 'Implants can shift over time', 'Different feel than natural fat (firmer)'],
@@ -3415,13 +3413,13 @@ Implants come in various shapes (round, oval, anatomical) and sizes (200-700cc r
         category: 'non-surgical',
         categoryLabel: 'Non-Surgical',
         simulatorType: '2d',
-        description: 'Patient\'s own concentrated platelets applied to the face after microneedling. Stimulates collagen, improves texture, and reduces acne scars — popularized as the "Vampire Facial".',
-        longDescription: `PRP (Platelet-Rich Plasma) facial — popularized as the "Vampire Facial" — combines microneedling with the patient's own concentrated platelets and growth factors. Blood is drawn, centrifuged to concentrate platelets, then applied topically to the freshly micro-channeled skin where the growth factors penetrate deeply and signal increased collagen production, accelerated healing, and improved cellular turnover.
+        description: 'Patient\'s own concentrated platelets applied to the face after microneedling. Stimulates collagen, improves texture, and reduces acne scars, popularized as the "Vampire Facial".',
+        longDescription: `PRP (Platelet-Rich Plasma) facial (popularized as the "Vampire Facial") combines microneedling with the patient's own concentrated platelets and growth factors. Blood is drawn, centrifuged to concentrate platelets, then applied topically to the freshly micro-channeled skin where the growth factors penetrate deeply and signal increased collagen production, accelerated healing, and improved cellular turnover.
 
-The treatment addresses similar concerns to standalone microneedling — fine lines, acne scars, enlarged pores, dull texture — but with enhanced results from the growth-factor delivery. Most patients require 3-6 sessions spaced 4-6 weeks apart, with continued improvement for 3-6 months after the final session. PRP is autologous (uses the patient's own biological material), so there's no risk of allergic reaction or rejection. The "vampire" nickname comes from the dramatic appearance of blood on the face during treatment, but the actual procedure is well-tolerated and recovery is similar to standard microneedling (1-3 days redness).`,
+The treatment addresses similar concerns to standalone microneedling (fine lines, acne scars, enlarged pores, dull texture) but with enhanced results from the growth-factor delivery. Most patients require 3-6 sessions spaced 4-6 weeks apart, with continued improvement for 3-6 months after the final session. PRP is autologous (uses the patient's own biological material), so there's no risk of allergic reaction or rejection. The "vampire" nickname comes from the dramatic appearance of blood on the face during treatment, but the actual procedure is well-tolerated and recovery is similar to standard microneedling (1-3 days redness).`,
         benefits: ['Combines microneedling + growth factors for enhanced results', 'Treats fine lines, acne scars, pores, dull skin', 'Uses your own blood (no allergic reactions)', 'Continued improvement for 3-6 months post-treatment'],
-        pros: ['Autologous treatment — no foreign substances', 'More effective than microneedling alone for many concerns', 'Safe across all skin types', 'Combines well with other treatments'],
-        cons: ['Multiple sessions required (3-6) for optimal results', 'Cost more than standalone microneedling ($600-$1,500/session)', '1-3 days of redness/sensitivity after each session', 'Results subtle — not a one-time dramatic fix'],
+        pros: ['Autologous treatment: no foreign substances', 'More effective than microneedling alone for many concerns', 'Safe across all skin types', 'Combines well with other treatments'],
+        cons: ['Multiple sessions required (3-6) for optimal results', 'Cost more than standalone microneedling ($600-$1,500/session)', '1-3 days of redness/sensitivity after each session', 'Results subtle: not a one-time dramatic fix'],
         idealFor: 'Patients with fine lines, mild acne scars, enlarged pores, or dull texture who want enhanced results over standalone microneedling.',
         recoveryTime: '1-3 days redness/sensitivity',
         procedureDuration: '60-90 minutes per session',
@@ -3439,14 +3437,14 @@ The treatment addresses similar concerns to standalone microneedling — fine li
         category: 'non-surgical',
         categoryLabel: 'Non-Surgical',
         simulatorType: '2d',
-        description: 'Aggressive ablative laser that vaporizes the top layers of skin to trigger dramatic collagen remodeling. The most powerful non-surgical resurfacing — significant downtime in exchange for significant results.',
-        longDescription: `CO2 laser resurfacing uses a 10,600nm wavelength laser to vaporize the topmost layers of skin in precise patterns, then triggers dramatic collagen remodeling during healing. Modern fractional CO2 (treating only fractional columns of skin rather than the full surface) has reduced — but not eliminated — the recovery time compared to full-resurfacing techniques. It remains the most powerful non-surgical resurfacing available.
+        description: 'Aggressive ablative laser that vaporizes the top layers of skin to trigger dramatic collagen remodeling. The most powerful non-surgical resurfacing: significant downtime in exchange for significant results.',
+        longDescription: `CO2 laser resurfacing uses a 10,600nm wavelength laser to vaporize the topmost layers of skin in precise patterns, then triggers dramatic collagen remodeling during healing. Modern fractional CO2 (treating only fractional columns of skin rather than the full surface) has reduced, but not eliminated, the recovery time compared to full-resurfacing techniques. It remains the most powerful non-surgical resurfacing available.
 
-Indications include severe acne scars, deep wrinkles, sun damage, precancerous lesions, and overall skin aging. Recovery involves 7-14 days of significant redness, swelling, and crusting before the new skin emerges. Strict sun avoidance is required for 3-6 months. The investment in downtime is significant but the results — particularly for severe concerns — are unmatched by gentler treatments. Best results in lighter skin tones (Fitzpatrick I-III); darker skin requires careful provider selection due to hyperpigmentation risk.`,
+Indications include severe acne scars, deep wrinkles, sun damage, precancerous lesions, and overall skin aging. Recovery involves 7-14 days of significant redness, swelling, and crusting before the new skin emerges. Strict sun avoidance is required for 3-6 months. The investment in downtime is significant but the results, particularly for severe concerns, are unmatched by gentler treatments. Best results in lighter skin tones (Fitzpatrick I-III); darker skin requires careful provider selection due to hyperpigmentation risk.`,
         benefits: ['Most powerful non-surgical resurfacing', 'Treats severe scarring, deep wrinkles, advanced sun damage', 'Single treatment delivers dramatic results (vs multi-session alternatives)', 'Stimulates years of collagen remodeling'],
         pros: ['Unmatched results for severe concerns', 'Often a single treatment is enough', 'Long-lasting results (5+ years)', 'Treats multiple concerns simultaneously'],
-        cons: ['Significant downtime: 7-14 days redness/crusting', 'Strict sun avoidance for 3-6 months', 'Risk of hyperpigmentation in darker skin tones', 'Most painful resurfacing — typically requires sedation'],
-        idealFor: 'Patients with severe acne scarring, deep wrinkles, advanced sun damage, or overall photoaged skin willing to commit to 1-2 weeks of downtime — particularly those with lighter skin tones.',
+        cons: ['Significant downtime: 7-14 days redness/crusting', 'Strict sun avoidance for 3-6 months', 'Risk of hyperpigmentation in darker skin tones', 'Most painful resurfacing: typically requires sedation'],
+        idealFor: 'Patients with severe acne scarring, deep wrinkles, advanced sun damage, or overall photoaged skin willing to commit to 1-2 weeks of downtime: particularly those with lighter skin tones.',
         recoveryTime: '7-14 days (visible healing), 3-6 months (sun avoidance)',
         procedureDuration: '60-90 minutes',
         costRange: '$1,500 - $5,000 per session',
@@ -3465,10 +3463,10 @@ Indications include severe acne scars, deep wrinkles, sun damage, precancerous l
         category: 'hair-restoration',
         categoryLabel: 'Hair Restoration',
         simulatorType: '2d',
-        description: 'Semi-permanent eyebrow tattooing using fine blade strokes to mimic individual hairs. Results last 18-24 months — natural-looking alternative for sparse, thin, or absent eyebrows.',
+        description: 'Semi-permanent eyebrow tattooing using fine blade strokes to mimic individual hairs. Results last 18-24 months, natural-looking alternative for sparse, thin, or absent eyebrows.',
         longDescription: `Microblading is a semi-permanent cosmetic tattoo technique that deposits pigment into the upper dermis using a hand-held tool with very fine blades. The artist creates individual hair-like strokes mimicking natural eyebrow hairs, producing a result much more natural than traditional powder-fill cosmetic tattoo. Most clients are women with sparse, over-plucked, thin, or chemotherapy-affected eyebrows.
 
-Treatment is performed in two sessions: an initial 2-3 hour session, followed by a touch-up at 6-8 weeks to perfect the design and replace pigment that didn't fully take during initial healing. Annual or biannual color refreshes maintain the look since the pigment fades over 18-24 months. Unlike permanent tattoo, microblading uses pigments specifically designed to fade — preventing the unnatural blue/green appearance of older eyebrow tattoos as they age. Best results are in patients with normal-to-dry skin; oily skin causes faster fading and less crisp lines.`,
+Treatment is performed in two sessions: an initial 2-3 hour session, followed by a touch-up at 6-8 weeks to perfect the design and replace pigment that didn't fully take during initial healing. Annual or biannual color refreshes maintain the look since the pigment fades over 18-24 months. Unlike permanent tattoo, microblading uses pigments specifically designed to fade, preventing the unnatural blue/green appearance of older eyebrow tattoos as they age. Best results are in patients with normal-to-dry skin; oily skin causes faster fading and less crisp lines.`,
         benefits: ['Natural-looking, hair-stroke appearance', 'No daily eyebrow makeup needed', 'Lasts 18-24 months before refresh needed', 'Restores eyebrows lost to over-plucking, alopecia, or chemotherapy'],
         pros: ['Looks like real eyebrow hairs', 'Customized shape and color to match face', 'Saves time daily on eyebrow makeup', 'High patient satisfaction'],
         cons: ['Fades faster on oily skin', 'Annual touch-ups needed for ongoing results', 'Risk of poor outcome with inexperienced artist', 'Cannot easily correct if shape is wrong (must wait for fade)'],
@@ -3490,13 +3488,13 @@ Treatment is performed in two sessions: an initial 2-3 hour session, followed by
         categoryLabel: 'Injectable',
         simulatorType: '2d',
         description: 'Semi-permanent cosmetic tattoo that deposits pigment into the lips for enhanced color, definition, and a permanently "tinted" appearance. Lasts 2-3 years.',
-        longDescription: `Lip blush (also called lip tint, lip tattoo, or cosmetic lip pigmentation) is a semi-permanent makeup technique that deposits soft pigment into the lips, enhancing color, defining the lip border, and creating a subtle "always wearing lipstick" appearance. The technique uses very fine needles and pigments specifically formulated for lip tissue — different from body-tattoo pigments which can fade unpredictably.
+        longDescription: `Lip blush (also called lip tint, lip tattoo, or cosmetic lip pigmentation) is a semi-permanent makeup technique that deposits soft pigment into the lips, enhancing color, defining the lip border, and creating a subtle "always wearing lipstick" appearance. The technique uses very fine needles and pigments specifically formulated for lip tissue, different from body-tattoo pigments which can fade unpredictably.
 
-Treatment requires 2 sessions: an initial 2-3 hour application, followed by a touch-up 6-8 weeks later to refine the color. Final results last 2-3 years before refresh is needed. Color choices range from natural pink/coral tones (subtle enhancement) to bold reds (for those wanting more dramatic effect). Recovery involves 5-7 days of swollen, scaly lips that gradually flake to reveal the final color. Pre-treatment consultation should include screening for cold sore history (HSV) since lip tattoo can trigger outbreaks — antiviral prophylaxis is standard for affected patients.`,
-        benefits: ['Permanent lip color enhancement', 'Defines lip border and corrects asymmetry', 'No daily lipstick required', 'Subtle enhancement or bold color — your choice'],
+Treatment requires 2 sessions: an initial 2-3 hour application, followed by a touch-up 6-8 weeks later to refine the color. Final results last 2-3 years before refresh is needed. Color choices range from natural pink/coral tones (subtle enhancement) to bold reds (for those wanting more dramatic effect). Recovery involves 5-7 days of swollen, scaly lips that gradually flake to reveal the final color. Pre-treatment consultation should include screening for cold sore history (HSV) since lip tattoo can trigger outbreaks; antiviral prophylaxis is standard for affected patients.`,
+        benefits: ['Permanent lip color enhancement', 'Defines lip border and corrects asymmetry', 'No daily lipstick required', 'Subtle enhancement or bold color: your choice'],
         pros: ['Wakes up with lip color in place', 'Brightens dull or faded lips', 'Customizable color and intensity', 'Long-lasting (2-3 years)'],
         cons: ['5-7 days of swollen, peeling lips', 'Can trigger cold sore outbreaks (antiviral prophylaxis recommended)', 'Color shifts as it fades', 'Requires periodic refresh'],
-        idealFor: 'Patients with pale, asymmetric, or aging lips wanting permanent color enhancement — particularly those who wear lipstick daily.',
+        idealFor: 'Patients with pale, asymmetric, or aging lips wanting permanent color enhancement: particularly those who wear lipstick daily.',
         recoveryTime: '5-7 days (peeling), 6-8 weeks before touch-up',
         procedureDuration: '2-3 hours initial + 1 hour touch-up',
         costRange: '$400 - $1,200 (initial + touch-up)',
@@ -3511,7 +3509,7 @@ Treatment requires 2 sessions: an initial 2-3 hour application, followed by a to
         // Off-label per FDA (US) and PMDA (JP) for skin whitening, but
         // commonly marketed in TH/IN/PH/VN/MY/ID. Per-market gating:
         // sale-ready in those markets, hidden in others. The free /demo
-        // route stays live everywhere — it's the paid offerings that
+        // route stays live everywhere. It is the paid offerings that
         // are gated.
         marketsAllowed: ['TH', 'IN', 'PH', 'VN', 'MY', 'ID'],
         name: 'Glutathione (Skin Whitening Injection)',
@@ -3520,9 +3518,9 @@ Treatment requires 2 sessions: an initial 2-3 hour application, followed by a to
         categoryLabel: 'Injectable',
         simulatorType: '2d',
         description: 'IV or IM injection of the antioxidant glutathione, marketed for skin lightening. Hugely popular in APAC markets but with limited Western regulatory approval and active scientific debate.',
-        longDescription: `Glutathione is an endogenous antioxidant naturally produced in cells. Injectable glutathione (IV or IM) is marketed for skin lightening based on its mechanism of inhibiting tyrosinase — the enzyme that produces melanin — and converting eumelanin (darker) to pheomelanin (lighter). The treatment is enormously popular in the Philippines, Thailand, Vietnam, Indonesia, India, and parts of the Middle East for skin lightening, but remains controversial in Western medical circles where the FDA has issued explicit warnings about safety and efficacy.
+        longDescription: `Glutathione is an endogenous antioxidant naturally produced in cells. Injectable glutathione (IV or IM) is marketed for skin lightening based on its mechanism of inhibiting tyrosinase, the enzyme that produces melanin, and converting eumelanin (darker) to pheomelanin (lighter). The treatment is enormously popular in the Philippines, Thailand, Vietnam, Indonesia, India, and parts of the Middle East for skin lightening, but remains controversial in Western medical circles where the FDA has issued explicit warnings about safety and efficacy.
 
-Treatment protocols vary widely — typical IV regimens use 600-1,200mg per session, 1-3 times weekly for 8-12 weeks initial, then monthly maintenance. Cost is significant when summed across the protocol. The FDA does not approve injectable glutathione for skin lightening, and serious side effects (including kidney injury, Stevens-Johnson syndrome, and liver toxicity) have been reported with non-pharmaceutical-grade products. Patients pursuing this treatment should: (1) verify pharmaceutical-grade source, (2) be screened for kidney/liver function, (3) understand the limited evidence base.`,
+Treatment protocols vary widely: typical IV regimens use 600-1,200mg per session, 1-3 times weekly for 8-12 weeks initial, then monthly maintenance. Cost is significant when summed across the protocol. The FDA does not approve injectable glutathione for skin lightening, and serious side effects (including kidney injury, Stevens-Johnson syndrome, and liver toxicity) have been reported with non-pharmaceutical-grade products. Patients pursuing this treatment should: (1) verify pharmaceutical-grade source, (2) be screened for kidney/liver function, (3) understand the limited evidence base.`,
         benefits: ['Marketed for overall skin lightening', 'Antioxidant benefits beyond pigmentation', 'Popular in APAC aesthetic markets', 'Relatively quick treatment (15-30 min IV)'],
         pros: ['Wide cultural acceptance in many markets', 'Endogenous antioxidant (not foreign substance)', 'Multiple administration routes (IV, IM, oral)', 'Often combined with vitamin C for synergy'],
         cons: ['FDA does not approve for skin lightening', 'Limited rigorous clinical evidence vs marketing claims', 'Documented serious side effects (kidney, liver, allergic)', 'Treatment cost adds up significantly across protocol'],
@@ -3545,13 +3543,13 @@ Treatment protocols vary widely — typical IV regimens use 600-1,200mg per sess
         category: 'injectable',
         categoryLabel: 'Injectable',
         simulatorType: '2d',
-        description: 'Injectable solution that dissolves localized fat deposits in body areas. Different from Kybella (chin-only) — used on flanks, inner thighs, knees, banana rolls, and other small areas.',
-        longDescription: `Aqualyx (sodium deoxycholate) and similar products like Lemonbottle, Kabelline, and various local formulations are fat-dissolving injectables used on body areas where the FDA-approved Kybella is not indicated. The mechanism is similar — bile-salt-derived compounds destroy fat-cell membranes, leading to gradual elimination through the lymphatic system — but body applications are off-label and use larger volumes per session.
+        description: 'Injectable solution that dissolves localized fat deposits in body areas. Different from Kybella (chin-only); used on flanks, inner thighs, knees, banana rolls, and other small areas.',
+        longDescription: `Aqualyx (sodium deoxycholate) and similar products like Lemonbottle, Kabelline, and various local formulations are fat-dissolving injectables used on body areas where the FDA-approved Kybella is not indicated. The mechanism is similar: bile-salt-derived compounds destroy fat-cell membranes, leading to gradual elimination through the lymphatic system, but body applications are off-label and use larger volumes per session.
 
-Common treatment areas include flanks ("love handles"), inner thighs, knees, banana rolls (under buttocks), back rolls, upper arms, and bra fat. Each session uses 5-10 vials typically distributed across multiple injection points. Most patients require 2-4 sessions spaced 4-6 weeks apart. Significant swelling and bruising are expected for 5-7 days post-injection. Results appear gradually over 6-8 weeks. Patient selection is critical — these treatments are NOT for weight loss or large-volume reduction; they're for stubborn small fat pockets in patients otherwise close to their target weight.`,
+Common treatment areas include flanks ("love handles"), inner thighs, knees, banana rolls (under buttocks), back rolls, upper arms, and bra fat. Each session uses 5-10 vials typically distributed across multiple injection points. Most patients require 2-4 sessions spaced 4-6 weeks apart. Significant swelling and bruising are expected for 5-7 days post-injection. Results appear gradually over 6-8 weeks. Patient selection is critical: these treatments are NOT for weight loss or large-volume reduction; they're for stubborn small fat pockets in patients otherwise close to their target weight.`,
         benefits: ['Treats body areas where Kybella isn\'t FDA-approved', 'Non-surgical fat reduction', 'Can target small, specific areas', 'Permanent fat-cell destruction in treated zone'],
         pros: ['Non-surgical alternative to liposuction for small areas', 'In-office treatment, no general anesthesia', 'Permanent reduction in treated cells', 'Multiple body areas treatable'],
-        cons: ['Significant swelling/bruising for 5-7 days', 'Multiple sessions required (2-4)', 'Off-label in many markets — verify product source', 'NOT a weight-loss tool — only for localized small areas'],
+        cons: ['Significant swelling/bruising for 5-7 days', 'Multiple sessions required (2-4)', 'Off-label in many markets: verify product source', 'NOT a weight-loss tool: only for localized small areas'],
         idealFor: 'Patients near their target weight with small, stubborn fat pockets in body areas where Kybella isn\'t approved (flanks, thighs, knees, etc.).',
         recoveryTime: '5-7 days (swelling/bruising)',
         procedureDuration: '20-45 minutes per session',
@@ -3572,9 +3570,9 @@ Common treatment areas include flanks ("love handles"), inner thighs, knees, ban
         categoryLabel: 'Hair Restoration',
         simulatorType: '2d',
         description: 'Refined hair transplant technique using a Choi pen to implant grafts directly without pre-creating recipient channels. Higher density and more precise angle control than standard FUE.',
-        longDescription: `DHI (Direct Hair Implantation) is an evolution of FUE hair transplant that uses a specialized Choi pen-style implanter to extract and place grafts in a single instrument. Unlike traditional FUE — where recipient channels are pre-made before grafts are placed — DHI implants each graft in one motion, providing more precise control over angle, depth, and direction.
+        longDescription: `DHI (Direct Hair Implantation) is an evolution of FUE hair transplant that uses a specialized Choi pen-style implanter to extract and place grafts in a single instrument. Unlike traditional FUE, where recipient channels are pre-made before grafts are placed, DHI implants each graft in one motion, providing more precise control over angle, depth, and direction.
 
-Advantages include: higher graft density (more grafts per cm²), more precise direction matching to existing hair, no need to shave the recipient area in some cases, and reduced graft handling time (which improves survival). Disadvantages include: typically smaller maximum session size (~3,000 grafts vs FUE's 4,500+), higher cost per graft, and longer procedure time per graft. DHI is particularly popular for hairline restoration where precision matters most, and for patients seeking dense coverage in smaller areas. Major DHI clinics — particularly in Turkey, Thailand, and Korea — drive significant medical tourism.`,
+Advantages include: higher graft density (more grafts per cm²), more precise direction matching to existing hair, no need to shave the recipient area in some cases, and reduced graft handling time (which improves survival). Disadvantages include: typically smaller maximum session size (~3,000 grafts vs FUE's 4,500+), higher cost per graft, and longer procedure time per graft. DHI is particularly popular for hairline restoration where precision matters most, and for patients seeking dense coverage in smaller areas. Major DHI clinics (particularly in Turkey, Thailand, and Korea) drive significant medical tourism.`,
         benefits: ['Higher graft density than standard FUE', 'More precise angle/direction control', 'No need to shave recipient area in some cases', 'Reduced graft handling time'],
         pros: ['Particularly suited to hairline restoration', 'Less visible scarring during recovery', 'High patient satisfaction in well-selected cases', 'Major medical tourism driver'],
         cons: ['Higher cost per graft than standard FUE', 'Smaller maximum session size', 'Longer procedure time per graft', 'Requires specialized equipment and training'],
@@ -3602,13 +3600,13 @@ Advantages include: higher graft density (more grafts per cm²), more precise di
         description: 'Surgical reshaping of the gum line to address "gummy smile" or asymmetric gums. Reveals more natural tooth surface for improved smile aesthetics.',
         longDescription: `Gum contouring (gingivectomy or crown lengthening) reshapes the gum line by surgically removing or repositioning excess gum tissue to reveal more natural tooth surface. The procedure addresses gummy smiles (where >2-3mm of gum shows when smiling), asymmetric gum lines, or gums that cover too much of the tooth crown making teeth appear short or square.
 
-Two main approaches exist: gingivectomy (simple soft-tissue removal for excess gum without bony involvement) and crown lengthening (more extensive procedure that also reshapes the underlying bone). Modern techniques use lasers (CO2, diode, or Er:YAG) for the soft-tissue work — providing precise control and minimal bleeding. Crown lengthening with bone reshaping requires traditional surgical instruments. Recovery from soft-tissue-only procedures is brief (1-3 days); crown lengthening with bone work takes 7-14 days.
+Two main approaches exist: gingivectomy (simple soft-tissue removal for excess gum without bony involvement) and crown lengthening (more extensive procedure that also reshapes the underlying bone). Modern techniques use lasers (CO2, diode, or Er:YAG) for the soft-tissue work, providing precise control and minimal bleeding. Crown lengthening with bone reshaping requires traditional surgical instruments. Recovery from soft-tissue-only procedures is brief (1-3 days); crown lengthening with bone work takes 7-14 days.
 
-Gum contouring is a complement to (not replacement for) other dental aesthetics. Patients with gummy smiles who also have small teeth may benefit from veneers afterward to fully restore proportion. Distinct from "gummy smile" botox treatment — that’s muscular, while this is structural.`,
+Gum contouring is a complement to (not replacement for) other dental aesthetics. Patients with gummy smiles who also have small teeth may benefit from veneers afterward to fully restore proportion. Distinct from "gummy smile" botox treatment: that’s muscular, while this is structural.`,
         benefits: ['Reveals more natural tooth surface', 'Corrects asymmetric gum lines', 'Treats gummy smile structurally', 'Often part of comprehensive smile makeover'],
         pros: ['Modern laser techniques are precise and minimally bleeding', 'Improvement is permanent', 'Often single-session for soft-tissue cases', 'Results visible immediately after healing'],
         cons: ['Crown lengthening with bone work has longer recovery', 'Risk of gum recession or sensitivity', 'May expose more sensitive root surface', 'Often best when combined with other dental aesthetics'],
-        idealFor: 'Patients with gummy smiles, asymmetric gum lines, or short-appearing teeth from excess gum coverage — often as part of a comprehensive smile makeover.',
+        idealFor: 'Patients with gummy smiles, asymmetric gum lines, or short-appearing teeth from excess gum coverage: often as part of a comprehensive smile makeover.',
         recoveryTime: 'Soft-tissue: 1-3 days. Crown lengthening: 7-14 days',
         procedureDuration: '30 min - 2 hours depending on extent',
         costRange: '$300 - $3,000',
@@ -3628,13 +3626,13 @@ Gum contouring is a complement to (not replacement for) other dental aesthetics.
         categoryLabel: 'Non-Surgical',
         simulatorType: '2d',
         description: 'Multi-modality treatment combining microneedling, RF, lasers, and topicals to improve the appearance of stretch marks. Results vary by stretch-mark age and treatment approach.',
-        longDescription: `Stretch marks (striae) result from rapid skin stretching during pregnancy, growth spurts, weight changes, or anabolic steroid use, causing the dermis to tear at a microscopic level. They progress through phases: red/purple (striae rubrae) when fresh and active, then mature to silvery-white (striae albae). Treatment is significantly more effective during the red phase — older white striae are much harder to improve.
+        longDescription: `Stretch marks (striae) result from rapid skin stretching during pregnancy, growth spurts, weight changes, or anabolic steroid use, causing the dermis to tear at a microscopic level. They progress through phases: red/purple (striae rubrae) when fresh and active, then mature to silvery-white (striae albae). Treatment is significantly more effective during the red phase: older white striae are much harder to improve.
 
-Multiple modalities exist: fractional CO2 laser, RF microneedling (Morpheus8 is popular for this), pulsed dye laser (effective for red striae specifically), microneedling with PRP, and topical retinoids. Best outcomes typically combine modalities — for example, fractional laser + topical retinoid + occasional PRP. Patient education about expectations is critical: complete erasure of stretch marks is rare; substantial improvement is the realistic goal. Treatment courses typically run 4-8 sessions spaced 4-6 weeks apart over 4-8 months.`,
-        benefits: ['Improves the appearance of stretch marks substantially', 'Multiple modalities to match stretch-mark age', 'Fresh (red) striae respond best — earlier treatment is better', 'Combined treatments outperform single modalities'],
-        pros: ['Multiple FDA-cleared technologies available', 'Procedural risk is low', 'Combinable with other body procedures', 'Stretch marks are extremely common — high demand'],
+Multiple modalities exist: fractional CO2 laser, RF microneedling (Morpheus8 is popular for this), pulsed dye laser (effective for red striae specifically), microneedling with PRP, and topical retinoids. Best outcomes typically combine modalities: for example, fractional laser + topical retinoid + occasional PRP. Patient education about expectations is critical: complete erasure of stretch marks is rare; substantial improvement is the realistic goal. Treatment courses typically run 4-8 sessions spaced 4-6 weeks apart over 4-8 months.`,
+        benefits: ['Improves the appearance of stretch marks substantially', 'Multiple modalities to match stretch-mark age', 'Fresh (red) striae respond best: earlier treatment is better', 'Combined treatments outperform single modalities'],
+        pros: ['Multiple FDA-cleared technologies available', 'Procedural risk is low', 'Combinable with other body procedures', 'Stretch marks are extremely common: high demand'],
         cons: ['Cannot completely erase stretch marks', 'Multiple sessions required (4-8 typical)', 'White (mature) striae respond less well than red', 'Treatment cost adds up significantly'],
-        idealFor: 'Patients with stretch marks from pregnancy, weight changes, or growth — particularly those caught in the red phase, where treatment outcomes are best.',
+        idealFor: 'Patients with stretch marks from pregnancy, weight changes, or growth: particularly those caught in the red phase, where treatment outcomes are best.',
         recoveryTime: '3-7 days redness/sensitivity per session',
         procedureDuration: '30-60 minutes per session; 4-8 sessions typical',
         costRange: '$400 - $1,500 per session',
@@ -3653,16 +3651,16 @@ Multiple modalities exist: fractional CO2 laser, RF microneedling (Morpheus8 is 
         category: 'injectable',
         categoryLabel: 'Injectable',
         simulatorType: '2d',
-        description: 'Intravenous infusion of fluids, vitamins, minerals, and antioxidants — including hydration drips, Myers\' cocktail, vitamin C, B-complex, NAD+, and glutathione blends. Hugely popular in APAC wellness and aesthetic clinics. Evidence for marketed benefits beyond hydration and correcting diagnosed deficiencies is limited.',
+        description: 'Intravenous infusion of fluids, vitamins, minerals, and antioxidants, including hydration drips, Myers\' cocktail, vitamin C, B-complex, NAD+, and glutathione blends. Hugely popular in APAC wellness and aesthetic clinics. Evidence for marketed benefits beyond hydration and correcting diagnosed deficiencies is limited.',
         longDescription: `IV therapy (intravenous vitamin and nutrient infusion) delivers fluids, electrolytes, vitamins, minerals, and antioxidants directly into the bloodstream, bypassing the gastrointestinal system. Most sessions run 20–60 minutes in a supervised clinical setting; a trained nurse or doctor inserts a peripheral IV line, and the selected formulation drips in at a controlled rate. There is no downtime.
 
-**Common drip types — what they contain and what the evidence says:**
+**Common drip types: what they contain and what the evidence says:**
 
 Plain hydration and electrolyte drips contain normal saline or Lactated Ringer's solution with sodium, potassium, and chloride. This is the most clinically grounded IV offering: rapid rehydration is effective and well-established for dehydration from illness, exercise, or alcohol, and is the only IV-therapy claim with consistent clinical support for otherwise healthy adults.
 
-Myers' cocktail — first described by physician John Myers in the 1970s — combines magnesium, calcium, B vitamins (B1, B2, B3, B5, B6), and vitamin C. It is one of the most commonly administered "wellness" infusions. Small observational studies suggest some benefit for fatigue and fibromyalgia; controlled trial evidence is limited, and most clinics administer modified proprietary versions rather than the original formula. Reasonable rationale exists for correcting demonstrated B-vitamin or magnesium deficiency, but claims beyond that are not strongly supported.
+Myers' cocktail, first described by physician John Myers in the 1970s, combines magnesium, calcium, B vitamins (B1, B2, B3, B5, B6), and vitamin C. It is one of the most commonly administered "wellness" infusions. Small observational studies suggest some benefit for fatigue and fibromyalgia; controlled trial evidence is limited, and most clinics administer modified proprietary versions rather than the original formula. Reasonable rationale exists for correcting demonstrated B-vitamin or magnesium deficiency, but claims beyond that are not strongly supported.
 
-High-dose vitamin C drips deliver ascorbic acid at concentrations far above what the gut can absorb orally (often 10–50 g per session). Research on high-dose IV vitamin C is active and genuine, particularly in oncology-support contexts — but evidence for routine "immune boost" or "skin glow" in healthy adults is weak and mixed. High-dose vitamin C is metabolised to oxalate; patients with renal impairment or G6PD deficiency should not receive it without specialist guidance.
+High-dose vitamin C drips deliver ascorbic acid at concentrations far above what the gut can absorb orally (often 10–50 g per session). Research on high-dose IV vitamin C is active and genuine, particularly in oncology-support contexts, but evidence for routine "immune boost" or "skin glow" in healthy adults is weak and mixed. High-dose vitamin C is metabolised to oxalate; patients with renal impairment or G6PD deficiency should not receive it without specialist guidance.
 
 B-complex and B12 "energy" drips replace vitamins that are genuinely lost through poor diet, alcohol use, malabsorption, or vegan diets. If you are B12-deficient, IV or IM replacement is clinically effective and fast. If you are not deficient, the excess is excreted in urine with negligible lasting effect on energy.
 
@@ -3670,9 +3668,9 @@ NAD+ (nicotinamide adenine dinucleotide) drips are among the most expensive offe
 
 Glutathione and antioxidant blends add glutathione (a naturally produced antioxidant) or vitamin C/E mixes, sometimes alongside brightening or "glow" claims. Glutathione is unstable in the bloodstream and is rapidly metabolised; the clinical literature on IV glutathione for skin lightening or systemic antioxidant loading is sparse and largely anecdotal. See our dedicated glutathione injection page for more detail.
 
-**Shared safety considerations:** all IV therapy carries a small but real risk of IV-site infection, bruising, or phlebitis with repeated access of the same vein. Rapid fluid infusion can precipitate fluid overload in patients with cardiac or renal insufficiency — this is a genuine medical risk, not a theoretical one. Compounding quality varies widely between clinics; pharmaceutical-grade, sterile-prepared formulations from a licensed pharmacy are essential. IV therapy is not a substitute for medical diagnosis or treatment of any condition.`,
+**Shared safety considerations:** all IV therapy carries a small but real risk of IV-site infection, bruising, or phlebitis with repeated access of the same vein. Rapid fluid infusion can precipitate fluid overload in patients with cardiac or renal insufficiency: this is a genuine medical risk, not a theoretical one. Compounding quality varies widely between clinics; pharmaceutical-grade, sterile-prepared formulations from a licensed pharmacy are essential. IV therapy is not a substitute for medical diagnosis or treatment of any condition.`,
         benefits: [
-            'Rapid rehydration — the most well-established benefit',
+            'Rapid rehydration: the most well-established benefit',
             'Marketed for hangover and jet-lag recovery; evidence is mainly anecdotal',
             'Popular adjunct in wellness and aesthetic clinic protocols',
             'May support nutritional correction in patients with documented deficiencies',
@@ -3687,12 +3685,12 @@ Glutathione and antioxidant blends add glutathione (a naturally produced antioxi
             'Evidence for most marketed benefits (energy, immunity, skin glow) is limited or mixed outside correcting a deficiency',
             'Risk of infection or bruising at the IV insertion site',
             'Vein irritation or phlebitis with frequent sessions',
-            'Fluid overload risk in patients with cardiac or renal conditions — medical screening is required',
-            'Compounding quality varies widely in unregulated clinics — verify pharmaceutical-grade sourcing',
+            'Fluid overload risk in patients with cardiac or renal conditions: medical screening is required',
+            'Compounding quality varies widely in unregulated clinics: verify pharmaceutical-grade sourcing',
             'Cost stacks significantly across regular sessions without established long-term benefit',
             'Effects are temporary; not a substitute for diet, hydration, or medical care',
         ],
-        idealFor: 'Adults seeking wellness or hydration support who have been medically screened and are otherwise healthy. Not appropriate without clinician evaluation for anyone with cardiac, renal, or hepatic conditions. Best framed as a complement to — not a replacement for — adequate oral hydration and nutrition.',
+        idealFor: 'Adults seeking wellness or hydration support who have been medically screened and are otherwise healthy. Not appropriate without clinician evaluation for anyone with cardiac, renal, or hepatic conditions. Best framed as a complement to, not a replacement for, adequate oral hydration and nutrition.',
         recoveryTime: 'No downtime',
         procedureDuration: '20–60 minutes per session',
         costRange: '$60 – $500 per session depending on formulation and market',
@@ -3718,7 +3716,7 @@ Glutathione and antioxidant blends add glutathione (a naturally produced antioxi
         categoryLabel: 'Body Contouring',
         simulatorType: '2d',
         description: 'Remove excess skin and fat from the upper arms following major weight loss or aging-related laxity. Creates a smoother, tighter arm contour with definition.',
-        longDescription: `Brachioplasty (arm lift) addresses excess skin and fat in the upper arms — most commonly seen after significant weight loss or as a result of age-related skin laxity. Diet and exercise can shrink fat but cannot tighten loose skin once elasticity is lost; brachioplasty is the only intervention that durably restores upper-arm contour in these cases.
+        longDescription: `Brachioplasty (arm lift) addresses excess skin and fat in the upper arms, most commonly seen after significant weight loss or as a result of age-related skin laxity. Diet and exercise can shrink fat but cannot tighten loose skin once elasticity is lost; brachioplasty is the only intervention that durably restores upper-arm contour in these cases.
 
 The traditional procedure makes an incision along the inner upper arm from the armpit to the elbow, removes excess skin and underlying fat (often combined with liposuction for contour refinement), and tightens the deeper fascial layer. For patients with less severe laxity, a "minimal-incision" or "limited brachioplasty" may be performed with an incision confined to the armpit only.
 
@@ -3726,7 +3724,7 @@ Trade-offs are significant: the procedure delivers reliably tighter arms, but th
         benefits: [
             'Eliminate "bat wing" sagging skin in the upper arms',
             'Restore arm contour after major weight loss',
-            'Improve fit of clothing — sleeves, fitted tops, athletic wear',
+            'Improve fit of clothing: sleeves, fitted tops, athletic wear',
             'Liposuction can be combined for contour refinement',
             'Permanent results when weight is maintained',
         ],
@@ -3738,7 +3736,7 @@ Trade-offs are significant: the procedure delivers reliably tighter arms, but th
             'Minimal-incision options exist for less severe cases',
         ],
         cons: [
-            'Permanent scar runs along the inner arm — visible when arms are raised',
+            'Permanent scar runs along the inner arm: visible when arms are raised',
             'Significant recovery: 2–4 weeks of restricted arm use, 4–6 weeks for return to exercise',
             'Risk of hypertrophic scarring (worse in some patients than others)',
             'Risk of nerve injury, seroma, infection, asymmetry, and wound healing delays',
@@ -3784,6 +3782,32 @@ export function getAllProceduresSorted(): Procedure[] {
     return [...PROCEDURES].sort((a, b) => a.order - b.order);
 }
 
+export interface ProcedureCounts {
+    total: number;
+    /** A working simulator: not coming soon and not consult-only. */
+    live: number;
+    categories: number;
+    byCategory: Record<ProcedureCategoryKey, { total: number; live: number }>;
+}
+
+/** Every count on the marketing pages comes from here, never a typed number. */
+export function getProcedureCounts(): ProcedureCounts {
+    const byCategory = {} as ProcedureCounts['byCategory'];
+    for (const category of PROCEDURE_CATEGORIES) {
+        byCategory[category.key] = { total: 0, live: 0 };
+    }
+    let live = 0;
+    for (const procedure of PROCEDURES) {
+        const bucket = byCategory[procedure.category];
+        bucket.total += 1;
+        if (!procedure.comingSoon && !CONSULT_ONLY_SLUGS.includes(procedure.slug)) {
+            bucket.live += 1;
+            live += 1;
+        }
+    }
+    return { total: PROCEDURES.length, live, categories: PROCEDURE_CATEGORIES.length, byCategory };
+}
+
 export function getAllProcedureSlugs(): string[] {
     return PROCEDURES.map((p) => p.slug);
 }
@@ -3794,7 +3818,7 @@ export function isSimulatorAvailable(slug: string): boolean {
 }
 
 /**
- * Whether a procedure is sale-ready — i.e. surgeons may post deals,
+ * Whether a procedure is sale-ready, i.e. surgeons may post deals,
  * patients may purchase a Day Pass, and the marketplace surfaces it.
  *
  * Default policy: undefined → TRUE. This matches the post-#178-#182
@@ -3803,7 +3827,7 @@ export function isSimulatorAvailable(slug: string): boolean {
  * `saleReady: false`) are hidden from money flows but stay live for
  * the free /demo route.
  *
- * comingSoon trumps saleReady — a comingSoon procedure is never
+ * comingSoon trumps saleReady. A comingSoon procedure is never
  * sale-ready regardless of the flag.
  *
  * Optional countryCode (ISO 3166-1 alpha-2): when supplied, also
@@ -3816,7 +3840,7 @@ export function isProcedureSaleReady(slug: string, countryCode?: string): boolea
     if (p.comingSoon) return false;
     if (p.tier === 'C') return false;
     if (p.saleReady === false) return false;
-    // Per-market gating — when marketsAllowed is set AND a countryCode
+    // Per-market gating. When marketsAllowed is set AND a countryCode
     // is supplied, the country must be on the allow list.
     if (countryCode && Array.isArray(p.marketsAllowed) && p.marketsAllowed.length > 0) {
         return p.marketsAllowed.includes(countryCode.toUpperCase());
@@ -3857,8 +3881,7 @@ export const CATEGORIES: ProcedureCategoryKey[] = ['surgical', 'non-surgical', '
 
 // Legacy exports for backward compatibility with existing procedure detail pages
 export type ProcedureCategory_Legacy = "Face" | "Body" | "Non-Surgical";
-// legacy procedureCategories superseded below
-export const procedureCategories_legacy: ProcedureCategory_Legacy[] = ["Face", "Body", "Non-Surgical"];
+export const procedureCategories: ProcedureCategory_Legacy[] = ["Face", "Body", "Non-Surgical"];
 
 export interface ExplorerProcedure {
     slug: string;
@@ -3911,43 +3934,56 @@ export interface Procedure_Legacy {
     };
 }
 
+export const legacyProcedures: Procedure_Legacy[] = [
+    {
+        slug: "rhinoplasty",
+        title: "Precision Rhinoplasty",
+        description: "Anatomically constrained nasal restructuring using 468-point mesh technology to ensure functional and aesthetic harmony.",
+        landmarks: ["Radix Height", "Tip Projection", "Alar Base Width", "Columellar Show"],
+        benchmarks: { nla: "78-93\u00B0", goode: "0.55-0.60", phi: "1.618" },
+        recovery: { downtime: "7-10 Days", swelling: "2-4 Weeks", pain: "Mild to Moderate" },
+        cost: { usd: "$4,500 - $8,000", thb: "\u0E3F150,000 - \u0E3F280,000", krw: "\u20A95,500,000 - \u20A99,000,000" },
+    },
+    {
+        slug: "blepharoplasty",
+        title: "Upper/Lower Blepharoplasty",
+        description: "Precision eyelid surgery to restore youthful contours and visual field without altering your unique ethnic identity.",
+        landmarks: ["Supratarsal Crease", "Palpebral Fissure Height", "Canthal Tilt"],
+        benchmarks: { nla: "N/A", goode: "N/A", phi: "1.618 (Eye Width/Intercanthal)" },
+        recovery: { downtime: "5-7 Days", swelling: "1-2 Weeks", pain: "Mild" },
+        cost: { usd: "$3,000 - $5,500", thb: "\u0E3F80,000 - \u0E3F180,000", krw: "\u20A93,000,000 - \u20A96,500,000" },
+    },
+    {
+        slug: "facelift",
+        title: "Deep Plane Facelift",
+        description: "Comprehensive facial rejuvenation targeting the SMAS layer for natural, long-lasting results validated by digital twin analysis.",
+        landmarks: ["Jowl Line", "Marionette Lines", "Malar Prominence"],
+        benchmarks: { nla: "N/A", goode: "N/A", phi: "1.618 (Face Height/Width)" },
+        recovery: { downtime: "10-14 Days", swelling: "3-6 Weeks", pain: "Moderate" },
+        cost: { usd: "$12,000 - $20,000", thb: "\u0E3F350,000 - \u0E3F600,000", krw: "\u20A915,000,000 - \u20A925,000,000" },
+    },
+    {
+        slug: "genioplasty",
+        title: "Sliding Genioplasty",
+        description: "Chin augmentation or reduction to balance the facial profile, utilizing Goode\u2019s Ratio for optimal projection.",
+        landmarks: ["Pogonion", "Menton", "Labiodental Fold"],
+        benchmarks: { nla: "N/A", goode: "0.55-0.60 (Projection)", phi: "1.618" },
+        recovery: { downtime: "7-10 Days", swelling: "2-4 Weeks", pain: "Mild to Moderate" },
+        cost: { usd: "$5,000 - $8,500", thb: "\u0E3F160,000 - \u0E3F290,000", krw: "\u20A96,000,000 - \u20A910,000,000" },
+    },
+    {
+        slug: "jaw-contouring",
+        title: "V-Line Jaw Contouring",
+        description: "Mandibular angle reduction and chin narrowing to achieve a refined, symmetrical lower face profile.",
+        landmarks: ["Gonional Angle", "Bigonial Width", "Bizygomatic Width"],
+        benchmarks: { nla: "N/A", goode: "N/A", phi: "1.618 (Bizygomatic/Bigonial)" },
+        recovery: { downtime: "10-14 Days", swelling: "4-8 Weeks", pain: "Moderate" },
+        cost: { usd: "$8,000 - $12,000", thb: "\u0E3F250,000 - \u0E3F400,000", krw: "\u20A99,000,000 - \u20A914,000,000" },
+    },
+];
 
-// Augmented exports for full backward compatibility across the application
-export const procedureCategories: Record<string, { label: string; color: string; icon: string }> = {
-    surgical: { label: 'Surgical', color: 'accent', icon: '🩸' },
-    'non-surgical': { label: 'Non-Surgical', color: 'sage', icon: '✨' },
-    injectable: { label: 'Injectable', color: 'teal', icon: '💉' },
-    dental: { label: 'Dental Aesthetics', color: 'moss', icon: '🦷' },
-    'body-contouring': { label: 'Body Contouring', color: 'forest', icon: '💪' },
-    'hair-restoration': { label: 'Hair Restoration', color: 'pine', icon: '💆' },
-    body: { label: 'Body Contouring', color: 'forest', icon: '💪' },
-    hair: { label: 'Hair Restoration', color: 'pine', icon: '💆' },
-};
-
-export interface FullProcedure extends Procedure {
-    simulatorSlug: string;
-    shortDescription: string;
-    relatedProcedures: string[];
-    disclaimer: string;
-}
-
-export function getRelatedProcedures(procedure: Procedure): FullProcedure[] {
-    if (procedure.relatedProcedures && procedure.relatedProcedures.length > 0) {
-        return procedure.relatedProcedures
-            .map(s => getProcedureBySlug(s))
-            .filter((p): p is FullProcedure => p !== undefined);
-    }
-    return procedures.filter((p) => p.category === procedure.category && p.slug !== procedure.slug).slice(0, 3);
-}
-
-// Ensure all PROCEDURES have simulatorSlug, shortDescription, disclaimer
-PROCEDURES.forEach((p) => {
-    (p as any).simulatorSlug = p.simulateSlug || p.slug;
-    (p as any).shortDescription = p.shortName || p.description;
-    (p as any).disclaimer = 'Simulations are educational visualizations only. Results do not predict surgical outcomes.';
-    (p as any).relatedProcedures = PROCEDURES.filter(r => r.category === p.category && r.slug !== p.slug).slice(0, 3).map(r => r.slug);
-});
-
-// Re-export full 86 procedures as 'procedures'
-export const procedures: FullProcedure[] = PROCEDURES as FullProcedure[];
-
+export const procedures = PROCEDURES.map((p) => ({
+    ...p,
+    simulatorSlug: p.simulateSlug || p.slug,
+    shortDescription: p.description,
+}));

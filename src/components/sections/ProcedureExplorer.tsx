@@ -19,6 +19,15 @@ const categoryOrder: ProcedureCategoryKey[] = [
   'hair-restoration',
 ];
 
+const categoryLabels: Record<ProcedureCategoryKey, string> = {
+  surgical: 'Surgical',
+  'non-surgical': 'Non-Surgical',
+  injectable: 'Injectable',
+  dental: 'Dental',
+  'body-contouring': 'Body Contouring',
+  'hair-restoration': 'Hair Restoration',
+};
+
 export default function ProcedureExplorer() {
   const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<ProcedureCategoryKey>('surgical');
@@ -82,7 +91,7 @@ export default function ProcedureExplorer() {
                   : 'bg-white text-[#141413] border-black/5 hover:bg-[#EBE7E3]'
               )}
             >
-              {t(procedureCategories[cat].label)}
+              {t(categoryLabels[cat])}
             </button>
           ))}
         </div>

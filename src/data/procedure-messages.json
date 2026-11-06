@@ -1,0 +1,466 @@
+{
+  "ProcedurePage": {
+    "breadcrumbProcedures": "Procedures",
+    "heroTrySimulator": "Try {name} Simulator",
+    "heroViewAllSimulators": "View All Simulators",
+    "heroAllProcedures": "All Procedures",
+    "heroComingSoon": "Simulator coming soon for this procedure.",
+    "overviewTitle": "Overview",
+    "keyBenefitsTitle": "Key Benefits",
+    "prosConsTitle": "Pros & Cons",
+    "prosLabel": "Pros",
+    "consLabel": "Cons",
+    "idealForTitle": "Who Is This For?",
+    "quickFactsTitle": "Quick Facts",
+    "recoveryTimeLabel": "Recovery Time",
+    "procedureDurationLabel": "Procedure Duration",
+    "sidebarTrySimulator": "Try Simulator",
+    "sidebarViewSimulators": "View Simulators",
+    "ctaTitle": "Ready to see your {name} results?",
+    "ctaBody": "Upload a photo and preview your results with our AI-powered simulator. No downloads, no hardware, no data uploads.",
+    "ctaTrySimulator": "Try {name} Simulator",
+    "ctaBrowseSimulators": "Browse Simulators",
+    "relatedProceduresTitle": "Related {category} Procedures",
+    "qaLinkEyebrow": "Patient Q&A",
+    "qaLinkTitle": "{name} questions",
+    "qaLinkBody": "Real patient questions answered by Faceify Labs clinicians. Recovery, costs, candidacy.",
+    "galleryLinkEyebrow": "Real before & after",
+    "galleryLinkTitle": "Verified patient stories",
+    "galleryLinkBody": "Real outcomes submitted by patients and clinics, reviewed and consent-confirmed before publication.",
+    "surgeonDirectory": {
+      "eyebrow": "Find a surgeon",
+      "headingVerified": "Verified {procedure} surgeons",
+      "headingEmpty": "No verified {procedure} surgeons listed yet",
+      "emptyBody": "We're onboarding the first cohort. Be the first {procedure} surgeon in your city.",
+      "applyToList": "Apply to be listed",
+      "browseAll": "Browse all",
+      "browseAllSurgeons": "Browse all {procedure} surgeons",
+      "verifiedAriaLabel": "Verified surgeon",
+      "procedureCount": "{count} procedure",
+      "procedureCountPlural": "{count} procedures"
+    },
+    "costEstimator": {
+      "eyebrow": "Typical pricing",
+      "heading": "What does {procedure} cost in your city?",
+      "cityLabel": "Your city",
+      "cityAriaLabel": "Choose your city for cost estimate",
+      "rangeLabel": "Typical range in {city}",
+      "rangeDisclaimer": "Range reflects 5thâ€“95th percentile of clinic prices in {city}. Final quote depends on surgeon experience, technique (e.g. open vs closed), facility, and complexity. Not a quote.",
+      "seeDeals": "See live deals in {city}",
+      "sourceNote": "Educational estimate. Sources: 2026 RealSelf + ASAPS surveys, Practo + clinic-listed prices. Verified annually."
+    }
+  },
+  "ProcedureExplainer": {
+    "rhinoplasty": {
+      "eyebrow": "Rhinoplasty",
+      "heading": "Try a new nose on your own photo, before you decide.",
+      "subtext": "What the operation involves, how recovery goes, what it typically costs, and a simulator to show your surgeon the change you want. Surgeons will find the measurements and controls further down.",
+      "ctaPrimary": "Try it on your photo",
+      "ctaSecondary": "For surgeons",
+      "ctaPartner": "Apply for Founding Partner",
+      "figure": {
+        "label": "Front view",
+        "caption": "{changes} on an AI-generated face. Simulator output, illustrative only.",
+        "before": "Before",
+        "after": "Simulated",
+        "dragHint": "Drag to compare",
+        "alt": "front view of an AI-generated model face"
+      },
+      "about": {
+        "eyebrow": "At a glance",
+        "heading": "What rhinoplasty is.",
+        "body": "Rhinoplasty reshapes the nose: the bridge, the tip, the nostrils, or all of them. In a closed rhinoplasty the cuts are inside the nostrils. An open rhinoplasty adds a small cut between them, which gives the surgeon a clearer view of the cartilage. If the septum is crooked, it can be straightened in the same operation to help breathing.",
+        "facts": {
+          "duration": {
+            "value": "1.5â€“3 h",
+            "label": "In surgery, asleep or sedated"
+          },
+          "nights": {
+            "value": "0â€“2",
+            "label": "Nights in hospital, often none"
+          },
+          "work": {
+            "value": "1â€“2 wk",
+            "label": "Off work or school"
+          },
+          "final": {
+            "value": "1 yr",
+            "label": "Until the final shape shows"
+          }
+        }
+      },
+      "measure": {
+        "eyebrow": "What it measures",
+        "heading": "The nasal analysis and its published references.",
+        "subtext": "The simulator measures these on the patient's photo. Each table gives the published reference, the group it was published for, and its source.",
+        "groups": {
+          "side": "Side view",
+          "front": "Front view",
+          "either": "Either view"
+        },
+        "columns": {
+          "measurement": "Measurement",
+          "what": "What it is",
+          "reference": "Reference",
+          "appliesTo": "Applies to",
+          "source": "Source"
+        },
+        "sex": {
+          "M": "Male",
+          "F": "Female",
+          "any": "Either sex"
+        },
+        "population": {
+          "caucasian": "Caucasian",
+          "eastAsian": "East Asian",
+          "turkish": "Turkish",
+          "indian": "Indian",
+          "unspecified": "population not stated"
+        },
+        "kind": {
+          "ideal": "ideal",
+          "pointIdeal": "point ideal",
+          "observed": "observed"
+        },
+        "appliesTo": "{sex}, {population}, {kind}",
+        "legend": "Ideal: an author's target range. Point ideal: one published value with no range. Observed: the spread measured in that group, not a target. * The simulator estimates one landmark of this reading. â€  From a secondary source; check the original.",
+        "caveat": "References are textbook norms, drawn mostly from Caucasian populations. Use them as reference points for discussion, not as targets for every patient.",
+        "guides": "Also drawn in the simulator as guides, with no reference listed: {names}.",
+        "side": "In the simulator, side-view angles are measured on a profile photo like this one. The table below gives their published references.",
+        "referencesHeading": "References",
+        "figures": {
+          "front": {
+            "label": "Alar to intercanthal ratio",
+            "caption": "The simulator marks the nostril base and the inner eye corners on the front photo of an AI-generated model face, then prints their ratio: <num>{value}</num>, against a reference of <num>{reference}</num> <source></source>. Simulator output, illustrative only.",
+            "alt": "Front photo of an AI-generated model face with the simulator's nostril base and inner eye corner marks, printing an alar to intercanthal ratio of {value} against a reference of {reference}."
+          },
+          "side": {
+            "label": "Profile",
+            "caption": "<changes></changes> on the profile of an AI-generated model face. Simulator output, illustrative only.",
+            "alt": "profile of an AI-generated model face"
+          }
+        },
+        "items": {
+          "nasofrontal": {
+            "name": "Nasofrontal angle",
+            "body": "The angle at the nasion between the forehead and the bridge."
+          },
+          "nasolabial": {
+            "name": "Nasolabial angle",
+            "body": "The angle between the columella and the upper lip."
+          },
+          "nasomental": {
+            "name": "Nasomental angle",
+            "body": "The angle at the tip between the nasion and the chin."
+          },
+          "goode": {
+            "name": "Goode ratio",
+            "body": "Tip projection divided by nasal length."
+          },
+          "totalProjection": {
+            "name": "Total projection",
+            "body": "Alar crease to tip, against nasion to tip."
+          },
+          "intrinsicProjection": {
+            "name": "Intrinsic projection",
+            "body": "How far the tip lobule projects beyond the columella."
+          },
+          "tipRotation": {
+            "name": "Tip rotation",
+            "body": "The angle of the tip, measured at the alar crease from the vertical."
+          },
+          "columellar": {
+            "name": "Columellar parallelism",
+            "body": "Whether the tip axis runs parallel to the columella."
+          },
+          "nasalLength": {
+            "name": "Nasal length",
+            "body": "Nasion to tip, against midface height."
+          },
+          "dorsalLine": {
+            "name": "Dorsal line",
+            "body": "Bridge height against the line from nasion to tip, to show a hump or a dip."
+          },
+          "tipPoint": {
+            "name": "Tip-defining point",
+            "body": "The most projected point of the tip, marked as a reference."
+          },
+          "alarIC": {
+            "name": "Alar to intercanthal ratio",
+            "body": "Nostril base width against the distance between the inner eye corners."
+          },
+          "symmetry": {
+            "name": "Nose symmetry",
+            "body": "How far the nasal axis leans off the face midline, with a mirror mismatch score."
+          },
+          "nasalThirds": {
+            "name": "Nasal thirds",
+            "body": "The nose split into upper, middle and lower thirds, to locate a deviation."
+          },
+          "dorsalAesthetic": {
+            "name": "Dorsal aesthetic lines",
+            "body": "The brow-to-tip lines that frame the bridge."
+          },
+          "facialThirds": {
+            "name": "Facial thirds and fifths",
+            "body": "Guide lines for vertical and horizontal facial proportion."
+          },
+          "frankfort": {
+            "name": "Frankfort horizontal",
+            "body": "A head-tilt reference, so angles are read from a level head."
+          }
+        }
+      },
+      "adjust": {
+        "eyebrow": "What you can adjust",
+        "heading": "Each control moves one part of the nose.",
+        "subtext": "The slider shows its value in millimetres or degrees, inside a fixed range.",
+        "columns": {
+          "control": "Control",
+          "changes": "What it changes",
+          "range": "Range",
+          "view": "View"
+        },
+        "viewFront": "Front",
+        "viewBoth": "Front and side",
+        "items": {
+          "dorsalProfile": {
+            "name": "Dorsal height",
+            "body": "Reduces a hump or builds up a low bridge."
+          },
+          "bridgeWidth": {
+            "name": "Dorsal width",
+            "body": "Narrows or widens the middle of the bridge."
+          },
+          "tipRefinement": {
+            "name": "Tip width",
+            "body": "Refines or widens the tip."
+          },
+          "tipRotation": {
+            "name": "Tip rotation",
+            "body": "Turns the tip up or down."
+          },
+          "tipProjection": {
+            "name": "Tip projection",
+            "body": "Brings the tip forward or back."
+          },
+          "nasalLength": {
+            "name": "Nasal length",
+            "body": "Shortens or lengthens the nose."
+          },
+          "nostrilWidth": {
+            "name": "Alar base width",
+            "body": "Narrows or widens the nostril base."
+          },
+          "deviationCorrection": {
+            "name": "Deviation correction",
+            "body": "Moves a crooked nose toward the midline."
+          }
+        },
+        "extras": "Also: each side adjusted on its own, bony base width for surgeons, four one-tap presets, and a brush for fine edits."
+      },
+      "consult": {
+        "eyebrow": "In the consult",
+        "heading": "With the patient in the chair.",
+        "s1": {
+          "title": "Photograph front and side",
+          "body": "In published studies, side views matched results more often than front views. Take both."
+        },
+        "s2": {
+          "title": "Turn on the overlays",
+          "body": "Show the patient where their angles and ratios sit against the textbook references."
+        },
+        "s3": {
+          "title": "Adjust together",
+          "body": "Move one control at a time so the patient sees each change."
+        },
+        "s4": {
+          "title": "Keep the picture",
+          "body": "Download the before and after image for the record."
+        }
+      },
+      "evidence": {
+        "eyebrow": "The research",
+        "heading": "What rhinoplasty imaging studies found.",
+        "subtext": "These studies used other imaging tools, not Faceify.",
+        "punthakee": {
+          "value": "79.5%",
+          "body": "of 112 rhinoplasty patients rated the side-view simulation very close to or identical with their result. For the front view, 41.1%."
+        },
+        "agarwal": {
+          "value": "68%",
+          "body": "of 300 ratings by 12 blinded surgeons judged the simulation a realistic picture of the result, fully or with room to be closer. In 32% it was not."
+        },
+        "lekakis": {
+          "value": "57%",
+          "body": "of patients who were not offered surgery were unsatisfied with the proposed simulation, against 16% of those who went ahead."
+        },
+        "yamamichi": {
+          "value": "0.66",
+          "body": "correlation between how closely the simulation matched the result and patient satisfaction, across 38 rhinoplasties."
+        },
+        "sourcesHeading": "Sources"
+      },
+      "faq": {
+        "heading": "Questions surgeons ask",
+        "items": {
+          "result": {
+            "q": "Does the simulation show the surgical result?",
+            "a": "No. It shows a proposed change on the patient's photo so you can agree on direction and degree. It does not model healing, skin thickness or cartilage."
+          },
+          "photos": {
+            "q": "Which photos work best?",
+            "a": "A well-lit front photo and a true side profile. Side-view measurements such as the nasolabial and nasofrontal angles need the profile."
+          },
+          "references": {
+            "q": "Do the reference ranges apply to every patient?",
+            "a": "No. They are textbook norms, drawn mostly from Caucasian populations. Use them as reference points for discussion, not as targets."
+          },
+          "camera": {
+            "q": "Can I use a live camera?",
+            "a": "Yes, for rhinoplasty. Live camera mode shows the change on the patient's face in real time, and the camera frame is processed on the device."
+          }
+        }
+      },
+      "cases": {
+        "eyebrow": "Nose types",
+        "heading": "Common nose shapes, each set in the simulator.",
+        "subtext": "Each case is a different AI-generated face. The after is the simulator's own output, captioned with the controls that made it.",
+        "caption": "<changes></changes> on an AI-generated face. Simulator output, illustrative only.",
+        "items": {
+          "dorsalHump": {
+            "name": "Dorsal hump",
+            "body": "A bump on the bridge, plainest in profile. Dorsal height lowers it and leaves the tip as it is."
+          },
+          "bulbousTip": {
+            "name": "Bulbous tip",
+            "body": "A broad, rounded tip with little definition. Tip width narrows the lobule and leaves the bridge as it is."
+          },
+          "wideNostrils": {
+            "name": "Wide nostrils",
+            "body": "Nostrils that flare wide at the base. Alar base width brings the base in and leaves the tip as it is."
+          },
+          "droopingTip": {
+            "name": "Drooping tip",
+            "body": "A tip that hangs below the line of the bridge, often with age. Tip rotation turns it up and shows more of the columella."
+          }
+        }
+      },
+      "recovery": {
+        "eyebrow": "Recovery",
+        "heading": "Recovery, week by week.",
+        "subtext": "What most people go through after a first rhinoplasty.",
+        "note": "Typical timings from the NHS, ASPS, BAPRAS, Cleveland Clinic and MedlinePlus. Your surgeon's plan comes first.",
+        "items": {
+          "splint": {
+            "when": "About 1 week",
+            "title": "Splint off",
+            "body": "The splint and stitches come off at about a week, sometimes two. Any packing inside the nose is out within a few days."
+          },
+          "work": {
+            "when": "1 to 2 weeks",
+            "title": "Back to work or school",
+            "body": "Most people are back at a desk or in class within one to two weeks."
+          },
+          "bruising": {
+            "when": "2 to 3 weeks",
+            "title": "Bruising fades",
+            "body": "Bruising and redness around the eyes and nose fade over two to three weeks."
+          },
+          "exercise": {
+            "when": "4 to 6 weeks",
+            "title": "Exercise again",
+            "body": "Walking is fine within days. Strenuous exercise and contact sports wait four to six weeks. Keep glasses off the bridge until your surgeon says otherwise."
+          },
+          "swelling": {
+            "when": "2 to 6 months",
+            "title": "Swelling settles",
+            "body": "Most of the swelling is gone within a few months. The tip is the last part to settle."
+          },
+          "final": {
+            "when": "About 1 year",
+            "title": "The final shape",
+            "body": "The refined result, especially at the tip, is judged at about a year."
+          }
+        }
+      },
+      "cost": {
+        "eyebrow": "Cost",
+        "heading": "What a first rhinoplasty typically costs.",
+        "subtext": "Typical ranges for a first rhinoplasty. Revision and rib-cartilage work cost more. Your quote depends on the surgeon, the technique and what the fee includes.",
+        "columns": {
+          "location": "Where",
+          "range": "Typical range"
+        },
+        "source": "Compiled from clinic price lists and medical travel sites published in 2025 and 2026. A guide only, not a quote."
+      },
+      "prepare": {
+        "eyebrow": "Before your consultation",
+        "heading": "Bring the picture, and your questions.",
+        "s1": {
+          "title": "Try the change on your photo",
+          "body": "Move one part at a time until it looks right to you, then save the before and after to show your surgeon."
+        },
+        "s2": {
+          "title": "Check the surgeon",
+          "body": "Ask about their training, how many rhinoplasties they do, and to see their own before and after photos."
+        },
+        "s3": {
+          "title": "Ask what is realistic",
+          "body": "Show the picture and ask what your skin, cartilage and breathing allow. The simulation is a starting point, not a promise."
+        },
+        "s4": {
+          "title": "Ask about the plan",
+          "body": "Open or closed, what the fee includes, where you recover, and when you come back for checks."
+        }
+      },
+      "patientFaq": {
+        "heading": "Questions patients ask",
+        "items": {
+          "simulation": {
+            "q": "Will my nose look exactly like the simulation?",
+            "a": "No. It shows a proposed change on your photo so you and your surgeon can agree on direction and degree. It does not model healing, skin thickness or cartilage."
+          },
+          "pain": {
+            "q": "Does rhinoplasty hurt?",
+            "a": "Most people describe soreness and a blocked nose rather than severe pain. Ordinary pain relief usually covers it, and it eases within a few days to a week."
+          },
+          "permanent": {
+            "q": "Are the results permanent?",
+            "a": "Largely, yes. The change is long-lasting, though your nose keeps ageing with the rest of your face."
+          },
+          "breathing": {
+            "q": "Can rhinoplasty fix my breathing?",
+            "a": "Often. If the wall between the nostrils, the septum, is crooked, it can be straightened in the same operation. This is called a septorhinoplasty."
+          },
+          "age": {
+            "q": "How old do I need to be?",
+            "a": "Old enough that your nose has finished growing. Many surgeons wait until about 15 to 16 for girls and a little later for boys."
+          },
+          "risks": {
+            "q": "What are the risks?",
+            "a": "Bleeding, infection, a numb nose, trouble breathing, a changed sense of smell, and a result you are not happy with, which sometimes means a second operation. A hole in the septum is a rare risk."
+          }
+        }
+      },
+      "surgeons": {
+        "eyebrow": "For surgeons",
+        "heading": "What the simulator gives you in the consultation.",
+        "subtext": "The nasal analysis with its published references, every control with its range, and how to run it with the patient in the chair."
+      }
+    }
+  },
+  "procedureCategories": {
+    "surgical": "Surgical",
+    "non-surgical": "Non-Surgical",
+    "injectable": "Injectable",
+    "dental": "Dental",
+    "body-contouring": "Body Contouring",
+    "hair-restoration": "Hair Restoration"
+  },
+  "Homepage": {
+    "closing": {
+      "heading": "Bring it into your consulting room."
+    }
+  }
+}

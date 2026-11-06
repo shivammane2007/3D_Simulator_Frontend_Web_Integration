@@ -1,0 +1,3 @@
+# PNG screenshots are generated here by `npm run screenshots:regenerate`
+# and committed manually after capture.
+# Do NOT auto-commit during CI — see tests/visual/procedure-screenshots.spec.ts.
