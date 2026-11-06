@@ -49,13 +49,13 @@ export default function ProcedureTimeline({ procedureSlug }: ProcedureTimelinePr
             <div className="container mx-auto px-5 md:px-8">
                 <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-10 md:mb-12">
-                        <p className="text-[0.7rem] font-body font-semibold tracking-[0.15em] uppercase text-sage mb-3">
+                        <p className="text-[0.7rem] font-body font-semibold tracking-[0.15em] uppercase text-[#CF4500] mb-3">
                             What to expect
                         </p>
                         <h2 className="text-2xl md:text-3xl font-body font-semibold text-ink leading-tight">
                             Your timeline, day by day
                         </h2>
-                        <p className="mt-3 text-sm text-slate-600 font-body max-w-xl mx-auto">
+                        <p className="mt-3 text-sm text-[#555555] font-body max-w-xl mx-auto">
                             Typical milestones for an aesthetic-procedure patient. Your surgeon will personalise the plan during your consultation.
                         </p>
                     </div>
@@ -68,7 +68,7 @@ export default function ProcedureTimeline({ procedureSlug }: ProcedureTimelinePr
                         <div className="hidden md:grid grid-cols-5 gap-4 relative">
                             {/* connector line behind the icons */}
                             <div
-                                className="absolute top-8 left-[10%] right-[10%] h-px bg-gradient-to-r from-sage/20 via-sage/40 to-sage/20"
+                                className="absolute top-8 left-[10%] right-[10%] h-px bg-gradient-to-r from-[#CF4500]/20 via-[#CF4500]/40 to-[#CF4500]/20"
                                 aria-hidden="true"
                             />
                             {steps.map((step, i) => {
@@ -82,16 +82,16 @@ export default function ProcedureTimeline({ procedureSlug }: ProcedureTimelinePr
                                         viewport={{ once: true, margin: "-50px" }}
                                         transition={{ duration: 0.4, delay: i * 0.08 }}
                                     >
-                                        <div className="relative z-10 w-16 h-16 rounded-full bg-white border-2 border-sage/30 flex items-center justify-center mb-4 shadow-sm">
-                                            <Icon className="w-6 h-6 text-sage" aria-hidden="true" />
+                                        <div className="relative z-10 w-16 h-16 rounded-full bg-white border-2 border-[#CF4500]/30 flex items-center justify-center mb-4 shadow-sm">
+                                            <Icon className="w-6 h-6 text-[#CF4500]" aria-hidden="true" />
                                         </div>
-                                        <p className="text-xs font-body font-semibold text-sage uppercase tracking-wider mb-1">
+                                        <p className="text-xs font-body font-semibold text-[#CF4500] uppercase tracking-wider mb-1">
                                             {step.when}
                                         </p>
                                         <p className="text-sm font-body font-semibold text-ink mb-1.5">
                                             {step.label}
                                         </p>
-                                        <p className="text-xs text-slate-600 font-body leading-relaxed">
+                                        <p className="text-xs text-[#555555] font-body leading-relaxed">
                                             {step.description}
                                         </p>
                                     </motion.li>
@@ -102,7 +102,7 @@ export default function ProcedureTimeline({ procedureSlug }: ProcedureTimelinePr
                         {/* Mobile vertical stack with left-rail connector */}
                         <div className="md:hidden relative pl-12">
                             <div
-                                className="absolute left-5 top-2 bottom-2 w-px bg-gradient-to-b from-sage/30 via-sage/30 to-transparent"
+                                className="absolute left-5 top-2 bottom-2 w-px bg-gradient-to-b from-[#CF4500]/30 via-[#CF4500]/30 to-transparent"
                                 aria-hidden="true"
                             />
                             {steps.map((step, i) => {
@@ -116,16 +116,16 @@ export default function ProcedureTimeline({ procedureSlug }: ProcedureTimelinePr
                                         viewport={{ once: true, margin: "-50px" }}
                                         transition={{ duration: 0.4, delay: i * 0.06 }}
                                     >
-                                        <div className="absolute -left-12 top-0 w-10 h-10 rounded-full bg-white border-2 border-sage/30 flex items-center justify-center shadow-sm">
-                                            <Icon className="w-4 h-4 text-sage" aria-hidden="true" />
+                                        <div className="absolute -left-12 top-0 w-10 h-10 rounded-full bg-white border-2 border-[#CF4500]/30 flex items-center justify-center shadow-sm">
+                                            <Icon className="w-4 h-4 text-[#CF4500]" aria-hidden="true" />
                                         </div>
-                                        <p className="text-[10px] font-body font-semibold text-sage uppercase tracking-wider mb-0.5">
+                                        <p className="text-[10px] font-body font-semibold text-[#CF4500] uppercase tracking-wider mb-0.5">
                                             {step.when}
                                         </p>
                                         <p className="text-sm font-body font-semibold text-ink mb-1">
                                             {step.label}
                                         </p>
-                                        <p className="text-xs text-slate-600 font-body leading-relaxed">
+                                        <p className="text-xs text-[#555555] font-body leading-relaxed">
                                             {step.description}
                                         </p>
                                     </motion.li>
@@ -134,7 +134,7 @@ export default function ProcedureTimeline({ procedureSlug }: ProcedureTimelinePr
                         </div>
                     </ol>
 
-                    <p className="text-center text-[11px] text-slate-400 font-body mt-8 max-w-md mx-auto italic">
+                    <p className="text-center text-[11px] text-[#696969] font-body mt-8 max-w-md mx-auto italic">
                         Educational guidance only. Actual recovery and final-result timelines vary by individual, surgeon, and procedure complexity.
                     </p>
                 </div>

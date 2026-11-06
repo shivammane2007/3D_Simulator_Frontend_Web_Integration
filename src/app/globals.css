@@ -29,6 +29,19 @@
     --signal-orange-light: #F37338;
     --clay-brown: #9A3A0A;
 
+    /* Theme color aliases */
+    --color-sage: #CF4500;
+    --color-sage-light: #F37338;
+    --color-sage-muted: #9A3A0A;
+    --color-coral: #CF4500;
+    --color-coral-soft: #FDEEE7;
+    --color-gold: #9A6428;
+    --color-slate-hp: #555555;
+    --color-mist: rgba(20, 20, 19, 0.08);
+    --color-ink: #141413;
+    --color-warm: #F3F0EE;
+    --color-cream: #FCFBFA;
+
     /* UI Mapping */
     --accent: #141413;
     --accent-hover: #262627;
@@ -207,18 +220,18 @@
 }
 
 @theme {
-  --color-warm: #faf7f2;
-  --color-cream: #f5f0e8;
-  --color-sage: #3d6b5e;
-  --color-sage-light: #6b9e8f;
-  --color-sage-muted: #7c9082;
-  --color-coral: #e8705a;
-  --color-coral-soft: #f09080;
-  --color-gold: #9a7d2e;
-  --color-slate-hp: #243847;
-  --color-mist: #e8e2d8;
-  --color-ink: #0a0f1a;
-  --color-scrim: rgba(10, 15, 26, 0.62);
+  --color-warm: #F3F0EE;
+  --color-cream: #FCFBFA;
+  --color-sage: #CF4500;
+  --color-sage-light: #F37338;
+  --color-sage-muted: #9A3A0A;
+  --color-coral: #CF4500;
+  --color-coral-soft: #FDEEE7;
+  --color-gold: #9A6428;
+  --color-slate-hp: #555555;
+  --color-mist: rgba(20, 20, 19, 0.08);
+  --color-ink: #141413;
+  --color-scrim: rgba(20, 20, 19, 0.65);
 
   --font-headline: var(--font-playfair), "Newsreader", Georgia, serif;
   --font-body: var(--font-plus-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
@@ -254,7 +267,7 @@
   color: #ffffff;
 }
 .editorial-primary:hover {
-  background-color: #31574c;
+  background-color: #B53D00;
 }
 .editorial-stats { font-family: var(--font-instrument-serif), Georgia, serif; font-variant-numeric: tabular-nums; }
 

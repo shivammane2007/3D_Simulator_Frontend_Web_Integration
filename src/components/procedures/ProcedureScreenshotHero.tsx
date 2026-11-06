@@ -73,7 +73,7 @@ export default function ProcedureScreenshotHero({
 
           {/* Anatomy callout eyebrow */}
           {anatomyCallout && (
-            <p className="text-sage text-xs font-semibold tracking-widest uppercase mb-4">
+            <p className="text-[#CF4500] text-xs font-semibold tracking-widest uppercase mb-4">
               {anatomyCallout}
             </p>
           )}
@@ -132,7 +132,7 @@ export default function ProcedureScreenshotHero({
             </p>
             <Link
               href={`/simulate/${simulateSlug}`}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-sage text-white text-sm font-semibold rounded-full hover:bg-sage-light transition-all whitespace-nowrap"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#CF4500] hover:bg-[#B53D00] text-white text-sm font-semibold rounded-full transition-all whitespace-nowrap shadow-sm"
             >
               Try {procedureName} Simulator Free
               <ArrowRight className="w-4 h-4" />

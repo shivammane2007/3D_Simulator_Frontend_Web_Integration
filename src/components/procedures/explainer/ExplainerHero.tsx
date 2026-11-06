@@ -27,7 +27,7 @@ interface ExplainerHeroProps {
 
 // The divider starts left of the nose so the whole nose reads as the simulated result at load.
 const FIGURE_START = 22
-const SECONDARY = 'inline-flex min-h-11 items-center justify-center font-body text-sm font-semibold text-sage underline-offset-4 hover:underline'
+const SECONDARY = 'inline-flex min-h-11 items-center justify-center font-body text-sm font-semibold text-[#CF4500] hover:text-[#B53D00] underline-offset-4 hover:underline'
 
 /** Article opening: the argument and its actions, then the front-view figure with its caption. */
 export default function ExplainerHero({
@@ -42,13 +42,13 @@ export default function ExplainerHero({
     return (
         <header className="editorial-container mx-auto grid gap-8 px-5 pt-28 pb-12 md:px-8 lg:grid-cols-[minmax(0,1fr)_480px] lg:grid-rows-[1fr_auto_auto_1fr] lg:gap-x-16 lg:gap-y-0 lg:pb-16">
             <div className="max-w-[680px] lg:col-start-1 lg:row-start-2">
-                <nav aria-label="Breadcrumb" className="font-body text-sm text-slate-hp">
+                <nav aria-label="Breadcrumb" className="font-body text-sm text-[#696969]">
                     <ol className="flex flex-wrap items-center gap-2">
-                        <li><Link href="/procedures" className="hover:text-ink">{breadcrumb.procedures}</Link></li>
+                        <li><Link href="/procedures" className="hover:text-[#CF4500] transition-colors">{breadcrumb.procedures}</Link></li>
                         <li aria-hidden="true">/</li>
-                        <li><Link href="/procedures" className="hover:text-ink">{breadcrumb.category}</Link></li>
+                        <li><Link href="/procedures" className="hover:text-[#CF4500] transition-colors">{breadcrumb.category}</Link></li>
                         <li aria-hidden="true">/</li>
-                        <li className="text-ink">{breadcrumb.current}</li>
+                        <li className="text-[#141413] font-medium">{breadcrumb.current}</li>
                     </ol>
                 </nav>
 

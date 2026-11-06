@@ -20,7 +20,7 @@ export default async function ProcedureSurgeonDirectory({
     >
       <div className="container mx-auto px-5 md:px-8">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-[0.7rem] font-body font-semibold tracking-[0.15em] uppercase text-sage mb-3">
+          <p className="text-[0.7rem] font-body font-semibold tracking-[0.15em] uppercase text-[#CF4500] mb-3">
             {t("surgeonDirectory.eyebrow")}
           </p>
           <h2
@@ -34,7 +34,7 @@ export default async function ProcedureSurgeonDirectory({
           </p>
           <Link
             href={`/login?callbackUrl=${encodeURIComponent("/onboarding?cohort=pune")}`}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-sage hover:bg-sage-light text-white text-sm font-semibold rounded-full transition-colors font-body"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#CF4500] hover:bg-[#B53D00] text-white text-sm font-semibold rounded-full transition-colors font-body shadow-sm"
           >
             {t("surgeonDirectory.applyToList")} <ArrowRight className="w-4 h-4" />
           </Link>

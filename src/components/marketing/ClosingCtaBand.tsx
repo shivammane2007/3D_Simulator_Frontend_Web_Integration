@@ -13,16 +13,16 @@ export default function ClosingCtaBand({
   secondary?: { href: string; label: string; ariaLabel?: string }
 }) {
   return (
-    <section className="bg-sage">
+    <section className="bg-[#141413]">
       <div className="editorial-container mx-auto flex flex-col items-start gap-8 px-5 py-16 md:px-8 md:py-24">
-        <h2 className="editorial-heading max-w-3xl text-balance font-headline font-normal tracking-[-0.02em] text-warm">
+        <h2 className="editorial-heading max-w-3xl text-balance font-headline font-normal tracking-[-0.02em] text-[#F3F0EE]">
           {heading}
         </h2>
         <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
           <Link
             href={primary.href}
             aria-label={primary.ariaLabel ?? primary.label}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-warm px-7 py-3.5 text-sm font-semibold text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm focus-visible:ring-offset-2 focus-visible:ring-offset-sage"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#CF4500] hover:bg-[#B53D00] px-7 py-3.5 text-sm font-semibold text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CF4500] focus-visible:ring-offset-2 focus-visible:ring-offset-[#141413]"
           >
             {primary.label}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -31,7 +31,7 @@ export default function ClosingCtaBand({
             <Link
               href={secondary.href}
               aria-label={secondary.ariaLabel ?? secondary.label}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-warm/40 px-7 py-3.5 text-sm font-semibold text-warm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm focus-visible:ring-offset-2 focus-visible:ring-offset-sage"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 hover:bg-white/10 px-7 py-3.5 text-sm font-semibold text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#141413]"
             >
               {secondary.label}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />

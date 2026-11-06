@@ -32,7 +32,7 @@ export default function RegulatoryFooter() {
                         Real-time simulations run in your browser. Your photo leaves your device only when you save a simulation to your account, and we do not use it to train AI models.
                     </p>
                     <p>
-                        <Link href="/clinical-safety" className="inline-flex min-h-11 items-center text-sage underline underline-offset-4">
+                        <Link href="/clinical-safety" className="inline-flex min-h-11 items-center text-[#CF4500] hover:text-[#B53D00] font-medium underline underline-offset-4 transition-colors">
                             Read our clinical posture &rarr;
                         </Link>
                     </p>

@@ -1,10 +1,10 @@
 import { Link } from '@/i18n/routing'
 
 const variants = {
-  primary: 'bg-sage text-white editorial-primary hover:bg-sage',
-  secondary: 'border border-mist hover:border-slate-hp/30',
-  sage: 'bg-sage text-white editorial-primary hover:bg-sage',
-  ghost: 'text-sage hover:underline underline-offset-4',
+  primary: 'bg-[#CF4500] text-white editorial-primary hover:bg-[#B53D00]',
+  secondary: 'border border-mist text-[#141413] hover:border-slate-hp/30 hover:bg-black/5',
+  sage: 'bg-[#CF4500] text-white editorial-primary hover:bg-[#B53D00]',
+  ghost: 'text-[#CF4500] hover:text-[#B53D00] hover:underline underline-offset-4',
 } as const
 
 const sizes = {

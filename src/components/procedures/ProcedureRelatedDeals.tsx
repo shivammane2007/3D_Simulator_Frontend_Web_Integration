@@ -20,7 +20,7 @@ export default async function ProcedureRelatedDeals({
         <div className="max-w-5xl mx-auto">
           <div className="flex items-end justify-between gap-4 mb-8">
             <div>
-              <p className="text-[0.7rem] font-body font-semibold tracking-[0.15em] uppercase text-sage mb-2">
+              <p className="text-[0.7rem] font-body font-semibold tracking-[0.15em] uppercase text-[#CF4500] mb-2">
                 Live deals
               </p>
               <h2
@@ -32,9 +32,9 @@ export default async function ProcedureRelatedDeals({
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-sage/5 to-warm border border-sage/15 rounded-2xl p-8 md:p-12 text-center">
-            <div className="w-14 h-14 mx-auto mb-5 rounded-full bg-sage/15 border border-sage/25 flex items-center justify-center">
-              <Tag className="w-6 h-6 text-sage" aria-hidden="true" />
+          <div className="bg-gradient-to-br from-[#CF4500]/5 to-warm border border-[#CF4500]/15 rounded-2xl p-8 md:p-12 text-center">
+            <div className="w-14 h-14 mx-auto mb-5 rounded-full bg-[#CF4500]/15 border border-[#CF4500]/25 flex items-center justify-center">
+              <Tag className="w-6 h-6 text-[#CF4500]" aria-hidden="true" />
             </div>
             <h3 className="text-lg font-body font-semibold text-ink mb-2">
               No live {procedureName.toLowerCase()} deals yet
@@ -45,7 +45,7 @@ export default async function ProcedureRelatedDeals({
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href={`/login?callbackUrl=${encodeURIComponent("/onboarding?cohort=pune")}`}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-sage hover:bg-sage-light text-white text-sm font-semibold rounded-full transition-colors font-body"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#CF4500] hover:bg-[#B53D00] text-white text-sm font-semibold rounded-full transition-colors font-body shadow-sm"
               >
                 Apply for cohort <ArrowRight className="w-4 h-4" />
               </Link>

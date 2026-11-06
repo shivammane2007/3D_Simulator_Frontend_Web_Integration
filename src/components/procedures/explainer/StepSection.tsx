@@ -46,7 +46,7 @@ export default function StepSection({ id, eyebrow, heading, subtext, note, steps
                             {marker === 'icon' ? (
                                 step.marker
                             ) : (
-                                <span className="editorial-stats text-lg leading-snug text-sage">{step.marker}</span>
+                                <span className="editorial-stats text-lg leading-snug text-[#CF4500]">{step.marker}</span>
                             )}
                             <h3 className="font-headline text-xl font-normal text-ink">{step.title}</h3>
                             <p className={`font-body text-base leading-relaxed text-slate-hp md:col-start-3 ${marker === 'icon' ? 'col-start-2' : ''}`}>

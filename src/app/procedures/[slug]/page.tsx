@@ -935,6 +935,15 @@ const PROCEDURE_FAQS: Record<string, { question: string; answer: string }[]> = {
 // "optimise" this away by making the route static again without first fixing
 // the CSP, because that reintroduces a fully blank page.
 // Guarded by the CSP-nonce test in tests/ux-audit/ux-audit.spec.ts.
+const CATEGORY_BADGES: Record<string, { bg: string; text: string }> = {
+    surgical: { bg: "bg-[#FDEEE7]", text: "text-[#CF4500]" },
+    "non-surgical": { bg: "bg-[#FDF3E7]", text: "text-[#9A6428]" },
+    injectable: { bg: "bg-[#FDEEE7]", text: "text-[#CF4500]" },
+    dental: { bg: "bg-[#EDF2F7]", text: "text-[#243847]" },
+    "body-contouring": { bg: "bg-[#FDEEE7]", text: "text-[#CF4500]" },
+    "hair-restoration": { bg: "bg-[#FDF3E7]", text: "text-[#9A6428]" },
+};
+
 export default async function ProcedurePage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const locale = 'en';
@@ -1097,14 +1106,14 @@ export default async function ProcedurePage({ params }: { params: Promise<{ slug
             {!explainer && <>
             {/* Breadcrumb */}
             <div className="container mx-auto px-5 md:px-8 pt-28 pb-2">
-                <nav className="flex items-center gap-2 text-sm text-slate-600 font-body">
-                    <Link href="/procedures" className="hover:text-ink transition-colors">
+                <nav className="flex items-center gap-2 text-sm text-[#696969] font-body">
+                    <Link href="/procedures" className="hover:text-[#CF4500] transition-colors">
                         {t('breadcrumbProcedures')}
                     </Link>
                     <span>/</span>
-                    <Link href="/procedures" className="hover:text-ink transition-colors">{categoryLabel}</Link>
+                    <Link href="/procedures" className="hover:text-[#CF4500] transition-colors">{categoryLabel}</Link>
                     <span>/</span>
-                    <span className="text-ink font-medium">{procedure.shortName}</span>
+                    <span className="text-[#141413] font-medium">{procedure.shortName}</span>
                 </nav>
             </div>
 
@@ -1114,33 +1123,31 @@ export default async function ProcedurePage({ params }: { params: Promise<{ slug
                     <div className="flex items-center gap-3 mb-5">
                         <ProcedureIcon slug={procedure.slug} size={52} />
                         <span className={`px-3 py-1 text-[0.65rem] font-body font-semibold tracking-wider uppercase rounded-full ${
-                            procedure.category === 'surgical'
-                                ? 'bg-sage/10 text-sage'
-                                : procedure.category === 'dental'
-                                ? 'bg-slate-hp/10 text-slate-hp'
-                                : 'bg-gold/10 text-gold'
+                            (CATEGORY_BADGES[procedure.category] || CATEGORY_BADGES.surgical).bg
+                        } ${
+                            (CATEGORY_BADGES[procedure.category] || CATEGORY_BADGES.surgical).text
                         }`}>
                             {categoryLabel}
                         </span>
                         {procedure.isNew && (
-                            <span className="px-3 py-1 text-[0.65rem] font-body font-semibold tracking-wider uppercase rounded-full bg-coral/10 text-coral-text">
+                            <span className="px-3 py-1 text-[0.65rem] font-body font-semibold tracking-wider uppercase rounded-full bg-[#CF4500] text-white">
                                 New
                             </span>
                         )}
                     </div>
 
-                    <h1 className="text-3xl md:text-5xl font-body font-semibold text-ink mb-4 leading-tight">
+                    <h1 className="text-3xl md:text-5xl font-body font-semibold text-[#141413] mb-4 leading-tight">
                         {procedure.name}
                     </h1>
 
-                    <p className="text-lg text-slate-600 font-body mb-8 max-w-3xl leading-relaxed">
+                    <p className="text-lg text-[#555555] font-body mb-8 max-w-3xl leading-relaxed">
                         {procedure.description}
                     </p>
 
                     <div className="flex flex-wrap gap-3">
                         <Link
                             href={procedure.comingSoon ? `/simulate` : `/simulate/${procedure.simulateSlug}`}
-                            className="inline-flex items-center gap-2 px-8 py-3.5 bg-sage text-white text-sm font-semibold rounded-full hover:bg-sage-light transition-all font-body"
+                            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#CF4500] hover:bg-[#B53D00] text-white text-sm font-semibold rounded-full transition-all font-body shadow-sm"
                         >
                             {procedure.comingSoon
                                 ? t('heroViewAllSimulators')
@@ -1149,14 +1156,14 @@ export default async function ProcedurePage({ params }: { params: Promise<{ slug
                         </Link>
                         <Link
                             href="/procedures"
-                            className="inline-flex items-center gap-2 px-8 py-3.5 bg-warm border border-slate-300 text-ink text-sm font-semibold rounded-full hover:bg-ink/5 transition-all font-body"
+                            className="inline-flex items-center gap-2 px-8 py-3.5 bg-white border border-black/10 text-[#141413] text-sm font-semibold rounded-full hover:bg-black/5 transition-all font-body shadow-sm"
                         >
                             <ArrowLeft className="w-4 h-4" />
                             {t('heroAllProcedures')}
                         </Link>
                     </div>
                     {procedure.comingSoon && (
-                        <p className="text-sm text-slate-600 font-body mt-3">{t('heroComingSoon')}</p>
+                        <p className="text-sm text-[#696969] font-body mt-3">{t('heroComingSoon')}</p>
                     )}
                 </div>
             </section>
@@ -1300,10 +1307,10 @@ export default async function ProcedurePage({ params }: { params: Promise<{ slug
                     <div className="max-w-4xl mx-auto">
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                             <div className="lg:col-span-2">
-                                <h2 className="text-2xl font-body font-semibold text-ink mb-6">{t('overviewTitle')}</h2>
+                                <h2 className="text-2xl font-body font-semibold text-[#141413] mb-6">{t('overviewTitle')}</h2>
                                 <div className="space-y-4">
                                     {(procedure.longDescription || procedure.description || "").split('\n\n').map((para, i) => (
-                                        <p key={i} className="text-slate-600 font-body leading-relaxed">
+                                        <p key={i} className="text-[#555555] font-body leading-relaxed">
                                             {para.trim()}
                                         </p>
                                     ))}
@@ -1311,12 +1318,12 @@ export default async function ProcedurePage({ params }: { params: Promise<{ slug
 
                                 {procedure.benefits && procedure.benefits.length > 0 && (
                                     <>
-                                        <h2 className="text-2xl font-body font-semibold text-ink mt-10 mb-5">{t('keyBenefitsTitle')}</h2>
+                                        <h2 className="text-2xl font-body font-semibold text-[#141413] mt-10 mb-5">{t('keyBenefitsTitle')}</h2>
                                         <ul className="space-y-3">
                                             {procedure.benefits.map((benefit, i) => (
                                                 <li key={i} className="flex items-start gap-3">
-                                                    <CheckCircle2 className="w-4 h-4 text-sage shrink-0 mt-0.5" />
-                                                    <span className="text-slate-600 font-body text-sm leading-relaxed">{benefit}</span>
+                                                    <CheckCircle2 className="w-4 h-4 text-[#CF4500] shrink-0 mt-0.5" />
+                                                    <span className="text-[#555555] font-body text-sm leading-relaxed">{benefit}</span>
                                                 </li>
                                             ))}
                                         </ul>
@@ -1326,18 +1333,18 @@ export default async function ProcedurePage({ params }: { params: Promise<{ slug
                                 {/* Pros & Cons Section */}
                                 {procedure.pros && procedure.pros.length > 0 && procedure.cons && procedure.cons.length > 0 && (
                                     <>
-                                        <h2 className="text-2xl font-body font-semibold text-ink mt-10 mb-5">{t('prosConsTitle')}</h2>
+                                        <h2 className="text-2xl font-body font-semibold text-[#141413] mt-10 mb-5">{t('prosConsTitle')}</h2>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                            <div className="bg-sage/5 border border-sage/15 rounded-xl p-5">
+                                            <div className="bg-[#FDEEE7]/60 border border-[#CF4500]/20 rounded-xl p-5">
                                                 <div className="flex items-center gap-2 mb-4">
-                                                    <ThumbsUp className="w-4 h-4 text-sage" />
-                                                    <h3 className="text-sm font-body font-semibold text-sage">{t('prosLabel')}</h3>
+                                                    <ThumbsUp className="w-4 h-4 text-[#CF4500]" />
+                                                    <h3 className="text-sm font-body font-semibold text-[#CF4500]">{t('prosLabel')}</h3>
                                                 </div>
                                                 <ul className="space-y-2.5">
                                                     {procedure.pros.map((pro, i) => (
                                                         <li key={i} className="flex items-start gap-2">
-                                                            <span className="text-sage text-xs mt-1 shrink-0">+</span>
-                                                            <span className="text-slate-600 font-body text-sm leading-relaxed">{pro}</span>
+                                                            <span className="text-[#CF4500] text-xs mt-1 shrink-0">+</span>
+                                                            <span className="text-[#555555] font-body text-sm leading-relaxed">{pro}</span>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -1351,7 +1358,7 @@ export default async function ProcedurePage({ params }: { params: Promise<{ slug
                                                     {procedure.cons.map((con, i) => (
                                                         <li key={i} className="flex items-start gap-2">
                                                             <span className="text-red-400 text-xs mt-1 shrink-0">&minus;</span>
-                                                            <span className="text-slate-600 font-body text-sm leading-relaxed">{con}</span>
+                                                            <span className="text-[#555555] font-body text-sm leading-relaxed">{con}</span>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -1360,42 +1367,42 @@ export default async function ProcedurePage({ params }: { params: Promise<{ slug
                                     </>
                                 )}
 
-                                <h2 className="text-2xl font-body font-semibold text-ink mt-10 mb-4">{t('idealForTitle')}</h2>
+                                <h2 className="text-2xl font-body font-semibold text-[#141413] mt-10 mb-4">{t('idealForTitle')}</h2>
                                 <div className="flex items-start gap-3 p-5 bg-warm rounded-xl border border-slate-200">
-                                    <Users className="w-4 h-4 text-sage shrink-0 mt-0.5" />
-                                    <p className="text-slate-600 font-body text-sm leading-relaxed">{procedure.idealFor}</p>
+                                    <Users className="w-4 h-4 text-[#CF4500] shrink-0 mt-0.5" />
+                                    <p className="text-[#555555] font-body text-sm leading-relaxed">{procedure.idealFor}</p>
                                 </div>
                             </div>
 
                             <div className="lg:col-span-1">
                                 <div className="sticky top-24 bg-warm rounded-2xl border border-slate-200 p-6 space-y-5">
-                                    <h3 className="text-xs font-body font-semibold text-slate-600 uppercase tracking-widest">{t('quickFactsTitle')}</h3>
+                                    <h3 className="text-xs font-body font-semibold text-[#696969] uppercase tracking-widest">{t('quickFactsTitle')}</h3>
 
                                     <div className="flex items-start gap-3">
-                                        <Clock className="w-4 h-4 text-sage shrink-0 mt-1" />
+                                        <Clock className="w-4 h-4 text-[#CF4500] shrink-0 mt-1" />
                                         <div>
-                                            <p className="text-[0.65rem] font-body text-slate-600 uppercase tracking-wider mb-0.5">{t('recoveryTimeLabel')}</p>
-                                            <p className="text-sm font-body text-ink font-medium">{procedure.recoveryTime}</p>
+                                            <p className="text-[0.65rem] font-body text-[#696969] uppercase tracking-wider mb-0.5">{t('recoveryTimeLabel')}</p>
+                                            <p className="text-sm font-body text-[#141413] font-medium">{procedure.recoveryTime}</p>
                                         </div>
                                     </div>
 
                                     <div className="flex items-start gap-3">
-                                        <Calendar className="w-4 h-4 text-sage shrink-0 mt-1" />
+                                        <Calendar className="w-4 h-4 text-[#CF4500] shrink-0 mt-1" />
                                         <div>
-                                            <p className="text-[0.65rem] font-body text-slate-600 uppercase tracking-wider mb-0.5">{t('procedureDurationLabel')}</p>
-                                            <p className="text-sm font-body text-ink font-medium">{procedure.procedureDuration}</p>
+                                            <p className="text-[0.65rem] font-body text-[#696969] uppercase tracking-wider mb-0.5">{t('procedureDurationLabel')}</p>
+                                            <p className="text-sm font-body text-[#141413] font-medium">{procedure.procedureDuration}</p>
                                         </div>
                                     </div>
 
                                     <div className="flex items-start gap-3">
-                                        <DollarSign className="w-4 h-4 text-sage shrink-0 mt-1" />
+                                        <DollarSign className="w-4 h-4 text-[#CF4500] shrink-0 mt-1" />
                                         <ProcedurePricingSidebar procedure={procedure} />
                                     </div>
 
                                     <div className="border-t border-slate-200 pt-4">
                                         <Link
                                             href={procedure.comingSoon ? `/simulate` : `/simulate/${procedure.simulateSlug}`}
-                                            className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-sage hover:bg-sage-light text-white text-sm font-body font-semibold rounded-full transition-all"
+                                            className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-[#CF4500] hover:bg-[#B53D00] text-white text-sm font-body font-semibold rounded-full transition-all shadow-sm"
                                         >
                                             {procedure.comingSoon ? t('sidebarViewSimulators') : t('sidebarTrySimulator')}
                                             <ArrowRight className="w-4 h-4" />
@@ -1410,7 +1417,7 @@ export default async function ProcedurePage({ params }: { params: Promise<{ slug
 
             {/* CTA Section */}
             <section className="py-16 bg-ink relative overflow-hidden">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[50vw] rounded-full bg-sage/[0.07] blur-3xl pointer-events-none" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[50vw] rounded-full bg-[#CF4500]/[0.07] blur-3xl pointer-events-none" />
                 <div className="container mx-auto px-5 md:px-8 text-center relative z-10">
                     <h2 className="text-2xl md:text-3xl font-body font-semibold text-white mb-4 leading-tight">
                         {t('ctaTitle', { name: procedure.shortName.toLowerCase() })}
@@ -1420,7 +1427,7 @@ export default async function ProcedurePage({ params }: { params: Promise<{ slug
                     </p>
                     <Link
                         href={procedure.comingSoon ? `/simulate` : `/simulate/${procedure.simulateSlug}`}
-                        className="inline-flex items-center gap-2 px-8 py-4 bg-sage text-white text-sm font-body font-semibold rounded-full hover:bg-sage-light transition-all"
+                        className="inline-flex items-center gap-2 px-8 py-4 bg-[#CF4500] text-white text-sm font-body font-semibold rounded-full hover:bg-[#B53D00] transition-all shadow-sm"
                     >
                         {procedure.comingSoon
                             ? t('ctaBrowseSimulators')
@@ -1435,7 +1442,7 @@ export default async function ProcedurePage({ params }: { params: Promise<{ slug
                 <section className="bg-white py-14 border-t border-slate-200">
                     <div className="container mx-auto px-5 md:px-8">
                         <div className="max-w-4xl mx-auto">
-                            <h2 className="text-xl font-body font-semibold text-ink mb-6">
+                            <h2 className="text-xl font-body font-semibold text-[#141413] mb-6">
                                 {t('relatedProceduresTitle', { category: categoryLabel.toLowerCase() })}
                             </h2>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -1443,14 +1450,14 @@ export default async function ProcedurePage({ params }: { params: Promise<{ slug
                                     <Link
                                         key={rel.slug}
                                         href={`/procedures/${rel.slug}`}
-                                        className="group bg-warm rounded-2xl border border-slate-200 p-5 hover:-translate-y-1 hover:shadow-md hover:border-sage/40 transition-all duration-300"
+                                        className="group bg-warm rounded-2xl border border-slate-200 p-5 hover:-translate-y-1 hover:shadow-md hover:border-[#CF4500]/40 transition-all duration-300"
                                     >
                                         <span className="text-2xl mb-2 block">{rel.icon}</span>
-                                        <h3 className="text-sm font-body font-semibold text-ink group-hover:text-sage transition-colors mb-1 flex items-center justify-between">
+                                        <h3 className="text-sm font-body font-semibold text-[#141413] group-hover:text-[#CF4500] transition-colors mb-1 flex items-center justify-between">
                                             {rel.shortName}
-                                            <ArrowRight className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 transition-all duration-300 text-sage" />
+                                            <ArrowRight className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 transition-all duration-300 text-[#CF4500]" />
                                         </h3>
-                                        <p className="text-xs text-slate-500 font-body leading-relaxed line-clamp-2">{rel.description}</p>
+                                        <p className="text-xs text-[#555555] font-body leading-relaxed line-clamp-2">{rel.description}</p>
                                     </Link>
                                 ))}
                             </div>
@@ -1469,31 +1476,31 @@ export default async function ProcedurePage({ params }: { params: Promise<{ slug
                     <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
                         <Link
                             href={`/q/${slug}`}
-                            className="group block bg-white rounded-2xl border border-slate-200 p-5 hover:-translate-y-0.5 hover:shadow-md hover:border-sage/40 transition-all"
+                            className="group block bg-white rounded-2xl border border-slate-200 p-5 hover:-translate-y-0.5 hover:shadow-md hover:border-[#CF4500]/40 transition-all"
                         >
-                            <p className="text-xs font-semibold text-sage uppercase tracking-wide mb-2">
+                            <p className="text-xs font-semibold text-[#CF4500] uppercase tracking-wide mb-2">
                                 {t('qaLinkEyebrow')}
                             </p>
-                            <h3 className="font-headline font-bold text-lg text-ink group-hover:text-sage mb-1 flex items-center justify-between">
+                            <h3 className="font-headline font-bold text-lg text-[#141413] group-hover:text-[#CF4500] mb-1 flex items-center justify-between">
                                 {t('qaLinkTitle', { name: procedure.name })}
-                                <ArrowRight className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity text-sage" />
+                                <ArrowRight className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity text-[#CF4500]" />
                             </h3>
-                            <p className="text-sm text-slate-600 leading-relaxed">
+                            <p className="text-sm text-[#555555] leading-relaxed">
                                 {t('qaLinkBody')}
                             </p>
                         </Link>
                         <Link
                             href={`/gallery#real-patient-stories`}
-                            className="group block bg-white rounded-2xl border border-slate-200 p-5 hover:-translate-y-0.5 hover:shadow-md hover:border-sage/40 transition-all"
+                            className="group block bg-white rounded-2xl border border-slate-200 p-5 hover:-translate-y-0.5 hover:shadow-md hover:border-[#CF4500]/40 transition-all"
                         >
-                            <p className="text-xs font-semibold text-sage uppercase tracking-wide mb-2">
+                            <p className="text-xs font-semibold text-[#CF4500] uppercase tracking-wide mb-2">
                                 {t('galleryLinkEyebrow')}
                             </p>
-                            <h3 className="font-headline font-bold text-lg text-ink group-hover:text-sage mb-1 flex items-center justify-between">
+                            <h3 className="font-headline font-bold text-lg text-[#141413] group-hover:text-[#CF4500] mb-1 flex items-center justify-between">
                                 {t('galleryLinkTitle')}
-                                <ArrowRight className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity text-sage" />
+                                <ArrowRight className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity text-[#CF4500]" />
                             </h3>
-                            <p className="text-sm text-slate-600 leading-relaxed">
+                            <p className="text-sm text-[#555555] leading-relaxed">
                                 {t('galleryLinkBody')}
                             </p>
                         </Link>

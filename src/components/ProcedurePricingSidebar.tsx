@@ -35,11 +35,11 @@ export function ProcedurePricingSidebar({ procedure }: ProcedurePricingSidebarPr
 
     return (
         <div>
-            <p className="text-xs text-slate-600 uppercase tracking-wider">Typical Cost Range</p>
-            <p className="text-sm text-ink font-medium mt-0.5">
+            <p className="text-xs text-[#696969] uppercase tracking-wider">Typical Cost Range</p>
+            <p className="text-sm text-[#141413] font-medium mt-0.5">
                 {formatPrice(price)}
             </p>
-            <p className="text-xs text-slate-600 mt-0.5">
+            <p className="text-xs text-[#696969] mt-0.5">
                 {regionInfo.flag} {regionInfo.name}
             </p>
 
@@ -53,8 +53,8 @@ export function ProcedurePricingSidebar({ procedure }: ProcedurePricingSidebarPr
                             inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium
                             transition-all duration-200 border
                             ${region === r.id
-                                ? 'bg-sage text-white border-sage'
-                                : 'bg-[#1E293B] text-slate-400 border-white/5 hover:border-sage/30 hover:text-slate-300'
+                                ? 'bg-[#CF4500] text-white border-[#CF4500] shadow-sm'
+                                : 'bg-white text-[#555555] border-black/10 hover:border-[#CF4500]/40 hover:text-[#141413]'
                             }
                         `}
                         aria-pressed={region === r.id}

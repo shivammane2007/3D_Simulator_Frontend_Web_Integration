@@ -24,7 +24,7 @@ export default function PrecisionTable({ procedure }: PrecisionTableProps) {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {/* Recovery */}
                         <div className="rounded-xl bg-[#001220] border border-ink/40 p-6">
-                            <h3 className="text-sm font-bold tracking-wider uppercase text-sage mb-4">
+                            <h3 className="text-sm font-bold tracking-wider uppercase text-[#CF4500] mb-4">
                                 Recovery Timeline
                             </h3>
                             <dl className="space-y-3">
@@ -45,7 +45,7 @@ export default function PrecisionTable({ procedure }: PrecisionTableProps) {
 
                         {/* Cost */}
                         <div className="rounded-xl bg-[#001220] border border-ink/40 p-6">
-                            <h3 className="text-sm font-bold tracking-wider uppercase text-sage mb-4">
+                            <h3 className="text-sm font-bold tracking-wider uppercase text-[#CF4500] mb-4">
                                 Estimated Cost Range
                             </h3>
                             <dl className="space-y-3">

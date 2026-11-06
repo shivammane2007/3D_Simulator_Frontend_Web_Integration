@@ -74,7 +74,7 @@ export default function ProcedureCostEstimator({
             <div className="container mx-auto px-5 md:px-8">
                 <div className="max-w-3xl mx-auto">
                     <div className="text-center mb-8">
-                        <p className="text-[0.7rem] font-body font-semibold tracking-[0.15em] uppercase text-sage mb-3">
+                        <p className="text-[0.7rem] font-body font-semibold tracking-[0.15em] uppercase text-[#CF4500] mb-3">
                             {L.eyebrow}
                         </p>
                         <h2
@@ -88,14 +88,14 @@ export default function ProcedureCostEstimator({
                     <div className="bg-warm border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm">
                         <label className="block">
                             <span className="text-[11px] font-body font-semibold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                                <MapPin className="w-3.5 h-3.5 text-sage" aria-hidden="true" />
+                                <MapPin className="w-3.5 h-3.5 text-[#CF4500]" aria-hidden="true" />
                                 {L.cityLabel}
                             </span>
                             <div className="relative">
                                 <select
                                     value={city}
                                     onChange={(e) => setCity(e.target.value)}
-                                    className="w-full appearance-none bg-white border border-slate-300 rounded-xl px-4 py-3 pr-10 text-sm font-body text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:border-sage transition-colors"
+                                    className="w-full appearance-none bg-white border border-slate-300 rounded-xl px-4 py-3 pr-10 text-sm font-body text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CF4500] focus-visible:border-[#CF4500] transition-colors"
                                     aria-label={L.cityAriaLabel}
                                 >
                                     {ESTIMATOR_CITIES.map((c) => (
@@ -115,10 +115,10 @@ export default function ProcedureCostEstimator({
 
                         <div className="mt-6 pt-6 border-t border-slate-200">
                             <p className="text-[11px] font-body font-semibold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                                <Wallet className="w-3.5 h-3.5 text-sage" aria-hidden="true" />
+                                <Wallet className="w-3.5 h-3.5 text-[#CF4500]" aria-hidden="true" />
                                 {interpolate(L.rangeLabel, { city })}
                             </p>
-                            <p className="text-3xl md:text-4xl font-serif text-sage" aria-live="polite">
+                            <p className="text-3xl md:text-4xl font-serif text-[#CF4500]" aria-live="polite">
                                 {formatCostRange(estimate)}
                             </p>
                             <p className="text-xs text-slate-500 font-body mt-2 leading-relaxed">
@@ -128,7 +128,7 @@ export default function ProcedureCostEstimator({
 
                         <Link
                             href={`/deals?city=${encodeURIComponent(city)}&procedure=${encodeURIComponent(procedureSlug)}`}
-                            className="mt-6 inline-flex w-full items-center justify-center gap-2 px-5 py-3 bg-sage hover:bg-sage-light text-white text-sm font-semibold rounded-full transition-colors font-body"
+                            className="mt-6 inline-flex w-full items-center justify-center gap-2 px-5 py-3 bg-[#CF4500] hover:bg-[#B53D00] text-white text-sm font-semibold rounded-full transition-colors font-body shadow-sm"
                         >
                             {interpolate(L.seeDeals, { city: cityCountry?.city ?? city })} <ArrowRight className="w-4 h-4" />
                         </Link>

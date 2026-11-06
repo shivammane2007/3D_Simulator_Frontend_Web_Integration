@@ -13,7 +13,7 @@ export default function MiniMorphos({ slug }: { slug?: string }) {
                     viewport={{ once: true }}
                     transition={{ duration: 0.3 }}
                 >
-                    <p className="text-xs font-bold tracking-wider uppercase text-sage mb-3">
+                    <p className="text-xs font-bold tracking-wider uppercase text-[#CF4500] mb-3">
                         Try It Now
                     </p>
                     <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
@@ -25,7 +25,7 @@ export default function MiniMorphos({ slug }: { slug?: string }) {
                     </p>
                     <Link
                         href={slug ? `/simulate/${slug}` : "/simulate"}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-sage hover:bg-sage-light text-white font-bold rounded-full transition-colors"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#CF4500] hover:bg-[#B53D00] text-white font-bold rounded-full transition-colors shadow-sm"
                     >
                         Launch Simulator
                     </Link>

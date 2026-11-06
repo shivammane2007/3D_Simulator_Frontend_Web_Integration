@@ -39,7 +39,7 @@ export default function ProcedureBeforeAfter({
             <div className="container mx-auto px-5 md:px-8">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-8 md:mb-10">
-                        <p className="text-[0.7rem] font-body font-semibold tracking-[0.15em] uppercase text-sage mb-3">
+                        <p className="text-[0.7rem] font-body font-semibold tracking-[0.15em] uppercase text-[#CF4500] mb-3">
                             Example simulation
                         </p>
                         <h2
@@ -47,7 +47,7 @@ export default function ProcedureBeforeAfter({
                             className="text-2xl md:text-3xl font-body font-semibold text-ink leading-tight"
                         >
                             Drag to reveal a simulated{" "}
-                            <span className="text-sage">{procedureName.toLowerCase()}</span> outcome
+                            <span className="text-[#CF4500]">{procedureName.toLowerCase()}</span> outcome
                         </h2>
                         <p className="mt-3 text-sm text-slate-600 font-body max-w-xl mx-auto">
                             Simulated preview on an example face. The same facial mesh runs on your own photo.
@@ -80,22 +80,22 @@ export default function ProcedureBeforeAfter({
                                 </p>
                                 <ul className="space-y-1.5 text-xs">
                                     <li className="flex items-start gap-2">
-                                        <span className="text-sage shrink-0">✓</span>
+                                        <span className="text-[#CF4500] shrink-0">✓</span>
                                         Simulation runs in your browser
                                     </li>
                                     <li className="flex items-start gap-2">
-                                        <span className="text-sage shrink-0">✓</span>
+                                        <span className="text-[#CF4500] shrink-0">✓</span>
                                         Adjustable parameters update in real time
                                     </li>
                                     <li className="flex items-start gap-2">
-                                        <span className="text-sage shrink-0">✓</span>
+                                        <span className="text-[#CF4500] shrink-0">✓</span>
                                         Educational preview, not a clinical guarantee
                                     </li>
                                 </ul>
                             </div>
                             <Link
                                 href={`/simulate/${procedureSlug}`}
-                                className="inline-flex w-full items-center justify-center gap-2 px-5 py-3 bg-sage hover:bg-sage-light text-white text-sm font-semibold rounded-full transition-colors font-body"
+                                className="inline-flex w-full items-center justify-center gap-2 px-5 py-3 bg-[#CF4500] hover:bg-[#B53D00] text-white text-sm font-semibold rounded-full transition-colors font-body shadow-sm"
                             >
                                 Try this on your face <ArrowRight className="w-4 h-4" />
                             </Link>

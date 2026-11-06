@@ -29,11 +29,11 @@ export default function RelatedProcedures({ heading, procedures }: RelatedProced
                                 href={`/procedures/${procedure.slug}`}
                                 className="group grid grid-cols-[minmax(0,1fr)_1.25rem] items-baseline gap-x-6 gap-y-1 py-5 md:grid-cols-[minmax(0,16rem)_minmax(0,1fr)_1.25rem] md:gap-x-8"
                             >
-                                <span className="font-headline text-xl text-ink group-hover:text-sage">{procedure.shortName}</span>
+                                <span className="font-headline text-xl text-ink group-hover:text-[#CF4500] transition-colors">{procedure.shortName}</span>
                                 <span className="row-start-2 font-body text-base leading-relaxed text-slate-hp md:col-start-2 md:row-start-1">
                                     {procedure.description}
                                 </span>
-                                <ChevronRight className="col-start-2 row-start-1 h-5 w-5 self-center text-sage md:col-start-3" aria-hidden="true" />
+                                <ChevronRight className="col-start-2 row-start-1 h-5 w-5 self-center text-[#CF4500] group-hover:translate-x-1 transition-all md:col-start-3" aria-hidden="true" />
                             </Link>
                         </li>
                     ))}

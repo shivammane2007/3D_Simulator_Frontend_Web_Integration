@@ -39,7 +39,7 @@ export default async function MeasurementSection({ explainer }: { explainer: Pro
     const sourceLink = (id: SourceId) => (
         <a
             href={`#measure-source-${id}`}
-            className="text-sm text-sage underline decoration-mist underline-offset-4 hover:decoration-sage"
+            className="text-sm text-[#CF4500] underline decoration-mist underline-offset-4 hover:decoration-[#CF4500] hover:text-[#B53D00] transition-colors"
         >
             {REFERENCE_SOURCES[id].cite}
         </a>
@@ -196,7 +196,7 @@ export default async function MeasurementSection({ explainer }: { explainer: Pro
                     </div>
                     <div>
                         <h3 className="font-semibold text-ink">{t('measure.referencesHeading')}</h3>
-                        <ul className="mt-2 list-disc space-y-1.5 pl-5 marker:text-sage">
+                        <ul className="mt-2 list-disc space-y-1.5 pl-5 marker:text-[#CF4500]">
                             {sources.map((id) => (
                                 <li key={id} id={`measure-source-${id}`}>{REFERENCE_SOURCES[id].full}</li>
                             ))}

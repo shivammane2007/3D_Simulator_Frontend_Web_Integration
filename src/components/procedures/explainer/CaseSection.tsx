@@ -46,7 +46,7 @@ export default async function CaseSection({ explainer }: { explainer: ProcedureE
                         </p>
                         <Link
                             href={`/simulate/${explainer.slug}`}
-                            className="mt-4 inline-flex min-h-11 items-center gap-2 font-body text-sm font-semibold text-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2"
+                            className="mt-4 inline-flex min-h-11 items-center gap-2 font-body text-sm font-semibold text-[#CF4500] hover:text-[#B53D00] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#CF4500] focus-visible:ring-offset-2"
                         >
                             {t('ctaPrimary')}
                             <ArrowRight className="size-4" aria-hidden="true" />

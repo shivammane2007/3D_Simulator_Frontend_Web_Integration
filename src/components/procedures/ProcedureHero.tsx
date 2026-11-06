@@ -21,7 +21,7 @@ export default function ProcedureHero({ procedure }: ProcedureHeroProps) {
                     transition={{ duration: 0.4 }}
                     className="max-w-3xl"
                 >
-                    <p className="text-sage text-sm font-bold tracking-wider uppercase mb-4">
+                    <p className="text-[#CF4500] text-sm font-bold tracking-wider uppercase mb-4">
                         468-Point Facial Mesh
                     </p>
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
@@ -36,7 +36,7 @@ export default function ProcedureHero({ procedure }: ProcedureHeroProps) {
                         {procedure.landmarks?.map((lm) => (
                             <span
                                 key={lm}
-                                className="px-3 py-1.5 bg-sage/10 border border-sage/20 rounded-lg text-sm text-sage font-medium"
+                                className="px-3 py-1.5 bg-[#CF4500]/10 border border-[#CF4500]/20 rounded-lg text-sm text-[#CF4500] font-medium"
                             >
                                 {lm}
                             </span>

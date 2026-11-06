@@ -147,8 +147,8 @@ export default function ProcedureStickyNav({
                                 aria-current={isActive ? "true" : undefined}
                                 className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-body font-semibold transition-colors whitespace-nowrap ${
                                     isActive
-                                        ? "bg-sage text-white"
-                                        : "bg-white text-slate-600 hover:text-ink border border-slate-200"
+                                        ? "bg-[#CF4500] text-white shadow-sm"
+                                        : "bg-white text-[#555555] hover:text-[#141413] border border-black/10"
                                 }`}
                             >
                                 {item.label}

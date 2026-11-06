@@ -30,7 +30,7 @@ interface ExplainerLabels {
 
 // The privacy answer is left out because RegulatoryFooter states the same sentences on this page.
 const FAQ_ITEMS = ['result', 'photos', 'references', 'camera'] as const
-const ICON = 'mt-0.5 h-6 w-6 text-sage'
+const ICON = 'mt-0.5 h-6 w-6 text-[#CF4500]'
 const CONSULT_ICONS = { s1: Camera, s2: Layers, s3: SlidersHorizontal, s4: Download } as const
 const PREPARE_ICONS = { s1: SlidersHorizontal, s2: ListChecks, s3: MessageCircleQuestion, s4: Stethoscope } as const
 const SLOT = '\u0000'
@@ -146,7 +146,7 @@ export default async function ProcedureExplainerPage({
                             {t('surgeons.heading')}
                         </h2>
                         <p className="mt-4 font-body text-base leading-relaxed text-slate-hp">{t('surgeons.subtext')}</p>
-                        <Link href="/founding-partners" className="mt-4 inline-flex min-h-11 items-center font-body text-sm font-semibold text-sage underline-offset-4 hover:underline">
+                        <Link href="/founding-partners" className="mt-4 inline-flex min-h-11 items-center font-body text-sm font-semibold text-[#CF4500] hover:text-[#B53D00] underline-offset-4 hover:underline">
                             {t('ctaPartner')}
                         </Link>
                     </div>
@@ -185,10 +185,10 @@ export default async function ProcedureExplainerPage({
                                     <span className="editorial-stats text-[1.75rem] leading-none text-ink md:text-4xl">{t(`evidence.${source.key}.value`)}</span>
                                     <p className="font-body text-base leading-relaxed text-slate-hp">
                                         {t(`evidence.${source.key}.body`)}{' '}
-                                        <span className="whitespace-nowrap text-sm text-sage">
+                                        <span className="whitespace-nowrap text-sm text-[#CF4500]">
                                             (<a
                                                 href={`#explainer-source-${source.key}`}
-                                                className="underline decoration-mist underline-offset-4 hover:decoration-sage"
+                                                className="underline decoration-mist underline-offset-4 hover:decoration-[#CF4500]"
                                             >
                                                 {authorYear(source.authors, source.year)}
                                             </a>)
@@ -201,7 +201,7 @@ export default async function ProcedureExplainerPage({
 
                     <div className="mt-12 max-w-[960px]">
                         <h3 className="font-body text-sm font-semibold text-ink">{t('evidence.sourcesHeading')}</h3>
-                        <ul className="mt-4 list-disc space-y-3 pl-5 font-body text-sm leading-relaxed text-slate-hp marker:text-sage">
+                        <ul className="mt-4 list-disc space-y-3 pl-5 font-body text-sm leading-relaxed text-slate-hp marker:text-[#CF4500]">
                             {[...RHINOPLASTY_EVIDENCE]
                                 .sort((a, b) => RESEARCH_SOURCES[a].authors.localeCompare(RESEARCH_SOURCES[b].authors))
                                 .map((id) => {
@@ -209,7 +209,7 @@ export default async function ProcedureExplainerPage({
                                     return (
                                         <li key={source.key} id={`explainer-source-${source.key}`}>
                                             {source.authors}.{' '}
-                                            <a href={source.url} className="text-ink underline decoration-mist underline-offset-4 hover:decoration-sage">{source.title}</a>{/[.?!]$/.test(source.title) ? '' : '.'}{' '}
+                                            <a href={source.url} className="text-ink underline decoration-mist underline-offset-4 hover:decoration-[#CF4500]">{source.title}</a>{/[.?!]$/.test(source.title) ? '' : '.'}{' '}
                                             <em>{source.journal}</em>. {source.citation}.
                                         </li>
                                     )
