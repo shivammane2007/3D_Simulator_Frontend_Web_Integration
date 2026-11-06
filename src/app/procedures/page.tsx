@@ -89,15 +89,12 @@ export default function ProceduresPage() {
     <div className="bg-[#F3F0EE] min-h-screen">
       {/* Hero Header */}
       <section className="pt-36 md:pt-40 pb-10 px-5 md:px-12 text-center">
-        <div className="max-w-[720px] mx-auto space-y-4">
-          <span className="text-eyebrow-master text-eyebrow-dot justify-center">
-            PROCEDURE CATALOG
-          </span>
-          <h1 className="font-serif text-[clamp(2.5rem,5.5vw,3.75rem)] font-normal tracking-tight text-[#141413] leading-[1.1]">
-            <em className="italic font-serif text-[#CF4500] not-italic">{PROCEDURES.length} procedures</em>. One platform.
+        <div className="max-w-[780px] mx-auto">
+          <h1 className="font-serif text-[clamp(2.5rem,5vw,3.75rem)] font-normal tracking-tight text-[#141413] leading-[1.1]">
+            <em className="italic font-serif not-italic">85+ procedures.</em> One platform.
           </h1>
-          <p className="text-base md:text-lg text-[#555555] font-normal max-w-[540px] mx-auto leading-relaxed">
-            Explore {PROCEDURES.length} aesthetic procedures powered by AI simulation.
+          <p className="mt-4 text-base md:text-lg text-[#555555] font-normal max-w-[540px] mx-auto leading-relaxed">
+            Explore 85+ aesthetic procedures powered by AI simulation.
           </p>
         </div>
       </section>
