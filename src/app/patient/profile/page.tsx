@@ -10,11 +10,18 @@ import {
   MapPin, 
   Camera, 
   Loader2, 
-  Save 
+  Save,
+  Bell,
+  Shield,
+  Download,
+  AlertTriangle,
+  X
 } from 'lucide-react';
-import { getStoredUser, persistUserSession, UserSession, DEFAULT_PATIENT_USER } from '@/lib/auth-client';
+import { getStoredUser, persistUserSession, signOutClient, UserSession, DEFAULT_PATIENT_USER } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
 
 export default function PatientProfilePage() {
+  const router = useRouter();
   const [user, setUser] = useState<UserSession>(DEFAULT_PATIENT_USER);
   const [dob, setDob] = useState('');
   const [gender, setGender] = useState('');
@@ -22,6 +29,16 @@ export default function PatientProfilePage() {
   const [city, setCity] = useState('Mumbai');
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
+
+  // Notification Preferences State (Matches Screenshot 2)
+  const [notifConsultations, setNotifConsultations] = useState(true);
+  const [notifSimulations, setNotifSimulations] = useState(true);
+  const [notifUpdates, setNotifUpdates] = useState(false);
+
+  // Delete Account Modal State
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [deleteConfirmText, setDeleteConfirmText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     const stored = getStoredUser();
@@ -32,9 +49,21 @@ export default function PatientProfilePage() {
       if (stored.country) setCountry(stored.country);
       if (stored.city) setCity(stored.city);
     }
+
+    try {
+      const savedNotifs = localStorage.getItem('faceify_patient_notif_prefs');
+      if (savedNotifs) {
+        const parsed = JSON.parse(savedNotifs);
+        if (typeof parsed.notifConsultations === 'boolean') setNotifConsultations(parsed.notifConsultations);
+        if (typeof parsed.notifSimulations === 'boolean') setNotifSimulations(parsed.notifSimulations);
+        if (typeof parsed.notifUpdates === 'boolean') setNotifUpdates(parsed.notifUpdates);
+      }
+    } catch {
+      // Non-fatal
+    }
   }, []);
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSaveAbout = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
     setSaveSuccess(false);
@@ -50,13 +79,87 @@ export default function PatientProfilePage() {
       setIsSaving(false);
       setSaveSuccess(true);
       setTimeout(() => setSaveSuccess(false), 3000);
-    }, 500);
+    }, 400);
+  };
+
+  const handleToggleNotif = (key: 'consultations' | 'simulations' | 'updates', val: boolean) => {
+    let nextConsultations = notifConsultations;
+    let nextSimulations = notifSimulations;
+    let nextUpdates = notifUpdates;
+
+    if (key === 'consultations') {
+      nextConsultations = val;
+      setNotifConsultations(val);
+    } else if (key === 'simulations') {
+      nextSimulations = val;
+      setNotifSimulations(val);
+    } else if (key === 'updates') {
+      nextUpdates = val;
+      setNotifUpdates(val);
+    }
+
+    try {
+      localStorage.setItem('faceify_patient_notif_prefs', JSON.stringify({
+        notifConsultations: nextConsultations,
+        notifSimulations: nextSimulations,
+        notifUpdates: nextUpdates,
+      }));
+    } catch {
+      // Non-fatal
+    }
+  };
+
+  const handleDownloadData = () => {
+    const data = {
+      user,
+      profile: {
+        dateOfBirth: dob,
+        gender,
+        country,
+        city,
+      },
+      notificationPreferences: {
+        notifConsultations,
+        notifSimulations,
+        notifUpdates,
+      },
+      exportedAt: new Date().toISOString(),
+    };
+
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `faceify-patient-data-${Date.now()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleDeleteAccount = () => {
+    if (deleteConfirmText.trim().toUpperCase() !== 'DELETE') return;
+    setIsDeleting(true);
+    setTimeout(() => {
+      signOutClient();
+      try {
+        localStorage.removeItem('faceify_user');
+        localStorage.removeItem('faceify_simulations');
+        localStorage.removeItem('faceify_patient_notifications');
+        localStorage.removeItem('faceify_patient_notif_prefs');
+      } catch {
+        // Non-fatal
+      }
+      setIsDeleting(false);
+      setDeleteModalOpen(false);
+      router.push('/login');
+    }, 600);
   };
 
   const userInitial = user.name ? user.name.charAt(0).toUpperCase() : 'S';
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 pb-12">
       {/* Page Header */}
       <div>
         <h1 className="text-3xl sm:text-4xl font-medium tracking-[-0.02em] text-[#141413]">
@@ -67,7 +170,7 @@ export default function PatientProfilePage() {
         </p>
       </div>
 
-      {/* Identity Card */}
+      {/* Card 1: Identity Card */}
       <div className="bg-white rounded-[24px] border border-black/5 p-6 sm:p-7 shadow-level-1">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
           {/* Avatar Box with Camera Badge */}
@@ -78,7 +181,7 @@ export default function PatientProfilePage() {
             <button 
               type="button"
               title="Update photo"
-              className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-[#CF4500] hover:bg-[#F37338] text-white flex items-center justify-center shadow-md hover:scale-105 transition-all"
+              className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-[#CF4500] hover:bg-[#F37338] text-white flex items-center justify-center shadow-md hover:scale-105 transition-all cursor-pointer"
             >
               <Camera className="w-3.5 h-3.5" />
             </button>
@@ -91,6 +194,7 @@ export default function PatientProfilePage() {
               <Mail className="w-3.5 h-3.5 text-[#696969]" />
               <span>{user.email || 'shivammane2007@gmail.com'}</span>
               <CheckCircle2 className="w-3.5 h-3.5 text-[#CF4500]" />
+              <span className="text-[11px] text-[#696969]">Email verified</span>
             </div>
             <div className="flex items-center gap-1.5 text-xs text-[#696969] pt-0.5">
               <Calendar className="w-3.5 h-3.5" />
@@ -107,7 +211,7 @@ export default function PatientProfilePage() {
         </div>
       </div>
 
-      {/* Form: About You */}
+      {/* Card 2: Form: About You */}
       <div className="bg-white rounded-[24px] border border-black/5 p-6 sm:p-7 shadow-level-1">
         <div className="flex items-center gap-3 mb-2">
           <div className="w-9 h-9 rounded-[14px] bg-[#FDEEE7] text-[#CF4500] flex items-center justify-center">
@@ -119,7 +223,7 @@ export default function PatientProfilePage() {
           All fields are optional. Sharing helps surgeons match you with the right specialist and currency.
         </p>
 
-        <form onSubmit={handleSave} className="space-y-4 max-w-xl">
+        <form onSubmit={handleSaveAbout} className="space-y-4 max-w-xl">
           {/* Date of Birth */}
           <div>
             <label className="text-xs font-medium text-[#141413] block mb-1.5">
@@ -210,7 +314,204 @@ export default function PatientProfilePage() {
           </div>
         </form>
       </div>
+
+      {/* Card 3: Notification Preferences (Matches Screenshot 2) */}
+      <div className="bg-white rounded-[24px] border border-black/5 p-6 sm:p-7 shadow-level-1">
+        <div className="flex items-center gap-3 mb-5">
+          <div className="w-9 h-9 rounded-[14px] bg-[#FDEEE7] text-[#CF4500] flex items-center justify-center">
+            <Bell className="w-4 h-4" />
+          </div>
+          <h2 className="text-base font-medium text-[#141413]">Notification Preferences</h2>
+        </div>
+
+        <div className="space-y-5 max-w-xl">
+          {/* Toggle 1: Consultation confirmed */}
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-sm font-medium text-[#141413]">Consultation confirmed</p>
+              <p className="text-xs text-[#555555] mt-0.5 font-normal">
+                Email me when a surgeon confirms my consultation request
+              </p>
+            </div>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={notifConsultations}
+              onClick={() => handleToggleNotif('consultations', !notifConsultations)}
+              className={`shrink-0 relative w-11 h-6 rounded-full transition-colors focus:outline-none cursor-pointer ${
+                notifConsultations ? 'bg-[#23493F]' : 'bg-black/15'
+              }`}
+            >
+              <span
+                className={`absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm transition-transform ${
+                  notifConsultations ? 'translate-x-6' : 'translate-x-1'
+                }`}
+              />
+            </button>
+          </div>
+
+          <div className="border-t border-black/5" />
+
+          {/* Toggle 2: Simulation shared with me */}
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-sm font-medium text-[#141413]">Simulation shared with me</p>
+              <p className="text-xs text-[#555555] mt-0.5 font-normal">
+                Email me when a surgeon shares a simulation result with me
+              </p>
+            </div>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={notifSimulations}
+              onClick={() => handleToggleNotif('simulations', !notifSimulations)}
+              className={`shrink-0 relative w-11 h-6 rounded-full transition-colors focus:outline-none cursor-pointer ${
+                notifSimulations ? 'bg-[#23493F]' : 'bg-black/15'
+              }`}
+            >
+              <span
+                className={`absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm transition-transform ${
+                  notifSimulations ? 'translate-x-6' : 'translate-x-1'
+                }`}
+              />
+            </button>
+          </div>
+
+          <div className="border-t border-black/5" />
+
+          {/* Toggle 3: Product updates */}
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-sm font-medium text-[#141413]">Product updates</p>
+              <p className="text-xs text-[#555555] mt-0.5 font-normal">
+                Occasional emails about new procedures, features, and promotions
+              </p>
+            </div>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={notifUpdates}
+              onClick={() => handleToggleNotif('updates', !notifUpdates)}
+              className={`shrink-0 relative w-11 h-6 rounded-full transition-colors focus:outline-none cursor-pointer ${
+                notifUpdates ? 'bg-[#23493F]' : 'bg-black/15'
+              }`}
+            >
+              <span
+                className={`absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm transition-transform ${
+                  notifUpdates ? 'translate-x-6' : 'translate-x-1'
+                }`}
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Card 4: Privacy & Data (Matches Screenshot 2) */}
+      <div className="bg-white rounded-[24px] border border-black/5 p-6 sm:p-7 shadow-level-1">
+        <div className="flex items-center gap-3 mb-5">
+          <div className="w-9 h-9 rounded-[14px] bg-[#FDEEE7] text-[#CF4500] flex items-center justify-center">
+            <Shield className="w-4 h-4" />
+          </div>
+          <h2 className="text-base font-medium text-[#141413]">Privacy & Data</h2>
+        </div>
+
+        <div className="space-y-4 max-w-xl">
+          {/* Action 1: Download my data */}
+          <button
+            type="button"
+            onClick={handleDownloadData}
+            className="w-full flex items-center justify-between p-3.5 rounded-[16px] border border-black/5 hover:border-black/15 bg-[#FCFBFA] hover:bg-[#F3F0EE] transition-all text-left cursor-pointer group"
+          >
+            <div className="flex items-center gap-3">
+              <Download className="w-4 h-4 text-[#CF4500]" />
+              <span className="text-sm font-medium text-[#141413]">Download my data</span>
+            </div>
+            <span className="text-xs text-[#696969] group-hover:text-[#CF4500] transition-colors">JSON export</span>
+          </button>
+
+          {/* Action 2: Privacy controls & AI photo consent */}
+          <Link
+            href="/patient/settings"
+            className="w-full flex items-center justify-between p-3.5 rounded-[16px] border border-black/5 hover:border-black/15 bg-[#FCFBFA] hover:bg-[#F3F0EE] transition-all text-left group"
+          >
+            <div className="flex items-center gap-3">
+              <Shield className="w-4 h-4 text-[#CF4500]" />
+              <span className="text-sm font-medium text-[#141413]">Privacy controls & AI photo consent</span>
+            </div>
+            <span className="text-xs text-[#696969] group-hover:text-[#CF4500] transition-colors">Settings →</span>
+          </Link>
+
+          {/* Danger Zone: Delete my account */}
+          <div className="pt-4 border-t border-black/5">
+            <p className="text-xs text-[#555555] mb-3 leading-relaxed">
+              Permanently delete your account and all data. This action cannot be undone.
+            </p>
+            <button
+              type="button"
+              onClick={() => setDeleteModalOpen(true)}
+              className="px-5 py-2 rounded-[16px] border border-red-200 bg-red-50 hover:bg-red-100 text-red-600 text-xs font-semibold transition-all cursor-pointer"
+            >
+              Delete my account
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Delete Account Modal */}
+      {deleteModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
+          <div className="bg-white rounded-[24px] border border-black/10 p-6 sm:p-7 max-w-md w-full shadow-level-3 space-y-4">
+            <div className="flex items-start justify-between">
+              <div className="w-10 h-10 rounded-full bg-red-50 text-red-600 flex items-center justify-center shrink-0">
+                <AlertTriangle className="w-5 h-5" />
+              </div>
+              <button
+                type="button"
+                onClick={() => setDeleteModalOpen(false)}
+                className="p-1 rounded-lg text-slate-400 hover:text-ink hover:bg-slate-100"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-medium text-[#141413]">Delete Account</h3>
+              <p className="text-xs text-[#555555] mt-1 leading-relaxed">
+                This will immediately delete all your simulation results, notifications, and profile details. Type <span className="font-bold text-red-600 font-mono">DELETE</span> below to confirm.
+              </p>
+            </div>
+
+            <div>
+              <input
+                type="text"
+                placeholder="Type DELETE"
+                value={deleteConfirmText}
+                onChange={(e) => setDeleteConfirmText(e.target.value)}
+                className="w-full px-4 py-2.5 rounded-[16px] border border-black/15 text-sm text-[#141413] focus:outline-none focus:border-red-500 font-mono uppercase"
+              />
+            </div>
+
+            <div className="flex items-center justify-end gap-2.5 pt-2">
+              <button
+                type="button"
+                onClick={() => setDeleteModalOpen(false)}
+                className="px-5 py-2.5 rounded-[20px] border border-black/10 text-xs font-medium text-[#555555] hover:bg-black/5"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                disabled={deleteConfirmText.trim().toUpperCase() !== 'DELETE' || isDeleting}
+                onClick={handleDeleteAccount}
+                className="px-5 py-2.5 rounded-[20px] bg-red-600 hover:bg-red-700 text-white text-xs font-semibold transition-all disabled:opacity-40 cursor-pointer flex items-center gap-1.5"
+              >
+                {isDeleting ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : null}
+                <span>Delete Account</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-
