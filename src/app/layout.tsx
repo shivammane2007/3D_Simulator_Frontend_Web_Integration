@@ -4,6 +4,8 @@ import { siteConfig } from '@/config/site';
 import Navigation from '@/components/layout/Navigation';
 import Footer from '@/components/layout/Footer';
 import LenisProvider from '@/components/motion/LenisProvider';
+import DemoModalWrapper from '@/components/DemoModalWrapper';
+import FloatingDemoCTA from '@/components/FloatingDemoCTA';
 
 export const metadata: Metadata = {
   title: {
@@ -93,6 +95,8 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
+            <DemoModalWrapper />
+            <FloatingDemoCTA />
           </LenisProvider>
         </LanguageProvider>
       </body>
