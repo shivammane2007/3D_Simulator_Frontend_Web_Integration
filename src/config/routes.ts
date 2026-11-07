@@ -27,6 +27,8 @@ export const routes = {
   directory: '/directory',
   useCases: '/use-cases',
   consultation: '/consultation',
+  deals: '/deals',
+  dealsProcedure: (procedureSlug: string) => `/deals?procedure=${procedureSlug}`,
 
   // Content
   gallery: '/gallery',
