@@ -899,6 +899,460 @@ export const procedureMessages = {
     "conversion": "Practice Growth",
     "privacy": "Privacy & Compliance",
     "apac": "APAC Strategy"
+  },
+  "Pricing": {
+    "hero": {
+      "label": "Pricing",
+      "title": "Plans that <em>pay for themselves</em>",
+      "subtitle": "Browser-native surgical simulation. No hardware. No install. Just more bookings, from day one."
+    },
+    "billing": {
+      "monthly": "Monthly",
+      "annual": "Annual",
+      "annualNote": "Annual surgeon seats are paid once for 12 months and renewed manually."
+    },
+    "foundingPartner": {
+      "badgeLabel": "Founding Partner",
+      "cohortLabel": "Global Founding Partner Program: First 100",
+      "spotsLabel": "{spots}/100 spots remaining",
+      "spotsLabelFull": "Cohort full: join the waitlist",
+      "perks": "Be one of our first 100 Founding Partners, with a 2-year price lock, Instagram cross-promotion, and direct roadmap input.",
+      "perksPricelock": "2-year price lock at today's rate",
+      "perksInstagram": "Your before/after posts re-shared on @faceifylabs IG",
+      "perksRoadmap": "Direct input into our product roadmap",
+      "perksPage": "Name on our public Founding Partners page",
+      "igCadence": "1 surgeon spotlight repost per week, rotating across the cohort"
+    },
+    "puneCohort": {
+      "eyebrow": "PUNE FOUNDING PARTNER COHORT",
+      "price": "₹1,50,000 / year",
+      "priceRef": "(~$1,800)",
+      "term": "12-month partnership",
+      "termMonthly": "month-to-month",
+      "invite": "By invitation. 5 seats. Pune only.",
+      "perksHeading": "What's included:",
+      "perk0": "Permanent badge + photograph on rhinoplasty surgeon page (stays after cancellation)",
+      "perk1": "Preferred routing of Pune rhinoplasty enquiries, for 12 months, at zero commission",
+      "perk2": "Early access to every new simulator before public release",
+      "perk3": "Quarterly 1:1 with the founder",
+      "perk4": "Co-marketing across our social, deck, investor updates",
+      "perk5": "Flexible billing: pay annually (upfront), quarterly, or monthly",
+      "ctaInvite": "Request an invitation",
+      "ctaMou": "Read the MoU",
+      "perYear": "/ year",
+      "perMonth": "/ month"
+    },
+    "tiers": {
+      "0": {
+        "name": "Starter",
+        "audience": "Solo surgeon practice",
+        "cta": "Get Started",
+        "ctaNote": "",
+        "features": {
+          "0": "Full simulator catalog: all 85+ procedures",
+          "1": "100 photoreal AI patient previews/mo",
+          "2": "1 surgeon seat",
+          "3": "Embed widget for clinic website & Instagram bio",
+          "4": "Patient day-pass flow (patients pay directly)",
+          "5": "1 featured directory placement day/mo",
+          "6": "\"AI Preview Clinic\" badge on /surgeons listing",
+          "7": "Email support (48h SLA)"
+        }
+      },
+      "1": {
+        "name": "Pro",
+        "audience": "2–3 surgeon practice",
+        "badge": "Most Popular",
+        "cta": "Get Started",
+        "ctaNote": "",
+        "features": {
+          "0": "Everything in Starter",
+          "1": "3 surgeon seats",
+          "2": "500 photoreal AI patient previews/mo",
+          "3": "Co-branded patient preview (clinic name + photo)",
+          "4": "Lead capture widget + basic conversion analytics",
+          "5": "4 featured directory placement days/mo",
+          "6": "1 procedure-page sponsored tile/mo",
+          "7": "Email newsletter spotlight (once per quarter)"
+        }
+      },
+      "2": {
+        "name": "Clinic",
+        "audience": "Multi-doc clinic / hospital aesthetic dept",
+        "cta": "Talk to us",
+        "ctaNote": "White-glove onboarding: contact us to get started",
+        "whiteGloveNote": "Currently onboarding via white-glove only. Self-serve checkout opening Q3 2026.",
+        "features": {
+          "0": "Everything in Pro",
+          "1": "10 surgeon seats",
+          "2": "Unlimited photoreal AI previews (2,000/mo cap, upgradeable)",
+          "3": "Full white-label: clinic brand replaces Faceify on patient widgets",
+          "4": "Multi-surgeon dashboards + per-surgeon analytics",
+          "5": "8 featured directory placement days/mo",
+          "6": "Homepage banner (2 days/quarter) + search boost",
+          "7": "API access for EHR/CRM integration"
+        }
+      },
+      "3": {
+        "name": "Enterprise",
+        "audience": "Hospital networks & large aesthetic groups",
+        "cta": "Contact Sales",
+        "ctaNote": "Volume pricing · custom SLA · BAA/DPA execution",
+        "features": {
+          "0": "Everything in Clinic",
+          "1": "Unlimited surgeon seats",
+          "2": "Negotiated seat count + custom SLA",
+          "3": "Dedicated infrastructure",
+          "4": "BAA / DPA execution",
+          "5": "Custom multi-location & seat terms",
+          "6": "Dedicated success team",
+          "7": "Custom integrations + enterprise billing"
+        }
+      }
+    },
+    "price": {
+      "startsAt": "from",
+      "perMonth": "/ mo",
+      "billedAnnually": "Billed annually",
+      "billedMonthly": "Billed monthly",
+      "custom": "Custom",
+      "enterprisePriceNote": "Talk to us: pricing scales with seat count and SLA"
+    },
+    "footer": {
+      "allPlansNote": "All plans include real-time browser-based simulation, HIPAA-aligned architecture, and browser-based access with no hardware required. Questions?",
+      "seeFaq": "See our FAQ",
+      "or": "or",
+      "chatWithUs": "chat with us"
+    },
+    "addOns": {
+      "sectionLabel": "Add-ons",
+      "sectionTitle": "Boost your visibility",
+      "sectionSubtitle": "Value-add packages included with each tier. Purchase extras when you need them.",
+      "includedLabel": "Included",
+      "availabilityLabel": "Availability",
+      "items": {
+        "directoryPlacement": {
+          "name": "Featured Directory Placement",
+          "description": "Surgeon profile pinned to the top of the /surgeons city listing. Redeemed via self-serve calendar: first come, first served.",
+          "starter": "1 day/mo",
+          "pro": "4 days/mo",
+          "clinic": "8 days/mo",
+          "extraPrice": "$15/day (Starter) · $12/day (Pro) · $10/day (Clinic)",
+          "inventory": "Max 3 Starter / 2 Pro / 1 Clinic per city per day"
+        },
+        "homepageBanner": {
+          "name": "Homepage Banner",
+          "description": "Clinic banner displayed on / or /find-a-surgeon, the two highest-traffic pages. Clinic tier only. Submit creative 2 weeks before slot.",
+          "clinic": "2 days/quarter",
+          "inventory": "Max 3 banners rotating simultaneously; never more than 1 from same city"
+        },
+        "sponsoredTile": {
+          "name": "Procedure-Page Sponsored Tile",
+          "description": "\"Trusted local surgeon for [procedure]\" tile on a procedure landing page. Surgeon picks procedure + month from dashboard.",
+          "pro": "1 tile/mo",
+          "clinic": "Included",
+          "extraPrice": "$39/procedure/wk (Pro) · $29 (Clinic)",
+          "inventory": "3 tiles per procedure page per market; next slot shown when full"
+        },
+        "searchBoost": {
+          "name": "Search Result Boost",
+          "description": "Clinic ranks algorithmically higher in city + procedure patient searches for 30 consecutive days per quarter. Clinic tier only.",
+          "clinic": "30 days/quarter",
+          "inventory": "Boost is a multiplier, not a monopoly: organic quality still wins"
+        },
+        "emailSpotlight": {
+          "name": "Email Newsletter Spotlight",
+          "description": "Feature in Faceify's monthly patient newsletter. Pro: 1 tile/quarter. Clinic: 1 cover feature/year. First-come on a 3-month forward calendar.",
+          "pro": "1 spotlight/quarter",
+          "clinic": "1 cover feature/year",
+          "inventory": "1 per market per monthly newsletter issue"
+        },
+        "embedWidget": {
+          "name": "Embed Widget Priority",
+          "description": "Expanded \"Schedule consultation\" button with 5-star trust badge on the surgeon's own website embed.",
+          "starter": "14 days/quarter",
+          "pro": "Permanent",
+          "clinic": "Permanent",
+          "inventory": "Always available on Pro/Clinic; activated for Starter via 14-day quarterly windows"
+        }
+      }
+    },
+    "patientSection": {
+      "label": "For Patients",
+      "title": "Preview procedures before your consultation",
+      "subtitle": "A 24-hour pass to any procedure simulator. No subscription.",
+      "subtitleCredits": "{price} / credit · {explainer} · buy 1, 3 or 5"
+    },
+    "patientTiers": {
+      "0": {
+        "name": "Credits",
+        "badge": "1 credit = {price}",
+        "description": "24-hour access to one simulator per credit, no subscription",
+        "features": {
+          "0": "Unlimited slider iterations + photoreal AI renders for 24h",
+          "1": "All 85+ procedures, your choice",
+          "2": "High-resolution photoreal preview included",
+          "3": "Before/after export (AI simulation watermark)",
+          "4": "Send to surgeon for review",
+          "5": "Buy 1, 3, or 5 credits, valid for 12 months"
+        }
+      }
+    },
+    "patientPrice": {
+      "oneTime": "one-time",
+      "simsEach": "{sims} simulations · ${each} each",
+      "unlimited": "24 hours · one procedure · unlimited renders",
+      "free": "Free",
+      "freeDuration": "3 days"
+    },
+    "patientCta": {
+      "loading": "Loading...",
+      "getStarted": "Get Credits",
+      "startTrial": "Try a Simulator",
+      "explore": "New here? Explore the simulator"
+    },
+    "competitor": {
+      "label": "How Faceify Labs compares",
+      "canfieldNote": "Canfield Vectra 3D hardware cost, before any software subscription",
+      "facetouchupNote": "FaceTouchUp: rhinoplasty only, website embed, no multi-procedure support",
+      "faceifyNote": "Faceify Labs: all 85+ procedures, no hardware, browser-native, HIPAA-aligned architecture"
+    },
+    "roi": {
+      "sectionLabel": "ROI Calculator",
+      "sectionTitle": "See your return in seconds",
+      "sectionSubtitle": "Plug in your practice numbers. Defaults are set to ASPS 2023 industry benchmarks.",
+      "badgeLabel": "ROI Calculator",
+      "heading": "How much more will you book?",
+      "liftIntro": "Practices using surgical simulation see a",
+      "liftHighlight": "15–25% lift",
+      "liftSuffix": "in consultation-to-booking conversion.",
+      "sliders": {
+        "consultationsLabel": "Consultations per month",
+        "consultationsDisplay": "{value} patients",
+        "conversionLabel": "Current booking conversion rate",
+        "conversionDisplay": "{value}%",
+        "conversionFootnote": "Industry median: ~42% (ASPS 2023)",
+        "revenueLabel": "Average procedure revenue",
+        "revenueFootnote": "Avg rhinoplasty: $7,637 · Avg facelift: $8,584 (ASPS)"
+      },
+      "assumption": "Assumes a conservative",
+      "assumptionHighlight": "20% conversion lift",
+      "assumptionSuffix": ", the lower bound of the documented 15–25% range.",
+      "results": {
+        "label": "Your projected results",
+        "conversionAfterLabel": "Conversion rate after Faceify",
+        "conversionAfterSublabel": "Up from {current}%, a {lift}% lift",
+        "extraBookingsLabel": "Extra bookings per month",
+        "extraBookingsSublabel": "{current} → {new} procedures/mo",
+        "extraRevenueLabel": "Additional revenue / month",
+        "extraRevenueSublabel": "{bookings} bookings × {revenue}"
+      },
+      "annualRoiLabel": "Annual ROI vs. plan cost",
+      "roiReturn": "{multiple}× return",
+      "roiBreakdown": "{extraRevenue} extra revenue vs. {planCost} annual plan cost",
+      "cta": "Get started today",
+      "ctaNote": ""
+    },
+    "testimonials": {
+      "0": {
+        "quote": "Patients who see the simulation before surgery come in knowing exactly what they want. My consultation time dropped by 40%.",
+        "name": "Dr. Arjun M.",
+        "title": "Plastic & Reconstructive Surgeon"
+      },
+      "1": {
+        "quote": "The ROI was obvious within the first month. Three consultations that would have been declines turned into bookings.",
+        "name": "Dr. Sofia K.",
+        "title": "Aesthetic & Craniofacial Surgery"
+      },
+      "2": {
+        "quote": "No hardware, no IT headaches. We were running simulations the same afternoon we signed up.",
+        "name": "Dr. Ethan L.",
+        "title": "Board-Certified Rhinoplasty Specialist"
+      },
+      "sectionTitle": "What surgeons say"
+    },
+    "faqs": {
+      "0": {
+        "q": "What's the difference between plans?",
+        "a": "The current self-serve plan is one annual surgeon seat for 12 months. Pricing depends on your saved country and is shown before payment. Faceify Labs is the seller and Razorpay processes payments. Contact us for additional clinic seats or a custom arrangement."
+      },
+      "1": {
+        "q": "Is there a trial period?",
+        "a": "There is no paid trial period. You can embed the patient simulator widget on your clinic website at no cost and with no time limit. An annual seat is charged once for 12 months of access. Renew manually when the paid period ends; there are no automatic renewal charges."
+      },
+      "2": {
+        "q": "What procedures are included?",
+        "a": "Paid access covers available procedure simulators. Some procedures are not yet available for purchase. The procedure picker and checkout confirm availability before payment."
+      },
+      "3": {
+        "q": "Is patient data secure?",
+        "a": "Real-time simulation processing runs in your browser. Your photo is sent off-device only if you turn on the optional AI photoreal preview or choose to save a simulation to your account. We never use your photo to train any model. Faceify Labs is built on HIPAA-aligned architecture from day one."
+      },
+      "4": {
+        "q": "Do I need special hardware or software to install?",
+        "a": "None. Faceify Labs runs entirely in a modern browser on any laptop or desktop. No tablet, scanner, or dedicated hardware required, which is why it costs a fraction of hardware-based alternatives like Canfield Vectra ($15,000+)."
+      },
+      "5": {
+        "q": "How does Faceify compare to Crisalix?",
+        "a": "Crisalix uses a 3D mobile scanner requiring hardware setup. Faceify Labs is fully browser-native: no hardware, no install, no patient data leaving the room. All 85+ procedures use anatomical mesh modeling. Rhinoplasty runs on a high-density proprietary 3D head mesh; the rest use our 468-point facial mesh."
+      },
+      "sectionTitle": "Common questions"
+    },
+    "bottomCta": {
+      "heading": "Not sure which plan fits?",
+      "body": "Book a 15-minute call. We'll look at your procedure mix, team size, and growth goals, and build something that actually makes sense for your practice.",
+      "button": "Talk to the team",
+      "note": "No pitch. Just a real conversation."
+    },
+    "cta": {
+      "contactLink": "Or contact us directly"
+    },
+    "seat": {
+      "signInForPrice": "Sign in to see your price",
+      "priceNotice": "Price shown for your location. Your saved country determines the final price and any applicable taxes at checkout.",
+      "viewPlan": "View annual plan",
+      "clinicTitle": "Set up your clinic",
+      "clinicDescription": "Clinic setup includes one annual surgeon seat. For additional seats or a custom clinic agreement, contact our team.",
+      "setupClinic": "Start clinic setup",
+      "contactSales": "Contact us about additional seats",
+      "comparisonSubtitle": "Browser-based previews with annual surgeon access.",
+      "comparisonPrice": "Annual seat, priced by country"
+    }
+  },
+  "Credits": {
+    "metadataTitle": "Simulation Credits · {price} per credit",
+    "metadataDescription": "{price} per credit. 1 credit unlocks 24-hour unlimited access to one simulator. Buy 1, 3, or 5 credits. No subscription, no auto-renewal.",
+    "balanceTitle": "Simulation credits",
+    "balanceCount": "{count} credits available",
+    "useOneCredit": "Use 1 credit ({count} left)",
+    "redeemSuccess": "Credit redeemed: you have 24-hour access.",
+    "redeemFailed": "Could not redeem the credit. Please try again.",
+    "redeemVerifyPending": "Your credit was redeemed. Refresh the page if access doesn't appear in a few seconds.",
+    "zeroBalance": "No credits yet",
+    "checkoutUnavailable": "Purchases are temporarily paused. Redeem a voucher if you have one.",
+    "earliestExpiry": "Next expiry {date}",
+    "expiryNote": "Credits are valid for 12 months from purchase.",
+    "qtyLabel": "How many credits?",
+    "qtyOne": "1 credit: {price}",
+    "qtyThree": "3 credits: {price}",
+    "qtyFive": "5 credits: {price}",
+    "creditExplainer": "1 credit = 24 hours of access to one simulator",
+    "bankedBanner": "1 credit redeemed for {procedure}: {count} credits banked",
+    "activatedBanner": "Credit redeemed for {procedure}!",
+    "buyCta": "Get credits",
+    "viewBalance": "View my credits",
+    "pickerHeading": "One credit: {price} = 24 hours with one simulator",
+    "pickerSubtitle": "Pick the one procedure you want to explore now. Buying redeems 1 credit for instant 24-hour access to that simulator.",
+    "featureAccess": "24-hour access",
+    "featureUnlimited": "Unlimited simulations",
+    "featurePrivacy": "100% on-device privacy",
+    "pendingBanner": "Welcome back. Click <strong>{procedure}</strong> below to finish your purchase.",
+    "openingCheckout": "Opening checkout…",
+    "continueBadge": "Continue",
+    "checkoutDescription": "24-hour simulator credit",
+    "checkoutFailed": "Couldn't start checkout. Please try again.",
+    "firstCreditCta": "First credit: {price}",
+    "surgeonCreditCta": "Buy 24h for this procedure: {price}"
+  },
+  "Billing": {
+    "trialExpired": "Subscription ended. Upgrade to continue using Faceify Labs",
+    "trialDaysRemaining": "{days} day{suffix} remaining on plan",
+    "upgrade": "Upgrade",
+    "noSubscription": "Subscribe to access all simulators",
+    "startTrial": "View Plans",
+    "upgradeYourPlan": "Upgrade your plan",
+    "closeModal": "Close upgrade modal",
+    "checkoutError": "Failed to create checkout session",
+    "networkError": "Network error. Please try again.",
+    "getStarted": "Get Started",
+    "plans": {
+      "starter": {
+        "name": "Starter",
+        "price": "Starts at $149/mo",
+        "desc": "1 surgeon seat · unlimited simulations",
+        "badge": "No contract",
+        "features": {
+          "allProcedures": "All 85+ procedures",
+          "noWatermark": "No watermark",
+          "emailChatSupport": "Email & chat support"
+        }
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "Starts at $299/mo",
+        "desc": "3 surgeon seats · custom branding",
+        "badge": "Most Popular",
+        "features": {
+          "everythingInStarter": "Everything in Starter",
+          "surgeonSeats": "3 surgeon seats",
+          "analyticsDashboard": "Analytics dashboard",
+          "prioritySupport": "Priority support"
+        }
+      },
+      "clinic": {
+        "name": "Clinic",
+        "price": "Starts at $499/mo",
+        "desc": "10 surgeon seats · EHR integration",
+        "badge": "Enterprise",
+        "features": {
+          "everythingInPro": "Everything in Pro",
+          "unlimitedSurgeonSeats": "Unlimited surgeon seats",
+          "ehrIntegration": "EHR / EMR integration",
+          "dedicatedManager": "Dedicated account manager"
+        }
+      }
+    },
+    "renews": "Renews {date}",
+    "creditsRemaining": "{credits} credit{suffix} remaining",
+    "freeSims": "{used}/3 free sims",
+    "subscribeUnlockAll": "Subscribe to access all simulators",
+    "subscriptionExpired": "Your subscription expired",
+    "moneyBackGuarantee": "",
+    "viewPlans": "View Plans",
+    "pastDueBanner": "Payment failed. Update your payment method to keep your subscription.",
+    "cancelledBanner": "Your subscription is canceled. Resubscribe to continue.",
+    "annualSeatName": "Annual surgeon seat",
+    "annualSeatDescription": "One surgeon seat for 12 months",
+    "annualSeatProcedures": "Access to available procedures"
+  },
+  "ClinicCheckout": {
+    "title": "Set up your annual seat",
+    "description": "Complete your clinic setup with an annual surgeon seat. Faceify Labs is the seller and Razorpay processes your payment.",
+    "annualSeat": "Annual surgeon seat",
+    "annualPrice": "{price} / year",
+    "loadingPrice": "Loading your annual price...",
+    "seatDetails": "One surgeon seat for 12 months. Renew manually when your paid period ends.",
+    "back": "Back",
+    "openingCheckout": "Opening checkout...",
+    "continueToCheckout": "Continue to checkout",
+    "setupRequired": "Complete the clinic setup steps before starting checkout.",
+    "setupFailed": "We could not save your clinic setup. Please try again.",
+    "checkoutFailed": "We could not complete checkout. Check your payment status before trying again, or contact support@faceifylabs.com.",
+    "completeTitle": "Your clinic setup is complete",
+    "completeDescription": "{clinic} is ready. Your clinic details have been saved. Manage your annual seat from billing settings.",
+    "pendingTitle": "Confirming your clinic payment",
+    "pendingDescription": "Your clinic will be set up after payment is confirmed. You can return to your dashboard while we finish. Do not pay again.",
+    "statusUnavailable": "We could not check your clinic setup. Sign in again or check your dashboard before making another payment.",
+    "dashboard": "Go to dashboard",
+    "manageLocations": "Manage locations",
+    "stepIdentity": "Identity",
+    "stepLocations": "Locations",
+    "stepProcedures": "Procedures",
+    "stepPlan": "Plan",
+    "stepDone": "Done"
+  },
+  "IntendedUse": {
+    "statement": "Visualisation aid for patient consultation and shared decision-making. Does not diagnose, treat, or recommend any procedure. All clinical decisions are made by the treating surgeon.",
+    "notice": "Visualization aid only, not medical advice, and not a substitute for professional consultation. Your surgeon makes all clinical decisions."
+  },
+  "Metadata": {
+    "pricing": {
+      "title": "Pricing: Plans for Surgeons & Patients",
+      "description": "Faceify Labs pricing plans for plastic surgeons and hospitals. Starter from $149/mo, Clinic from $499/mo.",
+      "ogTitle": "Pricing",
+      "ogDescription": "Starter plan from $119/mo billed annually. Flexible plans for solo practices and hospital networks."
+    }
   }
 } as const;
+
 export default procedureMessages;

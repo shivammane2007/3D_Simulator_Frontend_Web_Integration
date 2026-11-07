@@ -1,15 +1,18 @@
 import React, { type ReactNode } from 'react';
-import messagesData from '@/data/procedure-messages.json';
+import procedureMessages from '@/data/procedure-messages';
+
+const raw: any = procedureMessages;
+const messagesData: any = raw?.procedureMessages || raw?.default || raw || {};
 
 function getNestedValue(obj: any, path: string): any {
-  if (!obj) return path;
+  if (!obj || typeof obj !== 'object') return undefined;
   const parts = path.split('.');
   let current = obj;
   for (const part of parts) {
     if (current && typeof current === 'object' && part in current) {
       current = current[part];
     } else {
-      return path;
+      return undefined;
     }
   }
   return current;
@@ -22,12 +25,23 @@ export type Translator = {
 };
 
 export function createTranslator(namespace?: string): Translator {
-  const root = namespace ? getNestedValue(messagesData, namespace) : messagesData;
+  let root: any = messagesData;
+  if (namespace) {
+    const found = getNestedValue(messagesData, namespace) ?? messagesData[namespace];
+    if (found && typeof found === 'object') {
+      root = found;
+    } else if (raw?.default && typeof raw.default === 'object') {
+      root = getNestedValue(raw.default, namespace) ?? raw.default[namespace] ?? messagesData;
+    }
+  }
 
   const t = ((key: string, params?: Record<string, string | number>): string => {
     let val = getNestedValue(root, key);
+    if (val === undefined && namespace) {
+      val = getNestedValue(messagesData, `${namespace}.${key}`) ?? getNestedValue(messagesData, key);
+    }
     if (typeof val !== 'string') {
-      return typeof val === 'object' && val !== null ? '' : String(val ?? key);
+      return typeof val === 'object' && val !== null ? '' : (val !== undefined ? String(val) : key);
     }
     if (params) {
       for (const [pKey, pVal] of Object.entries(params)) {
@@ -38,12 +52,22 @@ export function createTranslator(namespace?: string): Translator {
   }) as Translator;
 
   t.raw = (key: string) => {
-    return getNestedValue(root, key);
+    let val = getNestedValue(root, key);
+    if (val === undefined && namespace) {
+      val = getNestedValue(messagesData, `${namespace}.${key}`) ?? getNestedValue(messagesData, key);
+    }
+    return val;
   };
 
   t.rich = (key: string, values?: Record<string, any>): ReactNode => {
     let text = getNestedValue(root, key);
-    if (typeof text !== 'string') return '';
+    if (text === undefined && namespace) {
+      text = getNestedValue(messagesData, `${namespace}.${key}`) ?? getNestedValue(messagesData, key);
+    }
+    if (typeof text !== 'string') {
+      if (typeof text === 'object' && text !== null) return '';
+      text = text !== undefined ? String(text) : key;
+    }
 
     if (values) {
       for (const [k, v] of Object.entries(values)) {
