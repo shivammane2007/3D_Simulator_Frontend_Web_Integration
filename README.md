@@ -49,9 +49,15 @@
 ## ⚡ Key Features
 
 - **Real-Time 3D Facial Morphing**: Interactive sliders and deformation handles allow real-time adjustments with sub-16ms latency.
-- **On-Device AI Diagnostics**:
-  - **AI Face Analyzer (`/simulate`)**: Complete facial symmetry, proportional analysis (Golden Ratio), and volume mapping.
-  - **Acne & Skin Assessment (`/analyse`)**: Multi-zone dermal analysis, lesion classification, and severity scoring.
+- **On-Device AI Diagnostics & Proportion Explorer**:
+  - **Facial Proportion Explorer (`/analyse`)**: 468-point landmark detection, Golden Ratio, Symmetry, and Overall Harmony gauges, HUD contour overlay, split Before/After compare slider, and tailored procedure recommendations.
+  - **Acne & Skin Assessment (`/analyse/acne`)**: Multi-zone dermal analysis, lesion classification, and severity scoring.
+  - **3D Simulator Hub (`/simulate`)**: 85+ interactive procedural morphing simulations running with sub-16ms latency.
+- **Patient Portal (`/patient/*`)**:
+  - **Dashboard (`/patient/dashboard`)**: Unified clinical dashboard with simulation credits, quick simulators, consultation requests, and real-time notification center.
+  - **Virtual Consultation (`/patient/consultation`)**: 7-step consultative journey from interest selection and photo intake to AI simulation summary and clinic booking.
+  - **Profile & Results (`/patient/profile`, `/patient/results`)**: Personalization, simulation archive, and treatment tracking.
+  - **Privacy & Security Settings (`/patient/settings`, `/account/password`)**: DPDP Act 2023 & GDPR-compliant privacy management, local simulation data purge, CRM export, WhatsApp sign-in, and password management.
 - **Multi-Language Localization (i18n)**: Seamless instant switching between 5 languages:
   - 🇺🇸 English (`EN`)
   - 🇹🇭 Thai (`TH`)
@@ -188,7 +194,10 @@ npm run lint
 ├── src/
 │   ├── app/                # Next.js App Router (pages & route handlers)
 │   │   ├── (legal)         # Privacy, Terms, Cancellation, Refund policies
-│   │   ├── analyse/        # AI Acne & Skin Condition assessment tool
+│   │   ├── account/        # Account management & password security (/account/password)
+│   │   ├── analyse/        # Facial Proportion Explorer & Skin Condition assessment
+│   │   │   └── acne/       # Zone-by-zone acne assessment tool
+│   │   ├── api/            # Route handlers (notifications, auth, CRM export, demo requests)
 │   │   ├── blog/           # Medical aesthetics & tech articles
 │   │   ├── consultation/   # Virtual consultation booking flow
 │   │   ├── directory/      # Verified plastic surgeon clinic directory
@@ -201,6 +210,12 @@ npm run lint
 │   │   ├── login/          # Clinical portal authentication
 │   │   ├── our-story/      # Company vision, mission & team
 │   │   ├── partners/       # Enterprise & hospital network partnerships
+│   │   ├── patient/        # Unified Patient Portal
+│   │   │   ├── consultation/ # 7-step consultative simulation summary & booking
+│   │   │   ├── dashboard/  # Patient cockpit (credits, quick sims, notifications)
+│   │   │   ├── profile/    # Personal & surgical interests profile
+│   │   │   ├── results/    # Simulation archive & before/after review
+│   │   │   └── settings/   # Privacy & Data, Security, CRM exports, Account erasure
 │   │   ├── pricing/        # Tiered subscription & license pricing
 │   │   ├── privacy/        # Zero-data-retention compliance specifications
 │   │   ├── procedures/     # 85+ procedure catalog & dynamic detail pages
@@ -214,16 +229,19 @@ npm run lint
 │   │   ├── not-found.tsx   # Custom 404 page
 │   │   └── page.tsx        # Homepage
 │   ├── components/         # Reusable React components
+│   │   ├── analyse/        # FaceAnalyser, HUD views, IdealFacePreview, Proportions, Treatments
 │   │   ├── layout/         # Navigation, Footer, Container, Mobile Drawer
 │   │   ├── media/          # Video/Image comparison sliders & visual assets
 │   │   ├── motion/         # Scroll triggers, stagger reveals, fade animations
+│   │   ├── patient/        # PatientTopNav, PatientSidebar, Notification center
 │   │   ├── sections/       # Hero, ProcedureExplorer, TechSection, Pricing, etc.
 │   │   ├── simulator/      # Interactive 3D Simulator Shell & canvas controls
 │   │   └── ui/             # Radix primitives, Buttons, Badges, Modals, Cards
+│   │       └── hud/        # RadialGauge, GlassTag, HudLabel, LandmarkOverlay, MetricBar
 │   ├── config/             # Site configuration & metadata
 │   ├── context/            # React Contexts (LanguageContext i18n, SimulatorState)
 │   ├── data/               # Procedures database, navigation links, pricing tiers
-│   └── lib/                # Utility helper functions (cn, formatters, math)
+│   └── lib/                # Utility helper functions (analyse, simulation, auth, math)
 ├── next.config.ts          # Next.js configuration
 ├── package.json            # Project dependencies & scripts
 ├── tsconfig.json           # TypeScript configuration
@@ -240,7 +258,14 @@ npm run lint
 | `/procedures` | Complete searchable database of 85+ aesthetic and surgical procedures |
 | `/procedures/[id]` | Deep-dive procedure page with recovery timelines, anatomical targets, and simulation morphs |
 | `/simulate` | Interactive 3D Facial Simulator with real-time morph sliders and landmark tracking |
-| `/analyse` | AI-powered dermal acne and skin texture assessment |
+| `/analyse` | AI Facial Proportion Explorer with 468 landmark mapping, Golden Ratio gauges, HUD overlay & recommendations |
+| `/analyse/acne` | AI-powered zone-by-zone dermal acne and skin texture assessment |
+| `/patient/dashboard` | Unified patient cockpit with credits, quick simulators, invite lookup, and interactive notification center |
+| `/patient/consultation` | 7-step virtual consultation flow with before/after simulation summary and appointment booking |
+| `/patient/results` | Patient simulation archive, procedure recommendations, and clinical review |
+| `/patient/profile` | Patient profile management, treatment interests, and personal details |
+| `/patient/settings` | DPDP Act 2023 & GDPR Privacy & Data controls, local data purge, CRM export, and account erasure |
+| `/account/password` | Account security and password configuration screen |
 | `/gallery` | Before / After clinical case study gallery with split-view comparison |
 | `/technology` | Deep architectural breakdown of the client-side WebGL2 inference pipeline |
 | `/for-surgeons` | Practice integration tools, patient conversion metrics, and clinic workflows |
