@@ -883,5 +883,21 @@
       "walkthrough": "Book a 15-Min Walkthrough",
       "sub": ""
     }
+  },
+  "UseCases": {
+    "heroEyebrow": "Surgeon Resources",
+    "heroHeadingLine1": "How Surgeons Use",
+    "heroHeadingBrand": "Faceify Labs",
+    "heroDescription": "These are not product brochures. They are detailed, workflow-level guides written for plastic surgeons and aesthetic practitioners who want to understand how AI simulation integrates into a real clinical practice — and what the measurable outcomes look like.",
+    "minRead": "min read",
+    "ctaHeading": "Ready to see it in your practice?",
+    "ctaDescription": "No hardware, no installation — just open a browser and start simulating.",
+    "ctaButton": "Try a Simulation"
+  },
+  "useCaseCategories": {
+    "workflow": "Clinical Workflow",
+    "conversion": "Practice Growth",
+    "privacy": "Privacy & Compliance",
+    "apac": "APAC Strategy"
   }
 }
