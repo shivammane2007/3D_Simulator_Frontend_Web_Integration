@@ -1352,6 +1352,48 @@ export const procedureMessages = {
       "ogTitle": "Pricing",
       "ogDescription": "Starter plan from $119/mo billed annually. Flexible plans for solo practices and hospital networks."
     }
+  },
+  "FAQ": {
+    "heroLabel": "FAQ",
+    "heroTitle": "Common questions, <em>clear answers</em>",
+    "heroSubtitle": "Everything surgeons and patients need to know about Faceify Labs.",
+    "ctaHeading": "Ready to see it in action?",
+    "ctaDescription": "Schedule a personalized demo and we'll show you how Faceify fits your practice.",
+    "ctaButton": "Schedule a Demo",
+    "questions": {
+      "patientPrivacy": {
+        "q": "How does Faceify protect patient privacy?",
+        "a": "All photos process in the patient's browser. No image leaves the device for the base simulator. All AI inference runs directly on the device's own hardware."
+      },
+      "hipaaCompat": {
+        "q": "Is Faceify HIPAA-compatible?",
+        "a": "The browser-native architecture means Faceify does not receive, store, or transmit Protected Health Information from the base simulator. US clinics can use Faceify alongside their existing PHI workflows. BAAs are available on the Enterprise plan upon request. See /trust for the architecture statement."
+      },
+      "gdprPdpaPipa": {
+        "q": "What about GDPR, PDPA, and PIPA?",
+        "a": "Image data does not leave the patient's device, so EU, Singapore/Thailand, and Korea/Japan data-residency rules apply at the device level, not the cloud level. DPIA available on request via partners@faceifylabs.com. The optional photoreal preview path uses Replicate (US) and is consent-gated; see /trust."
+      },
+      "consentCapture": {
+        "q": "How is patient consent captured?",
+        "a": "Consent is captured in the simulator UI before any procedure preview runs. The clinic owns the consent log via its own EHR. Faceify does not store consent records."
+      },
+      "trainingTime": {
+        "q": "How long does training take?",
+        "a": "About 15 minutes for a surgeon to run their first consult. The interface is designed for in-room use, not classroom training."
+      },
+      "multipleSeats": {
+        "q": "Can my clinic have multiple seats?",
+        "a": "Self-serve clinic setup includes one annual surgeon seat. Contact partners@faceifylabs.com for additional seats or a custom clinic agreement. Faceify Labs is the seller and Razorpay processes online payments."
+      },
+      "languages": {
+        "q": "Which languages are supported?",
+        "a": "English, Thai, Korean, Portuguese, Japanese. Procedure terminology is medically validated per locale."
+      },
+      "foundingPartner": {
+        "q": "What is the Founding Partner program?",
+        "a": "The first cohort of clinics onboarding before launch receives a structured voucher access programme covering full simulator access, direct product input, and named clinic recognition. Apply via the form on the homepage."
+      }
+    }
   }
 } as const;
 

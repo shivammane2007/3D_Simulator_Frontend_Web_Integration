@@ -246,6 +246,9 @@
   font-variant-numeric: tabular-nums;
   overflow-wrap: anywhere;
 }
+.editorial-hero { padding-block: 6rem; }
+.editorial-faq button:focus-visible { outline-offset: -4px; box-shadow: none; }
+.editorial-faq button[aria-expanded="true"] { background: var(--color-cream); }
 .editorial-section { padding-block: 3.5rem; }
 @media (min-width: 768px) and (min-height: 501px) { .editorial-section { padding-block: 7rem; } }
 .editorial-container { width: 100%; max-width: 1200px; margin-inline: auto; }
