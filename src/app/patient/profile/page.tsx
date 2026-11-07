@@ -159,65 +159,65 @@ export default function PatientProfilePage() {
   const userInitial = user.name ? user.name.charAt(0).toUpperCase() : 'S';
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="space-y-8 pb-12 font-sans">
       {/* Page Header */}
       <div>
-        <h1 className="text-3xl sm:text-4xl font-medium tracking-[-0.02em] text-[#141413]">
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#0A0F1A] font-sans mb-1">
           My Profile
         </h1>
-        <p className="text-sm text-[#555555] mt-1.5 max-w-2xl font-normal">
+        <p className="text-sm text-slate-500 font-sans max-w-2xl">
           Your personal space on Faceify Labs. Share what you&apos;re comfortable with; surgeons use this to serve you better.
         </p>
       </div>
 
       {/* Card 1: Identity Card */}
-      <div className="bg-white rounded-[24px] border border-black/5 p-6 sm:p-7 shadow-level-1">
+      <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-xs">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
           {/* Avatar Box with Camera Badge */}
           <div className="relative shrink-0">
-            <div className="w-20 h-20 rounded-[20px] bg-[#141413] text-[#F3F0EE] flex items-center justify-center font-bold text-3xl shadow-sm">
+            <div className="w-20 h-20 rounded-2xl bg-[#305A4F] text-white flex items-center justify-center font-bold text-3xl shadow-sm">
               {userInitial}
             </div>
             <button 
               type="button"
               title="Update photo"
-              className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-[#CF4500] hover:bg-[#F37338] text-white flex items-center justify-center shadow-md hover:scale-105 transition-all cursor-pointer"
+              className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-[#305A4F] hover:bg-[#25453C] text-white flex items-center justify-center shadow-md hover:scale-105 transition-all cursor-pointer"
             >
               <Camera className="w-3.5 h-3.5" />
             </button>
           </div>
 
           {/* Details */}
-          <div className="space-y-1">
-            <h2 className="text-lg font-medium text-[#141413]">{user.name || 'Shivam Mane'}</h2>
-            <div className="flex items-center gap-1.5 text-xs text-[#555555]">
-              <Mail className="w-3.5 h-3.5 text-[#696969]" />
+          <div className="space-y-1 font-sans">
+            <h2 className="text-lg font-bold text-[#0A0F1A]">{user.name || 'Shivam Mane'}</h2>
+            <div className="flex items-center gap-1.5 text-xs text-slate-500">
+              <Mail className="w-3.5 h-3.5 text-slate-400" />
               <span>{user.email || 'shivammane2007@gmail.com'}</span>
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#CF4500]" />
-              <span className="text-[11px] text-[#696969]">Email verified</span>
+              <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+              <span className="text-[11px] text-green-600 font-medium">Email verified</span>
             </div>
-            <div className="flex items-center gap-1.5 text-xs text-[#696969] pt-0.5">
+            <div className="flex items-center gap-1.5 text-xs text-slate-400 pt-0.5">
               <Calendar className="w-3.5 h-3.5" />
               <span>Member since {user.createdAt || 'August 2026'}</span>
             </div>
           </div>
         </div>
 
-        <div className="mt-5 pt-4 border-t border-black/5 text-xs text-[#555555]">
+        <div className="mt-5 pt-4 border-t border-slate-100 text-xs text-slate-500 font-sans">
           To update your display name, visit{' '}
-          <Link href="/patient/settings" className="font-medium text-[#CF4500] hover:underline">
+          <Link href="/patient/settings" className="font-semibold text-[#305A4F] hover:underline">
             Settings
           </Link>
         </div>
       </div>
 
       {/* Card 2: Form: About You */}
-      <div className="bg-white rounded-[24px] border border-black/5 p-6 sm:p-7 shadow-level-1">
+      <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-xs">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-9 h-9 rounded-[14px] bg-[#FDEEE7] text-[#CF4500] flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl bg-[#305A4F]/10 text-[#305A4F] flex items-center justify-center">
             <User className="w-4 h-4" />
           </div>
-          <h2 className="text-base font-medium text-[#141413]">About You</h2>
+          <h2 className="text-base font-bold text-[#0A0F1A] font-sans">About You</h2>
         </div>
         <p className="text-xs text-[#555555] mb-6 font-normal">
           All fields are optional. Sharing helps surgeons match you with the right specialist and currency.
@@ -299,14 +299,14 @@ export default function PatientProfilePage() {
             <button
               type="submit"
               disabled={isSaving}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-[20px] bg-[#141413] hover:bg-[#262627] text-[#F3F0EE] text-xs font-medium tracking-tight shadow-sm transition-all cursor-pointer disabled:opacity-50"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#305A4F] hover:bg-[#25453C] text-white text-xs font-bold transition-all cursor-pointer disabled:opacity-50"
             >
               {isSaving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Save className="w-3.5 h-3.5" />}
               <span>Save Changes</span>
             </button>
 
             {saveSuccess && (
-              <span className="text-xs text-[#CF4500] font-medium flex items-center gap-1">
+              <span className="text-xs text-green-600 font-medium flex items-center gap-1 font-sans">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>Profile updated successfully</span>
               </span>
@@ -316,12 +316,12 @@ export default function PatientProfilePage() {
       </div>
 
       {/* Card 3: Notification Preferences (Matches Screenshot 2) */}
-      <div className="bg-white rounded-[24px] border border-black/5 p-6 sm:p-7 shadow-level-1">
+      <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-xs">
         <div className="flex items-center gap-3 mb-5">
-          <div className="w-9 h-9 rounded-[14px] bg-[#FDEEE7] text-[#CF4500] flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl bg-[#305A4F]/10 text-[#305A4F] flex items-center justify-center">
             <Bell className="w-4 h-4" />
           </div>
-          <h2 className="text-base font-medium text-[#141413]">Notification Preferences</h2>
+          <h2 className="text-base font-bold text-[#0A0F1A] font-sans">Notification Preferences</h2>
         </div>
 
         <div className="space-y-5 max-w-xl">
@@ -407,12 +407,12 @@ export default function PatientProfilePage() {
       </div>
 
       {/* Card 4: Privacy & Data (Matches Screenshot 2) */}
-      <div className="bg-white rounded-[24px] border border-black/5 p-6 sm:p-7 shadow-level-1">
+      <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-xs">
         <div className="flex items-center gap-3 mb-5">
-          <div className="w-9 h-9 rounded-[14px] bg-[#FDEEE7] text-[#CF4500] flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl bg-[#305A4F]/10 text-[#305A4F] flex items-center justify-center">
             <Shield className="w-4 h-4" />
           </div>
-          <h2 className="text-base font-medium text-[#141413]">Privacy & Data</h2>
+          <h2 className="text-base font-bold text-[#0A0F1A] font-sans">Privacy & Data</h2>
         </div>
 
         <div className="space-y-4 max-w-xl">

@@ -108,43 +108,43 @@ export default function PatientSettingsPage() {
   };
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="space-y-8 pb-12 font-sans">
       {/* Header */}
       <div>
-        <h1 className="text-3xl sm:text-4xl font-medium tracking-[-0.02em] text-[#141413]">
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#0A0F1A] font-sans mb-1">
           Settings
         </h1>
-        <p className="text-sm text-[#555555] mt-1.5 font-normal">
+        <p className="text-sm text-slate-500 font-sans">
           Manage your account and privacy preferences
         </p>
       </div>
 
       {/* Card 1: Profile */}
-      <div className="bg-white rounded-[24px] border border-black/5 p-6 sm:p-7 shadow-level-1">
+      <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-xs">
         <div className="flex items-center gap-3 mb-5">
-          <div className="w-9 h-9 rounded-[14px] bg-[#FDEEE7] text-[#CF4500] flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl bg-[#305A4F]/10 text-[#305A4F] flex items-center justify-center">
             <User className="w-4 h-4" />
           </div>
-          <h2 className="text-base font-medium text-[#141413]">Profile</h2>
+          <h2 className="text-base font-bold text-[#0A0F1A] font-sans">Profile</h2>
         </div>
 
         <div className="space-y-4 max-w-xl">
           {/* Email */}
           <div>
-            <label className="text-xs font-medium text-[#696969] block mb-1.5">
+            <label className="text-xs font-semibold text-slate-600 block mb-1.5 font-sans">
               Email
             </label>
             <input
               type="email"
               disabled
               value={user.email || 'shivammane2007@gmail.com'}
-              className="w-full px-4 py-2.5 rounded-[16px] border border-black/5 text-sm text-[#696969] bg-[#F3F0EE]/60 cursor-not-allowed"
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-500 bg-slate-50 cursor-not-allowed font-sans"
             />
           </div>
 
           {/* Name */}
           <div>
-            <label className="text-xs font-medium text-[#141413] block mb-1.5">
+            <label className="text-xs font-semibold text-slate-700 block mb-1.5 font-sans">
               Name
             </label>
             <form onSubmit={handleSaveName} className="flex gap-2">
@@ -152,19 +152,19 @@ export default function PatientSettingsPage() {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="flex-1 px-4 py-2.5 rounded-[16px] border border-black/10 text-sm text-[#141413] bg-white placeholder:text-[#696969] focus:outline-none focus:border-[#CF4500] focus:ring-1 focus:ring-[#CF4500]/20 transition-all"
+                className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-[#0A0F1A] bg-white placeholder:text-slate-400 focus:outline-none focus:border-[#305A4F] focus:ring-1 focus:ring-[#305A4F]/20 transition-all font-sans"
               />
               <button
                 type="submit"
                 disabled={isSaving}
-                className="px-6 py-2.5 rounded-[20px] bg-[#141413] hover:bg-[#262627] text-[#F3F0EE] text-xs font-medium tracking-tight transition-all cursor-pointer shrink-0 disabled:opacity-50"
+                className="px-5 py-2.5 rounded-xl bg-[#305A4F] hover:bg-[#25453C] text-white text-xs font-bold transition-all cursor-pointer shrink-0 disabled:opacity-50"
               >
                 {isSaving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : 'Save'}
               </button>
             </form>
             {savedSuccess && (
-              <p className="text-xs text-[#CF4500] font-medium mt-1.5 flex items-center gap-1">
-                <CheckCircle2 className="w-3.5 h-3.5" />
+              <p className="text-xs text-green-600 font-medium mt-1.5 flex items-center gap-1 font-sans">
+                <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
                 <span>Name updated successfully</span>
               </p>
             )}
@@ -173,12 +173,12 @@ export default function PatientSettingsPage() {
       </div>
 
       {/* Card 2: Privacy & Data */}
-      <div className="bg-white rounded-[24px] border border-black/5 p-6 sm:p-7 shadow-level-1">
+      <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-xs">
         <div className="flex items-center gap-3 mb-5">
-          <div className="w-9 h-9 rounded-[14px] bg-[#FDEEE7] text-[#CF4500] flex items-center justify-center">
+          <div className="w-9 h-9 rounded-xl bg-[#305A4F]/10 text-[#305A4F] flex items-center justify-center">
             <Shield className="w-4 h-4" />
           </div>
-          <h2 className="text-base font-medium text-[#141413]">Privacy & Data</h2>
+          <h2 className="text-base font-bold text-[#0A0F1A] font-sans">Privacy & Data</h2>
         </div>
 
         <div className="space-y-4 max-w-xl">

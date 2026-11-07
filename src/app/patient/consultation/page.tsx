@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { 
   Sparkles, 
@@ -13,10 +13,13 @@ import {
   Scissors,
   Check,
   Upload,
-  Camera,
   Shield,
-  Calendar,
-  CheckCircle2
+  CheckCircle2,
+  Sliders,
+  MoveHorizontal,
+  Download,
+  User,
+  CalendarCheck
 } from 'lucide-react';
 import { routes } from '@/config/routes';
 
@@ -24,14 +27,22 @@ const STEPS = [
   { id: 1, label: 'Welcome' },
   { id: 2, label: 'Area' },
   { id: 3, label: 'Procedure' },
-  { id: 4, label: 'Preferences' },
-  { id: 5, label: 'Photo' },
-  { id: 6, label: 'Simulation' },
-  { id: 7, label: 'Review' },
+  { id: 4, label: 'Photo' },
+  { id: 5, label: 'Preview' },
+  { id: 6, label: 'Summary' },
+  { id: 7, label: 'Booking' },
 ];
 
-// Exact 6 Regions from faceifylabs.com / Screenshot 1
-const REGIONS = [
+type Region = 'face' | 'nose' | 'eyes' | 'body' | 'dental' | 'hair';
+
+interface RegionOption {
+  id: Region;
+  name: string;
+  desc: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+const REGIONS: RegionOption[] = [
   { id: 'face', name: 'Face', desc: 'Facelift, contouring, chin', icon: Smile },
   { id: 'nose', name: 'Nose', desc: 'Rhinoplasty, tip, bridge', icon: Target },
   { id: 'eyes', name: 'Eyes', desc: 'Eyelids, brow lift', icon: Eye },
@@ -40,7 +51,13 @@ const REGIONS = [
   { id: 'hair', name: 'Hair', desc: 'Transplant, hairline, restoration', icon: Scissors },
 ];
 
-const PROCEDURES_BY_REGION: Record<string, { id: string; name: string; desc: string }[]> = {
+interface ProcedureOption {
+  id: string;
+  name: string;
+  desc: string;
+}
+
+const PROCEDURES_BY_REGION: Record<Region, ProcedureOption[]> = {
   nose: [
     { id: 'rhinoplasty', name: 'Rhinoplasty', desc: 'Reshape the nose for improved proportion and nasal airway' },
     { id: 'tip-refinement', name: 'Tip Refinement', desc: 'Refine the nasal tip shape, rotation, and projection' },
@@ -62,7 +79,7 @@ const PROCEDURES_BY_REGION: Record<string, { id: string; name: string; desc: str
     { id: 'bbl', name: 'Brazilian Butt Lift', desc: 'Fat transfer to enhance buttock shape and volume' },
   ],
   dental: [
-    { id: 'smile-design', name: 'Smile Design', desc: 'Reshape tooth form, alignment, and smile proportions' },
+    { id: 'smile-design', name: 'Smile Design', desc: 'Reshape tooth form, alignment, and smile proportions for facial harmony' },
     { id: 'teeth-whitening', name: 'Teeth Whitening', desc: 'Brighten your smile with professional shade-matched whitening' },
     { id: 'veneers', name: 'Veneers', desc: 'Porcelain or composite shells for a complete smile transformation' },
   ],
@@ -74,16 +91,70 @@ const PROCEDURES_BY_REGION: Record<string, { id: string; name: string; desc: str
 };
 
 export default function PatientConsultationPage() {
-  const [currentStep, setCurrentStep] = useState(2); // Defaults to Step 2 as in Screenshot
-  const [selectedRegion, setSelectedRegion] = useState('nose'); // Nose selected by default as in Screenshot
+  const [currentStep, setCurrentStep] = useState(2); // Defaults to Step 2 as in canonical flow
+  const [selectedRegion, setSelectedRegion] = useState<Region>('nose');
   const [selectedProcedure, setSelectedProcedure] = useState('rhinoplasty');
-  const [goals, setGoals] = useState('Subtle and natural refinement');
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [intensity, setIntensity] = useState(60);
+  const [sliderPos, setSliderPos] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const [bookingSubmitted, setBookingSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: 'Shivam Mane',
+    email: 'shivammane2007@gmail.com',
+    phone: '',
+    notes: '',
+  });
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const currentProcedures = PROCEDURES_BY_REGION[selectedRegion] || PROCEDURES_BY_REGION.nose;
+  const activeProcObj = currentProcedures.find((p) => p.id === selectedProcedure) || currentProcedures[0];
+
+  const handleFileSelect = (file: File) => {
+    if (!file.type.match(/^image\/(jpeg|png|webp)$/)) {
+      setUploadError('Invalid file type. Please upload a JPG, PNG, or WebP image.');
+      return;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+      setUploadError('File too large. Maximum size is 10 MB.');
+      return;
+    }
+    setUploadError(null);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      if (typeof e.target?.result === 'string') {
+        setImageSrc(e.target.result);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    if (file) handleFileSelect(file);
+  };
+
+  // Slider dragging handlers
+  const handleSliderMove = useCallback((clientX: number) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    setSliderPos((x / rect.width) * 100);
+  }, []);
+
+  const onPointerDown = () => setIsDragging(true);
+  const onPointerUp = () => setIsDragging(false);
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (isDragging) handleSliderMove(e.clientX);
+  };
 
   return (
-    <div className="space-y-8 pb-12 max-w-4xl mx-auto">
-      {/* 7-Step Stepper (Matches Screenshot 1 & 2) */}
+    <div className="space-y-8 pb-12 max-w-4xl mx-auto font-sans">
+      {/* 7-Step Progress Stepper (Matches Image 9 & 10) */}
       <div className="py-4">
         <div className="relative flex items-center justify-between max-w-2xl mx-auto">
           <div className="absolute left-4 right-4 top-1/2 -translate-y-1/2 h-0.5 bg-slate-200 -z-0" />
@@ -95,13 +166,14 @@ export default function PatientConsultationPage() {
                 <button
                   type="button"
                   onClick={() => setCurrentStep(step.id)}
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold transition-all cursor-pointer ${
+                  className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-semibold transition-all cursor-pointer ${
                     isCurrent
-                      ? 'bg-[#305A4F] text-white shadow-sm ring-4 ring-[#305A4F]/15'
+                      ? 'bg-[#305A4F] text-white shadow-sm ring-4 ring-[#305A4F]/20'
                       : isCompleted
                       ? 'bg-[#141413] text-white'
                       : 'bg-slate-100 text-slate-400 border border-slate-200'
                   }`}
+                  aria-label={`Step ${step.id}: ${step.label}`}
                 >
                   {isCompleted ? <Check className="w-3.5 h-3.5 stroke-[3]" /> : step.id}
                 </button>
@@ -113,28 +185,28 @@ export default function PatientConsultationPage() {
 
       {/* Step 1: Welcome Screen */}
       {currentStep === 1 && (
-        <div className="bg-white rounded-[32px] border border-black/5 p-8 sm:p-14 text-center max-w-2xl mx-auto shadow-level-1">
-          <div className="w-16 h-16 rounded-[20px] bg-[#FDEEE7] text-[#CF4500] flex items-center justify-center mx-auto mb-6 shadow-sm">
+        <div className="bg-white rounded-3xl border border-slate-200 p-8 sm:p-14 text-center max-w-2xl mx-auto shadow-xs">
+          <div className="w-16 h-16 rounded-2xl bg-[#305A4F]/10 text-[#305A4F] flex items-center justify-center mx-auto mb-6">
             <Sparkles className="w-8 h-8" />
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-medium tracking-[-0.02em] text-[#141413] mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#0A0F1A] font-sans mb-2">
             Welcome to Your Virtual Consultation
           </h1>
-          <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-[#696969] mb-4">
+          <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-slate-400 mb-4 font-sans">
             POWERED BY FACEIFY LABS
           </p>
 
-          <p className="text-sm text-[#555555] max-w-lg mx-auto leading-relaxed mb-8 font-normal">
+          <p className="text-sm text-slate-500 max-w-lg mx-auto leading-relaxed mb-8 font-sans">
             This guided experience helps you explore procedures and explore AI visualizations, all before your first appointment.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-[#555555] mb-8 font-normal">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-500 mb-8 font-sans">
             <span className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-[#696969]" />
+              <Clock className="w-3.5 h-3.5 text-slate-400" />
               <span>Takes about 3 minutes</span>
             </span>
-            <span className="inline-block w-1 h-1 rounded-full bg-black/20" />
+            <span className="inline-block w-1 h-1 rounded-full bg-slate-300" />
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#305A4F]" />
               <span>Real-time simulation runs in your browser</span>
@@ -144,7 +216,7 @@ export default function PatientConsultationPage() {
           <button
             type="button"
             onClick={() => setCurrentStep(2)}
-            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-[20px] bg-[#305A4F] hover:bg-[#25453c] text-white text-sm font-semibold shadow-sm transition-all cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-[#305A4F] hover:bg-[#25453C] text-white text-sm font-bold rounded-xl transition-all cursor-pointer"
           >
             <span>Begin Consultation</span>
             <ArrowRight className="w-4 h-4" />
@@ -152,15 +224,15 @@ export default function PatientConsultationPage() {
         </div>
       )}
 
-      {/* Step 2: Select Area (Matches Screenshot 1 & 2 exactly!) */}
+      {/* Step 2: Select Area (Matches Image 9 Exactly) */}
       {currentStep === 2 && (
         <div>
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#141413]">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#0A0F1A] font-sans">
               What area would you like to explore?
             </h1>
-            <p className="text-sm text-slate-400 mt-1 font-normal">
+            <p className="text-sm text-slate-400 mt-1 font-sans">
               Select the area you&apos;re most interested in
             </p>
           </div>
@@ -175,28 +247,26 @@ export default function PatientConsultationPage() {
                   key={region.id}
                   type="button"
                   onClick={() => setSelectedRegion(region.id)}
-                  className={`p-6 sm:p-7 rounded-[22px] border-2 transition-all cursor-pointer flex flex-col items-center justify-center text-center ${
+                  className={`p-6 sm:p-7 rounded-2xl border-2 transition-all cursor-pointer flex flex-col items-center justify-center text-center ${
                     isSelected
-                      ? 'border-[#305A4F] bg-[#F4F8F6] shadow-sm'
-                      : 'border-slate-200 hover:border-slate-300 bg-white shadow-2xs'
+                      ? 'border-[#305A4F] bg-[#305A4F]/[0.05] shadow-xs'
+                      : 'border-slate-200 hover:border-slate-300 bg-white'
                   }`}
                 >
                   {/* Icon Container */}
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-3 transition-colors ${
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 transition-colors ${
                     isSelected ? 'bg-[#305A4F]/10 text-[#305A4F]' : 'bg-slate-100 text-slate-400'
                   }`}>
                     <Icon className="w-6 h-6" />
                   </div>
 
                   {/* Title */}
-                  <h3 className={`text-base font-bold transition-colors ${
-                    isSelected ? 'text-[#141413]' : 'text-slate-800'
-                  }`}>
+                  <h3 className="text-base font-bold text-[#0A0F1A] font-sans">
                     {region.name}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-xs text-slate-400 mt-1 font-normal">
+                  <p className="text-xs text-slate-500 mt-1 font-sans">
                     {region.desc}
                   </p>
 
@@ -211,12 +281,12 @@ export default function PatientConsultationPage() {
             })}
           </div>
 
-          {/* Bottom Navigation Buttons (Matches Screenshot 2) */}
+          {/* Bottom Navigation Buttons */}
           <div className="flex items-center justify-between pt-4">
             <button
               type="button"
               onClick={() => setCurrentStep(1)}
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-[#141413] transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back</span>
@@ -225,7 +295,7 @@ export default function PatientConsultationPage() {
             <button
               type="button"
               onClick={() => setCurrentStep(3)}
-              className="inline-flex items-center justify-center gap-2 px-8 py-2.5 rounded-[20px] bg-[#305A4F] hover:bg-[#25453c] text-white text-sm font-semibold shadow-xs transition-all cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#305A4F] hover:bg-[#25453C] text-white text-sm font-bold rounded-xl transition-all cursor-pointer"
             >
               <span>Next</span>
               <ArrowRight className="w-4 h-4" />
@@ -238,11 +308,11 @@ export default function PatientConsultationPage() {
       {currentStep === 3 && (
         <div>
           <div className="text-center mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#141413]">
-              Select a procedure
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#0A0F1A] font-sans">
+              Choose a procedure
             </h1>
-            <p className="text-sm text-slate-400 mt-1 font-normal">
-              Choose the specific treatment you want to visualize
+            <p className="text-sm text-slate-400 mt-1 font-sans">
+              Select the procedure you&apos;d like to preview
             </p>
           </div>
 
@@ -254,14 +324,14 @@ export default function PatientConsultationPage() {
                   key={proc.id}
                   type="button"
                   onClick={() => setSelectedProcedure(proc.id)}
-                  className={`p-6 rounded-[22px] border-2 transition-all cursor-pointer flex flex-col text-left ${
+                  className={`p-6 rounded-2xl border-2 transition-all cursor-pointer flex flex-col text-left ${
                     isSelected
-                      ? 'border-[#305A4F] bg-[#F4F8F6] shadow-sm'
-                      : 'border-slate-200 hover:border-slate-300 bg-white shadow-2xs'
+                      ? 'border-[#305A4F] bg-[#305A4F]/[0.05] shadow-xs'
+                      : 'border-slate-200 hover:border-slate-300 bg-white'
                   }`}
                 >
-                  <h3 className="text-base font-bold text-[#141413] mb-1.5">{proc.name}</h3>
-                  <p className="text-xs text-slate-500 leading-relaxed font-normal mb-4 flex-1">
+                  <h3 className="text-base font-bold text-[#0A0F1A] font-sans mb-1.5">{proc.name}</h3>
+                  <p className="text-xs text-slate-500 font-sans leading-relaxed mb-4 flex-1">
                     {proc.desc}
                   </p>
                   {isSelected ? (
@@ -280,7 +350,7 @@ export default function PatientConsultationPage() {
             <button
               type="button"
               onClick={() => setCurrentStep(2)}
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-[#141413] transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back</span>
@@ -289,7 +359,7 @@ export default function PatientConsultationPage() {
             <button
               type="button"
               onClick={() => setCurrentStep(4)}
-              className="inline-flex items-center justify-center gap-2 px-8 py-2.5 rounded-[20px] bg-[#305A4F] hover:bg-[#25453c] text-white text-sm font-semibold shadow-xs transition-all cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#305A4F] hover:bg-[#25453C] text-white text-sm font-bold rounded-xl transition-all cursor-pointer"
             >
               <span>Next</span>
               <ArrowRight className="w-4 h-4" />
@@ -298,147 +368,438 @@ export default function PatientConsultationPage() {
         </div>
       )}
 
-      {/* Step 4: Preferences & Goals */}
+      {/* Step 4: Upload Your Photo (Matches Image 10 Exactly!) */}
       {currentStep === 4 && (
-        <div className="bg-white rounded-[28px] border border-black/5 p-8 max-w-2xl mx-auto shadow-level-1">
-          <div className="text-center mb-6">
-            <h2 className="text-2xl font-bold text-[#141413]">What are your aesthetic goals?</h2>
-            <p className="text-xs text-slate-400 mt-1">Surgeons use this to customize simulation guidelines</p>
+        <div className="max-w-2xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#0A0F1A] font-sans mb-2">
+              Upload your photo
+            </h1>
+            <p className="text-sm text-slate-400 font-sans">
+              Upload a front-facing photo for your personalized preview
+            </p>
           </div>
 
-          <div className="space-y-3 mb-8">
-            {[
-              'Subtle and natural refinement',
-              'Dramatic restructuring and projection',
-              'Symmetry and contour balancing',
-              'Reconstructive / revision adjustment',
-            ].map((option) => (
-              <label
-                key={option}
-                onClick={() => setGoals(option)}
-                className={`p-4 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${
-                  goals === option ? 'border-[#305A4F] bg-[#F4F8F6]' : 'border-slate-200 bg-white'
-                }`}
-              >
-                <span className="text-sm font-medium text-[#141413]">{option}</span>
-                <input
-                  type="radio"
-                  name="goals"
-                  checked={goals === option}
-                  onChange={() => setGoals(option)}
-                  className="accent-[#305A4F]"
-                />
-              </label>
-            ))}
+          {uploadError && (
+            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-600 font-medium">
+              {uploadError}
+            </div>
+          )}
+
+          {/* Dashed Drag & Drop Box */}
+          {!imageSrc ? (
+            <div
+              onDrop={handleDrop}
+              onDragOver={(e) => e.preventDefault()}
+              onClick={() => fileInputRef.current?.click()}
+              className="border-2 border-dashed border-slate-300 hover:border-[#305A4F] rounded-2xl p-10 text-center cursor-pointer transition-all bg-white hover:bg-[#305A4F]/[0.02]"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  fileInputRef.current?.click();
+                }
+              }}
+            >
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) handleFileSelect(file);
+                }}
+              />
+              <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-slate-100 flex items-center justify-center transition-colors">
+                <Upload className="w-6 h-6 text-slate-400" />
+              </div>
+              <p className="text-sm font-bold text-slate-700 mb-1 font-sans">
+                Drag & drop or click to upload
+              </p>
+              <p className="text-xs text-slate-400 font-sans">
+                JPG, PNG, or WebP (max 10MB)
+              </p>
+            </div>
+          ) : (
+            <div className="text-center bg-white rounded-2xl border border-slate-200 p-6">
+              <div className="relative inline-block rounded-xl overflow-hidden border border-slate-200 shadow-md mb-4 max-w-xs">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={imageSrc} alt="Uploaded" className="max-h-64 w-auto object-cover" />
+                <button
+                  type="button"
+                  onClick={() => setImageSrc(null)}
+                  className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 backdrop-blur shadow flex items-center justify-center text-slate-500 hover:text-red-500 transition-colors text-sm font-bold"
+                  aria-label="Remove photo"
+                >
+                  &times;
+                </button>
+              </div>
+              <p className="text-sm text-green-600 font-medium flex items-center justify-center gap-1.5 font-sans">
+                <CheckCircle2 className="w-4 h-4 text-green-600" />
+                <span>Photo uploaded successfully</span>
+              </p>
+            </div>
+          )}
+
+          {/* Tips for Best Results Box */}
+          <div className="mt-6 p-4 bg-slate-50 rounded-xl border border-slate-100 text-left">
+            <p className="text-xs font-bold text-slate-500 mb-2 font-sans">Tips for best results:</p>
+            <ul className="text-xs text-slate-400 space-y-1 font-sans">
+              <li className="flex items-start gap-2">
+                <span className="text-[#305A4F] mt-0.5">•</span> Good, even lighting on your face
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#305A4F] mt-0.5">•</span> Hair pulled back from your face
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#305A4F] mt-0.5">•</span> Neutral expression, looking directly at camera
+              </li>
+            </ul>
           </div>
 
-          <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+          {/* Privacy Note */}
+          <div className="mt-4 flex items-center gap-2 justify-center text-xs text-slate-400 text-center leading-relaxed font-sans">
+            <Shield className="w-3.5 h-3.5 shrink-0" />
+            <span>
+              Real-time simulations run in your browser. Your photo is sent off your device only if you turn on the optional AI photoreal preview or choose to save a simulation to your account, and is never used to train any model.
+            </span>
+          </div>
+
+          {/* Bottom Actions */}
+          <div className="flex justify-between items-center mt-8">
             <button
               type="button"
               onClick={() => setCurrentStep(3)}
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-ink cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back</span>
             </button>
-
             <button
               type="button"
               onClick={() => setCurrentStep(5)}
-              className="inline-flex items-center justify-center gap-2 px-8 py-2.5 rounded-[20px] bg-[#305A4F] hover:bg-[#25453c] text-white text-sm font-semibold transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#305A4F] hover:bg-[#25453C] text-white font-bold rounded-xl transition-all text-sm cursor-pointer"
             >
-              <span>Next</span>
+              <span>Generate Preview</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </div>
       )}
 
-      {/* Step 5: Photo Upload */}
+      {/* Step 5: Your AI Preview */}
       {currentStep === 5 && (
-        <div className="bg-white rounded-[28px] border border-black/5 p-8 text-center max-w-2xl mx-auto shadow-level-1">
-          <div className="w-16 h-16 rounded-full bg-[#F4F8F6] text-[#305A4F] flex items-center justify-center mx-auto mb-4">
-            <Camera className="w-8 h-8" />
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-6">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#0A0F1A] font-sans mb-1">
+              Your AI Preview
+            </h2>
+            <p className="text-sm text-slate-400 font-sans">
+              Drag the slider to compare. Adjust intensity to see subtle to dramatic outcomes.
+            </p>
+            <p className="text-[10px] text-[#305A4F] font-bold mt-1 tracking-wider uppercase font-sans">
+              468-POINT FACE MESH ACTIVE
+            </p>
           </div>
 
-          <h2 className="text-2xl font-bold text-[#141413] mb-1">Upload a photo for simulation</h2>
-          <p className="text-xs text-slate-500 max-w-sm mx-auto mb-6 leading-relaxed">
-            Front-facing, well-lit photo with neutral expression. Photos remain completely private and on your device.
-          </p>
+          {/* Before / After Comparison Slider */}
+          <div
+            ref={containerRef}
+            className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md select-none touch-none bg-slate-900 mb-6 aspect-[4/3] max-h-[460px] mx-auto cursor-ew-resize"
+            onPointerDown={onPointerDown}
+            onPointerUp={onPointerUp}
+            onPointerLeave={onPointerUp}
+            onPointerMove={onPointerMove}
+          >
+            {/* Before layer */}
+            <div className="absolute inset-0 flex items-center justify-center bg-slate-800">
+              {imageSrc ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={imageSrc} alt="Before" className="w-full h-full object-cover" draggable={false} />
+              ) : (
+                <div className="flex flex-col items-center text-slate-400">
+                  <Smile className="w-16 h-16 mb-2 opacity-50" />
+                  <span className="text-xs">Original Photo</span>
+                </div>
+              )}
+            </div>
 
-          <div className="border-2 border-dashed border-slate-200 rounded-2xl p-8 mb-6 hover:border-[#305A4F] transition-colors cursor-pointer bg-slate-50/50">
-            <Upload className="w-8 h-8 text-slate-400 mx-auto mb-2" />
-            <p className="text-sm font-medium text-slate-700">Click to upload photo or drag & drop</p>
-            <p className="text-xs text-slate-400 mt-1">JPEG, PNG or WEBP up to 10MB</p>
+            {/* After layer clipped by slider */}
+            <div
+              className="absolute inset-0 flex items-center justify-center bg-slate-700"
+              style={{ clipPath: `inset(0 0 0 ${100 - sliderPos}%)` }}
+            >
+              {imageSrc ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img 
+                  src={imageSrc} 
+                  alt="After" 
+                  className="w-full h-full object-cover filter contrast-105 saturate-105" 
+                  draggable={false} 
+                />
+              ) : (
+                <div className="flex flex-col items-center text-slate-300">
+                  <Sparkles className="w-16 h-16 mb-2 text-[#305A4F]" />
+                  <span className="text-xs">Simulated Result</span>
+                </div>
+              )}
+            </div>
+
+            {/* Slider Divider Line & Thumb */}
+            <div
+              className="absolute top-0 bottom-0 z-20 pointer-events-none"
+              style={{ left: `${sliderPos}%`, transform: 'translateX(-50%)' }}
+            >
+              <div className="w-0.5 h-full bg-white shadow-[0_0_8px_rgba(0,0,0,0.5)]" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 bg-white rounded-full shadow-lg flex items-center justify-center pointer-events-auto">
+                <MoveHorizontal className="w-4 h-4 text-slate-700" />
+              </div>
+            </div>
+
+            {/* Corner Badges */}
+            <div className="absolute top-3 left-3 z-10 px-2.5 py-1 bg-black/60 backdrop-blur rounded-lg text-[10px] font-bold text-white pointer-events-none font-sans">
+              BEFORE
+            </div>
+            <div className="absolute top-3 right-3 z-10 px-2.5 py-1 bg-[#305A4F]/90 backdrop-blur rounded-lg text-[10px] font-bold text-white pointer-events-none font-sans">
+              AFTER (AI PREVIEW)
+            </div>
           </div>
 
-          <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+          {/* Intensity Slider */}
+          <div className="bg-white rounded-2xl border border-slate-200 p-5 mb-6 shadow-xs">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-600 font-sans">
+                <Sliders className="w-3.5 h-3.5 text-[#305A4F]" />
+                <span>Simulation Intensity</span>
+              </div>
+              <span className="text-xs font-mono font-bold text-[#305A4F]">{intensity}%</span>
+            </div>
+            <input
+              type="range"
+              min={10}
+              max={100}
+              value={intensity}
+              onChange={(e) => setIntensity(Number(e.target.value))}
+              className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#305A4F]"
+            />
+            <div className="flex justify-between text-[10px] text-slate-400 mt-1 font-sans">
+              <span>Subtle</span>
+              <span>Moderate</span>
+              <span>Dramatic</span>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <div className="flex justify-between items-center">
             <button
               type="button"
               onClick={() => setCurrentStep(4)}
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-ink cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back</span>
             </button>
-
             <button
               type="button"
               onClick={() => setCurrentStep(6)}
-              className="inline-flex items-center justify-center gap-2 px-8 py-2.5 rounded-[20px] bg-[#305A4F] hover:bg-[#25453c] text-white text-sm font-semibold transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#305A4F] hover:bg-[#25453C] text-white font-bold rounded-xl transition-all text-sm cursor-pointer"
             >
-              <span>Run Simulation</span>
+              <span>View Summary</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </div>
       )}
 
-      {/* Step 6: 3D Simulation Preview */}
+      {/* Step 6: Consultation Summary */}
       {currentStep === 6 && (
-        <div className="bg-white rounded-[28px] border border-black/5 p-8 text-center max-w-2xl mx-auto shadow-level-1">
-          <div className="w-16 h-16 rounded-full bg-[#FDEEE7] text-[#CF4500] flex items-center justify-center mx-auto mb-4">
-            <Sparkles className="w-8 h-8" />
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#0A0F1A] font-sans mb-1">
+              Your Consultation Summary
+            </h2>
+            <p className="text-sm text-slate-400 font-sans">
+              Review your customized preview before connecting with a clinic
+            </p>
           </div>
 
-          <h2 className="text-2xl font-bold text-[#141413] mb-1">Your 3D Simulation is Ready</h2>
-          <p className="text-xs text-slate-500 max-w-sm mx-auto mb-6 leading-relaxed">
-            We have generated preview parameters for {selectedProcedure.replace(/-/g, ' ')}.
+          {/* Preview Details Card */}
+          <div className="bg-white rounded-2xl border border-slate-200 p-6 mb-6 space-y-4 shadow-xs">
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-slate-400 font-sans">Procedure</span>
+              <span className="text-sm font-bold text-[#0A0F1A] font-sans">{activeProcObj.name}</span>
+            </div>
+            <div className="h-px bg-slate-100" />
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-slate-400 font-sans">Target Area</span>
+              <span className="text-sm font-bold text-[#0A0F1A] font-sans capitalize">{selectedRegion}</span>
+            </div>
+            <div className="h-px bg-slate-100" />
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-slate-400 font-sans">Simulation Intensity</span>
+              <span className="text-sm font-bold text-[#305A4F] font-mono">{intensity}%</span>
+            </div>
+            <div className="h-px bg-slate-100" />
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-slate-400 font-sans">Face Detection Mesh</span>
+              <span className="text-sm font-bold text-green-600 font-sans flex items-center gap-1">
+                ✓ 468-point 3D Landmark Aligned
+              </span>
+            </div>
+          </div>
+
+          <p className="text-xs text-slate-400 text-center mb-6 leading-relaxed font-sans">
+            This preview is an AI-generated estimation. Actual surgical results may vary based on individual anatomy and surgical technique.
           </p>
 
-          <div className="p-6 rounded-2xl bg-[#FCFBFA] border border-black/5 text-left mb-6 space-y-2">
-            <div className="flex justify-between text-xs">
-              <span className="text-slate-500">Target Area:</span>
-              <span className="font-semibold text-ink capitalize">{selectedRegion}</span>
-            </div>
-            <div className="flex justify-between text-xs">
-              <span className="text-slate-500">Selected Procedure:</span>
-              <span className="font-semibold text-ink capitalize">{selectedProcedure.replace(/-/g, ' ')}</span>
-            </div>
-            <div className="flex justify-between text-xs">
-              <span className="text-slate-500">Aesthetic Goal:</span>
-              <span className="font-semibold text-ink">{goals}</span>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+          {/* Navigation */}
+          <div className="flex justify-between items-center">
             <button
               type="button"
               onClick={() => setCurrentStep(5)}
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-ink cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back</span>
             </button>
-
-            <Link
-              href={routes.simulate}
-              className="inline-flex items-center justify-center gap-2 px-8 py-2.5 rounded-[20px] bg-[#305A4F] hover:bg-[#25453c] text-white text-sm font-semibold transition-all"
+            <button
+              type="button"
+              onClick={() => setCurrentStep(7)}
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#305A4F] hover:bg-[#25453C] text-white font-bold rounded-xl transition-all text-sm cursor-pointer"
             >
-              <span>Launch 3D Simulator</span>
+              <span>Book a Consultation</span>
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </button>
           </div>
+        </div>
+      )}
+
+      {/* Step 7: Booking Request Form */}
+      {currentStep === 7 && (
+        <div className="max-w-xl mx-auto">
+          {bookingSubmitted ? (
+            <div className="bg-white rounded-3xl border border-slate-200 p-8 sm:p-10 text-center shadow-xs">
+              <div className="w-16 h-16 rounded-full bg-green-50 text-green-600 flex items-center justify-center mx-auto mb-4">
+                <Check className="w-8 h-8" />
+              </div>
+              <h2 className="text-2xl font-bold text-[#0A0F1A] font-sans mb-2">
+                Consultation Request Submitted!
+              </h2>
+              <p className="text-sm text-slate-500 font-sans leading-relaxed mb-6">
+                Your AI preview and procedure details for {activeProcObj.name} have been safely saved. A specialist will review your simulation and reach out shortly.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <Link
+                  href="/patient/dashboard"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#305A4F] hover:bg-[#25453C] text-white font-bold rounded-xl text-sm transition-all"
+                >
+                  <span>Go to Dashboard</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  href="/"
+                  className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-2.5 border border-slate-200 text-slate-700 font-semibold rounded-xl text-sm hover:bg-slate-50 transition-all"
+                >
+                  Return to Homepage
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs">
+              <div className="text-center mb-6">
+                <h2 className="text-2xl font-bold text-[#0A0F1A] font-sans mb-1">
+                  Ready to take the next step?
+                </h2>
+                <p className="text-xs text-slate-400 font-sans">
+                  Book a consultation with your chosen clinic. Your AI visualization will be shared with your surgeon before your appointment.
+                </p>
+              </div>
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setBookingSubmitted(true);
+                }}
+                className="space-y-4"
+              >
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1 font-sans">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="Shivam Mane"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-[#305A4F] focus:ring-1 focus:ring-[#305A4F]/20 font-sans"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1 font-sans">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="shivam@example.com"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-[#305A4F] focus:ring-1 focus:ring-[#305A4F]/20 font-sans"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1 font-sans">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    placeholder="+91 98765 43210"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-[#305A4F] focus:ring-1 focus:ring-[#305A4F]/20 font-sans"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1 font-sans">
+                    Additional Notes (Optional)
+                  </label>
+                  <textarea
+                    rows={3}
+                    value={formData.notes}
+                    onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                    placeholder="Share any specific concerns or questions for the surgeon…"
+                    className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-[#305A4F] focus:ring-1 focus:ring-[#305A4F]/20 font-sans resize-none"
+                  />
+                </div>
+
+                <div className="pt-2 flex justify-between items-center">
+                  <button
+                    type="button"
+                    onClick={() => setCurrentStep(6)}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                    <span>Back</span>
+                  </button>
+
+                  <button
+                    type="submit"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#305A4F] hover:bg-[#25453C] text-white font-bold rounded-xl transition-all text-sm cursor-pointer shadow-xs"
+                  >
+                    <span>Request Consultation</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
         </div>
       )}
     </div>
