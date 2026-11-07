@@ -43,7 +43,7 @@ export default function DemoGuide({ defaultTab = "patient" }: DemoGuideProps) {
         <div
           className="absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full dg-aurora-1"
           style={{
-            background: "radial-gradient(circle, rgba(61,107,94,0.16) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(207,69,0,0.16) 0%, transparent 70%)",
             filter: "blur(70px)",
           }}
         />
@@ -81,15 +81,15 @@ export default function DemoGuide({ defaultTab = "patient" }: DemoGuideProps) {
           <div className="inline-flex items-center gap-2 mb-3">
             <span
               className="w-2 h-2 rounded-full"
-              style={{ background: "linear-gradient(135deg, #3d6b5e, #6b9e8f)" }}
+              style={{ background: "linear-gradient(135deg, #CF4500, #F37338)" }}
               aria-hidden="true"
             />
-            <p className="text-sage text-xs font-bold tracking-widest uppercase">
+            <p className="text-[#CF4500] text-xs font-bold tracking-widest uppercase">
               {t("sectionLabel")}
             </p>
             <span
               className="w-2 h-2 rounded-full"
-              style={{ background: "linear-gradient(135deg, #6b9e8f, #3d6b5e)" }}
+              style={{ background: "linear-gradient(135deg, #F37338, #CF4500)" }}
               aria-hidden="true"
             />
           </div>
@@ -145,7 +145,7 @@ export default function DemoGuide({ defaultTab = "patient" }: DemoGuideProps) {
                     <div
                       className="absolute inset-0 rounded-2xl pointer-events-none z-10"
                       style={{
-                        boxShadow: "inset 0 0 40px rgba(61,107,94,0.12), inset 0 0 80px rgba(61,107,94,0.06)",
+                        boxShadow: "inset 0 0 40px rgba(207,69,0,0.12), inset 0 0 80px rgba(207,69,0,0.06)",
                       }}
                       aria-hidden="true"
                     />
@@ -171,7 +171,7 @@ export default function DemoGuide({ defaultTab = "patient" }: DemoGuideProps) {
                     {!videoLoaded[tab] && (
                       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
                         <div className="text-center">
-                          <div className="w-12 h-12 rounded-full border-2 border-sage/40 border-t-sage animate-spin mx-auto mb-3" />
+                          <div className="w-12 h-12 rounded-full border-2 border-[#CF4500]/40 border-t-[#CF4500] animate-spin mx-auto mb-3" />
                           <p className="text-white/40 text-xs font-body">Loading demo…</p>
                         </div>
                       </div>
@@ -199,9 +199,9 @@ export default function DemoGuide({ defaultTab = "patient" }: DemoGuideProps) {
                           <span
                             className="dg-step-num w-7 h-7 rounded-full border text-xs font-bold flex items-center justify-center mt-0.5 relative z-10 transition-all duration-300"
                             style={{
-                              background: "rgba(61,107,94,0.15)",
-                              borderColor: "rgba(61,107,94,0.35)",
-                              color: "#6b9e8f",
+                              background: "rgba(207,69,0,0.15)",
+                              borderColor: "rgba(207,69,0,0.35)",
+                              color: "#F37338",
                             }}
                           >
                             {i + 1}
@@ -211,7 +211,7 @@ export default function DemoGuide({ defaultTab = "patient" }: DemoGuideProps) {
                             <div
                               className="w-px flex-1 min-h-[1.75rem] mt-1 mb-1"
                               style={{
-                                background: "linear-gradient(to bottom, rgba(61,107,94,0.35), rgba(61,107,94,0.06))",
+                                background: "linear-gradient(to bottom, rgba(207,69,0,0.35), rgba(207,69,0,0.06))",
                               }}
                               aria-hidden="true"
                             />
@@ -233,9 +233,9 @@ export default function DemoGuide({ defaultTab = "patient" }: DemoGuideProps) {
                     href="/login"
                     className="shimmer-btn inline-flex items-center gap-2 px-7 py-3.5 text-white text-sm font-bold rounded-full transition-all glow-hover gradient-bg-animated"
                     style={{
-                      background: "linear-gradient(135deg, #3d6b5e, #6b9e8f, #3d6b5e)",
+                      background: "linear-gradient(135deg, #CF4500, #F37338, #CF4500)",
                       backgroundSize: "200% 200%",
-                      boxShadow: "0 4px 20px rgba(61,107,94,0.30)",
+                      boxShadow: "0 4px 20px rgba(207,69,0,0.30)",
                     }}
                   >
                     {t("patientCta")}
@@ -245,9 +245,9 @@ export default function DemoGuide({ defaultTab = "patient" }: DemoGuideProps) {
                     onClick={() => openDemoModal("demo-guide-surgeon")}
                     className="shimmer-btn inline-flex items-center gap-2 px-7 py-3.5 text-white text-sm font-bold rounded-full transition-all glow-hover gradient-bg-animated"
                     style={{
-                      background: "linear-gradient(135deg, #3d6b5e, #6b9e8f, #3d6b5e)",
+                      background: "linear-gradient(135deg, #CF4500, #F37338, #CF4500)",
                       backgroundSize: "200% 200%",
-                      boxShadow: "0 4px 20px rgba(61,107,94,0.30)",
+                      boxShadow: "0 4px 20px rgba(207,69,0,0.30)",
                     }}
                   >
                     {t("surgeonCta")}
@@ -285,10 +285,10 @@ export default function DemoGuide({ defaultTab = "patient" }: DemoGuideProps) {
 
         /* Active tab — gradient fill with subtle glow */
         .dg-tab-active {
-          background: linear-gradient(135deg, #3d6b5e, #6b9e8f);
+          background: linear-gradient(135deg, #CF4500, #F37338);
           box-shadow:
-            0 4px 20px rgba(61,107,94,0.35),
-            0 1px 6px rgba(61,107,94,0.20);
+            0 4px 20px rgba(207,69,0,0.35),
+            0 1px 6px rgba(207,69,0,0.20);
         }
         /* Inactive tab hover — smooth fade */
         .dg-tab:not(.dg-tab-active) {

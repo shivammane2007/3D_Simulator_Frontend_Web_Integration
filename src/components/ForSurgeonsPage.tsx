@@ -85,7 +85,7 @@ function CompCell({ value }: { value: string | boolean | "partial" }) {
     // cells to anyone not rendering SVG (Comet QA P1-4 false-positive).
     if (value === true) return (
         <span className="inline-flex items-center justify-center">
-            <CheckCircle2 className="w-5 h-5 text-sage" aria-hidden="true" />
+            <CheckCircle2 className="w-5 h-5 text-[#CF4500]" aria-hidden="true" />
             <span className="sr-only">Yes</span>
         </span>
     );
@@ -97,7 +97,7 @@ function CompCell({ value }: { value: string | boolean | "partial" }) {
     );
     if (value === "partial") return (
         <span className="inline-flex items-center justify-center">
-            <Minus className="w-5 h-5 text-gold" aria-hidden="true" />
+            <Minus className="w-5 h-5 text-[#9A6428]" aria-hidden="true" />
             <span className="sr-only">Partial</span>
         </span>
     );
@@ -178,7 +178,7 @@ export default function ForSurgeonsPage() {
             <PageHero
                 label={t("hero.label")}
                 title={t.rich("hero.title", {
-                    em: (chunks: React.ReactNode) => <em className="font-headline text-sage not-italic italic">{chunks}</em>,
+                    em: (chunks: React.ReactNode) => <em className="font-headline text-[#CF4500] not-italic italic">{chunks}</em>,
                 })}
                 subtitle={t("hero.subtitle")}
             />
@@ -188,7 +188,7 @@ export default function ForSurgeonsPage() {
                 <div className="flex flex-wrap flex-col sm:flex-row items-center justify-center gap-4">
                     <Link
                         href="/founding-partners"
-                        className="editorial-button px-8 py-3.5 bg-sage editorial-primary hover:bg-sage text-white text-sm font-bold rounded-full transition-all flex items-center gap-2 font-body"
+                        className="editorial-button px-8 py-3.5 bg-[#CF4500] hover:bg-[#B53D00] text-white text-sm font-bold rounded-full transition-all flex items-center gap-2 font-body shadow-sm"
                         data-testid="founding-partner-cta"
                     >
                         <Star className="w-4 h-4" />
@@ -196,14 +196,14 @@ export default function ForSurgeonsPage() {
                     </Link>
                     <Link
                         href={`/login?callbackUrl=${encodeURIComponent("/onboarding")}`}
-                        className="editorial-button px-8 py-3.5 border border-mist hover:border-sage/40 text-ink text-sm font-bold rounded-full transition-all hover:bg-white font-body flex items-center gap-2"
+                        className="editorial-button px-8 py-3.5 border border-mist hover:border-[#CF4500]/40 text-ink text-sm font-bold rounded-full transition-all hover:bg-white font-body flex items-center gap-2"
                         data-testid="free-embed-widget-cta"
                     >
                         {t("cta.getStarted")} <ArrowRight className="w-4 h-4" />
                     </Link>
                     <button
                         onClick={() => openDemoModal("for_surgeons_hero")}
-                        className="editorial-button px-8 py-3.5 border border-mist hover:border-sage/40 text-ink text-sm font-bold rounded-full transition-all hover:bg-white font-body"
+                        className="editorial-button px-8 py-3.5 border border-mist hover:border-[#CF4500]/40 text-ink text-sm font-bold rounded-full transition-all hover:bg-white font-body"
                     >
                         {t("cta.bookDemo")}
                     </button>
@@ -222,7 +222,7 @@ export default function ForSurgeonsPage() {
                     {painPoints.map((p, i) => (
                         <MarketingReveal key={p.title} delay={Math.min(i * 0.04, 0.16)}>
                             <MarketingCard>
-                                <p.icon className="w-7 h-7 text-coral mb-4" />
+                                <p.icon className="w-7 h-7 text-[#CF4500] mb-4" />
                                 <h3 className="text-xl font-normal text-ink mb-2 font-headline">{p.title}</h3>
                                 <p className="text-sm text-slate-hp leading-relaxed font-body">{p.desc}</p>
                             </MarketingCard>
@@ -238,8 +238,8 @@ export default function ForSurgeonsPage() {
                     {solutionPoints.map((s, i) => (
                         <MarketingReveal key={s.title} delay={Math.min(i * 0.04, 0.16)}>
                             <MarketingCard hover>
-                                <div className="w-10 h-10 rounded-xl bg-sage/10 flex items-center justify-center mb-4">
-                                    <s.icon className="w-5 h-5 text-sage" />
+                                <div className="w-10 h-10 rounded-xl bg-[#CF4500]/10 flex items-center justify-center mb-4">
+                                    <s.icon className="w-5 h-5 text-[#CF4500]" />
                                 </div>
                                 <h3 className="text-xl font-normal text-ink mb-1.5 font-headline">{s.title}</h3>
                                 <p className="text-sm text-slate-hp leading-relaxed font-body">{s.desc}</p>
