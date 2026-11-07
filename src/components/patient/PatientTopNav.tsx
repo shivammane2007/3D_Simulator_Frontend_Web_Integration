@@ -73,19 +73,19 @@ export default function PatientTopNav() {
 
   return (
     <header className="sticky top-0 z-50 bg-[#0E1715] text-[#F3F0EE] border-b border-white/10 select-none">
-      <div className="w-full px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div className="w-full px-4 sm:px-6 lg:px-8 h-16 sm:h-[70px] flex items-center justify-between">
         
         {/* Left: Brand Logo */}
         <div className="flex items-center gap-8">
           <Link 
-            href="/patient/dashboard" 
-            aria-label="Faceify Labs Dashboard"
+            href={routes.home} 
+            aria-label="Faceify Labs Homepage"
             className="flex items-center group transition-transform hover:scale-105"
           >
             <img
               src="/logo-dark.svg"
               alt="Faceify Labs"
-              className="h-9 sm:h-11 w-auto object-contain"
+              className="h-12 sm:h-14 w-auto object-contain"
             />
           </Link>
 
