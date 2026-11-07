@@ -1351,6 +1351,12 @@
       "description": "Faceify Labs pricing plans for plastic surgeons and hospitals. Starter from $149/mo, Clinic from $499/mo.",
       "ogTitle": "Pricing",
       "ogDescription": "Starter plan from $119/mo billed annually. Flexible plans for solo practices and hospital networks."
+    },
+    "simulate": {
+      "title": "AI Plastic Surgery Simulator | Nose Job, Facelift & Filler Preview",
+      "description": "Try our AI plastic surgery simulator. Preview rhinoplasty, blepharoplasty, facelift, BBL, hair transplant, lip fillers & 85+ procedures. No download. Real-time simulations run in your browser.",
+      "ogTitle": "AI Plastic Surgery Simulator: Preview Procedures on Your Photo",
+      "ogDescription": "Upload a photo, choose from 85+ procedures, and explore AI visualizations in 60 seconds. Rhinoplasty, facelift, fillers, BBL & more. Private by design."
     }
   },
   "FAQ": {
@@ -1393,6 +1399,3444 @@
         "q": "What is the Founding Partner program?",
         "a": "The first cohort of clinics onboarding before launch receives a structured voucher access programme covering full simulator access, direct product input, and named clinic recognition. Apply via the form on the homepage."
       }
+    }
+  },
+  "Simulate": {
+    "initFailure": {
+      "noFaceTitle": "No face detected",
+      "noFaceSubtext": "Upload a clear, front-facing photo with good lighting.",
+      "noFaceAction": "Try Another Photo",
+      "modelLoadTitle": "Face detection couldn't load",
+      "modelLoadSubtext": "This is a connection problem, not your photo. Check your internet connection and try again.",
+      "modelLoadAction": "Try Again",
+      "processingTitle": "Couldn't process this photo",
+      "processingSubtext": "Something went wrong analyzing your photo. Please try again or use a different image.",
+      "processingAction": "Try Again"
+    },
+    "rhinoIntro": {
+      "headline": "Your rhinoplasty journey starts here",
+      "subheadline": "Three steps to a confident consultation",
+      "step1Title": "Understand your nose",
+      "step1Desc": "Upload a photo and study your nose from each view: bridge, tip, profile, and base",
+      "step2Title": "Try adjustments",
+      "step2Desc": "Move sliders to explore different results. Compare before and after at any time",
+      "step3Title": "Consult your surgeon",
+      "step3Desc": "Download or share your simulation before your appointment to guide the conversation",
+      "ctaButton": "Start Simulating",
+      "skipLink": "Skip intro"
+    },
+    "heroLabel": "Simulation Tools",
+    "heroTitle": "Preview any procedure, <em>in seconds</em>.",
+    "heroSubtitle": "Upload a photo and explore AI visualizations. Choose from {count} simulators powered by our 468-point facial mesh.",
+    "comingSoon": "COMING SOON",
+    "comingSoonLabel": "Coming Soon",
+    "comingSoonTitle": "Coming Soon: this simulator is in development",
+    "workInProgress": "Work in Progress",
+    "workInProgressCta": "Preview only",
+    "workInProgressTitle": "Preview only: this simulator is still in early-access. Visual quality may vary.",
+    "tryNow": "Try Now",
+    "learnMore": "Learn More",
+    "all": "All",
+    "simulator": "Simulator",
+    "blepharoplasty": {
+      "perEye": {
+        "symmetric": "Symmetric",
+        "perEye": "Per-Eye",
+        "rightEye": "Right eye",
+        "leftEye": "Left eye",
+        "heringNudge": "Detected MRD1 asymmetry between the eyes. Per-eye controls let you plan each side independently (Hering's law).",
+        "enableCta": "Switch to per-eye",
+        "dismiss": "Dismiss"
+      },
+      "manualAnalysis": {
+        "title": "Manual eyelid analysis",
+        "subtitle": "No face was detected. Drag the eight points onto the eyelid margins and canthi to measure by hand.",
+        "placeManually": "Place points manually",
+        "pointInstructions": "drag to reposition, or use arrow keys",
+        "dragHint": "Drag each handle onto the eyelid landmark.",
+        "estimatedBadge": "Estimated",
+        "estimatedNote": "Millimetres are estimated from average inner-canthal spacing (31 mm), not this patient's iris; treat as approximate.",
+        "degenerate": "Move the points apart to measure.",
+        "rightEye": "R",
+        "leftEye": "L",
+        "points": {
+          "rightUpperLid": "Right upper lid margin",
+          "rightLowerLid": "Right lower lid margin",
+          "rightMedial": "Right medial canthus",
+          "rightLateral": "Right lateral canthus",
+          "leftUpperLid": "Left upper lid margin",
+          "leftLowerLid": "Left lower lid margin",
+          "leftMedial": "Left medial canthus",
+          "leftLateral": "Left lateral canthus"
+        },
+        "metrics": {
+          "fissureHeight": "Fissure height",
+          "fissureLength": "Fissure length",
+          "canthalTilt": "Canthal tilt",
+          "symmetry": "Height asymmetry",
+          "mmValue": "{value} mm",
+          "degValue": "{value}°"
+        }
+      },
+      "report": {
+        "buttonTitle": "Generate consultation report",
+        "generating": "Generating...",
+        "rows": {
+          "fissureHeightR": "Fissure height (R)",
+          "fissureHeightL": "Fissure height (L)",
+          "mrd1R": "MRD1 (R)",
+          "mrd1L": "MRD1 (L)",
+          "mrd2R": "MRD2 (R)",
+          "mrd2L": "MRD2 (L)",
+          "canthalTiltR": "Canthal tilt (R)",
+          "canthalTiltL": "Canthal tilt (L)",
+          "symmetryMrd1": "L/R symmetry (MRD1)",
+          "ptosisScreen": "Ptosis screen (min MRD1)",
+          "referFlag": "Refer"
+        },
+        "procedureName": {
+          "upper": "Upper Blepharoplasty",
+          "lower": "Lower Blepharoplasty",
+          "both": "Blepharoplasty (Upper + Lower)"
+        }
+      },
+      "mode": {
+        "label": "Procedure",
+        "upper": "Upper",
+        "lower": "Lower",
+        "both": "Both"
+      },
+      "recovery": {
+        "sectionTitle": "Recovery Timeline",
+        "caption": "Expected appearance at each stage",
+        "milestones": {
+          "d7": "Day 5–7",
+          "w2": "Week 2",
+          "w6": "Week 4–6",
+          "m3": "Month 3",
+          "m12": "Month 6–12"
+        },
+        "desc": {
+          "upper": {
+            "d7": "Sutures removed. Bruising and swelling at their peak; lids feel tight.",
+            "w2": "Most bruising resolved. Presentable in social settings with light makeup; residual lid swelling.",
+            "w6": "Swelling largely settled. Incision line still pink but concealed within the crease.",
+            "m3": "Crease symmetry stabilising as swelling-related asymmetry resolves; scar softening.",
+            "m12": "Final result. Incision matured to a fine line hidden in the natural crease."
+          },
+          "lower": {
+            "d7": "Peak bruising and swelling: more ecchymosis than upper lid. A transconjunctival approach leaves no visible suture line.",
+            "w2": "Bruising mostly resolved and concealable with makeup. Lower-lid swelling and any mild lid retraction settling.",
+            "w6": "Swelling continues to settle. Any external incision fading; lid position normalising.",
+            "m3": "Contour stabilised; under-eye smoothness apparent. Residual firmness resolving.",
+            "m12": "Final result. Lower-lid contour and any external scar fully matured."
+          },
+          "both": {
+            "d7": "Sutures removed. Bruising and swelling peak across both lids; the lower lid shows more ecchymosis.",
+            "w2": "Most bruising resolved; socially presentable with makeup. Combined swelling still settling.",
+            "w6": "Swelling largely settled. Upper crease incision and any lower external line still pink but concealed.",
+            "m3": "Symmetry stabilising as swelling resolves; scars softening.",
+            "m12": "Final result across both lids. Incisions matured to fine, concealed lines."
+          }
+        },
+        "explainer": {
+          "upper": "Upper blepharoplasty bruising typically resolves within two weeks; the crease incision matures over 6–12 months. Timings are typical ranges and vary by patient.",
+          "lower": "Lower blepharoplasty carries more bruising than upper lid, and a transconjunctival approach leaves no external scar. Final contour settles over 6–12 months. Timings are typical ranges and vary by patient.",
+          "both": "Combined upper and lower blepharoplasty extends peak swelling slightly. Bruising resolves within about two weeks; scars mature over 6–12 months. Timings are typical ranges and vary by patient."
+        }
+      },
+      "title": "Blepharoplasty Simulator",
+      "subtitle": "AI Double Eyelid Surgery Preview",
+      "steps": {
+        "photo": "Photo",
+        "assessment": "Assessment",
+        "configure": "Configure",
+        "preview": "Preview"
+      },
+      "assessment": {
+        "ethnicity": "Ethnicity",
+        "ageRange": "Age Range",
+        "eyelidType": "Eyelid Type",
+        "epicanthalFold": "Epicanthal Fold",
+        "primaryConcern": "Primary Concern",
+        "continue": "Continue to Configuration"
+      },
+      "params": {
+        "creaseHeight": "Crease Height",
+        "creaseShape": "Crease Shape",
+        "eyeOpening": "Eye Opening (MRD1)",
+        "skinExcision": "Skin Excision",
+        "fatReduction": "Fat Reduction",
+        "epicanthoplasty": "Epicanthoplasty",
+        "lateralCanthoplasty": "Lateral Canthoplasty"
+      },
+      "measurements": {
+        "fissureHeight": "Palpebral Fissure Height",
+        "fissureLength": "Palpebral Fissure Length",
+        "mrd1": "MRD1",
+        "creaseHeight": "Crease Height",
+        "tarsalRatio": "Tarsal Platform Ratio",
+        "mrd2": "MRD2",
+        "canthalTilt": "Canthal Tilt"
+      },
+      "eyeAnalysis": {
+        "lrSuffix": " (L/R)",
+        "eyeType": "Eye Type",
+        "ptosis": "Ptosis",
+        "symmetry": "Symmetry",
+        "epicanthal": "Epicanthal",
+        "dermatochalasis": "Dermatochalasis",
+        "browPtosis": "Brow Ptosis"
+      },
+      "previewResults": "Preview Results",
+      "shortTitle": "Blepharoplasty",
+      "clinicalOverlays": "Clinical Overlays",
+      "photosProcessedLocally": "Real-time simulation runs in your browser",
+      "aiStatus": {
+        "step1": "Step 1/8: Analyzing skin type...",
+        "step2": "Step 2/8: Measuring palpebral fissure...",
+        "step3": "Step 3/8: Calculating MRD1 & MRD2...",
+        "step4": "Step 4/8: Detecting eyelid crease...",
+        "step5": "Step 5/8: Grading ptosis severity...",
+        "step6": "Step 6/8: Assessing brow ptosis...",
+        "step7": "Step 7/8: Classifying eye type...",
+        "step8": "Step 8/8: Building recommendation...",
+        "complete": "Assessment complete"
+      },
+      "presets": {
+        "koreanNatural": "Korean Natural",
+        "japaneseClassic": "Japanese Classic",
+        "southeastAsian": "Thai / Vietnamese",
+        "indianEnhancement": "Indian Enhancement",
+        "agingRejuvenation": "Aging Rejuvenation (40+)"
+      },
+      "presetsDesc": {
+        "koreanNatural": "Low infold, subtle enhancement",
+        "japaneseClassic": "Parallel fold, clean definition",
+        "southeastAsian": "Higher crease, more visible",
+        "indianEnhancement": "Moderate fold, fat reduction focus",
+        "agingRejuvenation": "Skin excision focus for hooded lids"
+      },
+      "creaseShapes": {
+        "inside": {
+          "label": "Inside Fold",
+          "desc": "Converges medially: most natural for Asian eyes"
+        },
+        "parallel": {
+          "label": "Parallel",
+          "desc": "Runs parallel to lid margin: balanced look"
+        },
+        "outside": {
+          "label": "Outside Fold",
+          "desc": "Diverges laterally: more Westernized appearance"
+        }
+      },
+      "creaseShapeToolbarLabel": {
+        "inside": "Inside Fold",
+        "parallel": "Parallel Fold",
+        "outside": "Outside Fold"
+      },
+      "patient": {
+        "sliders": {
+          "crease": "Eyelid Definition",
+          "creaseLeft": "Subtle",
+          "creaseRight": "Defined",
+          "opening": "Eye Openness",
+          "openingLeft": "Natural",
+          "openingRight": "More Open",
+          "hood": "Skin Fullness",
+          "hoodLeft": "Keep",
+          "hoodRight": "Reduce",
+          "puff": "Puffiness",
+          "puffLeft": "Keep",
+          "puffRight": "Reduce",
+          "inner": "Inner Corner",
+          "innerLeft": "Natural",
+          "innerRight": "Open Up"
+        },
+        "uploadHint": "Look straight at the camera for best results",
+        "angleCloseUp": "Close-up",
+        "angleSide": "Side",
+        "photoNumberFallback": "Photo {count}",
+        "uploadAriaLabel": "Upload eyelid photo",
+        "brushAriaLabel": "Brush tool, {mode} mode. Paint on the eyelid area.",
+        "safetyFriendly": {
+          "lagophthalmos": "Eyes may feel dry with this setting; try reducing Eye Openness",
+          "ptosis": "This combination may look uneven; try a lower Eyelid Definition",
+          "excisionHigh": "Very strong Skin Fullness reduction selected; consider a lower level",
+          "fatAggressive": "High Puffiness reduction: moderate settings often look more natural",
+          "epicanthoplastyAggressive": "Strong Inner Corner setting: subtle changes are usually preferred",
+          "sunken": "Very high Puffiness reduction may look less natural over time; consider a moderate level",
+          "unnatural": "This setting may not look natural for your features; try a lower level",
+          "conservative": "This is a strong setting: a lighter adjustment often looks more natural",
+          "default": "Consider using a lighter setting for a more natural result"
+        },
+        "faceNotFoundDetail": "No face detected. Look straight at the camera, remove glasses, keep your eyes open naturally, pull hair off your brows, and ensure good lighting.",
+        "quickStylesLabel": "Quick styles",
+        "adjustYourLook": "Adjust your look",
+        "brush": "Brush",
+        "brushHint": "Paint over the eyelids to fine-tune puffiness, hooding, or shape. Strokes stay within the eye area.",
+        "brushModeShrink": "Shrink",
+        "brushModeGrow": "Grow",
+        "brushModeReshape": "Reshape",
+        "resumePrevious": "Resume your previous session?",
+        "multiAngleCaptureTitle": "Multi-Angle Capture",
+        "beforeLabel": "Before",
+        "afterLabel": "After",
+        "holdSpacePreview": "Hold Space to preview original",
+        "storageFullClearData": "Storage full: clear browser data to save",
+        "resetAllAdjustmentsQ": "Reset all adjustments?",
+        "resetLabel": "Reset",
+        "cancelLabel": "Cancel",
+        "applyLabel": "Apply {label} preset",
+        "hud": {
+          "stepLabel": "Eyelid Preview"
+        },
+        "clinical": {
+          "toggle": "Clinical Overlay",
+          "title": "Clinical Measurements",
+          "calibrationIris": "Iris-calibrated (interpupillary)",
+          "calibrationInner": "Inner-canthal calibration",
+          "plannedSuffix": "(planned)",
+          "normalPrefix": "Normal",
+          "ptosisReferral": "MRD1 below 2.5 mm suggests ptosis; often combined with levator advancement; requires separate surgical assessment.",
+          "symmetryTitle": "L/R Symmetry",
+          "heringFlag": "Asymmetry >1 mm: evaluate for Hering's-law contralateral droop before unilateral surgery.",
+          "deltaTitle": "Projected change",
+          "symmetryImproved": "Symmetry improved",
+          "planNote": "Simulated estimates from detected landmarks; not a diagnosis."
+        }
+      },
+      "hudStepLabel": "Eyelid Preview"
+    },
+    "vline": {
+      "title": "V-Line Contouring Simulator",
+      "subtitle": "AI Jaw & Chin Reshaping Preview",
+      "steps": {
+        "photo": "Photo",
+        "assessment": "Assessment",
+        "configure": "Configure",
+        "preview": "Preview"
+      },
+      "assessment": {
+        "faceShape": "Face Shape",
+        "gender": "Gender",
+        "primaryConcern": "Primary Concern",
+        "preference": "Approach Preference",
+        "continue": "Continue to Configuration"
+      },
+      "params": {
+        "jawWidth": "Jaw Width Reduction",
+        "jawAngle": "Jaw Angle Reduction",
+        "chinNarrowing": "Chin Narrowing",
+        "chinLength": "Chin Length",
+        "chinProjection": "Chin Projection",
+        "cheekboneReduction": "Cheekbone Reduction",
+        "masseterReduction": "Masseter Reduction"
+      },
+      "measurements": {
+        "bigonialWidth": "Bigonial Width",
+        "chinWidth": "Chin Width",
+        "vAngle": "V-Angle",
+        "lowerFaceProportion": "Lower Face Proportion",
+        "facialSymmetry": "Facial Symmetry"
+      },
+      "previewResults": "Preview Results",
+      "patient": {
+        "sliders": {
+          "narrowing": "Jaw Narrowing",
+          "narrowingLeft": "Natural",
+          "narrowingRight": "Slimmer",
+          "taper": "Chin Taper",
+          "taperLeft": "Natural",
+          "taperRight": "Pointed",
+          "angle": "Mandible Angle",
+          "angleLeft": "Natural",
+          "angleRight": "Softer",
+          "symmetry": "Symmetry",
+          "symmetryLeft": "Left",
+          "symmetryRight": "Right"
+        },
+        "previewAlt": "V-line jawline preview",
+        "faceGuideTitle": "Position face inside the oval",
+        "faceGuideHint": "Frontal or 3/4 angle both work",
+        "hud": {
+          "stepLabel": "Live preview"
+        }
+      },
+      "hudStepLabel": "Jaw Preview"
+    },
+    "liplift": {
+      "title": "Lip Lift Simulator",
+      "subtitle": "AI Upper Lip Rejuvenation Preview",
+      "steps": {
+        "photo": "Photo",
+        "assessment": "Assessment",
+        "configure": "Configure",
+        "preview": "Preview"
+      },
+      "assessment": {
+        "gender": "Gender",
+        "ageRange": "Age Range",
+        "primaryConcern": "Primary Concern",
+        "continue": "Continue to Configuration"
+      },
+      "params": {
+        "philtralShortening": "Philtral Shortening",
+        "vermilionShow": "Vermilion Show",
+        "cupidsBow": "Cupid's Bow Definition",
+        "philtralColumns": "Philtral Column Enhancement",
+        "dentalShow": "Dental Show",
+        "technique": "Technique"
+      },
+      "measurements": {
+        "philtralHeight": "Philtral Height",
+        "upperVermilion": "Upper Vermilion Height",
+        "upperLowerRatio": "Upper:Lower Ratio",
+        "cupidsBowAngle": "Cupid's Bow Angle",
+        "philtrumVermilionRatio": "Philtrum:Vermilion Ratio"
+      },
+      "previewResults": "Preview Results",
+      "patient": {
+        "sliders": {
+          "liftAmount": "Lift Amount",
+          "liftAmountLeft": "Subtle",
+          "liftAmountRight": "Lifted",
+          "cupidsBow": "Cupid's Bow Definition",
+          "cupidsBowLeft": "Soft",
+          "cupidsBowRight": "Defined",
+          "toothShow": "Tooth Show",
+          "toothShowLeft": "None",
+          "toothShowRight": "Natural",
+          "symmetry": "Symmetry",
+          "symmetryLeft": "Left",
+          "symmetryRight": "Right"
+        },
+        "hud": {
+          "stepLabel": "Live preview"
+        },
+        "detectionUnavailable": "detection unavailable, using estimated position",
+        "brushModeLift": "Lift",
+        "brushModePlump": "Plump",
+        "brushModeReduce": "Reduce",
+        "brushCaptureAria": "Brush tool, {mode} mode. Paint on the philtrum / upper lip."
+      }
+    },
+    "chin": {
+      "title": "Chin Augmentation Simulator",
+      "subtitle": "AI Genioplasty Preview",
+      "steps": {
+        "photo": "Photo",
+        "assessment": "Assessment",
+        "configure": "Configure",
+        "preview": "Preview"
+      },
+      "assessment": {
+        "gender": "Gender",
+        "concern": "Primary Concern",
+        "preference": "Approach Preference",
+        "continue": "Continue to Configuration"
+      },
+      "params": {
+        "projection": "Horizontal Projection",
+        "height": "Vertical Height",
+        "width": "Width Adjustment",
+        "asymmetry": "Asymmetry Correction",
+        "fold": "Labiomental Fold",
+        "profileBalance": "Profile Balancing"
+      },
+      "measurements": {
+        "chinProjection": "Chin Projection",
+        "lowerFaceHeight": "Lower Face Height",
+        "eLineUpper": "E-Line (Upper Lip)",
+        "eLineLower": "E-Line (Lower Lip)",
+        "leganAngle": "Legan Angle",
+        "foldDepth": "Labiomental Fold Depth"
+      },
+      "previewResults": "Preview Results",
+      "patient": {
+        "title": "My Chin Preview",
+        "adjustmentsLabel": "Adjustments",
+        "resetLabel": "Reset",
+        "brushModeGrow": "Grow",
+        "brushModeShrink": "Shrink",
+        "brushModeGrowAria": "Switch to Grow brush (augmentation)",
+        "brushModeShrinkAria": "Switch to Shrink brush (reduction)",
+        "previewAlt": "Chin augmentation preview",
+        "compareSwitchSlider": "Switch to slider comparison",
+        "compareSwitchToggle": "Switch to toggle comparison",
+        "sliders": {
+          "projection": "Projection",
+          "projectionLeft": "Set back",
+          "projectionRight": "Forward",
+          "width": "Width",
+          "widthLeft": "Narrower",
+          "widthRight": "Wider",
+          "height": "Height",
+          "heightLeft": "Shorter",
+          "heightRight": "Taller",
+          "symmetry": "Symmetry",
+          "symmetryLeft": "Left",
+          "symmetryRight": "Right"
+        },
+        "pageTitle": "Chin Preview",
+        "pageSubtitle": "Upload a front-facing or side-profile photo to preview how chin changes could look on you. Real-time simulations run in your browser; your photo is sent off-device only for the optional AI preview or to save it to your account, and is never used to train models.",
+        "brushToolLabel": "Brush Tool",
+        "brushToolHint": "Paint on the chin/jaw area to reshape",
+        "sizeLabel": "Size",
+        "strengthLabel": "Strength",
+        "adjustSlidersOrPaint": "Adjust sliders or paint on the chin area to preview",
+        "hud": {
+          "stepLabel": "Live preview"
+        }
+      },
+      "hudStepLabel": "Chin Adjustment"
+    },
+    "facelift": {
+      "title": "Facelift Simulator",
+      "subtitle": "AI Rhytidectomy Preview",
+      "steps": {
+        "photo": "Photo",
+        "assessment": "Assessment",
+        "configure": "Configure",
+        "preview": "Preview"
+      },
+      "assessment": {
+        "ageRange": "Age Range",
+        "gender": "Gender",
+        "primaryConcern": "Primary Concern",
+        "skinQuality": "Skin Quality",
+        "previousProcedures": "Previous Procedures",
+        "continue": "Continue to Configuration"
+      },
+      "params": {
+        "jowlReduction": "Jowl Reduction",
+        "nasolabialFold": "Nasolabial Fold Softening",
+        "midfaceLift": "Midface / Cheek Lift",
+        "marionetteLine": "Marionette Line Reduction",
+        "neckTightening": "Neck Tightening",
+        "skinSmoothing": "Skin Smoothing",
+        "technique": "Technique"
+      },
+      "measurements": {
+        "jowlReduction": "Jowl Reduction",
+        "midfaceLift": "Midface Lift",
+        "nasolabialFoldDepth": "NLF Depth",
+        "neckChinAngle": "Neck-Chin Angle",
+        "skinTexture": "Skin Texture"
+      },
+      "previewResults": "Preview Results",
+      "patient": {
+        "sliders": {
+          "jawline": "Jawline Definition",
+          "jawlineLeft": "Soft",
+          "jawlineRight": "Defined",
+          "midface": "Mid-Face Lift",
+          "midfaceLeft": "Natural",
+          "midfaceRight": "Lifted",
+          "neck": "Neck Tightening",
+          "neckLeft": "Relaxed",
+          "neckRight": "Firm",
+          "smoothness": "Neck Contour",
+          "smoothnessLeft": "Natural",
+          "smoothnessRight": "Defined"
+        },
+        "uploadTitle": "Upload your photo",
+        "uploadHint": "Include your jawline and neck for best results",
+        "analyzingPhotoText": "Analyzing your photo...",
+        "updatingPreviewText": "Updating preview...",
+        "captureMultipleAngles": "Capture multiple angles",
+        "resumePrevious": "Resume your previous session?",
+        "quickStylesLabel": "Quick styles",
+        "beforeLabel": "Before",
+        "afterLabel": "After",
+        "holdSpacePreview": "Hold Space to preview original",
+        "storageFullClearData": "Storage full: clear browser data to save",
+        "multiAngleCaptureTitle": "Multi-Angle Capture",
+        "adjustYourLook": "Adjust your look",
+        "resetAllAdjustmentsQ": "Reset all adjustments?",
+        "downloadComparison": "Download comparison",
+        "downloadResultImage": "Download result image",
+        "errors": {
+          "photoLimit": "You can add up to {max} photos.",
+          "noFaceMultiAngle": "We couldn't detect a face in your frontal photo. Please retake with better lighting and your face centered.",
+          "resumeFailed": "Could not resume because face detection failed. Please upload a new photo.",
+          "sessionRestoreFailed": "Failed to restore previous session. Please upload a new photo.",
+          "dismissAriaLabel": "Dismiss error"
+        },
+        "hud": {
+          "stepLabel": "Live preview"
+        }
+      },
+      "hudStepLabel": "Facelift Preview"
+    },
+    "buccal": {
+      "title": "Buccal Fat Removal Simulator",
+      "subtitle": "AI Cheek Sculpting Preview",
+      "steps": {
+        "photo": "Photo",
+        "assessment": "Assessment",
+        "configure": "Configure",
+        "preview": "Preview"
+      },
+      "assessment": {
+        "faceShape": "Face Shape",
+        "ageRange": "Age Range",
+        "bodyFat": "Body Fat Level",
+        "continue": "Continue to Configuration"
+      },
+      "params": {
+        "reduction": "Buccal Fat Reduction",
+        "hollowingDepth": "Cheek Hollowing Depth",
+        "symmetry": "Symmetry Correction",
+        "cheekboneEmphasis": "Cheekbone Emphasis"
+      },
+      "measurements": {
+        "cheekWidthChange": "Cheek Width Change",
+        "buccalHollowDepth": "Buccal Hollow Depth",
+        "cheekboneToJawRatio": "Cheekbone:Jaw Ratio",
+        "faceShape": "Face Shape"
+      },
+      "previewResults": "Preview Results",
+      "patient": {
+        "sliders": {
+          "cheekSlimming": "Cheek Slimming",
+          "cheekSlimmingLeft": "Natural",
+          "cheekSlimmingRight": "Slimmer",
+          "jawlineDefinition": "Jawline Definition",
+          "jawlineDefinitionLeft": "Soft",
+          "jawlineDefinitionRight": "Defined",
+          "symmetry": "Symmetry",
+          "symmetryLeft": "Left",
+          "symmetryRight": "Right"
+        },
+        "hud": {
+          "stepLabel": "Cheek Preview"
+        },
+        "fallbackNotice": "Using approximate positioning, face not detected",
+        "brushSlim": "Slim",
+        "brushSlimAria": "Slim brush: reduce cheek volume",
+        "brushExpand": "Expand",
+        "brushExpandAria": "Expand brush: add cheek volume",
+        "brushReshape": "Reshape",
+        "brushReshapeAria": "Reshape brush: push cheek contour",
+        "sculptOverlayAria": "Sculpt brush. Paint on the lateral cheeks to reshape the buccal area.",
+        "holdToCompare": "Hold to compare",
+        "presets": {
+          "subtleContour": {
+            "label": "Subtle Contour",
+            "desc": "Mild reduction for natural slimming"
+          },
+          "koreanSlim": {
+            "label": "Korean Slim",
+            "desc": "Defined jawline with cheekbone emphasis"
+          },
+          "hollywoodSculpt": {
+            "label": "Hollywood Sculpt",
+            "desc": "Dramatic hollowing with prominent cheekbones"
+          },
+          "maleDefinition": {
+            "label": "Male Definition",
+            "desc": "Masculine angular definition"
+          }
+        }
+      },
+      "hudStepLabel": "Cheek Preview"
+    },
+    "lipAugmentation": {
+      "title": "Lip Augmentation Simulator",
+      "subtitle": "Lip Enhancement Preview",
+      "uploadStep": "Upload",
+      "adjustStep": "Adjust",
+      "resultStep": "Result",
+      "params": {
+        "upperLipVolume": "Upper Lip Volume",
+        "lowerLipVolume": "Lower Lip Volume",
+        "lipProjection": "Lip Projection",
+        "cupidsBow": "Cupid's Bow",
+        "lipWidth": "Lip Width",
+        "symmetry": "Symmetry Balance"
+      },
+      "presets": {
+        "naturalEnhancement": "Natural Enhancement",
+        "fullGlam": "Full Glam",
+        "russianLips": "Russian Lips",
+        "subtleRefresh": "Subtle Refresh",
+        "cupidsBowDefinition": "Cupid's Bow Definition",
+        "pillowLips": "Pillow Lips",
+        "indianAesthetic": "Indian Aesthetic"
+      },
+      "patient": {
+        "sliders": {
+          "volume": "Lip Volume",
+          "volumeLeft": "Natural",
+          "volumeRight": "Fuller",
+          "cupidsBow": "Cupid's Bow",
+          "cupidsBowLeft": "Soft",
+          "cupidsBowRight": "Defined",
+          "symmetry": "Symmetry",
+          "symmetryLeft": "Left",
+          "symmetryRight": "Right",
+          "lipProjection": "Lip Projection",
+          "lipProjectionLeft": "Flat",
+          "lipProjectionRight": "Projected",
+          "lipWidth": "Lip Width",
+          "lipWidthLeft": "Narrow",
+          "lipWidthRight": "Wide"
+        },
+        "pageTitle": "Lip Augmentation Preview",
+        "pageSubtitle": "Upload a front-facing photo to see how lip augmentation could look on you. Your photo is not uploaded while you simulate.",
+        "uploadAPhoto": "Upload a photo",
+        "uploadFormats": "JPG, PNG or HEIC, any size",
+        "adjustmentsLabel": "Adjustments",
+        "brushToolLabel": "Brush Tool: Grow",
+        "brushToolHint": "Paint directly on the lips to add volume",
+        "toolModeSliders": "Sliders",
+        "toolModeBrush": "Brush",
+        "brushModeGrow": "Plump",
+        "brushModeShrink": "Reduce",
+        "brushModeReshape": "Reshape",
+        "sizeLabel": "Size",
+        "strengthLabel": "Strength",
+        "holdToCompare": "Hold to compare",
+        "sliderModeBtn": "Slider",
+        "toggleModeBtn": "Toggle",
+        "animate": "Animate",
+        "stop": "Stop",
+        "resetLabel": "Reset",
+        "adjustSlidersOrPaint": "Adjust sliders or paint on lips to preview",
+        "loadingPhotoText": "Loading photo...",
+        "applyingChangesText": "Applying changes...",
+        "resumePrevious": "Resume previous session?",
+        "savedPhotosNote": "{count, plural, =0 {No saved photos} one {# saved photo} other {# saved photos}} from your last visit.",
+        "hud": {
+          "stepLabel": "Live preview"
+        },
+        "detectionUnavailable": "detection unavailable, using estimated position"
+      }
+    },
+    "threadLift": {
+      "shortTitle": "Thread Lift",
+      "uploadSubtitle": "AI Non-Surgical Lifting Preview: PDO, PLLA, PCL thread simulation",
+      "photoAngles": "Photo Angles",
+      "anglesLabel": "Angles:",
+      "slots": {
+        "frontal": "Frontal",
+        "lateralRight": "Lateral R",
+        "lateralLeft": "Lateral L"
+      },
+      "aiAssessmentTitle": "AI Thread Lift Assessment",
+      "aiStatus": {
+        "step1": "Step 1/5: Analyzing facial volume...",
+        "step2": "Step 2/5: Analyzing eye & brow position...",
+        "step3": "Step 3/5: Measuring ptosis and laxity...",
+        "step4": "Step 4/5: Computing thread placement...",
+        "step5": "Step 5/5: Applying AI recommendation...",
+        "complete": "Analysis complete"
+      },
+      "aiBannerAssessment": "AI has analyzed facial laxity and brow position. Complete the assessment below to get a personalized recommendation.",
+      "aiBannerPreview": "AI-detected thread placement applied. Adjust sliders to fine-tune.",
+      "assessmentSubtitle": "Select patient characteristics to receive a personalized thread lift recommendation.",
+      "configureParameters": "Configure Parameters",
+      "configureSubtitle": "Fine-tune thread lift parameters or select a preset.",
+      "presetsLabel": "Thread Lift Presets",
+      "recommendedLabel": "Recommended: {label}",
+      "recommendedDesc": "{desc}. Based on your assessment. Adjust sliders below to customize.",
+      "threadTypeInfo": "{desc}. Duration: {duration}",
+      "backToAssessment": "Back to Assessment",
+      "backToConfigure": "Back to Configure",
+      "toolbarLabel": "Thread Lift: {thread}",
+      "generating": "Generating...",
+      "title": "Thread Lift Simulator",
+      "subtitle": "AI Non-Surgical Lifting Preview",
+      "steps": {
+        "photo": "Photo",
+        "assessment": "Assessment",
+        "configure": "Configure",
+        "preview": "Preview"
+      },
+      "assessment": {
+        "ageRange": "Age Range",
+        "concern": "Primary Concern",
+        "budgetSensitive": "Budget Sensitivity",
+        "continue": "Continue to Configuration"
+      },
+      "params": {
+        "midface": "Midface Lift",
+        "jowl": "Jowl Lift",
+        "nasolabial": "Nasolabial Fold Softening",
+        "neck": "Neck / Jawline Definition",
+        "brow": "Brow Lift",
+        "threadType": "Thread Type"
+      },
+      "measurements": {
+        "midfaceLift": "Midface Lift",
+        "jowlLift": "Jowl Lift",
+        "browLift": "Brow Lift",
+        "liftScore": "Lift Score",
+        "duration": "Est. Duration",
+        "threadCount": "Thread Count"
+      },
+      "previewResults": "Preview Results",
+      "errors": {
+        "noFaceDetected": "No face detected. Look straight at camera, ensure good lighting, and keep your face centered.",
+        "modelLoadFailed": "Face detection couldn't load. Check your connection and try again.",
+        "processingFailed": "Couldn't process this photo. Please try again or use a different image."
+      },
+      "patient": {
+        "sliders": {
+          "liftAmount": "Lift Amount",
+          "liftAmountLeft": "Subtle",
+          "liftAmountRight": "Lifted",
+          "jawlineTightening": "Jawline Tightening",
+          "jawlineTighteningLeft": "Relaxed",
+          "jawlineTighteningRight": "Defined",
+          "cheekLift": "Cheek Lift",
+          "cheekLiftLeft": "Natural",
+          "cheekLiftRight": "Elevated",
+          "smoothness": "Neck Contour",
+          "smoothnessLeft": "Natural",
+          "smoothnessRight": "Defined"
+        },
+        "hud": {
+          "stepLabel": "Live preview"
+        }
+      }
+    },
+    "browLift": {
+      "title": "Brow Lift Simulator",
+      "subtitle": "AI Forehead Rejuvenation Preview",
+      "uploadStep": "Photo",
+      "adjustStep": "Adjust",
+      "resultStep": "Result",
+      "adjustHint": "Select a surgical technique or fine-tune the parameters below.",
+      "techniqueLabel": "Surgical Technique",
+      "parametersLabel": "Parameters",
+      "intensityLabel": "Intensity",
+      "intensitySubtle": "Subtle",
+      "intensityMax": "Maximum",
+      "previewResults": "Preview Results",
+      "back": "Back",
+      "backToAdjust": "Back to Adjust",
+      "reset": "Reset",
+      "resetAll": "Reset All",
+      "controls": "Controls",
+      "landmarkOverlay": "Landmark Overlay",
+      "sideBySideView": "Side-by-Side View",
+      "sliderView": "Slider View",
+      "uploadNewPhoto": "Upload New Photo",
+      "noFaceDetected": "No face detected",
+      "noFaceHint": "Upload a clear, front-facing photo with good lighting.",
+      "tryAgain": "Try Again",
+      "tryAnotherPhoto": "Try Another Photo",
+      "download": "Download",
+      "exporting": "Exporting...",
+      "share": "Share",
+      "urlCopied": "URL copied to clipboard!",
+      "disclaimer": "This simulation is for educational and planning purposes only. Results shown are approximations and actual surgical outcomes may vary. Consult a qualified medical professional before any procedure.",
+      "params": {
+        "browElevation": "Brow Elevation",
+        "lateralFlare": "Lateral Brow Flare",
+        "medialLift": "Medial Brow Lift",
+        "foreheadSmoothing": "Forehead Smoothing",
+        "asymmetryCorrection": "Asymmetry Correction"
+      },
+      "techniques": {
+        "endoscopic": "Endoscopic",
+        "temporal": "Temporal",
+        "coronal": "Coronal"
+      },
+      "patient": {
+        "sliders": {
+          "browHeight": "Brow Height",
+          "browHeightLeft": "Lower",
+          "browHeightRight": "Higher",
+          "archShape": "Arch Shape",
+          "archShapeLeft": "Flat",
+          "archShapeRight": "Arched",
+          "tailLift": "Tail Lift",
+          "tailLiftLeft": "Neutral",
+          "tailLiftRight": "Lifted",
+          "symmetry": "Symmetry",
+          "symmetryLeft": "Left",
+          "symmetryRight": "Right"
+        },
+        "hud": {
+          "stepLabel": "Brow Preview"
+        },
+        "fallbackNotice": "Using approximate positioning, face not detected",
+        "checkConsentToContinue": "Check the consent box above to continue",
+        "browAdjustments": "Brow Adjustments",
+        "addAngle": "Add angle ({current}/{max})",
+        "guidedCapture": "Guided capture"
+      },
+      "hudStepLabel": "Brow Preview"
+    },
+    "laser": {
+      "title": "Laser Resurfacing Simulator",
+      "subtitle": "AI Skin Rejuvenation Preview",
+      "nonSurgical": "NON-SURGICAL",
+      "steps": {
+        "photo": "Photo",
+        "assessment": "Assessment",
+        "configure": "Configure",
+        "preview": "Preview"
+      },
+      "assessment": {
+        "fitzpatrick": "Fitzpatrick Skin Type",
+        "concern": "Primary Concern",
+        "previousTreatment": "Previous Treatments",
+        "continue": "Continue to Configuration"
+      },
+      "params": {
+        "wrinkleReduction": "Wrinkle Reduction",
+        "pigmentationCorrection": "Pigmentation Correction",
+        "skinTightening": "Skin Tightening",
+        "textureImprovement": "Texture Improvement",
+        "rednessReduction": "Redness / Vascular",
+        "laserType": "Laser Type"
+      },
+      "measurements": {
+        "skinSmoothness": "Skin Smoothness",
+        "toneEvenness": "Tone Evenness",
+        "sessionsNeeded": "Sessions Needed",
+        "downtime": "Downtime"
+      },
+      "previewResults": "Preview Results"
+    },
+    "threeD": {
+      "analyzingFace": "Analyzing face mesh…",
+      "detectionHint": "Running 468-point detection for accurate 3D fit",
+      "switchTo2D": "Switch to 2D for instant preview",
+      "fittingError": "We couldn't fit a 3D model to this photo",
+      "tryAnother": "Try another photo",
+      "quickUpload": "Quick upload",
+      "multiUploadHint": "Upload up to 3 photos for the most accurate 3D",
+      "quickUploadHint": "Drop a frontal photo to start. Switch to Guided for the multi-angle flow.",
+      "multiAngleHint": "Front + left profile + right profile: clear lighting, neutral expression",
+      "processedOnDevice": "Base simulation processes on your device. Photoreal preview is opt-in.",
+      "intensity": "Effect intensity",
+      "hideBefore": "Hide Before",
+      "beforeAfter": "Before / After",
+      "newPhoto": "New Photo",
+      "disclaimer": "3D previews are visual only and not a substitute for a surgical consultation.",
+      "captureMode": "Capture mode",
+      "guided": "Guided",
+      "quick": "Quick",
+      "detecting": "Detecting…",
+      "front": "Front",
+      "left": "Left",
+      "right": "Right",
+      "face3DViewerLabel": "Interactive 3D face model: drag to rotate, scroll to zoom",
+      "photoSlotOptional": "{label} photo slot (optional)",
+      "dismissDevNotice": "Dismiss notice",
+      "viewModeLabel": "View mode",
+      "viewPhoto": "Photo",
+      "viewPhotoTitle": "Work on the uploaded photo",
+      "viewModel": "Model",
+      "viewModelTitle": "Rotatable model preview (beta)",
+      "viewModelNeedsWebgl": "The model preview needs a browser with WebGL2. Try a recent Chrome, Safari or Firefox.",
+      "viewLive": "Real-time",
+      "viewLiveTitle": "Live camera: see the change on your face as you move"
+    },
+    "rhinoplasty": {
+      "presetChips": {
+        "asianAugmentation": {
+          "label": "Bridge Augmentation",
+          "desc": "Raise the bridge, refine the tip"
+        },
+        "indianRhinoplasty": {
+          "label": "Tip & Alar Refinement",
+          "desc": "Define the tip, narrow the nostrils"
+        },
+        "westernReduction": {
+          "label": "Dorsal Reduction",
+          "desc": "Reduce the hump, lift the tip"
+        },
+        "subtleRefinement": {
+          "label": "Subtle Refinement",
+          "desc": "Conservative, natural"
+        }
+      },
+      "sections": {
+        "bridge": "Bridge",
+        "tip": "Tip",
+        "nostrils": "Nostrils",
+        "baseWidth": "Base Width",
+        "symmetry": "Symmetry",
+        "dorsum": "Dorsum",
+        "alarBase": "Alar Base",
+        "lengthProjection": "Length & Projection",
+        "sideViewHint": "Clearest on a side-view photo.",
+        "dorsalLines": "Dorsal aesthetic lines",
+        "dorsalLinesHint": "Adds sidewall shadow so the lines show. Move them, change their spacing, or deepen the shading.",
+        "dorsalLinesToggle": "Show line shading"
+      },
+      "surgeonControls": {
+        "badge": "Surgeon",
+        "offsetHint": "Per-side values are offsets added on top of the bilateral setting for the same structure, and the total is capped at the same surgical limit. Left and right are as seen on screen, not the patient's own sides."
+      },
+      "title": "Rhinoplasty Simulator",
+      "subtitle": "AI-Powered Nose Reshaping",
+      "surgical": "SURGICAL",
+      "tabs": {
+        "captureGuide": "Capture Guide",
+        "groupLabel": "Editing tools",
+        "parametric": "Guided Sliders",
+        "brush": "Freehand Brush",
+        "sculpt": "Direct Sculpt"
+      },
+      "tooltips": {
+        "zoomIn": "Zoom in (W)",
+        "zoomOut": "Zoom out (S)",
+        "resetZoom": "Reset zoom (0)",
+        "pan": "Pan tool (Space)",
+        "fullscreen": "Fullscreen (F)",
+        "undo": "Undo (Cmd+Z)",
+        "redo": "Redo (Shift+Cmd+Z)",
+        "shortcuts": "Keyboard Shortcuts (?)",
+        "sculptHandles": "Sculpt handles (H)",
+        "sculptProfileUnavailable": "Direct Sculpt isn't available on side-profile photos; use the sliders or brush.",
+        "symmetric": "Symmetric drag",
+        "hideHandles": "Hide handles",
+        "showHandles": "Show handles",
+        "clinicalOverlays": "Clinical overlays",
+        "resetMeasurementPoints": "Reset measurement points",
+        "proportions": "Facial proportions"
+      },
+      "brush": {
+        "reshape": "Reshape",
+        "shrink": "Shrink",
+        "grow": "Grow",
+        "reshapeDesc": "Drag to push pixels in any direction",
+        "shrinkDesc": "Click to compress/pinch area",
+        "growDesc": "Click to expand/bulge area",
+        "size": "Brush size",
+        "strength": "Brush strength"
+      },
+      "captureGuide": {
+        "openCta": "Read the full capture guide",
+        "title": "Capture Guide",
+        "intro": "A good photo is the single biggest factor in how accurate your simulation looks. This takes two minutes and is worth doing properly.",
+        "avoidLabel": "Avoid",
+        "footer": "If a photo is rejected, it is almost always lighting or angle, not you. Retake rather than force it through.",
+        "angles": {
+          "title": "Take three photos",
+          "why": "The simulator combines them to understand your nose in three dimensions. One photo alone limits what it can show.",
+          "front": {
+            "name": "Front",
+            "detail": "Looking straight at the lens, both ears equally visible, head not tilted."
+          },
+          "left": {
+            "name": "Left profile",
+            "detail": "Turn a full 90 degrees so the far eye and eyebrow disappear behind your nose."
+          },
+          "right": {
+            "name": "Right profile",
+            "detail": "The same on the other side. Both profiles matter: noses are rarely symmetrical."
+          }
+        },
+        "sections": {
+          "lighting": {
+            "title": "Lighting",
+            "why": "Shadows across the nose read as shape. Harsh or uneven light can make a straight bridge look curved.",
+            "tips": [
+              "Face a window in daylight, or stand facing an evenly lit wall.",
+              "Use soft, indirect light; an overcast day is close to ideal.",
+              "Keep the light in front of you, level with your face."
+            ],
+            "avoid": "Overhead spotlights, direct sun, a bright window behind you, or mixing warm indoor bulbs with daylight."
+          },
+          "camera": {
+            "title": "Camera position and lens",
+            "why": "A phone's front camera is wide-angle: it enlarges whatever sits closest to it, which on a face is your nose. This distorts the measurements directly.",
+            "tips": [
+              "Use the rear camera and ask someone to take the photo, or prop the phone up and use a timer.",
+              "Hold the camera at eye level, straight on, and not above or below.",
+              "Stand about an arm and a half away, then zoom slightly if you need a closer frame."
+            ],
+            "avoid": "Close-up selfies at arm's length. They can exaggerate nose size noticeably."
+          },
+          "framing": {
+            "title": "Framing",
+            "why": "Detection needs enough pixels on the nose, but a cropped chin or forehead removes the reference points measurements are built on.",
+            "tips": [
+              "Let your face fill roughly half to two thirds of the frame.",
+              "Include everything from above your hairline to below your chin.",
+              "Keep your head centred and upright, not tilted to one side.",
+              "On side photos, keep the lower rim of the eye socket level with the top of the ear opening (the Frankfort line). The camera shows it as a dashed line."
+            ],
+            "avoid": "Cropping the top of the head or the chin out of the frame."
+          },
+          "background": {
+            "title": "Background",
+            "why": "A busy background makes it harder to find the edge of your face, especially around the hair and jawline.",
+            "tips": [
+              "Stand in front of a plain wall.",
+              "Pick a background that contrasts with your hair and skin.",
+              "Leave a little space behind you rather than pressing against the wall."
+            ],
+            "avoid": "Patterned wallpaper, mirrors, or other people in the shot."
+          },
+          "expression": {
+            "title": "Expression",
+            "why": "Smiling lifts the upper lip and rotates the base of the nose, which shifts the nasolabial angle by several degrees: one of the measurements shown here.",
+            "tips": [
+              "Keep a relaxed, neutral expression.",
+              "Lips together, jaw unclenched.",
+              "Eyes open and looking at the lens."
+            ],
+            "avoid": "Smiling, raising your eyebrows, or holding a deliberate pose."
+          },
+          "hair": {
+            "title": "Hair and glasses",
+            "why": "Anything covering the brow, cheek or jaw hides landmarks the simulator uses to place its measurements.",
+            "tips": [
+              "Tie or clip hair back so the full face is visible.",
+              "Leave both ears uncovered.",
+              "Remove glasses: frames sit directly over the bridge of the nose."
+            ],
+            "avoid": "A fringe over the eyebrows, or hair falling across one cheek."
+          },
+          "quality": {
+            "title": "Image quality",
+            "why": "Beauty filters smooth and reshape faces before the app ever sees the photo, and it cannot detect that it has happened.",
+            "tips": [
+              "Turn off beauty mode, skin smoothing and any filters.",
+              "Send the original file rather than a screenshot or a messaging-app copy.",
+              "Check the photo is sharp and in focus before uploading."
+            ],
+            "avoid": "Screenshots, heavily compressed images, and anything already edited or retouched."
+          }
+        }
+      },
+      "sliders": {
+        "size": "Nose Size",
+        "smaller": "Smaller",
+        "larger": "Larger",
+        "width": "Bridge Width",
+        "narrower": "Narrower",
+        "wider": "Wider",
+        "adjunct": "Adjunct",
+        "baselineSeverity": "Baseline severity",
+        "bodyFatLevel": "Body Fat Level",
+        "buccalFatPresets": "Buccal Fat Presets",
+        "clinicalContext": "Clinical context",
+        "concentration": "Concentration",
+        "configureParameters": "Configure Parameters",
+        "controls": "Controls",
+        "curl": "Curl",
+        "effectChannels": "Effect channels",
+        "filterWavelength": "Filter wavelength",
+        "fitzpatrickSkinType": "Fitzpatrick skin type",
+        "fluencePulseEnergy": "Fluence (pulse energy)",
+        "healingPhase": "Healing phase",
+        "injectionDepth": "Injection depth",
+        "lashDesign": "Lash design",
+        "length": "Length",
+        "masterIntensity": "Master Intensity",
+        "measurements": "Measurements",
+        "needleDepth": "Needle depth",
+        "noFaceDetected": "No face detected",
+        "parameters": "Parameters",
+        "patientAge": "Patient age",
+        "presets": "Presets",
+        "productVolume": "Product volume",
+        "protocolStage": "Protocol stage",
+        "recoveryPreview": "Recovery preview",
+        "sessionsCompleted": "Sessions completed",
+        "setType": "Set type",
+        "style": "Style",
+        "submentalConvexity": "Submental convexity",
+        "targetArea": "Target area",
+        "timeSinceFill": "Time since fill",
+        "timeSinceSession": "Time since session",
+        "tip": "Tip Shape",
+        "refined": "Refined",
+        "natural": "Natural",
+        "angle": "Tip Angle",
+        "down": "Down",
+        "up": "Up",
+        "project": "Tip Projection",
+        "retracted": "Retracted",
+        "projected": "Projected",
+        "nostrils": "Nostril Width",
+        "bonyBaseWidth": "Bony Base Width",
+        "nostrilWidthLeft": "Nostril Width (Left)",
+        "nostrilWidthRight": "Nostril Width (Right)",
+        "bonyBaseWidthLeft": "Bony Base (Left)",
+        "bonyBaseWidthRight": "Bony Base (Right)",
+        "straightness": "Straightness",
+        "bridgeWidthLeft": "Bridge Width (Left)",
+        "bridgeWidthRight": "Bridge Width (Right)",
+        "tipLeft": "Tip Shape (Left)",
+        "tipRight": "Tip Shape (Right)",
+        "noseLength": "Nose Length",
+        "shorter": "Shorter",
+        "longer": "Longer",
+        "dalWidth": "Line spacing",
+        "dalShift": "Line position",
+        "dalDepth": "Shading depth",
+        "softer": "Softer",
+        "deeper": "Deeper"
+      },
+      "actions": {
+        "more": "More actions",
+        "openPhoto": "Open Photo",
+        "addView": "Add View",
+        "reset": "Reset",
+        "download": "Download",
+        "share": "Share",
+        "animate": "Animate",
+        "compare": "Compare",
+        "grid": "Grid View",
+        "single": "Single View",
+        "presets": "Presets",
+        "aiSuggest": "AI Suggest",
+        "vlog": "Start VLog",
+        "lightMode": "Light mode",
+        "darkMode": "Dark mode",
+        "openPhotoConfirmBody": "Replace photo and clear all edits? This cannot be undone."
+      },
+      "states": {
+        "loading": "Analyzing photo…",
+        "simulating": "Simulating…",
+        "ready": "Ready",
+        "processing": "Processing…",
+        "saving": "Saving…",
+        "exporting": "Exporting comparison…",
+        "uploadHint": "Drop photos or click to upload"
+      },
+      "warnings": {
+        "quotaFullShort": "Storage full",
+        "lateralSkipped": "{count} profile photos were skipped because face detection failed. Frontal photo is active.",
+        "deleteConfirm": "Are you sure you want to remove this photo?",
+        "photoLimit": "You can add up to {max} photos.",
+        "appliesToAllViews": "Adjustments apply to all {count} photos, not just this view.",
+        "photoLimitTruncated": "Only {added} of {total} photos were added: the limit is {max}.",
+        "resetConfirm": "Reset all changes to this photo?",
+        "quotaFull": "Storage full. Some history entries might not be saved.",
+        "faceSilhouette": "Position face inside the oval",
+        "lookStraight": "Look straight at camera"
+      },
+      "errors": {
+        "heicUnsupported": "We couldn't read this iPhone HEIC photo. Try your front camera instead, or convert to JPG first.",
+        "imageLoadFailed": "Failed to load image. Please try another photo.",
+        "noFaceDetected": "No face detected. Tips: Look straight at camera, ensure good lighting, face should fill 50-70% of frame.",
+        "noFaceLowLightSideProfile": "No face detected. The photo is too dark and appears to be a side profile. Please upload a clear, front-facing photo with better lighting.",
+        "noFaceLowLight": "No face detected. The photo is too dark. Please upload a photo with better lighting.",
+        "noFaceSideProfile": "No face detected. The photo appears to be a side profile. Please upload a front-facing photo.",
+        "noFaceMultiAngle": "We couldn't detect a face on any of your photos. Please retake with better lighting and your face centered in the frame.",
+        "captureProcessingFailed": "Failed to process captures. Please try again.",
+        "cameraAccessDenied": "Unable to access camera. Please check permissions or use file upload.",
+        "photoCaptureFailed": "Failed to capture photo. Please try again.",
+        "resumeFailed": "Could not resume because face detection failed. Please upload a new photo.",
+        "sessionRestoreFailed": "Failed to restore previous session. Please upload a new photo.",
+        "videoElementUnavailable": "Video element not available",
+        "cameraAccessFailed": "Could not access camera",
+        "cameraPermissionDenied": "Camera permission denied. Allow camera access and try again.",
+        "noCameraDetected": "No camera detected. You can upload a video instead.",
+        "captureTemporalSpread": "Your front, left, and right captures were too far apart in the recording. Try keeping your head still and turning smoothly without pauses.",
+        "needClearerAngle": "Need a clearer {missing} angle in the video. Try recording again with a slower head turn.",
+        "videoProcessingFailed": "Could not process the video",
+        "incompleteCaptureFailed": "Could not assemble a complete capture. Try recording again.",
+        "videoLoadFailed": "Could not load this video file",
+        "videoNoDimensions": "This video has no usable dimensions",
+        "canvasContextUnavailable": "Canvas context unavailable"
+      },
+      "videoCapture": {
+        "headerTitle": "Record a head turn",
+        "cancelAriaLabel": "Cancel video capture",
+        "idleHeading": "Record a 5-second head turn",
+        "idleDescription": "Look straight ahead, then slowly turn your head left, then right. We'll pick the best frame from each angle automatically.",
+        "startCameraButton": "Start camera",
+        "uploadVideoButton": "Or upload a video file",
+        "permissionHint": "Allow camera access in your browser…",
+        "processingFrameProgress": "Analyzing video, frame {done} of {total}",
+        "processingBuildingModel": "Building 3D model…",
+        "tryAgainButton": "Try again",
+        "waitingForFace": "Waiting for face…",
+        "slotAndYaw": "{slot} · {yaw}°",
+        "offAngle": "{yaw}° (off-angle)",
+        "stuckMessage": "We can't see your face from this camera. Try the photo upload instead. It works offline and gives the same 3D result.",
+        "useGuidedCaptureButton": "Use guided photo capture instead",
+        "retryCameraButton": "Retry camera",
+        "slotLabels": {
+          "front": "Front",
+          "left": "Left",
+          "right": "Right"
+        },
+        "allAnglesCaptured": "All angles captured, building your 3D model"
+      },
+      "processedOnDevice": "Base simulation processes on your device.",
+      "viewTag": {
+        "menuTitle": "Tag photo view",
+        "trigger": "Photo view",
+        "basalHint": "Nose from below (worm's-eye)",
+        "topHint": "Nose from above (bird's-eye)",
+        "undetectedHint": "No face detected. If this is a basal (from below) or top (from above) photo of the nose, tag its view to enable manual editing and analysis.",
+        "useAsBasal": "Use as basal photo",
+        "useAsTop": "Use as top photo"
+      },
+      "manualAnalysis": {
+        "toggle": "Manual nose analysis",
+        "requiresBasalTop": "Available for photos tagged as basal or top view",
+        "facialViewRequired": "Available on front or profile photos only",
+        "slidersUnavailable": "Sliders and sculpt need face landmarks, which basal/top photos don't have. Use the Brush tools to edit this photo.",
+        "titleBasal": "Basal analysis",
+        "titleTop": "Top-view analysis",
+        "dragHint": "Drag each point onto the anatomy; measurements update live.",
+        "pointInstructions": "drag or use arrow keys to position",
+        "degenerate": "Move the points apart to measure",
+        "noScaleNote": "Pixel measurements only: no real-world scale without a calibration reference.",
+        "points": {
+          "alarLeft": "Left alar base",
+          "alarRight": "Right alar base",
+          "subnasale": "Subnasale (columella base)",
+          "columellarBreak": "Columellar break point",
+          "tip": "Nasal tip",
+          "nasion": "Nasion (radix)",
+          "midlineTop": "Facial midline, top",
+          "midlineBottom": "Facial midline, bottom",
+          "tragion": "Tragion (ear, estimated)",
+          "orbitale": "Orbitale (lower eye rim, estimated)"
+        },
+        "metrics": {
+          "nostrilSymmetry": "Nostril axis symmetry",
+          "nostrilSymmetryIdeal": "ideal ≤ 10°",
+          "columellaLobule": "Columella : lobule",
+          "columellaLobuleIdeal": "ideal 2:1 (1.5–2.5 accepted)",
+          "alarBaseWidth": "Alar base width",
+          "axisDeviation": "Dorsal axis deviation",
+          "axisDeviationIdeal": "ideal ≤ 4°",
+          "tipOffset": "Tip lateral offset",
+          "degValue": "{value}°",
+          "pxValue": "{value} px",
+          "tipOffsetValue": "{value}% of nasal length"
+        }
+      },
+      "measure": {
+        "title": "Measure",
+        "modeGroupLabel": "Measurement mode",
+        "modes": {
+          "calibrate": "Calibrate",
+          "distance": "Distance",
+          "angle": "Angle"
+        },
+        "hint": {
+          "calibrate": "Mark two points you measured on the patient, then type that distance. Everything else on this photo is measured from it.",
+          "distance": "Mark any two points to measure between them.",
+          "angle": "Mark the first arm, then the vertex, then the second arm."
+        },
+        "anglesNeedNoScale": "Angles need no scale: this works on an uncalibrated photo.",
+        "pointsPlaced": "{placed} of {total} points",
+        "addPoint": "Add point",
+        "clearPoints": "Clear",
+        "needMorePoints": "{remaining, plural, one {Place 1 more point.} other {Place # more points.}}",
+        "pointInstructions": "drag or use arrow keys to position",
+        "point": {
+          "reference": "Reference point {n}",
+          "distance": "Measurement point {n}",
+          "rayA": "Angle, first arm",
+          "vertex": "Angle, vertex",
+          "rayB": "Angle, second arm"
+        },
+        "pxValue": "{value} px",
+        "degenerate": "Move the points apart to measure",
+        "pixelsOnly": "Not calibrated: pixels only, no millimetres.",
+        "notCalibrated": "Not calibrated",
+        "sourceOperator": "Your reference",
+        "sourceCorneal": "Iris width (population average)",
+        "sourceRuler": "Ruler in frame",
+        "trustOperator": "Measured on this patient, so this is the most reliable scale available.",
+        "trustCorneal": "Estimated from an average iris width, not measured on this patient.",
+        "trustRuler": "Least reliable: a ruler is not in the same depth plane as the face.",
+        "trustNone": "No scale set for this photo.",
+        "referenceIs": "reference {value}",
+        "knownDistanceLabel": "Distance measured on the patient (mm)",
+        "setScale": "Set scale",
+        "setScaleError": "Mark two separate points and enter a distance in millimetres greater than zero.",
+        "scaleHeading": "Scale",
+        "useIris": "Use iris width (automatic)",
+        "irisUnavailable": {
+          "no-face": "Automatic calibration needs a detected face. This photo has none, so set the scale from a distance you measured on the patient.",
+          "no-refined-landmarks": "Automatic calibration needs detailed eye points, which this photo's detection did not produce. Set the scale from a distance you measured on the patient.",
+          "eyes-not-measurable": "The eyes are not clearly visible enough to measure automatically. Retake with both eyes open and facing the camera, or set the scale from a distance you measured on the patient."
+        },
+        "cornealSuperseded": "Your own reference is in use. The automatic iris scale is kept but not applied.",
+        "clearScale": "Clear scale",
+        "accuracyNote": "Accuracy note",
+        "degValue": "{value}°",
+        "plusMinus": "± {value}"
+      },
+      "captureMultiAngleHint": "Capture front, left, and right profiles for the most accurate simulation",
+      "multiAngleRecommended": "Multi-Angle Capture (Recommended):",
+      "multiAngleRecommendedDesc": "Captures Front, Left, and Right profiles with real-time alignment guidance for the most accurate simulation.",
+      "aiPanel": {
+        "noChange": "Nothing measurable on this photo is outside its ideal range, so no change is suggested."
+      },
+      "aiExplainer": {
+        "trigger": "How AI suggestions work",
+        "title": "About AI suggestions",
+        "experimental": "Experimental",
+        "howItWorksTitle": "How it works",
+        "howItWorksBody": "Rule-based analysis of nasal measurements from your photo (nasofrontal angle, Goode's ratio, alar width, etc.) against ethnicity- and gender-adjusted aesthetic ranges. <b>Not a trained ML model.</b>",
+        "confidenceTitle": "What confidence means",
+        "confidenceBody": "How far the measured value is from the internal target: <b>not</b> a prediction of surgical outcome quality.",
+        "worksBestTitle": "Works best for",
+        "worksBestBody": "Frontal photos, even lighting, visible landmarks, first-time aesthetic changes.",
+        "lessReliableTitle": "Less reliable for",
+        "lessReliableBody": "True profile photos, mixed-ancestry faces, revision cases, asymmetric noses, unusual lighting.",
+        "footer": "Use suggestions as a starting point for patient conversation, not a surgical plan. Clinical judgment always takes precedence."
+      },
+      "howItWorks": {
+        "title": "How this works",
+        "open": "How this works",
+        "next": "Next",
+        "done": "Done",
+        "stepOf": "{current} of {total}",
+        "undo": "Undo",
+        "redo": "Redo",
+        "bridgeTitle": "Shape the bridge",
+        "bridgeBody": "Two sliders shape the bridge. {size} makes the whole nose smaller or larger, and {width} makes the bridge narrower or wider. The highlighted area is the part of your nose they move.",
+        "tipTitle": "Shape the tip",
+        "tipBody": "Three sliders shape the tip. {tip} makes it more refined or more natural, {angle} rotates it down or up, and {project} pulls it back or pushes it forward.",
+        "nostrilsTitle": "Shape the nostrils",
+        "nostrilsBody": "{nostrils} narrows or widens the base of your nose, at the highlighted area.",
+        "compareTitle": "Compare before and after",
+        "compareBody": "There are three ways to check the result. {compare} flips between your original photo and the simulation. {slider} drags a divider between the two. {changeMap} paints the areas that actually moved, so a subtle result is still easy to see.",
+        "historyTitle": "Undo, redo and reset",
+        "historyBody": "{undo} and {redo} are in the top bar, next to the save button. {reset}, inside {more}, returns every slider to zero and restores your original photo.",
+        "noPhotoNote": "Add a photo and open this again to see each step marked on your own nose.",
+        "noFaceNote": "We could not place markers on this photo, so this step is described in words only.",
+        "photoAlt": "Your photo, with the area this step describes highlighted."
+      },
+      "symmetry": {
+        "eachSide": "Adjust each side separately"
+      },
+      "surgeonLabels": {
+        "dorsalHeight": "Dorsal Height",
+        "dorsalWidth": "Dorsal Width",
+        "dorsalLength": "Dorsal Length",
+        "tipWidth": "Tip Width",
+        "tipProjection": "Tip Projection",
+        "nasolabialAngle": "Nasolabial Angle (Rotation)",
+        "alarBase": "Alar Base Width",
+        "dorsalWidthLeft": "Dorsal Width (Left)",
+        "dorsalWidthRight": "Dorsal Width (Right)",
+        "tipWidthLeft": "Tip Width (Left)",
+        "tipWidthRight": "Tip Width (Right)",
+        "alarBaseLeft": "Alar Base (Left)",
+        "alarBaseRight": "Alar Base (Right)",
+        "lower": "Lower",
+        "higher": "Higher",
+        "decrease": "Decrease",
+        "increase": "Increase"
+      },
+      "straighten": {
+        "title": "Straighten photo",
+        "auto": "Auto-level",
+        "autoHint": "Levels the eyes on a front photo, the Frankfort line on a side photo",
+        "apply": "Apply"
+      },
+      "report": {
+        "title": "Facial analysis report"
+      },
+      "trichion": {
+        "estimated": "Hairline point, estimated. Drag it to the hairline to measure the upper third.",
+        "placed": "Hairline point, placed by you. Drag to adjust."
+      }
+    },
+    "dermalFillers": {
+      "title": "Dermal Fillers Simulator",
+      "subtitle": "AI Volume Enhancement Preview",
+      "nonSurgical": "NON-SURGICAL",
+      "steps": {
+        "photo": "Photo",
+        "assessment": "Assessment",
+        "configure": "Configure",
+        "preview": "Preview"
+      },
+      "assessment": {
+        "ageRange": "Age Range",
+        "zoneInterest": "Primary Zone",
+        "experience": "Filler Experience",
+        "continue": "Continue to Configuration"
+      },
+      "params": {
+        "lipVolume": "Lip Volume",
+        "cheekVolume": "Cheek Volume",
+        "tearTrough": "Under-Eye / Tear Trough",
+        "chinFiller": "Chin Filler",
+        "jawlineFiller": "Jawline Filler",
+        "nasolabialFiller": "Nasolabial Fold",
+        "templeVolume": "Temple Volume",
+        "noseFiller": "Nose Filler"
+      },
+      "measurements": {
+        "totalVolume": "Total Volume",
+        "lipRatio": "Lip Ratio",
+        "estimatedCost": "Est. Cost",
+        "activeZones": "Active Zones"
+      },
+      "previewResults": "Preview Results",
+      "assessmentRequired": "Complete the assessment to see your result."
+    },
+    "liposuction": {
+      "title": "Liposuction Simulator",
+      "subtitle": "AI Body Contouring Preview",
+      "steps": {
+        "photo": "Photo",
+        "assessment": "Assessment",
+        "configure": "Configure",
+        "preview": "Preview"
+      },
+      "assessment": {
+        "zones": "Treatment Zones",
+        "bmi": "BMI Estimate",
+        "skinElasticity": "Skin Elasticity",
+        "continue": "Continue to Configuration"
+      },
+      "params": {
+        "intensity": "Fat Reduction Intensity",
+        "smoothness": "Contour Smoothness",
+        "tightening": "Skin Tightening",
+        "symmetry": "Symmetry Balance",
+        "technique": "Technique"
+      },
+      "measurements": {
+        "estimatedVolume": "Est. Volume",
+        "contourChange": "Contour Change",
+        "treatmentArea": "Treatment Area",
+        "sessionTime": "Session Time"
+      },
+      "zones": {
+        "abdomen": "Abdomen",
+        "flanks": "Love Handles / Flanks",
+        "thighs": "Thighs",
+        "arms": "Upper Arms",
+        "back": "Back (Bra Roll)",
+        "chin": "Chin / Submental",
+        "chest": "Male Chest"
+      },
+      "previewResults": "Preview Results",
+      "patient": {
+        "zones": {
+          "abdomen": "Abdomen",
+          "abdomenDesc": "Front belly area",
+          "flanks": "Flanks",
+          "flanksDesc": "Side waist / love handles",
+          "thighs": "Thighs",
+          "thighsDesc": "Inner and outer thigh",
+          "arms": "Upper Arms",
+          "armsDesc": "Arm slimming and toning"
+        },
+        "headerTitle": "Body Contouring Preview",
+        "headerSubtitle": "Select the areas you'd like to explore; this is a visual preview only.",
+        "selectAreasLabel": "Select areas to contour",
+        "contouringIntensity": "Contouring intensity",
+        "subtleLabel": "Subtle",
+        "moderateLabel": "Moderate",
+        "dramaticLabel": "Dramatic",
+        "previewChanges": "Preview Changes",
+        "applying": "Applying...",
+        "applyingContouring": "Applying contouring...",
+        "uploadYourPhoto": "Upload Your Photo",
+        "uploadHint": "Frontal view recommended: keep full body in frame",
+        "uploadBodyHint": "Upload a photo to start exploring body contouring options.",
+        "choosePhoto": "Choose Photo",
+        "addLateral": "+ Lateral",
+        "undoLabel": "Undo",
+        "redoLabel": "Redo",
+        "saveImage": "Save Image",
+        "confirmReset": "Confirm Reset",
+        "cancelLabel": "Cancel",
+        "disclaimerText": "This is a visual exploration tool, not a medical prediction. Results after surgery depend on your anatomy, skin quality, and your surgeon's technique. Always consult a board-certified plastic surgeon before making any decisions.",
+        "hud": {
+          "stepLabel": "Live preview"
+        }
+      },
+      "hud_lipo_stepLabel": "Live 3D preview",
+      "hud_lipo_abdomenReduction": "Abdomen",
+      "hud_lipo_flanksReduction": "Flanks",
+      "hud_lipo_thighsReduction": "Thighs",
+      "hud_lipo_armsReduction": "Upper Arms",
+      "p3d_header": "Body Contouring 3D Preview",
+      "p3d_wireframe": "Wireframe",
+      "p3d_headerSubtitle": "Use sliders to shape the 3D preview",
+      "p3d_intensity": "Intensity",
+      "p3d_significant": "Significant",
+      "p3d_resetAll": "Reset all",
+      "p3d_resetSliders": "Reset sliders",
+      "p3d_meshNoticeTitle": "3D Preview",
+      "p3d_meshNoticeBody": "This 3D model shows the approximate shape change. Rotate and zoom to inspect from any angle. A high-resolution anatomical model is coming soon.",
+      "panelUploadHint": "Upload a photo to start exploring body contouring options.",
+      "adjustTabAria": "Adjust mode: preset zones and sliders",
+      "sculptTab": "Sculpt",
+      "sculptTabAria": "Sculpt mode: manual brush",
+      "sculptHelper": "Paint over the body to slim or refine contours. Strokes stay within the body region.",
+      "brushSlim": "Slim",
+      "brushVolume": "Volume+",
+      "brushReshape": "Reshape",
+      "brushSlimAria": "Slim brush: fat removal",
+      "brushVolumeAria": "Volume up brush",
+      "brushReshapeAria": "Reshape brush",
+      "brushCaptureAria": "Sculpt brush, {mode} mode. Paint on the body area to sculpt."
+    },
+    "tummyTuck": {
+      "title": "Tummy Tuck Simulator",
+      "subtitle": "AI Abdominoplasty Preview",
+      "steps": {
+        "photo": "Photo",
+        "assessment": "Assessment",
+        "configure": "Configure",
+        "preview": "Preview"
+      },
+      "assessment": {
+        "reason": "Reason for Surgery",
+        "diastasis": "Diastasis Recti",
+        "csection": "Previous C-Section",
+        "bmi": "BMI Range",
+        "continue": "Continue to Configuration"
+      },
+      "params": {
+        "skinTightening": "Skin Tightening / Excess Removal",
+        "waistNarrowing": "Waist Narrowing",
+        "muscleRepair": "Muscle Repair (Diastasis)",
+        "navelReshaping": "Navel Reshaping",
+        "procedureType": "Procedure Type"
+      },
+      "measurements": {
+        "skinRemovalArea": "Skin Removed",
+        "waistChange": "Waist Change",
+        "scarLength": "Scar Length",
+        "recovery": "Recovery"
+      },
+      "previewResults": "Preview Results",
+      "patient": {
+        "sliders": {
+          "skinTightening": "Skin Tightening",
+          "skinTighteningLeft": "Minimal",
+          "skinTighteningRight": "Significant",
+          "waistNarrowing": "Waist Narrowing",
+          "waistNarrowingLeft": "Subtle",
+          "waistNarrowingRight": "Defined",
+          "muscleRepair": "Muscle Repair",
+          "muscleRepairLeft": "None",
+          "muscleRepairRight": "Full",
+          "navelReshaping": "Navel Reshaping",
+          "navelReshapingLeft": "Keep",
+          "navelReshapingRight": "Reshape",
+          "skinTighteningDesc": "How much loose skin is removed and tightened",
+          "waistNarrowingDesc": "Lateral contouring to narrow the waistline",
+          "muscleRepairDesc": "Midline flattening (diastasis recti repair)",
+          "navelReshapingDesc": "Navel repositioning and refinement",
+          "procedureType": "Procedure type"
+        },
+        "headerTitle": "Tummy Contouring Preview",
+        "headerSubtitle": "Explore an illustrative visualization of abdominoplasty: a visual guide for discussion with your surgeon, not a prediction.",
+        "uploadYourPhoto": "Upload Your Photo",
+        "uploadHint": "Front-facing, waist-to-knees in frame works best",
+        "uploadBodyHint": "Upload a photo to start exploring tummy contouring options.",
+        "choosePhoto": "Choose Photo",
+        "addLateral": "+ Lateral",
+        "applyingPreview": "Applying tummy contouring...",
+        "sculptSectionTitle": "Sculpt brush",
+        "sculptHint": "Paint directly over the abdomen to fine-tune the contour. Strokes are clamped to the torso.",
+        "brushTighten": "Tighten",
+        "brushExpand": "Expand",
+        "brushReshape": "Reshape",
+        "sculptBrushAria": "Sculpt brush, {mode} mode. Paint over the abdomen to reshape.",
+        "undoLastStroke": "Undo last stroke",
+        "procedureTypeLabel": "Procedure type",
+        "procedureMiniLabel": "Mini Tuck",
+        "procedureMiniDesc": "Below navel · smaller scar · shorter recovery",
+        "procedureFullLabel": "Full Tuck",
+        "procedureFullDesc": "Full abdomen · hip-to-hip · navel repositioned",
+        "procedureExtendedLabel": "Extended",
+        "procedureExtendedDesc": "Full + sides · for larger skin excess",
+        "procedureFleurDeLisLabel": "Fleur-de-Lis",
+        "procedureFleurDeLisDesc": "T-shaped · for massive weight loss",
+        "adjustResultsLabel": "Adjust results",
+        "scarVisualizationLabel": "Scar Visualization",
+        "scarInfoText": "This shows the approximate scar location for the selected procedure type. Real scar appearance varies by healing, skin type, and surgeon technique; most scars fade significantly over 12-18 months.",
+        "saveImage": "Save Image",
+        "silhouetteUploadLabel": "Upload a frontal body photo",
+        "silhouetteHint": "Knees-to-chest view works best",
+        "hud": {
+          "stepLabel": "Live preview"
+        }
+      },
+      "hud_tummy_stepLabel": "Live 3D preview",
+      "hud_tummy_skinTightening": "Skin Tightening",
+      "hud_tummy_waistNarrowing": "Waist Narrowing",
+      "hud_tummy_muscleRepair": "Muscle Repair",
+      "hud_tummy_navelReshaping": "Navel Reshaping"
+    },
+    "bbl": {
+      "title": "BBL Simulator",
+      "subtitle": "AI Brazilian Butt Lift Preview",
+      "steps": {
+        "photo": "Photo",
+        "assessment": "Assessment",
+        "configure": "Configure",
+        "preview": "Preview"
+      },
+      "assessment": {
+        "viewType": "View Type",
+        "bodyType": "Body Type",
+        "donorFat": "Available Donor Fat",
+        "goal": "Enhancement Goal",
+        "continue": "Continue to Configuration"
+      },
+      "params": {
+        "volume": "Volume Addition",
+        "projection": "Projection",
+        "shape": "Shape",
+        "whr": "Waist-to-Hip Ratio",
+        "hipDip": "Hip Dip Correction"
+      },
+      "measurements": {
+        "fatTransferVolume": "Fat Transfer (per side)",
+        "whrChange": "Waist-to-Hip Ratio",
+        "projectionChange": "Projection Change",
+        "donorSite": "Donor Site"
+      },
+      "previewResults": "Preview Results",
+      "patient": {
+        "sliders": {
+          "projection": "Projection",
+          "projectionLeft": "Subtle",
+          "projectionRight": "Bold",
+          "roundness": "Roundness",
+          "roundnessLeft": "Athletic",
+          "roundnessRight": "Curved",
+          "width": "Width",
+          "widthLeft": "Narrow",
+          "widthRight": "Full",
+          "hipDip": "Hip Dip Fill",
+          "hipDipLeft": "None",
+          "hipDipRight": "Full",
+          "symmetry": "Symmetry",
+          "symmetryLeft": "Left",
+          "symmetryRight": "Right"
+        },
+        "hud": {
+          "stepLabel": "Live preview"
+        },
+        "panelTitle": "Adjust Your Look",
+        "panelSubtitle": "Drag sliders to preview different enhancement styles",
+        "tabAdjust": "Adjust",
+        "tabSculpt": "Sculpt",
+        "brushHint": "Paint over the curve to add or refine volume. Strokes stay within the buttock region.",
+        "brushModeVolumeUp": "Volume+",
+        "brushModeSlim": "Slim",
+        "brushModeReshape": "Reshape",
+        "brushSize": "Brush size",
+        "brushStrength": "Brush strength",
+        "clearSculptEdits": "Clear sculpt edits",
+        "quickStyles": "Quick styles",
+        "curveEnhancementPreview": "Curve Enhancement Preview",
+        "posteriorView": "Posterior View",
+        "frontalView": "Frontal View",
+        "resetSliders": "Reset sliders",
+        "explorationOnlyTitle": "For exploration only",
+        "explorationOnlyBody": "This is a visual exploration tool, not a medical prediction. Fat graft survival typically averages 60–70%, and final results depend on your anatomy, donor fat availability, and your surgeon's technique. Always consult a board-certified plastic surgeon before making any decisions.",
+        "simulationAlt": "BBL simulation preview",
+        "silhouettePrimary": "BBL Preview",
+        "silhouetteSecondary": "Posterior view silhouette",
+        "emptyStateTitle": "Upload a photo to begin",
+        "emptyStateHint": "Rear or side view recommended for the most accurate preview",
+        "safety": {
+          "keepInMind": "Keep in mind",
+          "critical": {
+            "title": "Important safety information",
+            "mortalityBody": "BBL has the highest mortality rate of any cosmetic procedure, primarily from fat embolism when fat is injected too deep or in excessive volume. Only proceed with a board-certified plastic surgeon experienced in safe injection technique.",
+            "volumeCapBody": "Estimated fat graft volume exceeds the conservative safe ceiling of 550cc per buttock. Larger volumes raise the risk of overcorrection and fat embolism; discuss a staged, more conservative plan with a board-certified surgeon."
+          },
+          "friendlyWarnings": {
+            "volumeHigh": "This volume is on the higher end: larger fat grafts carry more risk and a longer recovery.",
+            "projectionHigh": "This projection may look dramatic in the preview: fat graft survival is typically 60–70%, so final results tend to be softer than shown.",
+            "asymmetry": "This preview shows some asymmetry between sides; your surgeon can discuss options to balance results.",
+            "overcorrect": "This level of change may look overcorrected; a more moderate adjustment often looks more natural.",
+            "conservative": "A more conservative approach may achieve a similar look with less risk.",
+            "generic": "Discuss this combination of changes with a board-certified surgeon before deciding."
+          }
+        }
+      },
+      "volumeWarning": {
+        "chipLabel": "Volume realism notice",
+        "soft": "Preview may slightly over-represent final volume. Fat graft survival is typically 60-70%. Results will be close but may be subtler than shown.",
+        "hard": "Preview volume may exceed realistic graft yield. Fat graft survival is 60–70%; final results will be more moderate. Try reducing volume or increasing waist sculpting.",
+        "standaloneVolume": "Maximum volume without waist sculpting may look disproportionate: fat harvesting from donor sites is not shown in this preview.",
+        "dismiss": "Dismiss"
+      },
+      "hud_bbl_stepLabel": "Live 3D preview",
+      "hud_bbl_projection": "Projection",
+      "hud_bbl_roundness": "Roundness",
+      "hud_bbl_width": "Width",
+      "hud_bbl_hipDip": "Hip Dip Fill",
+      "p3d_header": "Curve Enhancement 3D Preview",
+      "p3d_wireframe": "Wireframe",
+      "p3d_headerSubtitle": "Use sliders to shape the 3D preview",
+      "p3d_intensity": "Intensity",
+      "p3d_resetAll": "Reset all",
+      "p3d_resetSliders": "Reset sliders",
+      "p3d_meshNoticeTitle": "3D Preview",
+      "p3d_meshNoticeBody": "This 3D model shows the approximate shape change. Rotate and zoom to inspect from any angle. A high-resolution anatomical model is coming soon."
+    },
+    "breastAugmentation": {
+      "title": "Breast Augmentation Simulator",
+      "subtitle": "AI Implant Preview",
+      "steps": {
+        "photo": "Photo",
+        "assessment": "Assessment",
+        "configure": "Configure",
+        "preview": "Preview"
+      },
+      "assessment": {
+        "cupSize": "Current Cup Size",
+        "chestWidth": "Chest Width",
+        "goal": "Enhancement Goal",
+        "reason": "Reason for Surgery",
+        "continue": "Continue to Configuration"
+      },
+      "params": {
+        "volume": "Volume / Size Increase",
+        "profile": "Profile / Projection",
+        "placement": "Placement",
+        "upperPole": "Upper Pole Fullness",
+        "cleavage": "Cleavage Gap",
+        "symmetry": "Symmetry Correction"
+      },
+      "measurements": {
+        "implantSize": "Implant Size",
+        "cupSizeChange": "Cup Size Change",
+        "widthChange": "Width Change",
+        "projection": "Projection"
+      },
+      "previewResults": "Preview Results",
+      "patient": {
+        "sliders": {
+          "size": "Size",
+          "sizeLeft": "Subtle",
+          "sizeRight": "Fuller",
+          "projection": "Projection",
+          "projectionLeft": "Natural",
+          "projectionRight": "Projected",
+          "placement": "Placement Style",
+          "placementLeft": "Over Muscle",
+          "placementRight": "Under Muscle",
+          "symmetry": "Symmetry",
+          "symmetryLeft": "Left",
+          "symmetryRight": "Right"
+        },
+        "headerTitle": "Breast Enhancement Preview",
+        "panelTitle": "Adjust Your Look",
+        "panelSubtitle": "Drag sliders to preview different enhancement styles",
+        "uploadPrompt": "Upload a photo to get started",
+        "uploadHint": "Frontal or lateral view, chest visible, arms relaxed",
+        "keepInMind": "Keep in mind",
+        "explorationOnly": "For exploration only",
+        "explorationNote": "This preview is a visual guide to help you explore different looks, not a guarantee of surgical results. Always consult a board-certified plastic surgeon before making any decisions.",
+        "holdToSeeOriginal": "Hold to see original",
+        "toggleComparisonMode": "Toggle comparison mode",
+        "animateBeforeAfter": "Animate before/after",
+        "pauseAnimationLabel": "Pause animation",
+        "resetSliders": "Reset sliders",
+        "resetAll": "Reset all",
+        "resumePromptTitle": "Resume your session?",
+        "addAnotherPhoto": "Add another photo",
+        "hud": {
+          "stepLabel": "Live preview"
+        },
+        "leftZoneLabel": "Left",
+        "rightZoneLabel": "Right",
+        "adjustIndependently": "Adjust independently",
+        "tabAdjust": "Adjust",
+        "tabSculpt": "Sculpt",
+        "brushHint": "Paint over the chest to add or refine volume. Strokes stay within the chest region.",
+        "brushModeVolumeUp": "Volume+",
+        "brushModeVolumeDown": "Volume-",
+        "brushModeReshape": "Reshape",
+        "brushSize": "Brush size",
+        "brushStrength": "Brush strength",
+        "clearSculptEdits": "Clear sculpt edits",
+        "frontalView": "Frontal View",
+        "lateralView": "Lateral View",
+        "silhouetteTitle": "Stand facing forward, shoulders visible",
+        "silhouetteSubtitle": "Chest visible, arms relaxed at sides",
+        "presets": {
+          "naturalEnhancement": {
+            "label": "Natural Enhancement",
+            "desc": "Subtle, proportional, \"did she or didn't she?\""
+          },
+          "athleticAugmentation": {
+            "label": "Athletic / Fit Look",
+            "desc": "Moderate volume, natural shape"
+          },
+          "fullGlamour": {
+            "label": "Full / Glamour",
+            "desc": "Noticeable enhancement, round shape"
+          },
+          "postPregnancyRestore": {
+            "label": "Post-Pregnancy Restore",
+            "desc": "Restore lost volume and shape"
+          },
+          "asianNatural": {
+            "label": "Asian Natural (Motiva)",
+            "desc": "Korean/APAC preference: subtle, soft"
+          }
+        }
+      },
+      "hud_breast_stepLabel": "Live 3D preview",
+      "hud_breast_volume": "Volume",
+      "hud_breast_profile": "Profile",
+      "hud_breast_placement": "Placement",
+      "hud_breast_upperPole": "Upper Pole",
+      "hud_breast_cleavage": "Cleavage"
+    },
+    "fatGrafting": {
+      "title": "Fat Grafting Simulator",
+      "subtitle": "Autologous Fat Transfer Preview",
+      "uploadStep": "Photo",
+      "adjustStep": "Adjust",
+      "resultStep": "Result",
+      "presetsLabel": "Area Presets",
+      "parametersLabel": "Parameters",
+      "intensityLabel": "Intensity",
+      "previewResults": "Preview Results",
+      "backToAdjust": "Back to Adjust",
+      "reset": "Reset",
+      "resetAll": "Reset All",
+      "controls": "Controls",
+      "landmarkOverlay": "Landmark Overlay",
+      "sideBySideView": "Side-by-Side View",
+      "sliderView": "Slider View",
+      "compare": "Compare",
+      "hideComparison": "Hide Comparison",
+      "uploadNewPhoto": "Upload New Photo",
+      "params": {
+        "cheekVolume": "Cheek Volume",
+        "templeVolume": "Temple Volume",
+        "underEyeVolume": "Under-Eye Volume",
+        "nasolabialFill": "Nasolabial Fill",
+        "jawlineContour": "Jawline Contour",
+        "lipVolume": "Lip Volume"
+      },
+      "presets": {
+        "fullFace": "Full Face Rejuvenation",
+        "templeAndCheek": "Temple + Cheek",
+        "underEyeCorrection": "Under-Eye Correction",
+        "youthfulContour": "Youthful Contour"
+      },
+      "safety": {
+        "critical": {
+          "title": "Important safety information",
+          "body": "Facial fat grafting carries a risk of vascular complications, including embolism, if fat is injected into a blood vessel, particularly in the glabella, nasal, and temporal danger zones. This can lead to serious complications such as skin necrosis, vision loss, or stroke. Only proceed with a board-certified plastic surgeon experienced in safe facial fat-transfer injection technique."
+        }
+      }
+    },
+    "chemicalPeel": {
+      "title": "Chemical Peel Consultation Tool",
+      "subtitle": "Preview how a peel could change skin texture and tone",
+      "fitzpatrickSkinType": "Fitzpatrick Skin Type",
+      "glogauScale": "Glogau Photoaging Scale",
+      "primaryConcerns": "Primary Concerns (select all that apply)",
+      "analyzeSkinProfile": "Analyze Skin Profile",
+      "elevatedPIHRisk": "Elevated PIH Risk",
+      "fitzpatrickRiskWarning": "Fitzpatrick Type {type} patients have higher risk of post-inflammatory hyperpigmentation. Medium and deep peels may be contraindicated.",
+      "safeForFitzpatrick": "Safe for Fitzpatrick Type {type}",
+      "selectPeelPrompt": "Select skin type, photoaging level, and concerns to explore options to discuss with your provider.",
+      "recommendedTreatment": "Option to Explore",
+      "viewTreatmentOptions": "View Treatment Options",
+      "selectTreatment": "Select Treatment ({count} options)",
+      "recommendedBanner": "{name}: an option to discuss with your provider, based on your inputs",
+      "treatmentProtocol": "Treatment Protocol",
+      "pretreatment": "Pre-Treatment",
+      "posttreatment": "Post-Treatment",
+      "interval": "Interval",
+      "maintenance": "Maintenance",
+      "disclaimer": "This simulation is for education and planning only. It shows an illustration, not a prediction of your result. Results vary between people; talk to a qualified doctor before any treatment.",
+      "previewResults": "Preview Results",
+      "session": "Session",
+      "sessionOf": "Session {number} of {total}",
+      "selected": "SELECTED",
+      "controlsSession": "Controls: Session {number}",
+      "toolbarLabel": "{name}: Session {number}",
+      "download": "Download",
+      "exporting": "Exporting...",
+      "report": "Report",
+      "share": "Share",
+      "exportOff": "Download and Share are off because this photo has no simulated result.",
+      "backToTreatment": "Back to Treatment",
+      "params": {
+        "smoothness": "Skin Smoothness",
+        "pigmentation": "Pigmentation Correction",
+        "radiance": "Radiance / Glow",
+        "fineLines": "Fine Lines Reduction",
+        "acneScars": "Acne Scar Smoothing",
+        "poreSize": "Pore Refinement"
+      },
+      "estimating": "Estimating your skin profile on this device",
+      "estimateReady": "Skin estimate ready",
+      "estimateSubtext": "These values were estimated on this device from your photo. They are an estimate, not a diagnosis: check each one and change it if it looks wrong.",
+      "estimateBadge": "Estimate",
+      "disclaimerClinical": "Simulation only, not a diagnostic device. The images are an illustration and do not replace an in-person skin assessment by a qualified doctor.",
+      "privacyLine": "Your photo is not uploaded while you simulate",
+      "meta": {
+        "title": "Chemical Peel Consultation Simulator: Skin Type and Peel Preview",
+        "description": "Chemical peel consultation tool with Fitzpatrick skin typing and the Glogau photoaging scale. Preview glycolic, salicylic, Jessner's, TCA and phenol peels on a photo; your photo is not uploaded while you simulate.",
+        "ogTitle": "Chemical Peel Simulator",
+        "ogDescription": "Set the skin type, compare peel options and preview each healing phase on a photo. For plastic surgeons and dermatologists."
+      },
+      "shortName": "Chemical peel",
+      "typeName": "Type {roman}",
+      "ageRange": "Age {range}",
+      "healingPhase": "Healing phase",
+      "healingPhaseHint": "Preview how this session looks during recovery.",
+      "fallbackTitle": "Simulation unavailable on this device",
+      "fallbackBody": "The skin simulation cannot run in this browser. Try an up-to-date desktop or phone browser to see it.",
+      "play": "Play",
+      "pause": "Pause",
+      "playAnimation": "Play the before and after animation",
+      "pauseAnimation": "Pause the animation",
+      "undo": "Undo",
+      "redo": "Redo",
+      "estimateSteps": {
+        "skinType": "Estimating skin type...",
+        "photoaging": "Estimating photoaging level...",
+        "concerns": "Looking for skin concerns...",
+        "options": "Finding options to discuss..."
+      },
+      "fitzpatrick": {
+        "type1": "Very fair, freckles",
+        "type2": "Fair skin",
+        "type3": "Medium, light brown",
+        "type4": "Olive, moderate brown",
+        "type5": "Brown, dark brown",
+        "type6": "Very dark brown to black"
+      },
+      "glogau": {
+        "type1": {
+          "name": "Type I: No wrinkles",
+          "description": "Early photoaging"
+        },
+        "type2": {
+          "name": "Type II: Wrinkles in motion",
+          "description": "Early to moderate photoaging"
+        },
+        "type3": {
+          "name": "Type III: Wrinkles at rest",
+          "description": "Advanced photoaging"
+        },
+        "type4": {
+          "name": "Type IV: Only wrinkles",
+          "description": "Severe photoaging"
+        }
+      },
+      "concerns": {
+        "fine_lines": "Fine lines",
+        "pigmentation": "Pigmentation",
+        "acne_scars": "Acne scars",
+        "texture": "Rough texture",
+        "dullness": "Dullness",
+        "melasma": "Melasma",
+        "pore_size": "Large pores",
+        "sun_damage": "Sun damage",
+        "active_acne": "Active acne"
+      },
+      "depthCategory": {
+        "superficial": "Superficial",
+        "medium": "Medium",
+        "deep": "Deep"
+      },
+      "peels": {
+        "glycolic_light": {
+          "name": "Glycolic acid 20-30%",
+          "depth": "Epidermis only",
+          "indications": "Dullness, mild texture, maintenance",
+          "downtime": "Redness for about 4 days"
+        },
+        "glycolic_medium": {
+          "name": "Glycolic acid 50-70%",
+          "depth": "Full epidermis",
+          "indications": "Pigmentation, fine lines, acne",
+          "downtime": "1-3 days"
+        },
+        "salicylic": {
+          "name": "Salicylic acid 20-30%",
+          "depth": "Epidermis and pores",
+          "indications": "Acne, oily skin, blackheads and whiteheads",
+          "downtime": "None to minimal"
+        },
+        "jessner": {
+          "name": "Jessner's solution",
+          "depth": "Epidermis to papillary dermis",
+          "indications": "Acne, post-acne marks, pigmentation",
+          "downtime": "3-5 days"
+        },
+        "tca_35": {
+          "name": "TCA 35%",
+          "depth": "Papillary dermis",
+          "indications": "Moderate wrinkles, pigmentation, acne scars",
+          "downtime": "Crusting for about a week, redness for 1-4 weeks"
+        },
+        "tca_50": {
+          "name": "TCA 50%",
+          "depth": "Upper reticular dermis",
+          "indications": "Deep wrinkles, severe pigmentation, acne scars",
+          "downtime": "14-21 days"
+        },
+        "phenol_croton": {
+          "name": "Phenol-croton oil",
+          "depth": "Mid-reticular dermis",
+          "indications": "Severe photoaging, deep wrinkles, precancerous lesions",
+          "downtime": "14-21 days to heal, redness up to 6 months",
+          "gateReason": "Needs cardiac monitoring in a clinic",
+          "surgeonNote": "Needs cardiac monitoring during the peel. Redness can last up to 6 months."
+        }
+      },
+      "safety": {
+        "deep": "{name} is contraindicated for Fitzpatrick type {type}: high risk of dyspigmentation and scarring.",
+        "medium": "{name} carries a higher risk of post-inflammatory hyperpigmentation for Fitzpatrick type {type}. Consider a superficial peel instead.",
+        "superficial": "{name} may not be suitable for Fitzpatrick type {type}. Check clinical guidelines."
+      },
+      "protocol": {
+        "superficial": {
+          "pretreatment": [
+            "Broad-spectrum SPF 30+ every day for 2 weeks",
+            "Stop retinoids 3-5 days before",
+            "Gentle cleanser for 1 week before"
+          ],
+          "posttreatment": [
+            "Gentle cleanser and moisturizer only for 3 days",
+            "No exfoliants for 5 days",
+            "SPF 50+ every day and strict sun avoidance for 1 week",
+            "No active ingredients (AHA, BHA, retinol) for 5 days"
+          ],
+          "interval": "Every 2-4 weeks",
+          "timeline": "Changes usually show 1-2 weeks after the peel",
+          "maintenance": "Every 4-6 weeks"
+        },
+        "medium": {
+          "pretreatment": [
+            "Broad-spectrum SPF 50+ every day for 4 weeks",
+            "Stop retinoids 5-7 days before",
+            "Optional: hydroquinone 2% for 2 weeks (melasma)",
+            "Antiviral prophylaxis if there is a history of cold sores (HSV)"
+          ],
+          "posttreatment": [
+            "Strict sun avoidance for at least 2 weeks",
+            "Gentle cleanser and a rich moisturizer only",
+            "No exfoliants for 7-10 days",
+            "SPF 50+ from now on",
+            "No makeup for 5-7 days",
+            "Expect peeling on days 3-7"
+          ],
+          "interval": "Every 3-6 months",
+          "timeline": "Final look usually reached at 6-8 weeks",
+          "maintenance": "Every 6-12 months"
+        },
+        "deep": {
+          "pretreatment": [
+            "Cardiac evaluation (phenol peels)",
+            "Broad-spectrum SPF 50+ every day for 6 weeks",
+            "Stop retinoids 7-14 days before",
+            "Hydroquinone 4% for 4-6 weeks before",
+            "Antiviral prophylaxis required",
+            "Informed consent covering the long downtime"
+          ],
+          "posttreatment": [
+            "Strict sun avoidance for at least 4 weeks",
+            "Occlusive dressings for 24-48 hours",
+            "Gentle cleanser and the prescribed ointment only",
+            "No exfoliants for at least 14 days",
+            "SPF 50+ for life",
+            "No makeup for 10-14 days",
+            "Expect marked peeling, redness and swelling",
+            "Follow-up visits at 1, 2 and 4 weeks"
+          ],
+          "interval": "Once only (rarely repeated)",
+          "timeline": "Final look usually reached at 3-6 months",
+          "maintenance": "Superficial peels for maintenance"
+        }
+      },
+      "phases": {
+        "immediate": "Immediate (day 1-2)",
+        "peeling": "Peeling (day 3-7)",
+        "earlyHealed": "Early healed (day 7-14)",
+        "healed": "Healed"
+      },
+      "surgeonOnlyBadge": "Surgeon only",
+      "sessionsRange": "{min}-{max} sessions",
+      "singleSession": "Single session only",
+      "singleSessionNote": "This peel is done once, so there is no series of sessions to step through.",
+      "sessionRangeNote": "Illustrative range, not a clinical protocol. Later sessions are drawn with smaller changes; this is not a measured result.",
+      "recovery": "Recovery",
+      "effectLevels": "Effect strength in this preview",
+      "effectLevelsHint": "Relative to the strongest this preview can draw. Not a measured improvement.",
+      "levels": {
+        "none": "None",
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
+      },
+      "effectLabels": {
+        "smoothness": "Texture",
+        "pigmentation": "Pigmentation",
+        "radiance": "Radiance",
+        "fineLines": "Fine Lines",
+        "acneScars": "Acne Scars",
+        "poreSize": "Pore Size"
+      },
+      "shareTitle": "Chemical peel preview",
+      "shareText": "Preview a chemical peel on your own photo with Faceify Labs.",
+      "shareDialog": {
+        "title": "Save or share your preview",
+        "imageAlt": "Before and after chemical peel preview",
+        "hint": "If Save image does nothing in this browser, press and hold (or right-click) the image to save it.",
+        "imageFailed": "The preview image could not be made on this device. You can still share the link to this simulator.",
+        "saveImage": "Save image",
+        "shareLink": "Share link",
+        "copyLink": "Copy link",
+        "linkCopied": "Link copied",
+        "copyFailed": "Copying is blocked here. Select the link to copy it:"
+      },
+      "viewNotice": {
+        "title": "This photo is not a front view",
+        "body": "The face is turned to the side, so the skin estimate and the preview are off for this photo. Use a photo taken face on, square to the camera. You can still set the skin profile by hand and compare peels.",
+        "retake": "Choose another photo",
+        "previewOff": "The preview needs a front-facing photo."
+      },
+      "regions": {
+        "label": "Treatment area",
+        "hint": "All four on covers the whole face. One area always stays on.",
+        "forehead": "Forehead",
+        "cheeks": "Cheeks",
+        "nose": "Nose",
+        "chin": "Chin"
+      },
+      "pigmentDarkSkinNote": "Off for skin types V and VI: darker skin has a higher risk of dark patches after a peel (post-inflammatory hyperpigmentation).",
+      "reportDialog": {
+        "title": "Skin analysis report",
+        "profile": {
+          "title": "Skin profile",
+          "note": "Estimated values were read from the photo on this device and are not a diagnosis. The others were set by the user.",
+          "concerns": "Concerns",
+          "noConcerns": "None selected",
+          "userSet": "Set by user"
+        },
+        "plan": {
+          "title": "Treatment plan",
+          "agent": "Peel",
+          "depth": "Depth",
+          "sessions": "Sessions",
+          "safety": "Safety notes",
+          "listedFor": "Listed for Fitzpatrick type {type} in this simulator. Confirm suitability in person."
+        },
+        "simulation": {
+          "title": "Simulation",
+          "note": "The after image is drawn at the simulator's clinical strength. The on-screen preview exaggerates the change so it is easier to see. Both are illustrations, not a predicted result.",
+          "settings": "Settings",
+          "afterUnavailable": "The after image could not be drawn on this device."
+        },
+        "method": {
+          "title": "Method",
+          "scales": "Skin type uses the Fitzpatrick scale (I to VI) and photoaging uses the Glogau scale (I to IV).",
+          "simulation": "The images are drawn on this device from one photo and the settings above. They are not a measurement: the session range and effect levels are illustrative, not measured improvement."
+        },
+        "wholeFace": "Whole face"
+      },
+      "resume": {
+        "body": "Your skin profile, peel and settings from {date} are saved on this device for 7 days. The photo is not saved, so add it again to continue.",
+        "addPhoto": "Add your photo to pick up where you left off.",
+        "saveFailed": "Your settings could not be saved on this device, so they will not be offered next time."
+      },
+      "confirm": {
+        "resetBody": "Every setting, the view and the zoom go back to how this peel first opened. This cannot be undone.",
+        "newPhotoTitle": "Start again with a new photo?",
+        "newPhotoBody": "The skin profile, peel and settings for this photo will be cleared."
+      },
+      "theme": {
+        "light": "Light mode",
+        "dark": "Dark mode"
+      },
+      "changeMap": {
+        "label": "Change map",
+        "hint": "Shaded where the preview changed the skin. A deeper shade is a bigger change."
+      },
+      "effectNotTargeted": "This peel does not target this, so the preview leaves it out."
+    },
+    "common": {
+      "report": "Report",
+      "steps": {
+        "photo": "Photo",
+        "assessment": "Assessment",
+        "configure": "Configure",
+        "preview": "Preview",
+        "treatment": "Treatment"
+      },
+      "noFaceDetected": "No face detected",
+      "noFaceSubtext": "Upload a clear, front-facing photo with good lighting.",
+      "tryAgain": "Try Again",
+      "back": "Back",
+      "basal": "Basal",
+      "top": "Top",
+      "continueToConfiguration": "Continue to Configuration",
+      "patientAssessment": "Patient Assessment",
+      "eyeAnalysis": "Eye Analysis",
+      "nasalAnalysis": "Nasal Analysis",
+      "profileAnalysis": "Profile Analysis",
+      "reset": "Reset",
+      "resetAll": "Reset All",
+      "uploadNewPhoto": "Upload New Photo",
+      "landmarkOverlay": "Landmark Overlay",
+      "showMeasurements": "Show Measurements",
+      "refinementComparison": "Refinement Comparison",
+      "volumeOverlay": "Volume Overlay",
+      "viewIn3D": "View in 3D",
+      "photoView": "Photo View",
+      "wireframeOverlay": "Wireframe Overlay",
+      "sideBySideView": "Side-by-Side View",
+      "sliderView": "Slider View",
+      "compare": "Compare",
+      "hideComparison": "Hide Comparison",
+      "controls": "Controls",
+      "closeControls": "Close controls",
+      "intensity": "Intensity",
+      "parameters": "Parameters",
+      "peelDepth": "Peel Depth",
+      "quickPresets": "Quick Presets",
+      "ethnicPresets": "Ethnic Presets",
+      "patientEthnicity": "Patient Ethnicity",
+      "autoDefault": "Auto / Default",
+      "allMeasurementsIdeal": "All measurements within clinical ideal ranges",
+      "selectProcedureToBegin": "Select a procedure to begin simulation",
+      "noFaceDetectedOverlay": "No face detected",
+      "frontFacingRequired": "For best results, use a front-facing photo with even lighting.",
+      "tryAnotherPhoto": "Try Another Photo",
+      "detectingLandmarks": "Detecting facial landmarks…",
+      "applyingModel": "Applying {procedure} model…",
+      "simplifiedMode": "Simplified Mode",
+      "landmarks": "{count} Landmarks",
+      "fallbackWarning": "Advanced simulation requires an up-to-date modern browser. Showing simplified preview.",
+      "allSimulators": "All Simulators",
+      "nonSurgical": "NON-SURGICAL",
+      "detectedLandmarks": "{count} Landmarks Detected",
+      "flameVertices": "5023 VERTICES",
+      "fallbackBadge": "FALLBACK",
+      "simulationSaved": "Simulation saved!",
+      "shareCodeInstruction": "Share this code with your patient. They enter it at {site} to view their simulation results.",
+      "copied": "Copied",
+      "copy": "Copy",
+      "sendViaSMS": "Send to patient via SMS",
+      "done": "Done",
+      "shareUrlCopied": "Share URL copied to clipboard!",
+      "uploadPatientPhoto": "Upload a patient photo",
+      "uploadFormats": "JPG, PNG, or WebP; max {size} MB",
+      "uploadMinSpec": "Min 400x400px, front-facing, good lighting",
+      "uploadPrivacyNote": "Photos processed in your browser. Nothing uploaded.",
+      "spdiConsentText": "I consent to Faceify processing my facial or body photograph as sensitive personal data under the",
+      "spdiConsentLink": "DPDP Act 2023",
+      "spdiConsentSuffix": ". This image is processed on-device and is not shared without my consent.",
+      "spdiConsentRequiredHint": "Check the consent box above to continue",
+      "dentalPhotoHint": "For best results, upload a smiling photo with teeth clearly visible. Natural, open smile works best.",
+      "takePhoto": "Take Photo",
+      "detectingLandmarksShort": "Detecting landmarks…",
+      "invalidFileType": "Invalid file type. Please upload a JPG, PNG, or WebP image.",
+      "invalidFileTypeHeic": "HEIC/HEIF files (iPhone default format) aren't supported. Open Photos on your Mac or iPhone, export as JPEG, then re-upload.",
+      "fileTooLarge": "File too large. Maximum size is {size} MB.",
+      "failedToLoadImage": "Failed to load image.",
+      "lightPeel": "Light",
+      "mediumPeel": "Medium",
+      "deepPeel": "Deep",
+      "gentleExfoliation": "Gentle exfoliation",
+      "evenSkinTone": "Even skin tone",
+      "maximumRenewal": "Maximum renewal",
+      "estTreatmentVolume": "Est. Treatment Volume",
+      "aiOptimizedApplied": "AI-Optimized Parameters Applied ({confidence}% confidence)",
+      "aiOptimizedSubtext": "Based on detected nose proportions. Adjust sliders to customize.",
+      "whyEthnicityMatters": "Why does this matter?",
+      "whyEthnicityDesc": "Adjusts simulation parameters to reflect anatomical variation across ethnicities; affects tip projection range, alar base defaults, and dorsal hump sensitivity.",
+      "order": "Order",
+      "procedures": "Procedures ({count})",
+      "perZoneVolume": "Per-Zone Volume",
+      "measurements": "Measurements",
+      "aiSkinAnalysis": "AI Skin Analysis",
+      "aiEyeAnalysis": "Eye Analysis",
+      "aiNoseAnalysis": "AI Nose Analysis",
+      "recommended": "Popular preset: {label}",
+      "recommendedSubtext": "A starting point to explore. Adjust the sliders to customize.",
+      "angledPhotoWarning": "Angled photo detected. For best accuracy use a straight-on, neutral-expression photo. Bilateral zones (cheeks, jawline) may appear asymmetric.",
+      "faceNotDetected": "No face detected in your photo. Please upload a clear, front-facing portrait.",
+      "faceTooFar": "Face is too far away. Please use a closer photo where your face fills more of the frame.",
+      "faceTooTilted": "Face is turned too far to the side. Please use a front-facing photo.",
+      "faceTiltWarning": "Angled photo detected. For best accuracy, use a straight-on, front-facing photo.",
+      "faceCropWarning": "Photo is very tightly cropped. For best results, include some space around the face.",
+      "qualityTooLow": "Image quality is too low for accurate simulation. Please use a well-lit, high-resolution photo.",
+      "qualityFairWarning": "Image quality is fair. Simulation accuracy may be reduced. For best results, use a high-resolution photo with good lighting.",
+      "qualityScoreLabel": "Image Quality: {score}/100",
+      "shareWhatsApp": "Share via WhatsApp",
+      "whatsappShareText": "Check out my simulation result on Faceify Labs!",
+      "exportCSV": "Export CSV",
+      "disclaimer": "This simulation is for educational and planning purposes only. Results shown are approximations and actual outcomes may vary. Consult a qualified medical professional before any procedure.",
+      "aiStep1": "Step 1/7: Analyzing skin type...",
+      "aiStep2": "Step 2/7: Measuring nasal proportions...",
+      "aiStep3": "Step 3/7: Analyzing dorsal profile...",
+      "aiStep4": "Step 4/7: Evaluating tip projection...",
+      "aiStep5": "Step 5/7: Calculating symmetry score...",
+      "aiStep6": "Step 6/7: Selecting optimal parameters...",
+      "aiStep7": "Step 7/7: Applying AI recommendation...",
+      "aiAnalyzingFor": "Analyzing for {name}...",
+      "lowResolutionWarning": "Low resolution image; results may be less accurate",
+      "nasalMeasurementNasolabial": "Nasolabial ∠",
+      "nasalMeasurementGoode": "Goode Ratio",
+      "nasalMeasurementIndex": "Nasal Index",
+      "nasalMeasurementBridgeWidth": "Bridge Width",
+      "nasalMeasurementAlarWidth": "Alar Width",
+      "nasalMeasurementLengthRatio": "Length Ratio",
+      "nasalMeasurementSymmetry": "Nasal Symmetry",
+      "nasalMeasurementDorsalDev": "Dorsal Dev.",
+      "asymmetryDetected": "Asymmetry detected",
+      "flameLoading3DModel": "Loading 3D model…",
+      "flameFittingToFace": "Fitting to face…",
+      "flameDownloading": "Downloading 3D face model (26 MB)",
+      "flameLandmarkOptimisation": "Running landmark optimisation, 15 iterations",
+      "flame3DUnavailable": "3D unavailable",
+      "backToPhotoView": "Back to photo view",
+      "flame3DEstimatedFrontView": "3D estimated from front view; {views} profile not detected. Accuracy reduced.",
+      "flame3DUnavailableProfile": "3D unavailable: {views} profile detection failed. Using 2D mode.",
+      "safetyAdvisory": "Safety Advisory",
+      "download": "Download",
+      "exporting": "Exporting...",
+      "play": "Play",
+      "pause": "Pause",
+      "undo": "Undo",
+      "redo": "Redo",
+      "urlCopied": "URL copied to clipboard!",
+      "brandFooter": "Faceify Labs: Clinical Simulation",
+      "share": "Share",
+      "recBadge": "REC",
+      "applySuggestedLook": "Apply Suggested Look",
+      "appliedAria": "Applying suggested look",
+      "suggestedLookTooltip": "See a starting point; drag sliders or reset to compare",
+      "changeMap": "Changes",
+      "changeMapLabel": "Change map: highlight where your nose changed",
+      "changeMapLegendTitle": "Where your nose changed",
+      "changeMapLess": "Subtle",
+      "changeMapMore": "Most change",
+      "changeMapNote": "Untinted areas are unchanged",
+      "changeMapBrushNote": "Freehand brush edits are not shown on this map",
+      "changeMapUnavailable": "Change map isn't available on this photo yet",
+      "previewingNewLook": "You're previewing an illustrative visualization",
+      "add": "Add",
+      "adjustSlidersToPaint": "Adjust sliders to paint",
+      "angle": "Angle",
+      "annotations": "Annotations",
+      "browTipLine": "Brow-Tip Line",
+      "cancel": "Cancel",
+      "close": "Close",
+      "dragToPan": "Drag to pan",
+      "enterFullscreen": "Enter fullscreen",
+      "exit": "Exit",
+      "exitFullscreen": "Exit fullscreen",
+      "failed": "Failed",
+      "focus": "Focus",
+      "front": "Front",
+      "full": "Full",
+      "goodeRatio": "Goode Ratio",
+      "lateral": "Lateral",
+      "left": "Left",
+      "nasalThirds": "Nasal Thirds",
+      "nasofrontalAngle": "Nasofrontal Angle",
+      "nasolabialAngle": "Nasolabial Angle",
+      "photo": "Photo",
+      "poweredBy": "Powered by",
+      "processing": "Processing...",
+      "remove": "Remove",
+      "resume": "Resume",
+      "resumePreviousSession": "Resume Previous Session",
+      "resumePromptBody": "Continue from where you left off?",
+      "right": "Right",
+      "save": "Save",
+      "saved": "Saved",
+      "slider": "Slider",
+      "startFresh": "Start Fresh",
+      "video": "Video",
+      "zoom": "Zoom",
+      "alarIC": "Alar/IC Ratio",
+      "patientSexLabel": "Patient Sex (nasolabial norms)",
+      "patientSexFemale": "Female",
+      "patientSexMale": "Male",
+      "patientSexAuto": "Auto",
+      "uploadYourPhoto": "Upload your photo",
+      "guidedCaptureAiUnavailable": "AI guidance unavailable; manual capture still works.",
+      "simplifiedModeMessage": "Simplified mode: we couldn't detect a face, so the live preview won't update. Try a clear, front-facing, well-lit photo.",
+      "nasomentalAngle": "Nasomental Angle",
+      "dorsalLine": "Dorsal Line",
+      "tipDefiningPoint": "Tip-Defining Point",
+      "tipDefiningPointShort": "TDP",
+      "threeQuarterView": "3/4",
+      "basalView": "Basal",
+      "topView": "Top",
+      "viewPresets": "View angle",
+      "alarBaseWidth": "Alar base width",
+      "nostrilSymmetry": "Nostril axis symmetry",
+      "columellaLobule": "Columella : lobule",
+      "midlineDeviation": "Midline deviation",
+      "tipOffset": "Tip offset",
+      "totalProjection": "Total Projection",
+      "intrinsicProjection": "Intrinsic Projection",
+      "tipRotationAC": "Tip Rotation (AC–vertical)",
+      "columellarParallelism": "Columellar Parallelism",
+      "nasalLength": "Nasal Length",
+      "overProjected": "over-projected",
+      "underProjected": "under-projected",
+      "overRotated": "over-rotated",
+      "underRotated": "under-rotated",
+      "nasalShort": "short",
+      "nasalLong": "long",
+      "noPublishedBand": "no published band",
+      "approximate": "approx.",
+      "estimated": "Estimated",
+      "pendingClinicalValidation": "ideal pending clinical validation",
+      "bodyFatLevel": "Body fat level",
+      "buccalFatPresets": "Cheek fat presets",
+      "configureParameters": "Adjust settings",
+      "masterIntensity": "Overall intensity",
+      "frankfort": "Frankfort horizontal",
+      "anyView": "Any view",
+      "chinUp": "chin up",
+      "chinDown": "chin down",
+      "level": "level",
+      "leftLower": "left side lower",
+      "rightLower": "right side lower",
+      "noseSymmetry": "Nose symmetry",
+      "mirrorMismatch": "mirror mismatch",
+      "towardScreenLeft": "toward screen left",
+      "towardScreenRight": "toward screen right",
+      "faceTurned": "face turned, retake straight-on",
+      "frankfortCaptureHint": "Line up the lower rim of the eye socket and the top of the ear opening on the dashed line"
+    },
+    "patientCommon": {
+      "photoStripToggle": "Photos ({count})",
+      "undo": "Undo",
+      "undoCmdZ": "Undo (Cmd+Z)",
+      "redo": "Redo",
+      "redoCmdZ": "Redo (Shift+Cmd+Z)",
+      "addPhoto": "Add photo",
+      "addAnotherPhoto": "Add another photo",
+      "removePhoto": "Remove",
+      "viewPhotoAria": "View {label}",
+      "removePhotoAria": "Remove {label}",
+      "loadingPhoto": "Loading photo...",
+      "photoFileInput": "Photo file input",
+      "uploadFormatError": "Please upload a JPG, PNG, or WebP image",
+      "imageTooLargeError": "Image is too large. Please use an image under 10MB.",
+      "maxPhotos": "You can add up to {count} photos.",
+      "imageLoadError": "Could not load image. Please try a different photo.",
+      "imageProcessingError": "Image processing error:",
+      "applyingChanges": "Applying changes...",
+      "noChangesYet": "No changes yet",
+      "updatingPreview": "Updating preview...",
+      "simulationFailed": "Simulation failed. Please try again.",
+      "genericError": "Something went wrong. Please try again.",
+      "sessionRestoreError": "Could not restore session. Please upload a new photo.",
+      "before": "Before",
+      "after": "After",
+      "original": "Original",
+      "frontal": "Frontal",
+      "lateral": "Lateral",
+      "playAnimation": "Play animation",
+      "playMorphAnimation": "Play morph animation",
+      "pauseAnimation": "Pause animation",
+      "animate": "Animate",
+      "animateMorph": "Animate morph",
+      "download": "Download",
+      "downloadPreview": "Download preview image",
+      "saving": "Saving…",
+      "savePreview": "Save preview",
+      "newPhoto": "New photo",
+      "uploadNewPhoto": "Upload a new photo",
+      "resetAll": "Reset all adjustments",
+      "resetAllEdits": "Reset all edits",
+      "toggleCompareMode": "Toggle compare mode",
+      "toggleCompare": "Toggle compare",
+      "sliderCompare": "Slider compare",
+      "compareSlider": "Before/after comparison slider",
+      "holdToSeeOriginal": "Hold to see original",
+      "toggleLabel": "Toggle",
+      "sliderLabel": "Slider",
+      "subtle": "Subtle",
+      "moderate": "Moderate",
+      "significant": "Significant",
+      "applyPresetAria": "Apply {name} preset",
+      "natural": "Natural",
+      "defined": "Defined",
+      "wider": "Wider",
+      "narrower": "Narrower",
+      "decreaseBrushSize": "Decrease brush size",
+      "increaseBrushSize": "Increase brush size",
+      "brushSize": "Brush size",
+      "brushStrength": "Brush strength",
+      "brushSizeShortcut": "Brush size: [/]",
+      "brushStrengthShortcut": "Brush strength: -/+",
+      "symmetry": "Symmetry",
+      "right": "Right",
+      "saved": "Saved",
+      "storageFullNote": "Storage full; progress not saved",
+      "resumePreviousSession": "Resume your session?",
+      "resumePromptBody": "You have a saved session. Would you like to continue?",
+      "resume": "Resume",
+      "startFresh": "Start fresh",
+      "left": "Left",
+      "stop": "Stop",
+      "processing": "Processing...",
+      "noPhotoSelected": "No photo selected",
+      "quickStyles": "Quick styles",
+      "adjustYourLook": "Adjust your look",
+      "resetAllAdjustments": "Reset all adjustments?",
+      "reset": "Reset",
+      "sculpt": "Sculpt",
+      "cancel": "Cancel",
+      "disclaimer": "This simulation is for visualization purposes only and does not represent guaranteed surgical outcomes. Consult a qualified surgeon before making any decisions.",
+      "disclaimerDental": "This simulation is for visualization purposes only and does not represent guaranteed clinical outcomes. Consult a qualified dentist (DDS/DMD) before making any decisions.",
+      "disclaimerExpand": "Read full disclaimer",
+      "disclaimerCollapse": "Hide",
+      "holdSpaceToPreview": "Hold Space to preview original",
+      "analyzingPhoto": "Analyzing your photo...",
+      "updatingPreviewText": "Updating preview...",
+      "multiAngleCapture": "Multi-Angle Capture",
+      "captureMultipleAngles": "Capture multiple angles",
+      "uploadYourPhoto": "Upload your photo",
+      "photoPrivacyNote": "Real-time simulations run in your browser. Your photo is sent off your device only if you turn on the optional AI photoreal preview or choose to save a simulation to your account, and is never used to train any model.",
+      "clearBrushEdits": "Clear brush edits",
+      "adjustSlidersToPaint": "Adjust sliders or paint to preview",
+      "simulationDisclaimer": "Simulation is a visualization aid for reference only, not medical advice and not a prediction of any individual result. Your surgeon makes all clinical decisions.",
+      "orLabel": "or",
+      "takeGuidedPhoto": "Take a guided photo",
+      "preparingPhoto": "Preparing your photo...",
+      "lateralWarningTitle": "We couldn't detect a face on your {labels}.",
+      "lateralWarningBody": "Try a slight 3/4 angle (10-15° from profile); pure 90° profiles often fail face detection. Lighting and a plain background help. The frontal photo loaded fine and the simulator is ready to use.",
+      "lateralWarningRetake": "Retake lateral photo",
+      "otherPersonWarning": "Photo {photos} may not be the same person as the other photos. Check before planning.",
+      "silhouettePositionFace": "Position face inside the oval",
+      "silhouetteLookStraight": "Look straight at camera",
+      "takePhoto": "Take Photo",
+      "adjust": "Adjust",
+      "faceNotFound": "Face not found",
+      "lateralRequiredForMeasurements": "Lateral photo required for measurements",
+      "clinicallyReviewed": "Clinically reviewed",
+      "applyAtCenter": "Apply at center",
+      "loadingEngine": "Loading face detection engine…",
+      "loadingEngineHint": "Loading face detection engine; please wait a moment",
+      "bestResultsTitle": "For best results:",
+      "tipFaceStraight": "Face straight toward camera (like a passport photo)",
+      "tipEvenLighting": "Good, even lighting on your face",
+      "tipFrameFill": "Face fills 50-70% of the frame",
+      "adjunct": "Adjunct",
+      "baselineSeverity": "Baseline severity",
+      "bodyFatLevel": "Body Fat Level",
+      "buccalFatPresets": "Buccal Fat Presets",
+      "clinicalContext": "Clinical context",
+      "concentration": "Concentration",
+      "configureParameters": "Configure Parameters",
+      "controls": "Controls",
+      "closeControls": "Close controls",
+      "curl": "Curl",
+      "effectChannels": "Effect channels",
+      "filterWavelength": "Filter wavelength",
+      "fitzpatrickSkinType": "Fitzpatrick skin type",
+      "fluencePulseEnergy": "Fluence (pulse energy)",
+      "healingPhase": "Healing phase",
+      "injectionDepth": "Injection depth",
+      "lashDesign": "Lash design",
+      "length": "Length",
+      "masterIntensity": "Master Intensity",
+      "measurements": "Measurements",
+      "needleDepth": "Needle depth",
+      "noFaceDetected": "No face detected",
+      "parameters": "Parameters",
+      "patientAge": "Patient age",
+      "presets": "Presets",
+      "productVolume": "Product volume",
+      "protocolStage": "Protocol stage",
+      "recoveryPreview": "Recovery preview",
+      "sessionsCompleted": "Sessions completed",
+      "setType": "Set type",
+      "style": "Style",
+      "submentalConvexity": "Submental convexity",
+      "targetArea": "Target area",
+      "timeSinceFill": "Time since fill",
+      "timeSinceSession": "Time since session",
+      "treatmentPlan": "Treatment plan",
+      "basalTextureNote": "Underside texture is approximate; measurements come from the 3D mesh",
+      "frontOnlyOverlay": "Proportion guides apply to the front view only",
+      "detectionUnavailable": "Detection unavailable; using estimated position",
+      "adjustableZone": {
+        "adjustZones": "Adjust zones",
+        "confirmZone": "Confirm zone",
+        "adjustZoneHint": "Drag to reposition, pinch or use handles to resize",
+        "zoneConfirmed": "Zone confirmed"
+      }
+    },
+    "dental": {
+      "patient": {
+        "sliders": {
+          "teeth-whitening": {
+            "whiteningShade": "Whitening Shade",
+            "whiteningShadeLeft": "Natural",
+            "whiteningShadeRight": "Bright White",
+            "uniformity": "Evenness",
+            "uniformityLeft": "Natural variation",
+            "uniformityRight": "Uniform",
+            "vitaShadeReference": "Target shade: {shade}"
+          },
+          "veneers": {
+            "shadeLevel": "Shade Level",
+            "shadeLevelLeft": "Natural",
+            "shadeLevelRight": "Bright",
+            "toothLength": "Tooth Length",
+            "toothLengthLeft": "Shorter",
+            "toothLengthRight": "Longer",
+            "gapClosure": "Gap Closure",
+            "gapClosureLeft": "Natural gaps",
+            "gapClosureRight": "Closed",
+            "vitaShadeReference": "Target shade: {shade}"
+          },
+          "smile-design": {
+            "smileCurve": "Smile Curve",
+            "smileCurveLeft": "Flat",
+            "smileCurveRight": "Curved",
+            "smileWidth": "Smile Width",
+            "smileWidthLeft": "Narrower",
+            "smileWidthRight": "Wider",
+            "toothLength": "Tooth Length",
+            "toothLengthLeft": "Short / wide",
+            "toothLengthRight": "Long / narrow",
+            "gumLevel": "Gum Level",
+            "gumLevelLeft": "More gum",
+            "gumLevelRight": "Less gum"
+          },
+          "gummy-smile": {
+            "treatmentMode": "Treatment Mode",
+            "treatmentModeLeft": "Subtle",
+            "treatmentModeRight": "Crown Len.",
+            "treatmentMethodOptions": [
+              "Botox / Neuromodulator",
+              "Crown Lengthening",
+              "Lip Repositioning",
+              "Orthognathic Surgery"
+            ],
+            "gumReduction": "Gum Reduction",
+            "gumReductionLeft": "Subtle",
+            "gumReductionRight": "Significant",
+            "symmetry": "Symmetry",
+            "symmetryLeft": "Left higher",
+            "symmetryRight": "Right higher",
+            "gumTone": "Gum Tone Blending",
+            "gumToneLeft": "Subtle",
+            "gumToneRight": "Strong"
+          }
+        },
+        "hud": {
+          "stepLabel": "Live preview"
+        },
+        "uploadHeading": "Upload your smile photo",
+        "uploadHelper": "Face camera and smile. Good lighting helps.",
+        "uploadAriaLabel": "Upload smile photo",
+        "angleLabels": {
+          "frontalSmile": "Frontal Smile",
+          "relaxed": "Relaxed",
+          "lateral": "Lateral",
+          "threeQuarterView": "3/4 View",
+          "closeUp": "Close-up"
+        },
+        "procedureNames": {
+          "smile-design": "Smile Design",
+          "veneers": "Veneers"
+        },
+        "surgicalCorrectionNote": "This is a surgical correction. Recovery and outcomes vary based on your anatomy and the specific technique. Discuss timing and expectations with your surgeon at consultation.",
+        "errors": {
+          "imageLoadFailed": "Failed to load image. Please try another photo.",
+          "fullFaceNotDetected": "Full face not detected. For best results, use a photo that shows your whole face. A closer view may not support simulation.",
+          "photoLimit": "You can add up to {max} photos.",
+          "resumeFailed": "Could not resume because face detection failed. Please upload a new photo.",
+          "sessionRestoreFailed": "Failed to restore previous session. Please upload a new photo."
+        }
+      }
+    },
+    "midFacelift": {
+      "title": "Mid-Facelift Simulator",
+      "subtitle": "Preview targeted mid-face elevation: cheek fat-pad lift, nasolabial fold reduction, tear-trough fill, and smile-line softening across 4 surgical approaches.",
+      "uploadHint": "Front-facing photo with even lighting works best, neutral expression, no makeup.",
+      "loadingModel": "Loading face mesh model…",
+      "detectingLandmarks": "Detecting facial landmarks…",
+      "noFaceTitle": "No face detected",
+      "noFaceBody": "Mid-facelift simulation needs visible facial landmarks. Try a clearer front-facing photo with even lighting.",
+      "tryAnotherPhoto": "Try another photo",
+      "before": "Before",
+      "after": "After",
+      "toggleCompareView": "Toggle compare view",
+      "compare": "Compare",
+      "slider": "Slider",
+      "reset": "Reset",
+      "saving": "Saving…",
+      "download": "Download",
+      "adjust": "Adjust",
+      "done": "Done",
+      "presetsLabel": "Presets",
+      "presets": {
+        "subtle": "Subtle Lift",
+        "moderate": "Moderate Lift",
+        "full": "Full Effect"
+      },
+      "presetTemporal": "Temporal (mild)",
+      "presetSubperiosteal": "Subperiosteal",
+      "presetComposite": "Composite (max)",
+      "masterIntensity": "Master Intensity",
+      "effectStrength": "Effect strength",
+      "surgicalPlan": "Surgical plan",
+      "approach": "Approach",
+      "timeSinceSurgery": "Time since surgery",
+      "laxityBaseline": "Mid-face laxity baseline",
+      "effectChannels": "Effect channels",
+      "hideInfo": "Hide info",
+      "showInfo": "Show info",
+      "advancedInfo": "Magnitudes calibrated to Owsley 2008, Hester 2007, Nahai 2014. Mid-facelift addresses ONLY mid-face; for jowl + neck, see the full facelift simulator. Maximum vertical lift caps at 2.2% face height. Visual aid only.",
+      "approachLabel": "Surgical approach",
+      "timeLabel": "Time since surgery",
+      "laxityLabel": "Tissue laxity",
+      "hudStepLabel": "Mid-Face Preview",
+      "tabSculpt": "Sculpt",
+      "sculptHint": "Paint directly on the cheek, under-eye, or nasolabial area. Strokes are clamped to the mid-face region so the forehead, eyes, and chin stay put.",
+      "brushLift": "Lift",
+      "brushTighten": "Tighten",
+      "brushExpand": "Expand",
+      "brushSizeLabel": "Brush size",
+      "decreaseBrushSize": "Decrease brush size",
+      "increaseBrushSize": "Increase brush size",
+      "brushStrengthLabel": "Brush strength",
+      "clearBrushEdits": "Clear brush edits",
+      "sculptSurfaceAria": "Sculpt brush, {mode} mode. Paint on the cheek, under-eye, or nasolabial area.",
+      "hud": {
+        "stepLabel": "Live preview"
+      }
+    },
+    "neckLift": {
+      "afterSimulated": "Simulated result",
+      "title": "Neck Lift Simulator",
+      "subtitle": "Preview cervicoplasty / platysmaplasty by technique (lipo / cervicoplasty / full / deep) and the day-0 swelling through month-6 final timeline.",
+      "uploadHint": "Front-facing photo with neck and jawline visible works best.",
+      "before": "Before",
+      "after": "After",
+      "altAfter": "After neck lift simulation",
+      "labelBefore": "BEFORE",
+      "labelAfter": "AFTER",
+      "textureOverlay": "Texture overlay",
+      "toggleCompareView": "Toggle compare view",
+      "compare": "Compare",
+      "slider": "Slider",
+      "reset": "Reset",
+      "saving": "Saving…",
+      "download": "Download",
+      "adjust": "Adjust",
+      "done": "Done",
+      "presets": "Presets",
+      "presetLipoOnly": "Lipo only",
+      "presetCervicoplasty": "Cervicoplasty",
+      "presetFullNeckLift": "Full neck lift",
+      "masterIntensity": "Master Intensity",
+      "effectStrength": "Effect strength",
+      "surgicalPlan": "Surgical plan",
+      "technique": "Technique",
+      "timeSinceSurgery": "Time since surgery",
+      "hideInfo": "Hide info",
+      "showInfo": "Show info",
+      "advancedInfo": "Calibrated to Marten 2018, Pelle-Ceravolo 2014. Neck lift is often combined with facelift (60-70% of cases). Platysmal banding requires platysmaplasty; lipo alone won’t address vertical neck cords. Skin laxity >30% indicates cervicoplasty. Visual aid only.",
+      "hudStepLabel": "Neck Preview",
+      "detectionUnavailable": "Detection unavailable; using estimated position",
+      "sculpt": "Sculpt",
+      "sculptHint": "Paint directly on the neck to fine-tune the result. Strokes are limited to the neck and sub-chin area.",
+      "brushTighten": "Tighten",
+      "brushLift": "Lift",
+      "brushExpand": "Expand",
+      "brushSize": "Brush size",
+      "brushStrength": "Brush strength",
+      "decreaseBrushSize": "Decrease brush size",
+      "increaseBrushSize": "Increase brush size",
+      "undoStroke": "Undo last stroke"
+    },
+    "photorealPreview": {
+      "mobileLoadingBanner": "Generating AI preview…",
+      "rateLimited": "Too many requests. Please try again in a minute."
+    },
+    "ageGate": {
+      "title": "Confirm your age",
+      "description": "This tool simulates adult cosmetic procedure outcomes. To continue, please confirm you're 18 or older.",
+      "checkboxLabel": "I'm 18 or older and understand this is a visual planning tool, not a medical guarantee.",
+      "under18": "I'm under 18",
+      "continue": "Continue",
+      "privacyNotice": "We don't store or verify your age server-side. Your confirmation is held on this device for 90 days."
+    },
+    "disclaimerGate": {
+      "title": "Before you continue",
+      "subtitle": "Please read and confirm each of the following before using this simulator.",
+      "legendSr": "Simulator disclaimer acknowledgements",
+      "check1": "I understand this is an illustrative simulation, not a prediction of my surgical result.",
+      "check2": "I understand that individual results vary and depend on anatomy, surgical technique, and healing.",
+      "check3": "I understand this is not a substitute for an in-person consultation with a qualified surgeon.",
+      "continue": "Continue to Simulator",
+      "mandatoryNotice": "All three acknowledgements are required to continue."
+    },
+    "watermark": {
+      "legal": "ILLUSTRATIVE SIMULATION, NOT A PREDICTED RESULT · FOR CLINICAL CONSULTATION ONLY"
+    },
+    "storageConsent": {
+      "panelLabel": "Save consent",
+      "storageLabel": "I consent to storing this simulation, including my photo, privately in my Faceify account.",
+      "retentionNotice": "Photos are automatically deleted after 90 days.",
+      "retentionKeepLabel": "Keep this simulation until I delete it."
+    },
+    "searchLabel": "Search simulators",
+    "searchPlaceholder": "Search simulators…",
+    "noResults": "No simulators match “{query}”.",
+    "sculptraSimulator": {
+      "uploadHint": "Front-facing photo with even lighting works best, neutral expression, no makeup.",
+      "errors": {
+        "noFaceDetected": "Sculptra simulation needs visible facial landmarks. Try a clearer front-facing photo with even lighting."
+      },
+      "presetSingleRound": "Single round (1 vial)",
+      "presetStandard": "Standard (2 sessions)",
+      "presetFullCourse": "Full course (3 sessions)",
+      "effectStrengthLabel": "Effect strength",
+      "vialsPerSessionLabel": "Vials per session",
+      "timeSinceLastSessionLabel": "Time since last session",
+      "vialsOptions": [
+        "1 vial (micro/temple)",
+        "2 vials (standard)",
+        "3 vials (full midface)",
+        "4 vials (max)"
+      ],
+      "timeOptions": [
+        "Day 0–3 (saline puff)",
+        "Week 1 (crash phase)",
+        "Week 2–4",
+        "Month 2",
+        "Month 4",
+        "Month 6",
+        "Month 12 (peak)",
+        "Year 2 (holding)",
+        "Year 3+ (rebook)"
+      ],
+      "sessionsOptions": [
+        "Pre-treatment",
+        "Session 1",
+        "Session 2",
+        "Session 3",
+        "Session 4 (max)"
+      ],
+      "ageOptions": [
+        "Under 30",
+        "30–40",
+        "40–55 (peak benefit)",
+        "55–65",
+        "65+"
+      ],
+      "effectSliders": {
+        "cheekVolume": {
+          "label": "Cheek Volume Restoration",
+          "sublabel": "Mid-malar volume: Sculptra's signature target"
+        },
+        "templeVolume": {
+          "label": "Temple Hollowing Fill",
+          "sublabel": "Common in 50+; restores upper-cheek transition"
+        },
+        "nasolabialFill": {
+          "label": "Nasolabial Fold Fill",
+          "sublabel": "Lifted by volume above the fold"
+        },
+        "jawlineDefinition": {
+          "label": "Jawline Definition",
+          "sublabel": "Volume creates angle, not pull-tightening"
+        },
+        "massageCompliance": {
+          "label": "Massage Compliance (5-5-5)",
+          "sublabel": "Poor compliance → nodule risk + uneven result"
+        }
+      }
+    },
+    "masseterBotoxSimulator": {
+      "errors": {
+        "noFaceDetected": "Masseter Botox simulation needs visible facial landmarks. Try a clearer front-facing photo with even lighting."
+      },
+      "uploadHint": "Front-facing photo with even lighting works best, neutral expression, no makeup.",
+      "title": "Masseter Botox Simulator",
+      "introBody": "Preview botox-driven jaw slimming: masseter atrophy across dose, time, sessions completed, and native muscle bulk.",
+      "loadingModel": "Loading face mesh model…",
+      "detectingLandmarks": "Detecting facial landmarks…",
+      "noFaceTitle": "No face detected",
+      "tryAnotherPhoto": "Try another photo",
+      "changePhoto": "Change photo",
+      "toggleCompareView": "Toggle compare view",
+      "done": "Done",
+      "injectionPlan": "Injection plan",
+      "doseLabel": "Dose per side",
+      "doseOptions": [
+        "15 u (conservative)",
+        "20 u (standard)",
+        "30 u (heavy)",
+        "40 u (maximum)"
+      ],
+      "weeksLabel": "Weeks since injection",
+      "weeksOptions": [
+        "Day 0–3",
+        "Week 1",
+        "Week 2",
+        "Week 4",
+        "Week 6",
+        "Week 8 (peak)",
+        "Week 12 (holding)",
+        "Week 16",
+        "Week 20",
+        "Week 24 (rebook)"
+      ],
+      "sessionsLabel": "Sessions completed",
+      "sessionsOptions": [
+        "Pre-treatment",
+        "Session 1",
+        "Session 2",
+        "Session 3+"
+      ],
+      "bulkLabel": "Native masseter bulk",
+      "bulkOptions": [
+        "Lean",
+        "Average",
+        "Strong (clencher)",
+        "Hypertrophic"
+      ],
+      "lateralityLabel": "Laterality",
+      "lateralityOptions": [
+        "Left only",
+        "Right only",
+        "Bilateral"
+      ],
+      "effectStrength": "Effect strength",
+      "presetConservative": "Conservative (15 u)",
+      "presetStandard": "Standard (20 u)",
+      "presetHeavy": "Heavy + 2× sessions",
+      "slimmingLabel": "Lower-Jaw Slimming",
+      "slimmingSublabel": "Inward + upward pull on masseter zone",
+      "vlineLabel": "V-Line Emphasis",
+      "vlineSublabel": "Tapered lower-third bias for sharper chin"
+    },
+    "dimpleplastySimulator": {
+      "errors": {
+        "noFaceDetected": "Dimpleplasty simulation needs visible facial landmarks. Try a clearer front-facing photo with even lighting."
+      },
+      "healingNotice": "Suture marks resolve 1-2 weeks; definition improves 4-6 weeks",
+      "uploadHint": "Front-facing photo with even lighting works best, neutral expression, no makeup.",
+      "title": "Dimpleplasty Simulator",
+      "subtitle": "Preview surgical dimple creation: pick position, depth, and laterality. Visibility sliders model the dimple at rest vs at peak smile."
+    },
+    "hydrafacialSimulator": {
+      "uploadHint": "Front-facing photo with even lighting works best, neutral expression, no makeup."
+    },
+    "iplPhotofacialSimulator": {
+      "uploadHint": "Front-facing photo with even lighting works best, neutral expression, no makeup.",
+      "title": "IPL Photofacial Simulator",
+      "subtitle": "Preview brown-spot fading and vessel clearance from a course of IPL (intense pulsed light), selective photothermolysis modelled wavelength-by-wavelength.",
+      "presetSingleSession": "Single session, low fluence",
+      "presetMidCourse": "Mid course (3×)",
+      "presetFullCourse": "Full course (5×, pigment-biased)",
+      "sunDamageBaselineLabel": "Sun damage baseline",
+      "advancedHealingPreview": "Advanced: Healing preview",
+      "calibrationFootnote": "Simulation calibrated to Anderson 1983 (selective photothermolysis), El-Domyati 2009 (lentigines RCT), and Kim 2008 (rosacea RCT). Brown-spot reduction at full course approaches 60–75 %. Day-3 spot DARKENING is a real IPL phenomenon (microcrust formation preceding sloughing). Visual aid only; your clinician determines actual protocol.",
+      "resetLabel": "Reset",
+      "resetConfirmQ": "Reset all adjustments?",
+      "cancelLabel": "Cancel",
+      "effectSliders": {
+        "brownSpot": {
+          "label": "Brown Spot Reduction",
+          "sublabel": "Melanin target: sun damage, lentigines, freckles"
+        },
+        "redness": {
+          "label": "Redness / Rosacea",
+          "sublabel": "Hemoglobin target: diffuse erythema desaturation"
+        },
+        "capillaries": {
+          "label": "Visible Capillaries",
+          "sublabel": "Telangiectasia clearance"
+        },
+        "toneEvenness": {
+          "label": "Tone Evenness",
+          "sublabel": "Overall HSL clamp toward average skin"
+        },
+        "radiance": {
+          "label": "Glow / Radiance",
+          "sublabel": "Mild collateral brightness lift"
+        },
+        "smoothness": {
+          "label": "Subtle Smoothing",
+          "sublabel": "Texture is not IPL's primary indication"
+        }
+      }
+    },
+    "microneedlingSimulator": {
+      "title": "Microneedling Simulator",
+      "subtitle": "Preview cumulative results from a course of microneedling sessions, calibrated to clinical literature on collagen-induction outcomes.",
+      "uploadHint": "Front-facing photo with even lighting works best, neutral expression, no makeup."
+    },
+    "skinCapture": {
+      "title": "Taking a skin photo",
+      "intro": "Light, filters and angle can hide texture and tone, or add some that is not there. A minute here makes the preview more faithful.",
+      "hide": "Hide photo tips",
+      "show": "Photo tips",
+      "avoidLabel": "Avoid",
+      "footer": "If the face is not found or the skin looks patchy, it is almost always the light or the angle. Retake rather than force it through.",
+      "sections": {
+        "view": {
+          "title": "One front-facing photo",
+          "why": "The estimate and the preview read both cheeks, the forehead and the chin evenly only when the face is square to the camera.",
+          "tips": [
+            "Face the camera straight on, with the lens at eye level.",
+            "Hold the phone about an arm's length away, or ask someone to take it."
+          ],
+          "avoid": "Side or three-quarter views, and photos taken from above or below."
+        },
+        "light": {
+          "title": "Even, soft light from in front",
+          "why": "Shadows and glare read as texture and colour, which is exactly what a peel changes.",
+          "tips": [
+            "Face a window in daylight, or an evenly lit wall.",
+            "Keep the light level with your face."
+          ],
+          "avoid": "Flash, harsh light from one side, or a bright window or lamp behind you."
+        },
+        "bare": {
+          "title": "Bare skin, no filters",
+          "why": "Makeup, beauty filters and smoothing modes hide the texture and tone the preview works on.",
+          "tips": [
+            "Remove makeup and products that add shine.",
+            "Turn off beauty, portrait and face-smoothing camera modes."
+          ],
+          "avoid": "Filtered, retouched or edited photos."
+        },
+        "clear": {
+          "title": "Hair back, glasses off, face relaxed",
+          "why": "Hair and frames cover skin, and an expression folds it into lines that are not there at rest.",
+          "tips": [
+            "Pull hair off the forehead and take glasses off.",
+            "Keep a neutral expression with your mouth closed."
+          ],
+          "avoid": "Smiling, frowning or raised eyebrows."
+        },
+        "repeat": {
+          "title": "Retake the same way to compare",
+          "why": "A later photo only compares fairly with this one if it is taken the same way.",
+          "tips": [
+            "Use the same place, the same light and the same distance each time."
+          ],
+          "avoid": "Changing room, time of day or camera between photos."
+        }
+      }
+    }
+  },
+  "ClinicalDisclaimer": {
+    "noticeLabel": "CLINICAL NOTICE",
+    "noticeBody": "For Patient Consultation Purposes Only. Not a Medical Device. The anatomical mesh provided by Faceify Labs is for illustrative consultation visualisation and does not replace in-person clinical examination by a qualified surgeon.",
+    "dismiss": "Dismiss disclaimer",
+    "bannerRegionLabel": "Clinical disclaimer",
+    "bannerDisclaimer": "Educational visualization only. Not a surgical guarantee, diagnosis, or substitute for professional medical advice. Outcomes vary by anatomy, technique, and healing.",
+    "bannerConsultRequired": "Pre-consultation tool only. Not surgical authorization. Results are illustrative simulations that depend on anatomy, surgeon technique, and healing. Always consult a qualified surgeon before making any medical decision.",
+    "bannerExpand": "Expand full disclaimer",
+    "bannerCollapse": "Collapse disclaimer",
+    "bannerDismissLabel": "Acknowledge and dismiss for this session",
+    "bannerDismissTitle": "Dismiss for this session. Patients in this session still see it on shared links."
+  },
+  "UI": {
+    "nav": {
+      "simulate": "Try Simulators",
+      "analyse": "AI Face Analyzer",
+      "procedures": "Learn",
+      "proceduresRef": "Procedures",
+      "allProcedures": "Procedure Guides",
+      "caseGallery": "Case Gallery",
+      "forSurgeons": "For Surgeons",
+      "whyFaceify": "Why Faceify",
+      "useCases": "Use Cases",
+      "findAClinic": "Find a Surgeon",
+      "pricing": "Pricing",
+      "more": "More",
+      "moreNavOptions": "More navigation options",
+      "forPatients": "For Patients",
+      "ourStory": "Our Story",
+      "technology": "Technology",
+      "trustPrivacy": "Trust & Privacy",
+      "signIn": "Sign In",
+      "getStarted": "GET STARTED",
+      "bookDemo": "Book a Demo",
+      "tryYourFace": "Try Your Face",
+      "signOut": "Sign Out",
+      "settings": "Settings",
+      "billing": "Billing",
+      "dashboard": "Dashboard",
+      "patients": "Patients",
+      "surgeonPortal": "Surgeon Portal",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu",
+      "blog": "Blog",
+      "tryFree": "Try Free",
+      "trySimulator": "Try Simulator",
+      "browseDeals": "Deals",
+      "simulations": "Simulations",
+      "locations": "Locations",
+      "consultations": "Consultations",
+      "deals": "Deals",
+      "directoryListing": "Directory Listing",
+      "patientPortal": "Patient Portal",
+      "consultation": "My Consultation",
+      "myResults": "My Results",
+      "adminPanel": "Admin Panel",
+      "acneAnalyser": "Acne Assessment",
+      "accountMenu": "Account menu"
+    },
+    "hero": {
+      "badge": "The tool",
+      "headline": "Show the result",
+      "headlineEmphasis": "before the consult ends.",
+      "subtext": "Patient sees the visualization. Browser-native simulation across 85+ cosmetic procedures, on the same phone they walk in with.",
+      "bookDemo": "Book a 15-min demo",
+      "exploreSimulators": "Apply for Founding Partner",
+      "trustLine": "Real-time simulation runs in your browser · HIPAA-aligned · GDPR · PDPA · PIPA · 85+ procedures.",
+      "aiAnalysisComplete": "AI Analysis Complete",
+      "landmarksDetected": "468 landmarks detected"
+    },
+    "problem": {
+      "chapter": "Chapter 1: The Problem",
+      "heading": "Consultations are built on",
+      "headingItalic": "imagination",
+      "headingEnd": ", not evidence.",
+      "subtext": "Today, patients walk into consultations with a mental picture of their desired result, and surgeons try to bridge the gap with words alone. The result? Misaligned expectations, longer consultations, and higher revision rates.",
+      "pain1Title": "Patients can't visualize outcomes",
+      "pain1Desc": "Verbal descriptions leave room for misinterpretation. Patients form expectations that may not match what surgery can deliver.",
+      "pain2Title": "Consultations take too long",
+      "pain2Desc": "Without visual tools, surgeons spend more time explaining and less time planning. Conversion rates suffer.",
+      "pain3Title": "Expectation mismatch drives revisions",
+      "pain3Desc": "When patients can't see the plan, dissatisfaction and revision surgeries increase; costly for both clinic and patient.",
+      "gapImagine": "What patients imagine",
+      "gapReality": "What surgery delivers",
+      "gapLabel": "The Gap",
+      "gapTag1": "Perfect symmetry",
+      "gapTag2": "Celebrity nose",
+      "gapTag3": "Instant change",
+      "gapTag4": "Anatomical limits",
+      "gapTag5": "Healing process",
+      "gapTag6": "Realistic outcome",
+      "gapBridge": "Faceify bridges this gap ✦",
+      "socialProofLine": "Used by surgeons globally"
+    },
+    "shift": {
+      "chapter": "Chapter 2: The Shift",
+      "heading1": "What if patients could",
+      "headingItalic": "see",
+      "heading2": "before they decide?",
+      "subtext": "There's a better way to run consultations. One where expectations are aligned from the start, where patients feel confident, and where surgeons close more cases with fewer revisions."
+    },
+    "procedures": {
+      "chapter": "Chapter 5: The Platform",
+      "subtext": "From rhinoplasty to chemical peels: every simulation built on the same AI visualization engine.",
+      "viewAll": "View all",
+      "proceduresWord": "procedures",
+      "liveSimulatorsHeading": "{liveCount} live simulators. {totalCount} {proceduresWord} total.",
+      "categories": {
+        "surgical": "Surgical",
+        "non-surgical": "Non-Surgical",
+        "injectable": "Injectable",
+        "dental": "Dental"
+      }
+    },
+    "trust": {
+      "chapter": "Chapter 7: Trust",
+      "heading": "Built for clinical integrity, from day one.",
+      "subtext": "Faceify Labs was designed by clinicians, for clinicians. Every architectural decision, from on-device processing to built-in safety rules, prioritizes patient safety and data privacy.",
+      "card1Title": "Privacy by Design",
+      "card1Desc": "Real-time simulation runs in your browser. Your photo is sent off-device only for the optional AI preview or to save it to your account.",
+      "card2Title": "Informed Consent",
+      "card2Desc": "Built-in disclaimers help patients understand these are previews, not guarantees.",
+      "card3Title": "Data Sovereignty",
+      "card3Desc": "Real-time simulations run in your browser. Your photo is sent off-device only for the optional AI preview or to save it to your account, and is never used to train models; compatible with PDPA, PIPA, and global privacy frameworks.",
+      "card4Title": "Safety-Rule Engine",
+      "card4Desc": "Anatomical constraints prevent unrealistic or unsafe simulation parameters."
+    },
+    "ourStory": {
+      "mission": "The Mission",
+      "heading1": "Our competitors make patients dream.",
+      "heading2": "We help surgeons deliver.",
+      "subtext": "The aesthetic medicine industry generates over $70B a year. Yet the consultation, the moment that builds trust between surgeon and patient, still relies on hand-waving, stock photos, and hope. We built Faceify Labs to close that gap.",
+      "readStory": "Read the full story"
+    },
+    "finalCta": {
+      "badge": "Get Started",
+      "heading": "Ready to see how it works",
+      "headingEmphasis": "in your practice?",
+      "body": "Book a 20-minute walkthrough with our clinical team. We'll show you the simulator live in a consultation context.",
+      "button": "Book a 20-Minute Demo",
+      "trialLink": "Or sign in to start the consult preview today →"
+    },
+    "footer": {
+      "tagline": "AI-powered visualization tools for plastic surgeons. Help patients visualize options, align expectations, and have more informed conversations with their surgeon.",
+      "platform": "Platform",
+      "explore": "Explore",
+      "support": "Support",
+      "allProcedures": "All Procedures",
+      "aiSimulator": "AI Simulator",
+      "technology": "Technology",
+      "trustPrivacy": "Trust & Privacy",
+      "pricing": "Pricing",
+      "surgeonRegistry": "Surgeon Registry",
+      "useCases": "Use Cases",
+      "ourStory": "Our Story",
+      "partnerProgram": "Partner Program",
+      "rhinoplasty": "Rhinoplasty",
+      "blepharoplasty": "Blepharoplasty",
+      "facelift": "Facelift",
+      "faq": "FAQ",
+      "caseGallery": "Case Gallery",
+      "consultation": "Consultation",
+      "whatsappPriority": "WhatsApp Priority",
+      "hipaaGdpr": "Privacy-First: On-Device Simulation",
+      "nvidiaInception": "NVIDIA Inception Program Member",
+      "copyright": "© 2026 Faceify Labs. All rights reserved.",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "chairman": "Executive Director"
+    },
+    "trustBar": {
+      "hipaaGdpr": "Privacy-First: On-Device Simulation",
+      "anyDevice": "Works on Any Device",
+      "faceMesh": "468-Point Facial Mesh",
+      "onDevice": "100% On-Device Processing"
+    },
+    "patientStory": {
+      "headline": "What if every patient could see their result before saying yes?",
+      "subtext": "Faceify bridges the imagination gap, giving surgeons and patients a shared visual language during consultations.",
+      "stat1": "468 facial landmarks",
+      "stat2": "Browser-based real-time processing",
+      "stat3": "85+ procedures supported"
+    },
+    "quickTry": {
+      "chapter": "Try It Yourself",
+      "heading": "See your result in seconds",
+      "subtext": "Pick a procedure. Upload a photo. Get an AI-generated preview entirely in your browser. Your photo is sent off-device only for the optional AI preview or to save it to your account.",
+      "tryNow": "Try Now",
+      "exploreAll": "Explore All Procedures",
+      "rhinoplasty": "Rhinoplasty",
+      "botox": "Botox",
+      "blepharoplasty": "Blepharoplasty",
+      "facelift": "Facelift",
+      "lipFiller": "Lip Filler",
+      "vline": "V-Line",
+      "surgical": "Surgical",
+      "injectable": "Injectable"
+    },
+    "beforeAfterSlider": {
+      "chapter": "Simulation accuracy",
+      "heading": "Drag to reveal the",
+      "headingItalic": "difference",
+      "subtext": "Each simulation is generated in-browser using our AI mesh engine: no retouching, no filters.",
+      "before": "Before",
+      "aiPreview": "AI Preview",
+      "dragHint": "← Drag the handle to compare →",
+      "cta": "See it live in a demo"
+    },
+    "liveExperience": {
+      "chapter": "Chapter 4: The Experience",
+      "heading1": "Explore options",
+      "headingItalic": "together",
+      "heading2": ", in real time.",
+      "subtext": "Our simulator is built for the consultation room. Surgeon and patient sit side-by-side, adjust parameters, and see the illustrative visualisation update in real time.",
+      "feature1": "Real-time before/after comparison",
+      "feature2": "Adjustable surgical parameters",
+      "feature3": "AI confidence scoring",
+      "feature4": "468-point anatomical mesh accuracy",
+      "feature5": "Real-time simulation runs in your browser",
+      "trySimulator": "Try the Simulator"
+    },
+    "disclaimer": {
+      "label": "Disclaimer: ",
+      "text": "Faceify Labs is an educational visualisation aid for patient consultation and shared decision-making. It does not diagnose, treat, or recommend any procedure; all clinical decisions are made by the treating surgeon. It is not an FDA-cleared medical device. All previews are AI-generated approximations and do not constitute clinical diagnoses, treatment recommendations, or outcome guarantees."
+    },
+    "featureGrid": {
+      "chapter": "Platform Capabilities",
+      "heading": "Everything a surgeon needs in one tool.",
+      "subtext": "Built for the consultation room. Designed for clinical trust.",
+      "mesh": "468-Point Face Mesh",
+      "onDevice": "On-Device Processing",
+      "procedures": "85+ Procedures",
+      "compare": "Before/After Compare",
+      "realTime": "Real-Time Adjustment",
+      "ethnic": "APAC Ethnic Presets",
+      "compliance": "Privacy-First Design",
+      "export": "Export & Share",
+      "anyDevice": "Any Device",
+      "aiAssess": "AI Auto-Assessment",
+      "clinical": "Clinical Parameters",
+      "speed": "<1s Processing"
+    },
+    "statsBar": {
+      "procedures": "Procedures Supported",
+      "landmarks": "Facial Landmarks",
+      "privacy": "On-Device Privacy",
+      "categories": "Procedure Categories"
+    },
+    "heroSliderV2": {
+      "chapter": "The Technology",
+      "heading": "See Your Preview",
+      "headingItalic": "Before Surgery",
+      "subtext": "Our AI captures 468 facial landmarks in real-time, enabling detailed visualizations for facelifts, jaw contouring, and more.",
+      "cta": "Try Your Face",
+      "landmarkCount": "468 facial landmarks",
+      "scanning": "Analyzing facial structure...",
+      "procedures": {
+        "rhinoplasty": "Rhinoplasty",
+        "facelift": "Facelift",
+        "jaw": "Jaw Contouring",
+        "neutral": "Original"
+      }
+    },
+    "socialProof": {
+      "chapter": "The architecture",
+      "heading": "468 landmarks. 0 server hops. 85+ procedures.",
+      "subtext": "Every simulation is powered by real-time AI inference running entirely in your browser.",
+      "metric1Label": "Facial Landmarks Tracked",
+      "metric2Label": "Photo to Preview",
+      "metric3Label": "On-Device Processing",
+      "metric4Label": "Procedures Supported",
+      "metric5Label": "Mesh Triangles Per Face",
+      "tech1Title": "468-Point Facial Mesh",
+      "tech1Desc": "Our AI maps 468 facial landmarks in real time using our proprietary face-tracking engine, validated against peer-reviewed accuracy benchmarks. Every simulation is grounded in precise facial geometry.",
+      "tech2Title": "Real-Time Browser Inference",
+      "tech2Desc": "All ML models run client-side on your device's own GPU. No server round-trips, no upload delays. Results appear in seconds on any modern device.",
+      "tech3Title": "Zero Data Egress Architecture",
+      "tech3Desc": "The real-time simulator runs entirely in your browser. Your photo leaves your device only for the optional AI photoreal preview or when you save a simulation to your account. We never use your photo to train any model."
+    },
+    "procedureCarousel": {
+      "chapter": "The catalog",
+      "heading": "85+ procedure simulations.",
+      "subtext": "From rhinoplasty to Botox: every simulation runs entirely in your browser; no photos uploaded.",
+      "viewAll": "View all simulators",
+      "carouselAriaLabel": "Procedure simulation carousel",
+      "rhinoplasty": "Rhinoplasty",
+      "vline": "V-Line Contouring",
+      "blepharoplasty": "Blepharoplasty",
+      "liplift": "Lip Lift",
+      "facelift": "Facelift",
+      "botox": "Botox",
+      "surgical": "Surgical",
+      "nonSurgical": "Non-Surgical",
+      "injectable": "Injectable"
     }
   }
 }
