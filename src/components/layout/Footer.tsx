@@ -32,13 +32,16 @@ export default function Footer() {
   const { t } = useLanguage();
   const pathname = usePathname();
 
-  // Hide footer on /simulate catalog and /login pages
+  // Hide footer on /simulate catalog, /login, and /patient portal pages
   if (
     pathname === '/simulate' ||
     pathname === '/simulate/' ||
     pathname === '/login' ||
     pathname === '/login/' ||
-    pathname?.startsWith('/login')
+    pathname?.startsWith('/login') ||
+    pathname === '/patient' ||
+    pathname === '/patient/' ||
+    pathname?.startsWith('/patient')
   ) {
     return null;
   }

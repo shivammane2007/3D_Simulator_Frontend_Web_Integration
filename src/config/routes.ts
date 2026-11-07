@@ -20,6 +20,15 @@ export const routes = {
   patients: '/for-patients',
   surgeons: '/for-surgeons',
 
+  // Patient Portal
+  patient: {
+    dashboard: '/patient/dashboard',
+    profile: '/patient/profile',
+    consultation: '/patient/consultation',
+    results: '/patient/results',
+    settings: '/patient/settings',
+  },
+
   // Business
   pricing: '/pricing',
   partners: '/partners',

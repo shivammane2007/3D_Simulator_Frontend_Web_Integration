@@ -99,6 +99,11 @@ export default function Navigation() {
     setActiveDropdown(activeDropdown === label ? null : label);
   };
 
+  // Hide floating marketing navbar on patient portal routes
+  if (pathname === '/patient' || pathname?.startsWith('/patient')) {
+    return null;
+  }
+
   return (
     <>
       <a

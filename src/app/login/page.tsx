@@ -49,7 +49,7 @@ function LoginContent() {
     setTimeout(() => {
       try {
         const id = 'usr_' + Math.random().toString(36).substring(2, 9);
-        const resolvedName = userName || userEmail.split('@')[0];
+        const resolvedName = userName || (userEmail.toLowerCase().includes('shivam') ? 'Shivam Mane' : userEmail.split('@')[0]);
 
         // Format standard 3-segment base64url JWT payload
         const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
@@ -59,7 +59,7 @@ function LoginContent() {
             email: userEmail,
             name: resolvedName,
             provider,
-            role: 'surgeon',
+            role: 'patient',
             iat: Math.floor(Date.now() / 1000),
             exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30, // 30 days
           })
@@ -71,7 +71,8 @@ function LoginContent() {
           id,
           email: userEmail,
           name: resolvedName,
-          role: 'surgeon',
+          role: 'patient',
+          createdAt: 'August 2026',
         };
 
         // Persist token in localStorage, sessionStorage, and document.cookie
@@ -80,13 +81,14 @@ function LoginContent() {
         localStorage.setItem('fl_user', JSON.stringify(userObj));
         sessionStorage.setItem('fl_user', JSON.stringify(userObj));
         document.cookie = `fl_auth_token=${jwtToken}; path=/; max-age=2592000; SameSite=Lax`;
+        document.cookie = `fl-session=${jwtToken}; path=/; max-age=2592000; SameSite=Lax`;
 
         window.dispatchEvent(new Event('fl_auth_changed'));
 
         setStatusMessage('Success! Redirecting...');
 
         setTimeout(() => {
-          const destination = callbackUrl ? decodeURIComponent(callbackUrl) : routes.simulate;
+          const destination = callbackUrl ? decodeURIComponent(callbackUrl) : '/patient/dashboard';
           router.push(destination);
         }, 500);
       } catch (err) {
@@ -101,7 +103,8 @@ function LoginContent() {
     sessionStorage.removeItem('fl_auth_token');
     localStorage.removeItem('fl_user');
     sessionStorage.removeItem('fl_user');
-    document.cookie = 'fl_auth_token=; path=/; max-age=0';
+    document.cookie = 'fl_auth_token=; path=/; max-age=0; SameSite=Lax';
+    document.cookie = 'fl-session=; path=/; max-age=0; SameSite=Lax';
     setCurrentUser(null);
     setStatusMessage('Signed out successfully.');
     window.dispatchEvent(new Event('fl_auth_changed'));
@@ -158,12 +161,12 @@ function LoginContent() {
             <div className="pt-2 space-y-3">
               <button
                 onClick={() => {
-                  const destination = callbackUrl ? decodeURIComponent(callbackUrl) : routes.simulate;
+                  const destination = callbackUrl ? decodeURIComponent(callbackUrl) : '/patient/dashboard';
                   router.push(destination);
                 }}
                 className="w-full py-3.5 px-4 rounded-xl bg-[#CF4500] hover:bg-[#F37338] text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 shadow-md shadow-[#CF4500]/25 cursor-pointer"
               >
-                <span>{callbackUrl ? 'Continue to Destination' : 'Go to Simulators'}</span>
+                <span>{callbackUrl ? 'Continue to Destination' : 'Go to Patient Dashboard'}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
