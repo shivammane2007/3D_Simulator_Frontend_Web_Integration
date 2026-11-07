@@ -79,24 +79,14 @@ export default function PatientTopNav() {
         <div className="flex items-center gap-8">
           <Link 
             href="/patient/dashboard" 
-            className="flex items-center gap-2.5 transition-opacity hover:opacity-90"
+            aria-label="Faceify Labs Dashboard"
+            className="flex items-center group transition-transform hover:scale-105"
           >
-            {/* Connected nodes logo mark */}
-            <svg className="w-7 h-7 text-[#4ECCA3]" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="16" cy="16" r="3.5" fill="currentColor" />
-              <circle cx="6" cy="10" r="2.5" fill="currentColor" fillOpacity="0.8" />
-              <circle cx="26" cy="10" r="2.5" fill="currentColor" fillOpacity="0.8" />
-              <circle cx="8" cy="24" r="2" fill="currentColor" fillOpacity="0.6" />
-              <circle cx="24" cy="24" r="2" fill="currentColor" fillOpacity="0.6" />
-              <line x1="16" y1="16" x2="6" y2="10" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.5" />
-              <line x1="16" y1="16" x2="26" y2="10" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.5" />
-              <line x1="16" y1="16" x2="8" y2="24" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.5" />
-              <line x1="16" y1="16" x2="24" y2="24" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.5" />
-            </svg>
-            <div className="flex flex-col leading-none">
-              <span className="font-bold tracking-tight text-base text-white">faceify</span>
-              <span className="text-[10px] tracking-[0.2em] uppercase text-slate-400 font-medium">labs</span>
-            </div>
+            <img
+              src="/logo-dark.svg"
+              alt="Faceify Labs"
+              className="h-9 sm:h-11 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Nav Links */}
