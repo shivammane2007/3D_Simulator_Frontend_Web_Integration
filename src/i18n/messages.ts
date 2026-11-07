@@ -98,6 +98,10 @@ export function useLocale(): string {
   return 'en';
 }
 
+export function useTranslations(namespace?: string): Translator {
+  return createTranslator(namespace);
+}
+
 export function setRequestLocale(_locale: string): void {
   // no-op
 }

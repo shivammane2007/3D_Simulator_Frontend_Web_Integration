@@ -1,197 +1,111 @@
-'use client';
+import type { Metadata } from "next";
+import { getTranslations } from "@/i18n/messages";
+import { buildAlternates } from "@/lib/seo/alternates";
+import PageHero from "@/components/marketing/PageHero";
+import MarketingSection from "@/components/marketing/MarketingSection";
+import { DirectoryClient } from "@/components/directory/DirectoryClient";
+import type { SurgeonCardData } from "@/components/directory/SurgeonCard";
+import FeaturedDirectoryRow from "@/components/directory/FeaturedDirectoryRow";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { MapPin, Stethoscope, Sparkles, Search, CheckCircle2, ArrowRight } from 'lucide-react';
-import { routes } from '@/config/routes';
-import { cn } from '@/lib/utils';
+export async function generateMetadata(): Promise<Metadata> {
+    const t = await getTranslations("Directory");
 
-const certifiedClinics = [
-  {
-    name: 'Siam Aesthetic Institute',
-    city: 'Bangkok, Thailand',
-    leadSurgeon: 'Dr. Thanawat K.',
-    specialties: ['Rhinoplasty', 'Blepharoplasty', 'Facelift'],
-    status: 'Verified Founding Clinic',
-  },
-  {
-    name: 'Gangnam Facial Architecture',
-    city: 'Seoul, South Korea',
-    leadSurgeon: 'Dr. Min-jun P.',
-    specialties: ['V-Line Contouring', 'Jawline Surgery', 'Rhinoplasty'],
-    status: 'Verified Partner',
-  },
-  {
-    name: 'Orchard Aesthetic Medicine',
-    city: 'Singapore',
-    leadSurgeon: 'Dr. Sarah L.',
-    specialties: ['Injectables', 'HIFU', 'Non-Surgical Rejuvenation'],
-    status: 'Verified Partner',
-  },
-  {
-    name: 'Apex Plastic Surgery Centre',
-    city: 'Mumbai, India',
-    leadSurgeon: 'Dr. Rajiv M.',
-    specialties: ['Rhinoplasty', 'Facial Reconstruction', 'Lip Lift'],
-    status: 'Verified Partner',
-  },
-  {
-    name: 'Sukhumvit Cosmetic Hospital',
-    city: 'Bangkok, Thailand',
-    leadSurgeon: 'Dr. Chaiwat S.',
-    specialties: ['Facelift', 'Blepharoplasty', 'Breast Augmentation'],
-    status: 'Verified Partner',
-  },
-  {
-    name: 'Aura Skin & Contour Clinic',
-    city: 'Delhi, India',
-    leadSurgeon: 'Dr. Priya V.',
-    specialties: ['Dermal Fillers', 'Botox', 'Skin Resurfacing'],
-    status: 'Verified Partner',
-  },
+    return {
+        title: `${t("metaTitle") || "Find a Surgeon"} — Faceify Labs`,
+        description: t("metaDescription") || "Browse verified Faceify-powered surgeons and clinics across Asia-Pacific. Filter by city, country, and specialty.",
+        alternates: buildAlternates("/directory", "en"),
+        openGraph: {
+            title: t("metaTitle") || "Find a Surgeon",
+            description: t("metaOgDescription") || "Browse verified Faceify-powered surgeons across Bangkok, Seoul, Singapore, Mumbai and more.",
+            images: [
+                {
+                    url: "/opengraph-image",
+                    width: 1200,
+                    height: 630,
+                    alt: t("metaOgAlt") || "Faceify Labs — AI Surgical Simulation Platform",
+                },
+            ],
+        },
+    };
+}
+
+const DEFAULT_CITIES = [
+    "Bangkok",
+    "Delhi",
+    "Kuala Lumpur",
+    "Mumbai",
+    "Pune",
+    "Seoul",
+    "Singapore",
+    "Tokyo",
 ];
 
-export default function DirectoryPage() {
-  const [cityFilter, setCityFilter] = useState('all');
-  const [search, setSearch] = useState('');
+const DEFAULT_COUNTRIES = [
+    "India",
+    "Japan",
+    "Malaysia",
+    "Singapore",
+    "South Korea",
+    "Thailand",
+];
 
-  const filteredClinics = certifiedClinics.filter((c) => {
-    const matchesCity = cityFilter === 'all' || c.city.toLowerCase().includes(cityFilter.toLowerCase());
-    const matchesSearch =
-      c.name.toLowerCase().includes(search.toLowerCase()) ||
-      c.city.toLowerCase().includes(search.toLowerCase()) ||
-      c.specialties.some((s) => s.toLowerCase().includes(search.toLowerCase()));
-    return matchesCity && matchesSearch;
-  });
+export default async function DirectoryPage({
+    searchParams,
+}: {
+    searchParams?: Promise<{ city?: string }>;
+}) {
+    const sp = searchParams ? await searchParams : {};
+    const cityFilter = sp?.city ?? null;
 
-  return (
-    <div className="bg-[#F3F0EE] min-h-screen pt-32 pb-20">
-      {/* Header */}
-      <section className="pb-16 relative overflow-hidden">
-        <div className="container-master relative z-10">
-          <div className="max-w-3xl space-y-4">
-            <span className="text-eyebrow-master text-eyebrow-dot">
-              SURGEON REGISTRY
-            </span>
-            <h1 className="text-h1-hero text-[#141413]">
-              Find a Faceify-certified{' '}
-              <span className="italic font-medium text-[#CF4500]">
-                clinic near you.
-              </span>
-            </h1>
-            <p className="text-base sm:text-lg text-[#555555] leading-relaxed max-w-2xl font-normal">
-              Connect with plastic surgeons and aesthetic doctors who use Faceify 3D simulation tools to plan procedures and align expectations visually.
-            </p>
+    const initialSurgeons: SurgeonCardData[] = [];
+    const total = initialSurgeons.length;
 
-            {/* Filter controls */}
-            <div className="pt-8 flex flex-col sm:flex-row gap-5 items-center">
-              <div className="relative w-full sm:max-w-sm">
-                <Search className="w-4 h-4 absolute left-5 top-1/2 -translate-y-1/2 text-[#555555]" />
-                <input
-                  type="text"
-                  placeholder="Search clinic or specialty..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="w-full pl-12 pr-5 py-3.5 rounded-[999px] bg-white border border-black/5 text-sm text-[#141413] placeholder:text-[#555555] focus-visible:outline-none focus-visible:border-black/20 shadow-level-1 transition-all"
+    const t = await getTranslations("Directory");
+
+    return (
+        <div className="bg-[#F3F0EE] min-h-screen font-body pt-28 md:pt-36">
+            <PageHero
+                label={t("pageHeroLabel") || "SURGEON DIRECTORY"}
+                title={
+                    <>
+                        Find a <em className="font-serif text-[#CF4500] not-italic italic">Verified</em> Surgeon
+                    </>
+                }
+                subtitle={t("subtitle") || "Browse verified Faceify-powered surgeons and clinics across Asia-Pacific."}
+            />
+
+            <MarketingSection variant="warm" className="!pt-6">
+                <FeaturedDirectoryRow city={cityFilter} />
+                <DirectoryClient
+                    initialSurgeons={initialSurgeons}
+                    initialTotal={total}
+                    cities={DEFAULT_CITIES}
+                    countries={DEFAULT_COUNTRIES}
                 />
-              </div>
+            </MarketingSection>
 
-              <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0 scrollbar-none">
-                {['all', 'Bangkok', 'Seoul', 'Singapore', 'Mumbai', 'Delhi'].map((loc) => (
-                  <button
-                    key={loc}
-                    onClick={() => setCityFilter(loc)}
-                    className={cn(
-                      'px-5 py-2.5 rounded-[999px] text-xs font-medium whitespace-nowrap transition-all border cursor-pointer',
-                      cityFilter === loc
-                        ? 'bg-[#141413] text-[#F3F0EE] border-[#141413] shadow-level-1'
-                        : 'bg-white text-[#141413] border-black/5 hover:bg-[#EBE7E3]'
-                    )}
-                  >
-                    {loc === 'all' ? 'All Locations' : loc}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Directory Grid */}
-      <section className="py-16 md:py-24 bg-[#F3F0EE] border-t border-black/5">
-        <div className="container-master">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredClinics.map((clinic, idx) => (
-              <div
-                key={idx}
-                className="bg-[#FCFBFA] rounded-[40px] border border-black/5 p-8 flex flex-col justify-between hover:shadow-level-2 transition-all space-y-8 shadow-level-1"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#CF4500]">
-                      • {clinic.status}
-                    </span>
-                  </div>
-
-                  <h3 className="text-h3-card text-[#141413]">
-                    {clinic.name}
-                  </h3>
-
-                  <div className="space-y-2 text-sm text-[#555555]">
-                    <div className="flex items-center gap-2.5">
-                      <MapPin className="w-4 h-4 text-[#CF4500] shrink-0" />
-                      <span>{clinic.city}</span>
+            {/* CTA */}
+            <MarketingSection variant="white" className="py-16">
+                <div className="max-w-2xl mx-auto text-center bg-[#141413] rounded-[24px] p-10 sm:p-14 relative overflow-hidden shadow-level-2">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-[#CF4500]/20 rounded-full blur-[80px] pointer-events-none" />
+                    <div className="relative z-10">
+                        <h2 className="text-2xl sm:text-3xl font-serif text-white mb-3">
+                            {t("joinCTA") || "Want your clinic listed here?"}
+                        </h2>
+                        <p className="text-white/60 mb-8 max-w-lg mx-auto leading-relaxed font-body">
+                            {t("joinDescription") || "Join Faceify's clinical program to get listed in our directory."}
+                        </p>
+                        <Link
+                            href="/for-surgeons"
+                            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#CF4500] hover:bg-[#B53D00] text-white text-sm font-bold rounded-full transition-all shadow-sm"
+                        >
+                            {t("joinButton") || "Join Faceify"} <ArrowRight className="w-4 h-4" />
+                        </Link>
                     </div>
-                    <div className="flex items-center gap-2.5">
-                      <Stethoscope className="w-4 h-4 text-[#555555] shrink-0" />
-                      <span>{clinic.leadSurgeon}</span>
-                    </div>
-                  </div>
-
-                  <div className="pt-3 flex flex-wrap gap-2">
-                    {clinic.specialties.map((spec, sIdx) => (
-                      <span
-                        key={sIdx}
-                        className="text-[11px] px-3 py-1.5 rounded-full bg-white border border-black/5 text-[#141413] font-medium shadow-sm"
-                      >
-                        {spec}
-                      </span>
-                    ))}
-                  </div>
                 </div>
-
-                <div className="pt-6 border-t border-black/5">
-                  <Link
-                    href={routes.consultation}
-                    className="w-full py-3.5 rounded-[20px] bg-white hover:bg-[#141413] text-[#141413] hover:text-[#F3F0EE] border border-black/5 hover:border-[#141413] text-sm font-medium flex items-center justify-center gap-2 transition-all shadow-sm"
-                  >
-                    <span>Request Visual Consultation</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Join Registry CTA for Clinics */}
-          <div className="mt-16 p-8 md:p-12 rounded-[40px] bg-white border border-black/5 flex flex-col md:flex-row items-center justify-between gap-8 shadow-level-1">
-            <div className="space-y-2 text-center md:text-left">
-              <h4 className="text-xl font-medium font-display text-[#141413]">
-                Are you an accredited cosmetic surgery clinic?
-              </h4>
-              <p className="text-sm text-[#555555]">
-                Get listed in the Faceify certified registry and receive patient visualization referrals.
-              </p>
-            </div>
-            <Link
-              href={routes.partners}
-              className="px-8 py-3.5 rounded-[20px] bg-[#141413] hover:bg-[#262627] text-[#F3F0EE] text-sm font-medium transition-all shadow-sm shrink-0"
-            >
-              Apply for Certification
-            </Link>
-          </div>
+            </MarketingSection>
         </div>
-      </section>
-    </div>
-  );
+    );
 }
