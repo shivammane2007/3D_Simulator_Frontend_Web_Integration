@@ -48,26 +48,26 @@ export default function PatientDashboardPage() {
     <div className="space-y-6">
       {/* Header Greeting */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-bold font-serif text-ink tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-medium tracking-[-0.02em] text-[#141413]">
           {getGreeting()}, {firstName}
         </h1>
-        <p className="text-sm text-slate-500 mt-1">
+        <p className="text-sm text-[#555555] mt-1.5 font-normal">
           Your personal space to explore, simulate, and plan your cosmetic journey.
         </p>
       </div>
 
       {/* Card 1: Simulation Credits */}
-      <div className="bg-white rounded-2xl border border-slate-200/80 p-5 sm:p-6 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="bg-white rounded-[24px] border border-black/5 p-6 sm:p-7 shadow-level-1 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-start gap-4">
-          <div className="w-10 h-10 rounded-xl bg-[#2D5548]/10 text-[#2D5548] flex items-center justify-center shrink-0 mt-0.5">
+          <div className="w-11 h-11 rounded-[16px] bg-[#FDEEE7] text-[#CF4500] flex items-center justify-center shrink-0 mt-0.5">
             <CreditCard className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase block mb-1">
+            <span className="text-eyebrow-master text-[11px] font-bold text-[#696969] uppercase tracking-wider block mb-1">
               SIMULATION CREDITS
             </span>
-            <h2 className="text-base font-bold text-ink">No credits yet</h2>
-            <p className="text-xs text-slate-500 mt-0.5">
+            <h2 className="text-xl font-medium tracking-tight text-[#141413]">No credits yet</h2>
+            <p className="text-xs text-[#555555] mt-0.5 font-normal">
               Credits are valid for 12 months from purchase.
             </p>
           </div>
@@ -75,26 +75,26 @@ export default function PatientDashboardPage() {
 
         <Link
           href="/day-pass"
-          className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-[#2D5548] hover:bg-[#23453a] text-white text-xs font-semibold shadow-xs transition-colors shrink-0"
+          className="inline-flex items-center justify-center px-6 py-2.5 rounded-[20px] bg-[#141413] hover:bg-[#262627] text-[#F3F0EE] text-xs font-medium tracking-tight shadow-sm transition-all shrink-0"
         >
           Get credits
         </Link>
       </div>
 
       {/* Card 2: Ready to Simulate */}
-      <div className="bg-[#EBF3EF]/60 rounded-2xl border border-[#2D5548]/20 p-5 sm:p-6 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="bg-white rounded-[24px] border border-black/5 p-6 sm:p-7 shadow-level-1 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="w-10 h-10 rounded-xl bg-[#2D5548]/15 text-[#2D5548] flex items-center justify-center shrink-0">
+          <div className="w-11 h-11 rounded-[16px] bg-[#FDEEE7] text-[#CF4500] flex items-center justify-center shrink-0">
             <Sparkles className="w-5 h-5" />
           </div>
-          <p className="text-sm font-medium text-ink">
+          <p className="text-sm font-medium text-[#141413]">
             Ready to simulate? Upload a photo and preview your results.
           </p>
         </div>
 
         <Link
           href={routes.simulate}
-          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#2D5548] hover:bg-[#23453a] text-white text-xs font-semibold shadow-xs transition-colors shrink-0"
+          className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-[20px] bg-[#CF4500] hover:bg-[#F37338] text-white text-xs font-semibold shadow-xs transition-all shrink-0"
         >
           <span>Try a Simulation</span>
           <ArrowRight className="w-3.5 h-3.5" />
@@ -102,14 +102,14 @@ export default function PatientDashboardPage() {
       </div>
 
       {/* Card 3: Invite Code from Surgeon */}
-      <div className="bg-white rounded-2xl border border-slate-200/80 p-5 sm:p-6 shadow-2xs">
+      <div className="bg-white rounded-[24px] border border-black/5 p-6 sm:p-7 shadow-level-1">
         <div className="flex items-start gap-4 mb-4">
-          <div className="w-10 h-10 rounded-xl bg-[#2D5548]/10 text-[#2D5548] flex items-center justify-center shrink-0">
+          <div className="w-11 h-11 rounded-[16px] bg-[#FDEEE7] text-[#CF4500] flex items-center justify-center shrink-0">
             <Ticket className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-sm font-bold text-ink">Have an invite code from your surgeon?</h2>
-            <p className="text-xs text-slate-500 mt-0.5">
+            <h2 className="text-base font-medium tracking-tight text-[#141413]">Have an invite code from your surgeon?</h2>
+            <p className="text-xs text-[#555555] mt-0.5 font-normal">
               Enter the code to view simulations prepared for you.
             </p>
           </div>
@@ -121,20 +121,20 @@ export default function PatientDashboardPage() {
             placeholder="000000"
             value={inviteCode}
             onChange={(e) => setInviteCode(e.target.value)}
-            className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-ink bg-white placeholder:text-slate-400 focus:outline-none focus:border-[#2D5548] focus:ring-1 focus:ring-[#2D5548]/20 transition-all font-mono"
+            className="flex-1 px-4 py-2.5 rounded-[16px] border border-black/10 text-sm text-[#141413] bg-white placeholder:text-[#696969] focus:outline-none focus:border-[#CF4500] focus:ring-1 focus:ring-[#CF4500]/20 transition-all font-mono"
             maxLength={10}
           />
           <button
             type="submit"
-            className="px-6 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors cursor-pointer"
+            className="px-6 py-2.5 rounded-[20px] bg-[#141413] hover:bg-[#262627] text-[#F3F0EE] text-xs font-medium tracking-tight transition-all cursor-pointer"
           >
             Look up
           </button>
         </form>
 
         {lookupStatus && (
-          <p className="mt-3 text-xs text-slate-500 flex items-center gap-1.5">
-            <AlertCircle className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+          <p className="mt-3 text-xs text-[#555555] flex items-center gap-1.5">
+            <AlertCircle className="w-3.5 h-3.5 text-[#CF4500] shrink-0" />
             <span>{lookupStatus}</span>
           </p>
         )}
@@ -142,17 +142,17 @@ export default function PatientDashboardPage() {
 
       {/* Section: My Simulations */}
       <div className="space-y-3 pt-2">
-        <div className="flex items-center gap-2 text-slate-500">
+        <div className="flex items-center gap-2 text-[#696969]">
           <Clock className="w-4 h-4" />
-          <h2 className="text-xs font-bold tracking-wider uppercase">MY SIMULATIONS</h2>
+          <h2 className="text-xs font-bold tracking-[0.04em] uppercase">MY SIMULATIONS</h2>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200/80 p-12 text-center shadow-2xs">
-          <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-200/80 text-slate-400 flex items-center justify-center mx-auto mb-3">
+        <div className="bg-white rounded-[24px] border border-black/5 p-12 text-center shadow-level-1">
+          <div className="w-14 h-14 rounded-[18px] bg-[#F3F0EE] text-[#696969] flex items-center justify-center mx-auto mb-3">
             <ImageIcon className="w-7 h-7" />
           </div>
-          <h3 className="text-sm font-bold text-ink">No simulations yet</h3>
-          <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+          <h3 className="text-base font-medium text-[#141413]">No simulations yet</h3>
+          <p className="text-xs text-[#555555] mt-1 max-w-sm mx-auto font-normal">
             Your simulation results will appear here after you try a procedure.
           </p>
         </div>

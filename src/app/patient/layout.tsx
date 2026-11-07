@@ -30,16 +30,16 @@ export default function PatientLayout({
   // Loading state while verifying auth session
   if (isAuthenticated === null || isAuthenticated === false) {
     return (
-      <div className="min-h-screen bg-[#FBFBF9] flex flex-col items-center justify-center p-6 text-center">
-        <Loader2 className="w-8 h-8 text-[#2D5548] animate-spin mb-4" />
-        <p className="text-sm font-medium text-slate-600">Verifying your patient session…</p>
-        <p className="text-xs text-slate-400 mt-1">Please sign in if prompted</p>
+      <div className="min-h-screen bg-[#F3F0EE] flex flex-col items-center justify-center p-6 text-center">
+        <Loader2 className="w-8 h-8 text-[#CF4500] animate-spin mb-4" />
+        <p className="text-sm font-medium text-[#141413]">Verifying your patient session…</p>
+        <p className="text-xs text-[#555555] mt-1">Please sign in if prompted</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FBFBF9] text-ink antialiased">
+    <div className="min-h-screen flex flex-col bg-[#F3F0EE] text-[#141413] antialiased">
       {/* Dark Patient Top Bar */}
       <PatientTopNav />
 
@@ -48,7 +48,7 @@ export default function PatientLayout({
         <PatientSidebar />
 
         {/* Main Content Area */}
-        <main className="flex-1 min-w-0 bg-[#FBFBF9] p-4 sm:p-6 lg:p-8">
+        <main className="flex-1 min-w-0 bg-[#F3F0EE] p-4 sm:p-6 lg:p-8">
           <div className="max-w-5xl mx-auto">
             {children}
           </div>

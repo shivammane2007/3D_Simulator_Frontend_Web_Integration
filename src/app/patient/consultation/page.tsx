@@ -42,7 +42,7 @@ export default function PatientConsultationPage() {
       {/* 7-Step Horizontal Stepper */}
       <div className="max-w-2xl mx-auto py-4">
         <div className="relative flex items-center justify-between">
-          <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-0.5 bg-slate-200 -z-0" />
+          <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-0.5 bg-black/10 -z-0" />
           {STEPS.map((step) => {
             const isCompleted = step.id < currentStep;
             const isCurrent = step.id === currentStep;
@@ -51,12 +51,12 @@ export default function PatientConsultationPage() {
                 <button
                   type="button"
                   onClick={() => step.id <= currentStep && setCurrentStep(step.id)}
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold transition-all ${
                     isCurrent
-                      ? 'bg-[#2D5548] text-white shadow-sm ring-4 ring-[#2D5548]/15'
+                      ? 'bg-[#141413] text-[#F3F0EE] shadow-sm ring-4 ring-[#141413]/10'
                       : isCompleted
-                      ? 'bg-[#2D5548] text-white'
-                      : 'bg-slate-100 text-slate-400 border border-slate-200'
+                      ? 'bg-[#CF4500] text-white'
+                      : 'bg-white text-[#696969] border border-black/10'
                   }`}
                 >
                   {isCompleted ? <Check className="w-3.5 h-3.5 stroke-[3]" /> : step.id}
@@ -67,34 +67,34 @@ export default function PatientConsultationPage() {
         </div>
       </div>
 
-      {/* Step 1: Welcome Screen (Matches Screenshot) */}
+      {/* Step 1: Welcome Screen */}
       {currentStep === 1 && (
-        <div className="bg-white rounded-3xl border border-slate-200/80 p-8 sm:p-14 text-center max-w-2xl mx-auto shadow-2xs">
+        <div className="bg-white rounded-[32px] border border-black/5 p-8 sm:p-14 text-center max-w-2xl mx-auto shadow-level-1">
           {/* Centered Sparkle Icon */}
-          <div className="w-16 h-16 rounded-2xl bg-[#EBF3EF] text-[#2D5548] flex items-center justify-center mx-auto mb-6 shadow-2xs">
+          <div className="w-16 h-16 rounded-[20px] bg-[#FDEEE7] text-[#CF4500] flex items-center justify-center mx-auto mb-6 shadow-sm">
             <Sparkles className="w-8 h-8" />
           </div>
 
-          <h1 className="text-2xl sm:text-3xl font-bold font-serif text-ink tracking-tight mb-2">
+          <h1 className="text-3xl sm:text-4xl font-medium tracking-[-0.02em] text-[#141413] mb-2">
             Welcome to Your Virtual Consultation
           </h1>
-          <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">
-            Powered by Faceify Labs
+          <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-[#696969] mb-4">
+            POWERED BY FACEIFY LABS
           </p>
 
-          <p className="text-sm text-slate-600 max-w-lg mx-auto leading-relaxed mb-8">
+          <p className="text-sm text-[#555555] max-w-lg mx-auto leading-relaxed mb-8 font-normal">
             This guided experience helps you explore procedures and explore AI visualizations, all before your first appointment.
           </p>
 
           {/* Micro pills */}
-          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-500 mb-8">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-[#555555] mb-8 font-normal">
             <span className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-slate-400" />
+              <Clock className="w-3.5 h-3.5 text-[#696969]" />
               <span>Takes about 3 minutes</span>
             </span>
-            <span className="inline-block w-1 h-1 rounded-full bg-slate-300" />
+            <span className="inline-block w-1 h-1 rounded-full bg-black/20" />
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2D5548]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#CF4500]" />
               <span>Real-time simulation runs in your browser</span>
             </span>
           </div>
@@ -103,7 +103,7 @@ export default function PatientConsultationPage() {
           <button
             type="button"
             onClick={() => setCurrentStep(2)}
-            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#2D5548] hover:bg-[#23453a] text-white text-sm font-semibold shadow-md shadow-[#2D5548]/20 transition-all cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-[20px] bg-[#141413] hover:bg-[#262627] text-[#F3F0EE] text-sm font-medium tracking-tight shadow-sm transition-all cursor-pointer"
           >
             <span>Begin Consultation</span>
             <ArrowRight className="w-4 h-4" />
@@ -113,11 +113,11 @@ export default function PatientConsultationPage() {
 
       {/* Step 2: Select Concern / Area */}
       {currentStep === 2 && (
-        <div className="bg-white rounded-3xl border border-slate-200/80 p-8 text-center max-w-2xl mx-auto shadow-2xs">
-          <h2 className="text-xl font-bold font-serif text-ink mb-1">
+        <div className="bg-white rounded-[32px] border border-black/5 p-8 text-center max-w-2xl mx-auto shadow-level-1">
+          <h2 className="text-2xl sm:text-3xl font-medium tracking-[-0.02em] text-[#141413] mb-1">
             What area would you like to explore?
           </h2>
-          <p className="text-xs text-slate-500 mb-6">
+          <p className="text-xs text-[#555555] mb-6 font-normal">
             Choose an area to tailor your consultation guidelines.
           </p>
 
@@ -130,29 +130,29 @@ export default function PatientConsultationPage() {
                   key={area.id}
                   type="button"
                   onClick={() => setSelectedArea(area.id)}
-                  className={`p-4 rounded-2xl border text-left transition-all cursor-pointer ${
+                  className={`p-4 rounded-[20px] border text-left transition-all cursor-pointer ${
                     isSelected
-                      ? 'border-[#2D5548] bg-[#EBF3EF]/50 shadow-2xs ring-1 ring-[#2D5548]'
-                      : 'border-slate-200 hover:border-slate-300 bg-white'
+                      ? 'border-[#CF4500] bg-[#FDEEE7]/40 shadow-xs ring-1 ring-[#CF4500]'
+                      : 'border-black/5 hover:border-black/15 bg-white'
                   }`}
                 >
                   <div className="flex items-center gap-3 mb-1.5">
-                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${isSelected ? 'bg-[#2D5548] text-white' : 'bg-slate-100 text-slate-600'}`}>
+                    <div className={`w-8 h-8 rounded-[12px] flex items-center justify-center ${isSelected ? 'bg-[#CF4500] text-white' : 'bg-[#F3F0EE] text-[#555555]'}`}>
                       <Icon className="w-4 h-4" />
                     </div>
-                    <span className="text-sm font-bold text-ink">{area.name}</span>
+                    <span className="text-sm font-medium text-[#141413]">{area.name}</span>
                   </div>
-                  <p className="text-xs text-slate-500">{area.desc}</p>
+                  <p className="text-xs text-[#555555] font-normal">{area.desc}</p>
                 </button>
               );
             })}
           </div>
 
-          <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+          <div className="flex items-center justify-between pt-4 border-t border-black/5">
             <button
               type="button"
               onClick={() => setCurrentStep(1)}
-              className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-ink font-semibold"
+              className="inline-flex items-center gap-1.5 text-xs text-[#555555] hover:text-[#141413] font-medium"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Back</span>
@@ -160,7 +160,7 @@ export default function PatientConsultationPage() {
 
             <Link
               href={routes.simulate}
-              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-[#2D5548] hover:bg-[#23453a] text-white text-xs font-semibold shadow-xs transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-[20px] bg-[#CF4500] hover:bg-[#F37338] text-white text-xs font-semibold shadow-xs transition-all"
             >
               <span>Launch 3D Simulator</span>
               <ArrowRight className="w-3.5 h-3.5" />
