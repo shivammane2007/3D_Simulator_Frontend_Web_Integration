@@ -514,5 +514,374 @@
     "avatarTooLarge": "Photo must be under 2MB",
     "avatarInvalidType": "Only JPEG, PNG, and WebP images are accepted",
     "bookConsultation": "Book a Consultation"
+  },
+  "ForSurgeons": {
+    "hero": {
+      "label": "For Plastic Surgeons & Aesthetic Practitioners",
+      "title": "Convert hesitant consults. <em>Without giving anything away.</em>",
+      "subtitle": "Faceify is an AI cosmetic preview your patients use privately before booking. You review every result before they see it final. Co-branded with your clinic, embedded on your Instagram bio link."
+    },
+    "cta": {
+      "bookDemo": "Book a Demo",
+      "startPilot": "Get Started",
+      "getStarted": "Try the Free Embed Widget",
+      "noCreditCard": "No credit card · No commitment · Embed in 15 minutes",
+      "bookDemoFinal": "Book a Demo",
+      "foundingPartnerCta": "Become a Founding Partner",
+      "noCreditCardFinal": "100 Founding Partner spots · 2-year price lock"
+    },
+    "problem": {
+      "label": "What every consult needs",
+      "title": "Your DM enquirer is 30% sold. She needs to be 60% sold before she walks in."
+    },
+    "solution": {
+      "label": "What we deliver",
+      "title": "The embed widget that does the pre-consult work."
+    },
+    "roi": {
+      "label": "The math",
+      "title": "What a 2-point lift in DM conversion is worth.",
+      "disclaimer": "*Conservative estimate based on solo surgeon profile: 300 monthly DMs, 7% current DM-to-consult conversion, 40% consult-to-deposit close rate, ₹1.5L average rhinoplasty fee. Individual results vary with practice size and patient mix."
+    },
+    "howItWorks": {
+      "label": "How It Works",
+      "title": "Three steps. Under 60 seconds.",
+      "stepPrefix": "Step",
+      "guideLink": "See how it works in a real consultation"
+    },
+    "testimonials": {
+      "heading": "What early partners are saying",
+      "label": "Founding Partner Feedback"
+    },
+    "procedures": {
+      "label": "Full Coverage",
+      "title": "85+ procedures. One embed.",
+      "viewGallery": "View Before & After Gallery"
+    },
+    "comparison": {
+      "label": "Comparison",
+      "title": "Faceify vs the alternatives",
+      "featureHeader": "Feature",
+      "faceifyHeader": "Faceify",
+      "legacyHeader": "Legacy Hardware",
+      "cloudHeader": "Cloud Competitors"
+    },
+    "foundingPartner": {
+      "label": "Founding Partners — 100 spots",
+      "title": "Be one of our first 100 Founding Partners.",
+      "subtitle": "Surgeons who join in the first 12 months get perks no future customer will.",
+      "perk0Title": "2-year price lock",
+      "perk0Desc": "Your rate today stays for two years. No inflation adjustments, no tier creep.",
+      "perk1Title": "Instagram cross-promotion",
+      "perk1Desc": "Your before/after posts get reshared on the @faceifylabs account. Your audience grows with ours.",
+      "perk2Title": "Direct roadmap input",
+      "perk2Desc": "A private channel with the Faceify team. Procedures you need built — we build next.",
+      "perk3Title": "Your name on the Founding Partners page",
+      "perk3Desc": "Public recognition as one of the first 100 surgeons to bring responsible AI preview to their practice.",
+      "spotsLabel": "{count} of 100 spots remaining",
+      "ctaBecome": "Become a Founding Partner",
+      "ctaView": "See current Founding Partners"
+    },
+    "freeWidget": {
+      "label": "Organic acquisition path",
+      "title": "Start with the free embed widget. No commitment.",
+      "desc": "Put the Faceify rhinoplasty simulator on your clinic website or Instagram bio link at no cost. When you're ready to upgrade to co-branded, analytics, and the full 85+ procedure catalog — that's when you become a Founding Partner.",
+      "cta": "Get the free embed widget"
+    },
+    "finalCta": {
+      "title": "Your patient is researching at midnight. Be the surgeon she finds.",
+      "body": "The free embed widget takes 15 minutes to set up. The Founding Partner plan takes 15 minutes to discuss. Either way — let's talk."
+    },
+    "painPoints": {
+      "0": {
+        "title": "The DM-to-consult gap",
+        "desc": "70% of cosmetic patients research on Instagram before choosing a surgeon. Most DM enquirers never book a consult."
+      },
+      "1": {
+        "title": "\"What will I look like?\" has no good answer",
+        "desc": "Verbal descriptions don't convert. FaceTouchUp drag-handles feel like a toy. Clay 3D models don't look like the patient."
+      },
+      "2": {
+        "title": "AI preview tools that put you at risk",
+        "desc": "Unmoderated AI generates results you'd never recommend. If the patient sees it before you do, you're answering for it."
+      },
+      "3": {
+        "title": "The chain clinic 3km away just launched \"AI consultation\"",
+        "desc": "You need a credible answer — one that doesn't look like a Snapchat filter or a demo from 2019."
+      }
+    },
+    "solutionPoints": {
+      "0": {
+        "title": "You approve every preview",
+        "desc": "Patient generates AI render → it lands in your dashboard → you edit, approve, or reject it. Your name only attaches to a result you've reviewed."
+      },
+      "1": {
+        "title": "Embed in 15 minutes",
+        "desc": "One link for your Instagram bio. One script tag for your website. No CRM integration, no developer required."
+      },
+      "2": {
+        "title": "Co-branded with your clinic",
+        "desc": "Your clinic name and photo on every preview frame. \"Powered by Faceify\" is small. Your brand is the front."
+      },
+      "3": {
+        "title": "Your lead, not ours",
+        "desc": "Patient email captured in your dashboard. Channel-conflict clause in the contract. Faceify does not market to your patient pool."
+      },
+      "4": {
+        "title": "5 languages, any phone",
+        "desc": "Korean, Japanese, Thai, Portuguese, English — patient-facing in their browser locale. Works on any Android or iPhone."
+      },
+      "5": {
+        "title": "Liability framing built in",
+        "desc": "\"AI approximation, not a surgical guarantee\" on every render. Surgeon-attested consent flow before processing. DPA executed for Indian patient data."
+      }
+    },
+    "roiMetrics": {
+      "0": {
+        "value": "₹4.4L",
+        "label": "incremental monthly revenue (realistic case)*",
+        "sub": "vs ₹12.4K/mo Starter cost = 35× ROI"
+      },
+      "1": {
+        "value": "+2.5pt",
+        "label": "DM-to-consult conversion lift",
+        "sub": "conservative: +1pt — still 3.8× ROI"
+      },
+      "2": {
+        "value": "$149",
+        "label": "Starter plan per month",
+        "sub": "1 seat · 100 patient previews · embed widget"
+      },
+      "3": {
+        "value": "85+",
+        "label": "procedures supported",
+        "sub": "rhinoplasty photoreal at launch; full 85+ catalog wired"
+      }
+    },
+    "steps": {
+      "0": {
+        "num": "01",
+        "title": "Patient uses your embed link",
+        "desc": "She clicks your Instagram bio link, uploads a photo, and gets an AI preview — in your clinic's brand, in her language."
+      },
+      "1": {
+        "num": "02",
+        "title": "Preview lands in your review queue",
+        "desc": "You see every render before she does. Approve, annotate, or reject. Your name attaches only when you say so."
+      },
+      "2": {
+        "num": "03",
+        "title": "She books. Already half-sold.",
+        "desc": "The pre-consult preview converts the 90-minute \"I need to think about it\" loop into a 30-minute yes. You close the deposit faster."
+      }
+    },
+    "procedureList": {
+      "0": "Rhinoplasty",
+      "1": "Blepharoplasty",
+      "2": "Facelift",
+      "3": "Lip Lift",
+      "4": "Dermal Fillers",
+      "5": "Botox",
+      "6": "Jaw Contouring",
+      "7": "Chin Augmentation",
+      "8": "Buccal Fat Removal",
+      "9": "Thread Lift",
+      "10": "Chemical Peel",
+      "11": "Fat Transfer",
+      "12": "Liposuction",
+      "13": "Tummy Tuck"
+    },
+    "comparisonRows": {
+      "0": {
+        "feature": "Upfront cost",
+        "faceify": "$149/mo",
+        "legacy": "$20k – $60k hardware",
+        "cloud": "$5k – $15k/yr"
+      },
+      "1": {
+        "feature": "Hardware required",
+        "faceify": "None",
+        "legacy": "Proprietary camera",
+        "cloud": "None"
+      },
+      "2": {
+        "feature": "Setup time",
+        "faceify": "15 minutes",
+        "legacy": "2–4 weeks",
+        "cloud": "1–2 days"
+      },
+      "3": {
+        "feature": "Patient data privacy"
+      },
+      "4": {
+        "feature": "Works on iPad / phone"
+      },
+      "5": {
+        "feature": "Anatomical mesh model"
+      },
+      "6": {
+        "feature": "Procedures covered",
+        "faceify": "85+",
+        "legacy": "3–5",
+        "cloud": "5–8"
+      },
+      "7": {
+        "feature": "Real-time adjustments"
+      },
+      "8": {
+        "feature": "Patient take-home link"
+      }
+    }
+  },
+  "demoGuide": {
+    "sectionLabel": "HOW IT WORKS",
+    "heading": "See it in action",
+    "subheading": "Watch how surgeons and patients use Faceify Labs to preview results before any procedure.",
+    "patientTab": "For Patients",
+    "surgeonTab": "For Surgeons",
+    "patientHeading": "Your personalized preview — in minutes",
+    "patientSubheading": "Enter your voucher, upload a photo, and explore a visualization before your first appointment.",
+    "patientSteps": [
+      "Sign in with your email — no password needed",
+      "Enter the voucher code from your clinic",
+      "Choose your procedure from 85+ simulators",
+      "Upload your photo — processed 100% on your device",
+      "View your AI-generated preview instantly",
+      "Book a consultation with a certified specialist"
+    ],
+    "patientCta": "Get Started Free",
+    "surgeonHeading": "Clinical-grade tools your patients will trust",
+    "surgeonSubheading": "Manage patients, run simulations, and share results — all in one privacy-first platform.",
+    "surgeonSteps": [
+      "Sign up in seconds — OTP login, no passwords",
+      "Complete your clinic profile and specialties",
+      "Access your patient management dashboard",
+      "Run simulations across 85+ procedure types",
+      "Share previews with patients via voucher codes",
+      "Manage pricing, branding, and team access"
+    ],
+    "surgeonCta": "Book a Demo"
+  },
+  "ForSurgeonsGuide": {
+    "hero": {
+      "label": "How It Works in Practice",
+      "title": "See How Faceify Fits Your Consultation",
+      "subtitle": "A step-by-step walkthrough of how surgeons use Faceify in real consultations — from patient arrival to take-home preview.",
+      "cta": {
+        "trial": "Subscribe to Get Started",
+        "walkthrough": "Book a 15-Min Walkthrough",
+        "sub": "No hardware · Browser-native · No installation required"
+      }
+    },
+    "comparison": {
+      "label": "Before & After Faceify",
+      "title": "Same consultation. Better outcomes.",
+      "without": {
+        "heading": "Without Faceify",
+        "items": {
+          "0": "Verbal descriptions of surgical outcomes — patients struggle to visualise",
+          "1": "Stock photos of other patients used for reference — not realistic",
+          "2": "25–30 minute consultations with low confidence",
+          "3": "Patient leaves uncertain — books a follow-up or walks away",
+          "4": "40–55% consultation-to-booking conversion rate"
+        }
+      },
+      "with": {
+        "heading": "With Faceify",
+        "items": {
+          "0": "Real-time simulation on the patient's own photo — immediate clarity",
+          "1": "468-point MediaPipe mesh — anatomy-based landmark tracking, not cartoonish filters",
+          "2": "15–20 minute consultations with confident outcomes",
+          "3": "Patient leaves with a take-home link to review privately",
+          "4": "60–75% consultation-to-booking conversion rate"
+        }
+      }
+    },
+    "workflow": {
+      "label": "Step-by-Step Workflow",
+      "title": "From arrival to take-home. Under 5 minutes.",
+      "subtitle": "This is how a typical Faceify-powered consultation runs from start to finish.",
+      "steps": {
+        "0": {
+          "stepNum": "Step 01",
+          "time": "0:00 — Patient Arrives",
+          "title": "Patient Arrives",
+          "desc": "Patient sits down and opens Faceify on the clinic iPad or their own phone. No app download required — it runs in the browser."
+        },
+        "1": {
+          "stepNum": "Step 02",
+          "time": "0:15 — Capture Photo",
+          "title": "Capture Photo",
+          "desc": "A front-facing photo is taken in-app. Real-time simulation runs in your browser. Your photo is sent off-device only for the optional AI photoreal preview or if you save a simulation to your account."
+        },
+        "2": {
+          "stepNum": "Step 03",
+          "time": "0:30 — Select & Simulate",
+          "title": "Select & Simulate",
+          "desc": "Choose a procedure (e.g. blepharoplasty or jaw contouring). AI generates a simulation in under 60 seconds — no waiting for cloud renders."
+        },
+        "3": {
+          "stepNum": "Step 04",
+          "time": "1:30 — Adjust Together",
+          "title": "Adjust Together",
+          "desc": "Surgeon adjusts parameters — tip rotation, bridge height, projection — while the patient watches the simulation update in real-time. Aligns expectations before commitment."
+        },
+        "4": {
+          "stepNum": "Step 05",
+          "time": "3:00 — Send Take-Home Link",
+          "title": "Send Take-Home Link",
+          "desc": "Patient receives a private link to revisit their simulation at home, on their own device. No account needed. They can review, share with family, and return ready to book."
+        }
+      }
+    },
+    "scenarios": {
+      "label": "Common Scenarios",
+      "title": "Fits every consultation type",
+      "items": {
+        "0": {
+          "title": "First Consultation",
+          "desc": "Patient is exploring options. Use simulation to set realistic expectations and build immediate trust — before they have time to doubt."
+        },
+        "1": {
+          "title": "Revision Discussion",
+          "desc": "Patient had prior surgery elsewhere. Simulate adjustments on their current anatomy to show clearly what is achievable and what is not."
+        },
+        "2": {
+          "title": "Virtual Consultation",
+          "desc": "Patient is overseas — common in medical tourism across APAC. Share the simulation link. They review privately on their own device, no travel required."
+        }
+      }
+    },
+    "clarity": {
+      "label": "Transparency",
+      "title": "What this tool is — and isn't",
+      "subtitle": "We designed Faceify to be an honest clinical tool. Here is exactly how it should be used.",
+      "is": {
+        "0": "A clinical conversation tool that helps patients visualise outcomes",
+        "1": "Privacy-first — real-time simulation runs in your browser; photo sent off-device only for optional AI preview or save",
+        "2": "85+ procedure simulators across rhinoplasty, blepharoplasty, fillers, body, hair, dental, and more",
+        "3": "Compatible with any modern device — iPad, laptop, or patient's own phone",
+        "heading": "Faceify IS"
+      },
+      "isnt": {
+        "0": "A guarantee of surgical results — outcomes depend on anatomy and technique",
+        "1": "A diagnostic tool — it does not assess health, risk, or candidacy",
+        "2": "A replacement for clinical judgment — the surgeon remains fully in charge",
+        "3": "A photorealistic predictor — simulations are illustrative, not prescriptive",
+        "heading": "Faceify IS NOT"
+      },
+      "disclaimer": "All simulations are illustrative aids for consultation purposes only. Faceify Labs does not make any claims about post-surgical outcomes."
+    },
+    "device": {
+      "title": "Works on whatever is in the room",
+      "body": "Bring your clinic iPad, use your desk laptop, or let the patient use their own phone. Faceify runs entirely in the browser with zero downloads, zero setup, and zero hardware cost."
+    },
+    "cta": {
+      "title": "Ready to see it in action?",
+      "body": "Get started and run your first simulation in under 60 seconds. Or book a 15-minute walkthrough and we will show you exactly how it fits your workflow.",
+      "trial": "Get Started",
+      "walkthrough": "Book a 15-Min Walkthrough",
+      "sub": ""
+    }
   }
 }

@@ -3,7 +3,7 @@ export default function ChapterLabel({ text, className = '', variant = 'default'
   // (`w-6 h-px bg-sage`) — read as AI-generated decoration. Keep the
   // `variant` prop API stable so existing callers don't need changes;
   // it now affects only the text color.
-  const textColor = variant === 'dark' ? 'text-[#F37338]' : 'text-[#CF4500]'
+  const textColor = variant === 'dark' ? 'text-emerald-200' : 'text-sage'
 
   return (
     <div className={`flex items-center ${className}`}>

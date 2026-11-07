@@ -1,5 +1,5 @@
 import React, { type ReactNode } from 'react';
-import messagesData from '@/data/procedure-messages';
+import messagesData from '@/data/procedure-messages.json';
 
 function getNestedValue(obj: any, path: string): any {
   if (!obj) return path;
@@ -63,21 +63,21 @@ export function createTranslator(namespace?: string): Translator {
 
     while ((match = tagRegex.exec(text)) !== null) {
       if (match.index > lastIndex) {
-        elements.push(text.substring(lastIndex, match.index));
+        elements.push(React.createElement(React.Fragment, { key: keyIdx++ }, text.substring(lastIndex, match.index)));
       }
       const tagName = match[1];
       const content = match[2];
       const renderer = values[tagName];
       if (typeof renderer === 'function') {
-        elements.push(React.createElement('span', { key: keyIdx++ }, renderer(content || undefined)));
+        elements.push(React.createElement(React.Fragment, { key: keyIdx++ }, renderer(content || undefined)));
       } else {
-        elements.push(content);
+        elements.push(React.createElement(React.Fragment, { key: keyIdx++ }, content));
       }
       lastIndex = tagRegex.lastIndex;
     }
 
     if (lastIndex < text.length) {
-      elements.push(text.substring(lastIndex));
+      elements.push(React.createElement(React.Fragment, { key: keyIdx++ }, text.substring(lastIndex)));
     }
 
     return elements;
