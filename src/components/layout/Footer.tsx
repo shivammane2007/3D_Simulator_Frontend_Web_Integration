@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { MessageCircle, ShieldCheck, Award, ArrowUpRight, Globe } from 'lucide-react';
 import { footerNav } from '@/data/navigation';
 import { routes } from '@/config/routes';
@@ -29,6 +30,12 @@ function LinkedinIcon({ className }: { className?: string }) {
 
 export default function Footer() {
   const { t } = useLanguage();
+  const pathname = usePathname();
+
+  // Hide footer on /simulate catalog page only
+  if (pathname === '/simulate' || pathname === '/simulate/') {
+    return null;
+  }
 
   return (
     <footer className="bg-[#141413] text-[#F3F0EE] pt-20 pb-16 border-t border-white/10">
