@@ -62,7 +62,7 @@ export default function SimulatorAccessGuard({
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#0c1018]">
         <div className="flex flex-col items-center gap-3">
-          <Loader2 className="w-6 h-6 text-sage animate-spin" />
+          <Loader2 className="w-6 h-6 text-[#CF4500] animate-spin" />
           <p className="text-slate-500 text-xs">Loading simulator...</p>
         </div>
       </div>
@@ -80,8 +80,8 @@ export default function SimulatorAccessGuard({
           tabIndex={-1}
           className="max-w-md w-full text-center bg-[#141a24]/95 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-2xl focus:outline-none"
         >
-          <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-sage/10 flex items-center justify-center">
-            <KeyRound className="w-7 h-7 text-sage" />
+          <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#CF4500]/15 flex items-center justify-center">
+            <KeyRound className="w-7 h-7 text-[#CF4500]" />
           </div>
           <h2 id="gate-title" className="text-2xl font-bold text-white mb-3">
             {t("signInTitle") || "Sign in to access simulators"}
@@ -90,12 +90,12 @@ export default function SimulatorAccessGuard({
             {t("signInDescription") || "Create a free account or sign in to start your simulation"}
           </p>
           <p className="text-slate-400 mb-6 text-xs flex items-center justify-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#CF4500]" />
             {t("freeAccountNote") || "Free account · takes 30 seconds"}
           </p>
           <button
             onClick={() => router.push(`/login?callbackUrl=${encodeURIComponent(pathname)}`)}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-sage hover:bg-sage-light text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-sage/20 cursor-pointer"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#CF4500] hover:bg-[#F37338] text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-[#CF4500]/25 cursor-pointer"
           >
             {t("signInButton") || "Sign In"} <ArrowRight className="w-4 h-4" />
           </button>

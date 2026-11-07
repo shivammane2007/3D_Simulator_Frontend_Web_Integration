@@ -12,24 +12,24 @@ import { useTranslations } from "@/i18n/messages";
 
 const CATEGORY_COLORS: Record<ProcedureCategoryKey, { pill: string; border: string }> = {
     surgical: {
-        pill: "bg-sage/10 text-sage border-sage/20",
-        border: "hover:border-sage/40",
+        pill: "bg-[#CF4500]/10 text-[#CF4500] border-[#CF4500]/20",
+        border: "hover:border-[#CF4500]/40",
     },
     "non-surgical": {
         pill: "bg-gold/10 text-gold border-gold/20",
         border: "hover:border-gold/40",
     },
     injectable: {
-        pill: "bg-coral/10 text-coral-text border-coral/20",
-        border: "hover:border-coral/40",
+        pill: "bg-[#CF4500]/10 text-[#CF4500] border-[#CF4500]/20",
+        border: "hover:border-[#CF4500]/40",
     },
     dental: {
         pill: "bg-slate-hp/10 text-slate-hp border-slate-hp/20",
         border: "hover:border-slate-hp/40",
     },
     "body-contouring": {
-        pill: "bg-coral/10 text-coral-text border-coral/20",
-        border: "hover:border-coral/40",
+        pill: "bg-[#CF4500]/10 text-[#CF4500] border-[#CF4500]/20",
+        border: "hover:border-[#CF4500]/40",
     },
     "hair-restoration": {
         pill: "bg-gold/10 text-gold border-gold/20",
@@ -105,13 +105,14 @@ export default function SimulateHub({ procedures }: { procedures?: HubProcedure[
         <div className="bg-warm min-h-screen font-body pb-24">
             <PageHero
                 label={t("heroLabel") || "Simulation Tools"}
-                title={t.rich("heroTitle", {
-                    em: (chunks: React.ReactNode) => <em className="font-serif text-sage not-italic italic">{chunks}</em>,
-                }) || (
+                title={
                     <>
-                        Preview any procedure, <em className="font-serif text-sage not-italic italic">in seconds</em>.
+                        Preview any procedure,<br className="hidden sm:inline" />{" "}
+                        <em className="font-serif not-italic italic text-[#CF4500] inline-block whitespace-nowrap">
+                            in seconds.
+                        </em>
                     </>
-                )}
+                }
                 subtitle={t("heroSubtitle", { count: allProcedures.length }) || `Upload a photo and explore AI visualizations. Choose from ${allProcedures.length} simulators powered by our 468-point facial mesh.`}
             />
 
@@ -126,7 +127,7 @@ export default function SimulateHub({ procedures }: { procedures?: HubProcedure[
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
                             placeholder={t("searchPlaceholder") || "Search simulators..."}
-                            className="w-full pl-10 pr-4 py-3 border border-slate-200 bg-white rounded-lg text-sm text-ink placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sage/30 focus:border-sage transition-all shadow-xs"
+                            className="w-full pl-10 pr-4 py-3 border border-slate-200 bg-white rounded-lg text-sm text-ink placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#CF4500]/30 focus:border-[#CF4500] transition-all shadow-xs"
                         />
                     </div>
                 </div>
@@ -140,7 +141,7 @@ export default function SimulateHub({ procedures }: { procedures?: HubProcedure[
                         className={`px-5 py-2 rounded-full text-sm font-semibold transition-all font-body cursor-pointer ${
                             activeCategory === "all"
                                 ? "bg-ink text-cream shadow-xs"
-                                : "bg-white border border-slate-200 text-slate-600 hover:text-ink hover:border-sage/40"
+                                : "bg-white border border-slate-200 text-slate-600 hover:text-ink hover:border-[#CF4500]/40"
                         }`}
                     >
                         {t("all") || "All"}
@@ -155,7 +156,7 @@ export default function SimulateHub({ procedures }: { procedures?: HubProcedure[
                             className={`px-5 py-2 min-h-[44px] rounded-full text-sm font-semibold transition-all font-body cursor-pointer ${
                                 activeCategory === cat.key
                                     ? "bg-ink text-cream shadow-xs"
-                                    : "bg-white border border-slate-200 text-slate-600 hover:text-ink hover:border-sage/40"
+                                    : "bg-white border border-slate-200 text-slate-600 hover:text-ink hover:border-[#CF4500]/40"
                             }`}
                         >
                             <span className="mr-1">{cat.icon}</span> {tCats(cat.key) || cat.label}
@@ -241,12 +242,12 @@ function SimulatorCard({
                 <ProcedureIcon slug={procedure.slug} size={40} category={procedure.category} />
                 <div className="flex items-center gap-2">
                     {procedure.popularity === 'high' && !isComingSoon && (
-                        <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-coral/10 text-coral-text border border-coral/20 font-body">
+                        <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-[#FDEEE7] text-[#CF4500] border border-[#CF4500]/20 font-body">
                             POPULAR
                         </span>
                     )}
                     {procedure.isNew && (
-                        <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-sage/10 text-sage border border-sage/20 font-body">
+                        <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full bg-[#CF4500]/10 text-[#CF4500] border border-[#CF4500]/20 font-body">
                             NEW
                         </span>
                     )}
@@ -267,7 +268,7 @@ function SimulatorCard({
             </div>
 
             <h3 className={`text-base font-semibold mb-2 transition-colors font-body ${
-                isComingSoon ? "text-slate-600" : "text-ink group-hover/card:text-sage"
+                isComingSoon ? "text-slate-600" : "text-ink group-hover/card:text-[#CF4500]"
             }`}>
                 {procedure.shortName} {t("simulator") || "Simulator"}
             </h3>
@@ -282,7 +283,7 @@ function SimulatorCard({
                         ? "text-slate-600"
                         : isWorkInProgress
                           ? "text-slate-500 group-hover/card:gap-2.5"
-                          : "text-sage group-hover/card:gap-2.5"
+                          : "text-[#CF4500] group-hover/card:gap-2.5"
                 }`}>
                     {isComingSoon
                         ? (t("comingSoonLabel") || "Coming Soon")
@@ -297,7 +298,7 @@ function SimulatorCard({
                         <Link
                             href={`/deals?procedure=${procedure.slug}`}
                             aria-label={`${procedure.shortName} ${tNav("deals") || "Deals"}`}
-                            className="text-[10px] text-coral-text hover:underline transition-colors font-body font-semibold"
+                            className="text-[10px] text-[#CF4500] hover:underline transition-colors font-body font-semibold"
                         >
                             {tNav("deals") || "Deals"}
                         </Link>
@@ -328,11 +329,11 @@ function SimulatorCard({
 
     return (
         <div
-            className={`simulator-card-enter simulator-card-cv group/card relative bg-white rounded-[20px] border border-slate-200 p-6 hover:shadow-lg hover:shadow-sage/5 hover:-translate-y-1 transition-all duration-200 h-full flex flex-col ${colors.border}`}
+            className={`simulator-card-enter simulator-card-cv group/card relative bg-white rounded-[20px] border border-slate-200 p-6 hover:shadow-lg hover:shadow-[#CF4500]/5 hover:-translate-y-1 transition-all duration-200 h-full flex flex-col ${colors.border}`}
         >
             <Link
                 href={`/simulate/${procedure.simulateSlug}`}
-                className="absolute inset-0 rounded-[20px] focus:outline-none focus-visible:ring-2 focus-visible:ring-sage/50"
+                className="absolute inset-0 rounded-[20px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CF4500]/50"
                 aria-label={
                     isWorkInProgress
                         ? `${procedure.shortName} ${t("simulator") || "Simulator"}: ${t("workInProgress") || "Work in Progress"}`

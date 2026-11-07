@@ -62,17 +62,17 @@ export default async function SimulateProcedurePage({ params }: SimulateProcedur
               Simulator
             </Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-emerald-400 font-semibold">{procedure.name}</span>
+            <span className="text-[#CF4500] font-semibold">{procedure.name}</span>
           </nav>
 
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400/80 mb-1 block">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#CF4500] mb-1 block">
                 {procedure.categoryLabel} Simulation
               </span>
               <h1 className="text-2xl sm:text-3xl font-bold text-white">
                 {procedure.name}{' '}
-                <span className="italic font-serif text-sage font-normal">
+                <span className="italic font-serif text-[#CF4500] font-normal">
                   Simulator
                 </span>
               </h1>
@@ -100,7 +100,7 @@ export default async function SimulateProcedurePage({ params }: SimulateProcedur
           </div>
           <Link
             href={routes.procedure(procedure.slug)}
-            className="px-6 py-2.5 rounded-full bg-sage hover:bg-sage-light text-white text-xs font-bold shrink-0 transition-all flex items-center gap-2 cursor-pointer shadow-md shadow-sage/20"
+            className="px-6 py-2.5 rounded-full bg-[#CF4500] hover:bg-[#F37338] text-white text-xs font-bold shrink-0 transition-all flex items-center gap-2 cursor-pointer shadow-md shadow-[#CF4500]/25"
           >
             <span>Read {procedure.name} Guide</span>
             <ArrowRight className="w-3.5 h-3.5" />

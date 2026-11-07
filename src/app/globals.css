@@ -29,17 +29,17 @@
     --signal-orange-light: #F37338;
     --clay-brown: #9A3A0A;
 
-    /* Theme color aliases */
-    --color-sage: #3d6b5e;
-    --color-sage-light: #6b9e8f;
-    --color-sage-muted: #7c9082;
-    --color-coral: #e8705a;
-    --color-coral-soft: #f09080;
-    --color-coral-text: #a63d2a;
-    --color-gold: #9a7d2e;
-    --color-slate-hp: #243847;
-    --color-mist: #e8e2d8;
-    --color-ink: #0a0f1a;
+    /* Theme color aliases - aligned to website's Signal Orange & warm editorial theme */
+    --color-sage: #CF4500;
+    --color-sage-light: #F37338;
+    --color-sage-muted: #9A3A0A;
+    --color-coral: #CF4500;
+    --color-coral-soft: #FDEEE7;
+    --color-coral-text: #CF4500;
+    --color-gold: #9A6428;
+    --color-slate-hp: #555555;
+    --color-mist: rgba(20, 20, 19, 0.08);
+    --color-ink: #141413;
     --color-warm: #F3F0EE;
     --color-cream: #FCFBFA;
 
