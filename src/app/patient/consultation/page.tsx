@@ -19,7 +19,10 @@ import {
   MoveHorizontal,
   Download,
   User,
-  CalendarCheck
+  CalendarCheck,
+  Calendar,
+  Mail,
+  Phone
 } from 'lucide-react';
 import { routes } from '@/config/routes';
 
@@ -101,8 +104,8 @@ export default function PatientConsultationPage() {
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [bookingSubmitted, setBookingSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    name: 'Shivam Mane',
-    email: 'shivammane2007@gmail.com',
+    name: '',
+    email: '',
     phone: '',
     notes: '',
   });
@@ -150,6 +153,19 @@ export default function PatientConsultationPage() {
   const onPointerUp = () => setIsDragging(false);
   const onPointerMove = (e: React.PointerEvent) => {
     if (isDragging) handleSliderMove(e.clientX);
+  };
+
+  const handleDownloadPreview = () => {
+    if (!imageSrc) {
+      alert('Preview saved to your account.');
+      return;
+    }
+    const a = document.createElement('a');
+    a.href = imageSrc;
+    a.download = `faceify-${selectedProcedure}-preview.jpg`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
 
   return (
@@ -614,53 +630,100 @@ export default function PatientConsultationPage() {
         </div>
       )}
 
-      {/* Step 6: Consultation Summary */}
+      {/* Step 6: Consultation Summary (Matches Screenshot 1 & 2 Exactly) */}
       {currentStep === 6 && (
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-3xl mx-auto">
+          {/* Header without subtitle */}
           <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#0A0F1A] font-sans mb-1">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#0A0F1A] font-sans">
               Your Consultation Summary
             </h2>
-            <p className="text-sm text-slate-400 font-sans">
-              Review your customized preview before connecting with a clinic
-            </p>
           </div>
 
-          {/* Preview Details Card */}
-          <div className="bg-white rounded-2xl border border-slate-200 p-6 mb-6 space-y-4 shadow-xs">
+          {/* Side by side: Before & After (AI Preview) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            {/* Before Card */}
+            <div className="rounded-xl overflow-hidden border border-slate-200 bg-slate-900 shadow-xs flex flex-col">
+              <div className="px-3 py-2 bg-slate-100 text-xs font-bold text-slate-500 text-center tracking-wider font-sans">
+                BEFORE
+              </div>
+              <div className="aspect-[16/10] bg-slate-800 flex items-center justify-center overflow-hidden">
+                {imageSrc ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={imageSrc} alt="Before" className="w-full h-full object-cover" />
+                ) : (
+                  <div className="flex flex-col items-center justify-center text-slate-400 p-6 text-center">
+                    <Smile className="w-12 h-12 mb-2 opacity-50" />
+                    <span className="text-xs font-sans">Original photo</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* After (AI Preview) Card */}
+            <div className="rounded-xl overflow-hidden border border-slate-200 bg-slate-900 shadow-xs flex flex-col">
+              <div className="px-3 py-2 bg-[#1E293B] text-xs font-bold text-slate-300 text-center tracking-wider font-sans">
+                AFTER (AI PREVIEW)
+              </div>
+              <div className="aspect-[16/10] bg-slate-800 flex items-center justify-center overflow-hidden">
+                {imageSrc ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={imageSrc}
+                    alt="After AI preview"
+                    className="w-full h-full object-cover filter contrast-105 saturate-105"
+                  />
+                ) : (
+                  <div className="flex flex-col items-center justify-center text-slate-300 p-6 text-center">
+                    <Sparkles className="w-12 h-12 mb-2 text-[#305A4F]" />
+                    <span className="text-xs font-sans text-slate-400">Simulated preview</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Details Card (Matches Screenshot 1 Exactly) */}
+          <div className="bg-white rounded-xl border border-slate-200 p-6 mb-6 space-y-4 shadow-xs">
             <div className="flex items-center justify-between">
               <span className="text-sm text-slate-400 font-sans">Procedure</span>
               <span className="text-sm font-bold text-[#0A0F1A] font-sans">{activeProcObj.name}</span>
             </div>
             <div className="h-px bg-slate-100" />
             <div className="flex items-center justify-between">
-              <span className="text-sm text-slate-400 font-sans">Target Area</span>
-              <span className="text-sm font-bold text-[#0A0F1A] font-sans capitalize">{selectedRegion}</span>
-            </div>
-            <div className="h-px bg-slate-100" />
-            <div className="flex items-center justify-between">
               <span className="text-sm text-slate-400 font-sans">Simulation Intensity</span>
-              <span className="text-sm font-bold text-[#305A4F] font-mono">{intensity}%</span>
+              <span className="text-sm font-normal text-[#0A0F1A] font-sans">{intensity}%</span>
             </div>
             <div className="h-px bg-slate-100" />
             <div className="flex items-center justify-between">
-              <span className="text-sm text-slate-400 font-sans">Face Detection Mesh</span>
-              <span className="text-sm font-bold text-green-600 font-sans flex items-center gap-1">
-                ✓ 468-point 3D Landmark Aligned
-              </span>
+              <span className="text-sm text-slate-400 font-sans">Face Detection</span>
+              <span className="text-sm font-bold text-green-600 font-sans">✓ Good</span>
             </div>
           </div>
 
+          {/* Disclaimer */}
           <p className="text-xs text-slate-400 text-center mb-6 leading-relaxed font-sans">
             This preview is an AI-generated estimation. Actual surgical results may vary based on individual anatomy and surgical technique.
           </p>
 
-          {/* Navigation */}
+          {/* Save Preview Action Button (Matches Screenshot 2) */}
+          <div className="flex items-center justify-center mb-8">
+            <button
+              type="button"
+              onClick={handleDownloadPreview}
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all cursor-pointer shadow-xs font-sans"
+            >
+              <Download className="w-4 h-4 text-slate-600" />
+              <span>Save Preview</span>
+            </button>
+          </div>
+
+          {/* Bottom Navigation */}
           <div className="flex justify-between items-center">
             <button
               type="button"
               onClick={() => setCurrentStep(5)}
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 hover:text-slate-600 transition-colors cursor-pointer font-sans"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back</span>
@@ -668,7 +731,7 @@ export default function PatientConsultationPage() {
             <button
               type="button"
               onClick={() => setCurrentStep(7)}
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#305A4F] hover:bg-[#25453C] text-white font-bold rounded-xl transition-all text-sm cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#305A4F] hover:bg-[#25453C] text-white font-bold rounded-xl transition-all text-sm cursor-pointer shadow-xs font-sans"
             >
               <span>Book a Consultation</span>
               <ArrowRight className="w-4 h-4" />
@@ -677,12 +740,12 @@ export default function PatientConsultationPage() {
         </div>
       )}
 
-      {/* Step 7: Booking Request Form */}
+      {/* Step 7: Ready to take the next step? (Matches Screenshot 1 Exactly) */}
       {currentStep === 7 && (
-        <div className="max-w-xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           {bookingSubmitted ? (
             <div className="bg-white rounded-3xl border border-slate-200 p-8 sm:p-10 text-center shadow-xs">
-              <div className="w-16 h-16 rounded-full bg-green-50 text-green-600 flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-green-50 text-green-600 flex items-center justify-center">
                 <Check className="w-8 h-8" />
               </div>
               <h2 className="text-2xl font-bold text-[#0A0F1A] font-sans mb-2">
@@ -708,96 +771,127 @@ export default function PatientConsultationPage() {
               </div>
             </div>
           ) : (
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs">
-              <div className="text-center mb-6">
-                <h2 className="text-2xl font-bold text-[#0A0F1A] font-sans mb-1">
+            <div>
+              {/* Header */}
+              <div className="text-center mb-8">
+                <h2 className="text-2xl md:text-3xl font-bold text-[#0A0F1A] font-sans mb-2">
                   Ready to take the next step?
                 </h2>
-                <p className="text-xs text-slate-400 font-sans">
+                <p className="text-sm text-slate-400 font-sans">
                   Book a consultation with your chosen clinic. Your AI visualization will be shared with your surgeon before your appointment.
                 </p>
               </div>
 
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setBookingSubmitted(true);
-                }}
-                className="space-y-4"
-              >
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1 font-sans">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Shivam Mane"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-[#305A4F] focus:ring-1 focus:ring-[#305A4F]/20 font-sans"
-                  />
+              {/* 2-Column Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                {/* Left Column: Calendar Card */}
+                <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden flex flex-col items-center justify-center text-center p-8 min-h-[380px] shadow-xs">
+                  <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center mb-3">
+                    <Calendar className="w-6 h-6 text-slate-300" />
+                  </div>
+                  <p className="text-sm font-bold text-slate-700 font-sans mb-1">
+                    Calendar not configured
+                  </p>
+                  <p className="text-xs text-slate-400 font-sans leading-relaxed max-w-xs">
+                    Online booking isn&apos;t available yet. Please contact the clinic directly to schedule.
+                  </p>
                 </div>
 
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1 font-sans">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="shivam@example.com"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-[#305A4F] focus:ring-1 focus:ring-[#305A4F]/20 font-sans"
-                  />
-                </div>
+                {/* Right Column: Contact Form */}
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setBookingSubmitted(true);
+                  }}
+                  className="space-y-4"
+                >
+                  <div>
+                    <label className="block text-xs font-bold text-slate-500 mb-1.5 font-sans">
+                      Full Name
+                    </label>
+                    <div className="relative">
+                      <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <input
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="Jane Doe"
+                        className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-700 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-[#305A4F]/30 focus:border-[#305A4F] transition-all bg-white font-sans"
+                      />
+                    </div>
+                  </div>
 
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1 font-sans">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="+91 98765 43210"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-[#305A4F] focus:ring-1 focus:ring-[#305A4F]/20 font-sans"
-                  />
-                </div>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-500 mb-1.5 font-sans">
+                      Email
+                    </label>
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="jane@email.com"
+                        className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-700 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-[#305A4F]/30 focus:border-[#305A4F] transition-all bg-white font-sans"
+                      />
+                    </div>
+                  </div>
 
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1 font-sans">
-                    Additional Notes (Optional)
-                  </label>
-                  <textarea
-                    rows={3}
-                    value={formData.notes}
-                    onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                    placeholder="Share any specific concerns or questions for the surgeon…"
-                    className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-[#305A4F] focus:ring-1 focus:ring-[#305A4F]/20 font-sans resize-none"
-                  />
-                </div>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-500 mb-1.5 font-sans">
+                      Phone
+                    </label>
+                    <div className="relative">
+                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <input
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        placeholder="+1 (555) 000-0000"
+                        className="w-full pl-10 pr-4 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-700 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-[#305A4F]/30 focus:border-[#305A4F] transition-all bg-white font-sans"
+                      />
+                    </div>
+                  </div>
 
-                <div className="pt-2 flex justify-between items-center">
-                  <button
-                    type="button"
-                    onClick={() => setCurrentStep(6)}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
-                  >
-                    <ArrowLeft className="w-4 h-4" />
-                    <span>Back</span>
-                  </button>
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-bold text-slate-500 font-sans">
+                      Additional notes (optional)
+                    </label>
+                    <textarea
+                      value={formData.notes}
+                      onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                      placeholder="Share any specific concerns or questions for the surgeon…"
+                      rows={3}
+                      className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-700 placeholder:text-slate-300 resize-none focus:outline-none focus:ring-2 focus:ring-[#305A4F]/30 focus:border-[#305A4F] transition-all bg-white font-sans"
+                    />
+                  </div>
 
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#305A4F] hover:bg-[#25453C] text-white font-bold rounded-xl transition-all text-sm cursor-pointer shadow-xs"
+                    className="w-full py-3 bg-[#305A4F] hover:bg-[#25453C] text-white font-bold rounded-xl transition-all shadow-md shadow-[#305A4F]/20 text-sm flex items-center justify-center gap-2 cursor-pointer font-sans"
                   >
-                    <span>Request Consultation</span>
-                    <ArrowRight className="w-4 h-4" />
+                    Book a Consultation
                   </button>
-                </div>
-              </form>
+
+                  <p className="text-[11px] text-slate-400 text-center font-sans mt-2">
+                    Your surgeon will review your AI preview before your appointment.
+                  </p>
+                </form>
+              </div>
+
+              {/* Bottom Navigation */}
+              <div className="flex justify-start mt-8">
+                <button
+                  type="button"
+                  onClick={() => setCurrentStep(6)}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-slate-400 hover:text-slate-600 transition-colors cursor-pointer font-sans"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  <span>Back</span>
+                </button>
+              </div>
             </div>
           )}
         </div>
