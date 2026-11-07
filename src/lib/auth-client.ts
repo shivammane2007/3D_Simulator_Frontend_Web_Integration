@@ -10,6 +10,7 @@ export interface UserSession {
   gender?: string;
   country?: string;
   city?: string;
+  hasPassword?: boolean;
 }
 
 export const DEFAULT_PATIENT_USER: UserSession = {
