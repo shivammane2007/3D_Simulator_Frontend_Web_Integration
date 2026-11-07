@@ -4,10 +4,11 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Search, ArrowRight, Globe, Check } from 'lucide-react';
+import { Menu, X, ChevronDown, Search, ArrowRight, Globe, Check, User, Settings, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { routes } from '@/config/routes';
 import { mainNav, type NavDropdown } from '@/data/navigation';
+import { getStoredUser, signOutClient, UserSession } from '@/lib/auth-client';
 
 import { useLanguage, languages } from '@/context/LanguageContext';
 
@@ -22,10 +23,23 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [langOpen, setLangOpen] = useState(false);
+  const [user, setUser] = useState<UserSession | null>(null);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const pathname = usePathname();
   const navContainerRef = useRef<HTMLDivElement>(null);
   const langContainerRef = useRef<HTMLDivElement>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
+
+  // Sync authentication state across tabs & events
+  useEffect(() => {
+    const syncUser = () => {
+      setUser(getStoredUser());
+    };
+    syncUser();
+    window.addEventListener('fl_auth_changed', syncUser);
+    return () => window.removeEventListener('fl_auth_changed', syncUser);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,6 +67,7 @@ export default function Navigation() {
     if (!visible) {
       setActiveDropdown(null);
       setLangOpen(false);
+      setUserMenuOpen(false);
     }
   }, [visible]);
 
@@ -60,6 +75,7 @@ export default function Navigation() {
     setMobileOpen(false);
     setActiveDropdown(null);
     setLangOpen(false);
+    setUserMenuOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -80,11 +96,15 @@ export default function Navigation() {
       if (langContainerRef.current && !langContainerRef.current.contains(event.target as Node)) {
         setLangOpen(false);
       }
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
+        setUserMenuOpen(false);
+      }
     }
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         setActiveDropdown(null);
         setLangOpen(false);
+        setUserMenuOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -97,6 +117,13 @@ export default function Navigation() {
 
   const toggleDropdown = (label: string) => {
     setActiveDropdown(activeDropdown === label ? null : label);
+  };
+
+  const handleSignOut = () => {
+    signOutClient();
+    setUser(null);
+    setUserMenuOpen(false);
+    window.location.href = routes.login;
   };
 
   // Hide floating marketing navbar on patient portal routes
@@ -287,19 +314,96 @@ export default function Navigation() {
               </AnimatePresence>
             </div>
 
-            <Link
-              href={routes.login}
-              className="text-xs font-medium text-[#141413] hover:text-[#CF4500] transition-colors px-2"
-            >
-              {t('Sign In')}
-            </Link>
-            <Link
-              href={routes.simulate}
-              className="px-5 py-2.5 bg-[#141413] text-[#F3F0EE] border-[1.5px] border-[#141413] hover:bg-[#262627] text-xs font-medium rounded-[20px] shadow-sm transition-all inline-flex items-center gap-1.5"
-            >
-              <span>{t('Try Your Face')}</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+            {user ? (
+              /* Logged In: Avatar with Dropdown matching Screenshots */
+              <div className="relative" ref={userMenuRef}>
+                <button
+                  type="button"
+                  onClick={() => setUserMenuOpen(!userMenuOpen)}
+                  className="flex items-center gap-1.5 p-0.5 rounded-full hover:opacity-90 transition-opacity cursor-pointer"
+                  aria-label="Account menu"
+                  aria-expanded={userMenuOpen}
+                >
+                  <div className="w-8 h-8 rounded-full bg-[#2D5548] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                    {user.name ? user.name.charAt(0).toUpperCase() : 'S'}
+                  </div>
+                  <ChevronDown className={cn("w-3 h-3 text-slate-500 transition-transform duration-200", userMenuOpen && "rotate-180")} />
+                </button>
+
+                <AnimatePresence>
+                  {userMenuOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 6, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 4, scale: 0.98 }}
+                      transition={{ duration: 0.15, ease: [0.2, 0, 0, 1] }}
+                      className="absolute top-full right-0 mt-2.5 w-60 bg-white rounded-2xl shadow-level-2 border border-black/10 p-3 z-50 text-left"
+                      role="menu"
+                    >
+                      {/* User Info Header */}
+                      <div className="pb-3 border-b border-slate-100">
+                        <p className="text-sm font-bold text-ink truncate">
+                          {user.name || 'Shivam Mane'}
+                        </p>
+                        <p className="text-xs text-slate-500 truncate mt-0.5">
+                          {user.email || 'shivammane2007@gmail.com'}
+                        </p>
+                      </div>
+
+                      {/* Menu Items */}
+                      <div className="pt-2 space-y-1">
+                        <Link
+                          href="/patient/dashboard"
+                          onClick={() => setUserMenuOpen(false)}
+                          role="menuitem"
+                          className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-xs font-medium text-slate-700 hover:bg-slate-100 hover:text-ink transition-colors"
+                        >
+                          <User className="w-4 h-4 text-slate-500" />
+                          <span>Dashboard</span>
+                        </Link>
+
+                        <Link
+                          href="/patient/settings"
+                          onClick={() => setUserMenuOpen(false)}
+                          role="menuitem"
+                          className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-xs font-medium text-slate-700 hover:bg-slate-100 hover:text-ink transition-colors"
+                        >
+                          <Settings className="w-4 h-4 text-slate-500" />
+                          <span>Settings</span>
+                        </Link>
+
+                        <button
+                          type="button"
+                          role="menuitem"
+                          onClick={handleSignOut}
+                          className="w-full flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-xs font-semibold text-[#CF4500] hover:bg-orange-50 transition-colors cursor-pointer text-left"
+                        >
+                          <LogOut className="w-4 h-4 text-[#CF4500]" />
+                          <span>Sign Out</span>
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : (
+              /* Logged Out: Sign In & Try Your Face */
+              <>
+                <Link
+                  href={routes.login}
+                  className="text-xs font-medium text-[#141413] hover:text-[#CF4500] transition-colors px-2"
+                >
+                  {t('Sign In')}
+                </Link>
+                <Link
+                  href={routes.simulate}
+                  className="px-5 py-2.5 bg-[#141413] text-[#F3F0EE] border-[1.5px] border-[#141413] hover:bg-[#262627] text-xs font-medium rounded-[20px] shadow-sm transition-all inline-flex items-center gap-1.5"
+                >
+                  <span>{t('Try Your Face')}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </motion.header>
@@ -378,18 +482,53 @@ export default function Navigation() {
               </div>
 
               <div className="pt-6 flex flex-col gap-3">
-                <Link
-                  href={routes.simulate}
-                  className="w-full py-3.5 bg-[#141413] text-[#F3F0EE] text-center font-medium rounded-[20px] text-sm"
-                >
-                  {t('Try Your Face')}
-                </Link>
-                <Link
-                  href={routes.login}
-                  className="w-full py-3.5 bg-white text-[#141413] border border-black/10 text-center font-medium rounded-[20px] text-sm"
-                >
-                  {t('Sign In')}
-                </Link>
+                {user ? (
+                  <>
+                    <div className="p-3 bg-white rounded-xl border border-black/5">
+                      <p className="text-xs font-bold text-ink truncate">{user.name || 'Shivam Mane'}</p>
+                      <p className="text-[11px] text-slate-500 truncate">{user.email || 'shivammane2007@gmail.com'}</p>
+                    </div>
+                    <Link
+                      href="/patient/dashboard"
+                      onClick={() => setMobileOpen(false)}
+                      className="w-full py-3 bg-[#141413] text-[#F3F0EE] text-center font-medium rounded-[20px] text-sm flex items-center justify-center gap-2"
+                    >
+                      <User className="w-4 h-4" />
+                      <span>Dashboard</span>
+                    </Link>
+                    <Link
+                      href="/patient/settings"
+                      onClick={() => setMobileOpen(false)}
+                      className="w-full py-3 bg-white text-[#141413] border border-black/10 text-center font-medium rounded-[20px] text-sm flex items-center justify-center gap-2"
+                    >
+                      <Settings className="w-4 h-4" />
+                      <span>Settings</span>
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={handleSignOut}
+                      className="w-full py-3 bg-white text-[#CF4500] border border-black/10 text-center font-medium rounded-[20px] text-sm flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      <span>Sign Out</span>
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      href={routes.simulate}
+                      className="w-full py-3.5 bg-[#141413] text-[#F3F0EE] text-center font-medium rounded-[20px] text-sm"
+                    >
+                      {t('Try Your Face')}
+                    </Link>
+                    <Link
+                      href={routes.login}
+                      className="w-full py-3.5 bg-white text-[#141413] border border-black/10 text-center font-medium rounded-[20px] text-sm"
+                    >
+                      {t('Sign In')}
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>

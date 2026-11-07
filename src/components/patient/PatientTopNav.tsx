@@ -170,51 +170,37 @@ export default function PatientTopNav() {
             </button>
 
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-56 bg-white text-[#141413] rounded-2xl shadow-xl border border-slate-200/90 p-2 z-50">
-                <div className="px-3 py-2.5 border-b border-slate-100">
-                  <p className="text-sm font-semibold text-ink truncate">{user.name || 'Shivam Mane'}</p>
-                  <p className="text-xs text-slate-500 truncate">{user.email || 'shivammane2007@gmail.com'}</p>
-                  <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-slate-100 text-[10px] font-semibold text-slate-600 uppercase tracking-wider">
-                    Patient
-                  </span>
+              <div className="absolute right-0 mt-2 w-60 bg-white text-[#141413] rounded-2xl shadow-xl border border-slate-200/90 p-3 z-50">
+                <div className="pb-3 border-b border-slate-100">
+                  <p className="text-sm font-bold text-ink truncate">{user.name || 'Shivam Mane'}</p>
+                  <p className="text-xs text-slate-500 truncate mt-0.5">{user.email || 'shivammane2007@gmail.com'}</p>
                 </div>
 
-                <div className="py-1 space-y-0.5">
+                <div className="pt-2 space-y-1">
                   <Link
                     href="/patient/dashboard"
                     onClick={() => setDropdownOpen(false)}
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-700 hover:bg-slate-100 transition-colors"
+                    className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-xs font-medium text-slate-700 hover:bg-slate-100 hover:text-ink transition-colors"
                   >
-                    <LayoutDashboard className="w-3.5 h-3.5 text-slate-500" />
+                    <User className="w-4 h-4 text-slate-500" />
                     <span>Dashboard</span>
-                  </Link>
-
-                  <Link
-                    href="/patient/profile"
-                    onClick={() => setDropdownOpen(false)}
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-700 hover:bg-slate-100 transition-colors"
-                  >
-                    <User className="w-3.5 h-3.5 text-slate-500" />
-                    <span>My Profile</span>
                   </Link>
 
                   <Link
                     href="/patient/settings"
                     onClick={() => setDropdownOpen(false)}
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-700 hover:bg-slate-100 transition-colors"
+                    className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-xs font-medium text-slate-700 hover:bg-slate-100 hover:text-ink transition-colors"
                   >
-                    <Settings className="w-3.5 h-3.5 text-slate-500" />
+                    <Settings className="w-4 h-4 text-slate-500" />
                     <span>Settings</span>
                   </Link>
-                </div>
 
-                <div className="pt-1 border-t border-slate-100">
                   <button
                     type="button"
                     onClick={handleSignOut}
-                    className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
+                    className="w-full flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-xs font-semibold text-[#CF4500] hover:bg-orange-50 transition-colors cursor-pointer text-left"
                   >
-                    <LogOut className="w-3.5 h-3.5 text-red-500" />
+                    <LogOut className="w-4 h-4 text-[#CF4500]" />
                     <span>Sign Out</span>
                   </button>
                 </div>
