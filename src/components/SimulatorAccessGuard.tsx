@@ -4,11 +4,11 @@ import { useEffect, useState, useRef, createContext, useContext } from "react";
 import { createPortal } from "react-dom";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { Sparkles, Ticket, ArrowRight, Loader2, Shield, CheckCircle2 } from "lucide-react";
+import { Sparkles, Ticket, ArrowRight, Loader2, Shield, CheckCircle2, AlertCircle } from "lucide-react";
 import { getStoredUser, signOutClient } from "@/lib/auth-client";
 import { useTranslations } from "@/i18n/messages";
 
-const SimulatorAccessContext = createContext<boolean>(true);
+const SimulatorAccessContext = createContext<boolean>(false);
 
 export function useSimulatorAccessGranted(): boolean {
   return useContext(SimulatorAccessContext);
@@ -29,7 +29,7 @@ export default function SimulatorAccessGuard({
   const pathname = usePathname();
   const t = useTranslations("Access");
 
-  // The simulate hub (/simulate) is public; only individual procedure simulators require unlock.
+  // The simulate hub (/simulate) is public; individual procedure simulators are strictly gated.
   const isHubPage = pathname === "/simulate";
   const procedureSlug = pathname.split("/").filter(Boolean).pop() || "rhinoplasty";
 
@@ -42,6 +42,7 @@ export default function SimulatorAccessGuard({
   const [selectedQty, setSelectedQty] = useState<number>(1);
   const [creditBalance, setCreditBalance] = useState<number>(0);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
+  const [actionNotice, setActionNotice] = useState<string | null>(null);
   const [showVoucherInput, setShowVoucherInput] = useState<boolean>(false);
   const [voucherCode, setVoucherCode] = useState<string>("");
   const [voucherSuccess, setVoucherSuccess] = useState<string | null>(null);
@@ -65,23 +66,16 @@ export default function SimulatorAccessGuard({
         setUserEmail(stored.email);
       }
 
-      // 2. Check credit balance
+      // 2. Strict restriction: wipe any stored unlock keys so no account can enter
+      localStorage.removeItem("fl_unlocked_simulators");
+      sessionStorage.removeItem("fl_unlocked_simulators");
+
+      // 3. Stored credit balance
       const storedCredits = localStorage.getItem("fl_credits_balance");
       const credits = storedCredits ? parseInt(storedCredits, 10) : 0;
       setCreditBalance(isNaN(credits) ? 0 : credits);
 
-      // 3. Check if this procedure simulator is already unlocked for 24 hours
-      const unlockedRaw = localStorage.getItem("fl_unlocked_simulators");
-      if (unlockedRaw) {
-        const unlockedMap: Record<string, number> = JSON.parse(unlockedRaw);
-        const expiresAt = unlockedMap[procedureSlug];
-        if (expiresAt && Date.now() < expiresAt) {
-          setIsUnlocked(true);
-          setIsChecking(false);
-          return;
-        }
-      }
-
+      // 4. Force locked: under no circumstance allow entry to the procedure simulator
       setIsUnlocked(false);
     } catch {
       setIsUnlocked(false);
@@ -90,58 +84,29 @@ export default function SimulatorAccessGuard({
     }
   }, [isHubPage, pathname, procedureSlug]);
 
-  // Handle buying credits & instantly unlocking the simulator
+  // Handle buying credits: access is restricted for all accounts
   const handleBuyAndUnlock = () => {
     setIsProcessing(true);
+    setActionNotice(null);
 
     setTimeout(() => {
-      try {
-        // Unlock this procedure for 24 hours (86,400,000 ms)
-        const unlockedRaw = localStorage.getItem("fl_unlocked_simulators");
-        const unlockedMap: Record<string, number> = unlockedRaw ? JSON.parse(unlockedRaw) : {};
-        unlockedMap[procedureSlug] = Date.now() + 24 * 60 * 60 * 1000;
-        localStorage.setItem("fl_unlocked_simulators", JSON.stringify(unlockedMap));
-
-        // Calculate remaining banked credits after redeeming 1 for this session
-        const remaining = Math.max(0, creditBalance + selectedQty - 1);
-        localStorage.setItem("fl_credits_balance", String(remaining));
-        setCreditBalance(remaining);
-
-        setIsUnlocked(true);
-      } catch (err) {
-        console.error("Failed to unlock simulator:", err);
-      } finally {
-        setIsProcessing(false);
-      }
-    }, 700);
+      setIsProcessing(false);
+      setActionNotice("Access restricted: This procedure simulator is currently in private clinic preview. Direct online access is closed.");
+    }, 600);
   };
 
-  // Handle redeeming an already available credit
+  // Handle redeeming credit: access is restricted for all accounts
   const handleRedeemCredit = () => {
-    if (creditBalance <= 0) return;
     setIsProcessing(true);
+    setActionNotice(null);
 
     setTimeout(() => {
-      try {
-        const unlockedRaw = localStorage.getItem("fl_unlocked_simulators");
-        const unlockedMap: Record<string, number> = unlockedRaw ? JSON.parse(unlockedRaw) : {};
-        unlockedMap[procedureSlug] = Date.now() + 24 * 60 * 60 * 1000;
-        localStorage.setItem("fl_unlocked_simulators", JSON.stringify(unlockedMap));
-
-        const remaining = Math.max(0, creditBalance - 1);
-        localStorage.setItem("fl_credits_balance", String(remaining));
-        setCreditBalance(remaining);
-
-        setIsUnlocked(true);
-      } catch (err) {
-        console.error("Failed to redeem credit:", err);
-      } finally {
-        setIsProcessing(false);
-      }
-    }, 500);
+      setIsProcessing(false);
+      setActionNotice("Access restricted: Simulator access is currently invitation-only for verified partner clinics.");
+    }, 600);
   };
 
-  // Handle voucher redemption
+  // Handle voucher redemption: access is restricted for all accounts
   const handleRedeemVoucher = (e: React.FormEvent) => {
     e.preventDefault();
     if (!voucherCode.trim()) {
@@ -153,27 +118,8 @@ export default function SimulatorAccessGuard({
     setVoucherError(null);
 
     setTimeout(() => {
-      try {
-        // Unlock simulator
-        const unlockedRaw = localStorage.getItem("fl_unlocked_simulators");
-        const unlockedMap: Record<string, number> = unlockedRaw ? JSON.parse(unlockedRaw) : {};
-        unlockedMap[procedureSlug] = Date.now() + 24 * 60 * 60 * 1000;
-        localStorage.setItem("fl_unlocked_simulators", JSON.stringify(unlockedMap));
-
-        // Give 2 bonus credits
-        const remaining = creditBalance + 2;
-        localStorage.setItem("fl_credits_balance", String(remaining));
-        setCreditBalance(remaining);
-
-        setVoucherSuccess("Voucher redeemed! 24-hour access granted.");
-        setTimeout(() => {
-          setIsUnlocked(true);
-        }, 600);
-      } catch {
-        setVoucherError("Invalid or expired voucher code");
-      } finally {
-        setIsProcessing(false);
-      }
+      setIsProcessing(false);
+      setVoucherError("Invalid code or access restricted for direct preview.");
     }, 600);
   };
 
@@ -275,6 +221,14 @@ export default function SimulatorAccessGuard({
             </div>
           </div>
 
+          {/* Action Notice when access is attempted */}
+          {actionNotice && (
+            <div className="mb-4 p-3 rounded-xl bg-[#28130B] border border-[#CF4500]/40 text-[#FF8A4C] text-xs font-medium text-left flex items-start gap-2 animate-in fade-in">
+              <AlertCircle className="w-4 h-4 text-[#F37338] shrink-0 mt-0.5" />
+              <span>{actionNotice}</span>
+            </div>
+          )}
+
           {/* Primary Action Button (Get credits / Use credit) */}
           {creditBalance > 0 ? (
             <button
@@ -286,7 +240,7 @@ export default function SimulatorAccessGuard({
               {isProcessing ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin text-white" />
-                  <span>Unlocking simulator...</span>
+                  <span>Checking authorization...</span>
                 </>
               ) : (
                 <>
@@ -305,7 +259,7 @@ export default function SimulatorAccessGuard({
               {isProcessing ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin text-white" />
-                  <span>Unlocking simulator...</span>
+                  <span>Checking authorization...</span>
                 </>
               ) : (
                 <>
