@@ -362,22 +362,22 @@ export default function ShaderGallerySection() {
         ref={mountRef}
         className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center cursor-grab active:cursor-grabbing"
       >
-        {/* Background Editorial Typography styled for milkish theme */}
+        {/* Background Editorial Typography in solid black */}
         <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-10 md:p-16 pointer-events-none select-none z-0">
           <div className="flex items-center justify-between text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#CF4500]">
             <span>{t('• 3D PROCEDURAL SPIRAL ARCHIVE')}</span>
-            <span className="hidden sm:inline text-[#555555]">
+            <span className="hidden sm:inline text-[#141413]/70">
               {t('24 HIGH-PRECISION PREVIEWS')}
             </span>
           </div>
 
-          <h2 className="text-[clamp(2.75rem,7.5vw,10.5rem)] font-bold uppercase tracking-[-0.04em] leading-[0.85] text-[#141413]/10 text-justify break-words font-display">
+          <h2 className="text-[clamp(2.75rem,7.5vw,10.5rem)] font-bold uppercase tracking-[-0.04em] leading-[0.85] text-[#141413] text-justify break-words font-display">
             {t(
               'Somewhere between structure and disorder new forms quietly start to emerge'
             )}
           </h2>
 
-          <div className="flex items-center justify-between text-[11px] sm:text-xs font-mono uppercase tracking-[0.2em] text-[#555555]">
+          <div className="flex items-center justify-between text-[11px] sm:text-xs font-mono uppercase tracking-[0.2em] text-[#141413]/70">
             <span>{t('SCROLL / DRAG TO ROTATE')}</span>
             <span>{t('100% ON-DEVICE GPU')}</span>
           </div>
