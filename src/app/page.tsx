@@ -6,6 +6,7 @@ import StickyCardsSection from '@/components/sections/StickyCardsSection';
 import AudienceSplit from '@/components/sections/AudienceSplit';
 import BeforeAfterInteractiveSection from '@/components/sections/BeforeAfterInteractiveSection';
 import ProcedureExplorer from '@/components/sections/ProcedureExplorer';
+import ShaderGallerySection from '@/components/sections/ShaderGallerySection';
 import MetricsSection from '@/components/sections/MetricsSection';
 import TechnologySection from '@/components/sections/TechnologySection';
 import PrivacySection from '@/components/sections/PrivacySection';
@@ -73,6 +74,7 @@ export default function HomePage() {
         <AudienceSplit />
         <BeforeAfterInteractiveSection />
         <ProcedureExplorer />
+        <ShaderGallerySection />
         <MetricsSection />
         <TechnologySection />
         <PrivacySection />
