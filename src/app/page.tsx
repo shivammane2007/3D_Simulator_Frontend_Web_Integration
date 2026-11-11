@@ -5,7 +5,6 @@ import HeroSection from '@/components/sections/HeroSection';
 import StickyCardsSection from '@/components/sections/StickyCardsSection';
 import AudienceSplit from '@/components/sections/AudienceSplit';
 import BeforeAfterInteractiveSection from '@/components/sections/BeforeAfterInteractiveSection';
-import HowItWorks from '@/components/sections/HowItWorks';
 import ProcedureExplorer from '@/components/sections/ProcedureExplorer';
 import MetricsSection from '@/components/sections/MetricsSection';
 import TechnologySection from '@/components/sections/TechnologySection';
@@ -73,7 +72,6 @@ export default function HomePage() {
         <StickyCardsSection />
         <AudienceSplit />
         <BeforeAfterInteractiveSection />
-        <HowItWorks />
         <ProcedureExplorer />
         <MetricsSection />
         <TechnologySection />
