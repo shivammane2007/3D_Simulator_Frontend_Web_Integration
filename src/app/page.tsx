@@ -3,6 +3,7 @@ import { siteConfig } from '@/config/site';
 import { faqs } from '@/data/faq';
 import HeroSection from '@/components/sections/HeroSection';
 import AudienceSplit from '@/components/sections/AudienceSplit';
+import BeforeAfterInteractiveSection from '@/components/sections/BeforeAfterInteractiveSection';
 import HowItWorks from '@/components/sections/HowItWorks';
 import ProcedureExplorer from '@/components/sections/ProcedureExplorer';
 import MetricsSection from '@/components/sections/MetricsSection';
@@ -69,6 +70,7 @@ export default function HomePage() {
       <div className="flex flex-col w-full">
         <HeroSection />
         <AudienceSplit />
+        <BeforeAfterInteractiveSection />
         <HowItWorks />
         <ProcedureExplorer />
         <MetricsSection />
