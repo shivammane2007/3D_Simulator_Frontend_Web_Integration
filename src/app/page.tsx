@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import { faqs } from '@/data/faq';
 import HeroSection from '@/components/sections/HeroSection';
+import StickyCardsSection from '@/components/sections/StickyCardsSection';
 import AudienceSplit from '@/components/sections/AudienceSplit';
 import BeforeAfterInteractiveSection from '@/components/sections/BeforeAfterInteractiveSection';
 import HowItWorks from '@/components/sections/HowItWorks';
@@ -69,6 +70,7 @@ export default function HomePage() {
       />
       <div className="flex flex-col w-full">
         <HeroSection />
+        <StickyCardsSection />
         <AudienceSplit />
         <BeforeAfterInteractiveSection />
         <HowItWorks />
