@@ -1147,6 +1147,20 @@ export const dictionary: Record<string, Record<LanguageCode, string>> = {
     PT: 'Diretor Executivo',
     JA: 'マネージングディレクター',
   },
+  'Somewhere between anatomy and precision new forms quietly start to emerge in harmony': {
+    EN: 'Somewhere between anatomy and precision new forms quietly start to emerge in harmony',
+    TH: 'ระหว่างกายวิภาคและความแม่นยำ รูปแบบใหม่ๆ จะค่อยๆ ปรากฏขึ้นอย่างกลมกลืน',
+    KO: '해부학과 정밀함 사이에서 새로운 형태가 조화롭게 피어납니다',
+    PT: 'Entre a anatomia e a precisão, novas formas começam a surgir em harmonia',
+    JA: '解剖学と精度の狭間から、新しいフォルムが調和のうちに静かに生まれ始めます',
+  },
+  '85+ PROCEDURAL SIMULATIONS': {
+    EN: '85+ PROCEDURAL SIMULATIONS',
+    TH: 'การจำลองขั้นตอนกว่า 85+ รายการ',
+    KO: '85개 이상의 시술 시뮬레이션',
+    PT: 'MAIS DE 85 SIMULAÇÕES PROCEDIMENTAIS',
+    JA: '85以上の手術シミュレーション',
+  },
 };
 
 interface LanguageContextType {

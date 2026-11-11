@@ -371,15 +371,21 @@ export default function ShaderGallerySection() {
             </span>
           </div>
 
-          <h2 className="text-[clamp(2.75rem,7.5vw,10.5rem)] font-bold uppercase tracking-[-0.04em] leading-[0.85] text-[#141413] text-justify break-words font-display">
+          <h2 className="text-[clamp(2.75rem,7.5vw,10.5rem)] font-bold uppercase tracking-[-0.04em] leading-[0.85] text-[#141413] text-justify [text-align-last:justify] break-words font-display">
             {t(
-              'Somewhere between structure and disorder new forms quietly start to emerge'
+              'Somewhere between anatomy and precision new forms quietly start to emerge in harmony'
             )}
           </h2>
 
           <div className="flex items-center justify-between text-[11px] sm:text-xs font-mono uppercase tracking-[0.2em] text-[#141413]/70">
-            <span>{t('SCROLL / DRAG TO ROTATE')}</span>
-            <span>{t('100% ON-DEVICE GPU')}</span>
+            <div className="flex items-center gap-3">
+              <span>{t('SCROLL / DRAG TO ROTATE')}</span>
+            </div>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="hidden sm:inline">{t('85+ PROCEDURAL SIMULATIONS')}</span>
+              <span className="hidden sm:inline">•</span>
+              <span>{t('100% ON-DEVICE GPU')}</span>
+            </div>
           </div>
         </div>
       </div>
