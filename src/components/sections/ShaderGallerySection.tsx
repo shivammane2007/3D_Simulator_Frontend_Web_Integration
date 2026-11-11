@@ -99,6 +99,7 @@ export default function ShaderGallerySection() {
     camera.position.z = isMobile ? 15 : CONFIG.cameraZ;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setClearColor(0x000000, 0);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(width, height);
     renderer.domElement.style.position = 'absolute';
@@ -354,29 +355,29 @@ export default function ShaderGallerySection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-[180vh] md:h-[220vh] bg-[#141413] text-[#d2d2d2] overflow-visible border-y border-white/5"
+      className="relative w-full h-[180vh] md:h-[220vh] bg-[#F3F0EE] text-[#141413] overflow-visible border-y border-black/5"
       aria-label="3D Procedural Spiral Image Gallery"
     >
       <div
         ref={mountRef}
         className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center cursor-grab active:cursor-grabbing"
       >
-        {/* Background Editorial Typography matching shader-gallary */}
+        {/* Background Editorial Typography styled for milkish theme */}
         <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-10 md:p-16 pointer-events-none select-none z-0">
           <div className="flex items-center justify-between text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#CF4500]">
             <span>{t('• 3D PROCEDURAL SPIRAL ARCHIVE')}</span>
-            <span className="hidden sm:inline text-white/50">
+            <span className="hidden sm:inline text-[#555555]">
               {t('24 HIGH-PRECISION PREVIEWS')}
             </span>
           </div>
 
-          <h2 className="text-[clamp(2.75rem,7.5vw,10.5rem)] font-bold uppercase tracking-[-0.04em] leading-[0.85] text-[#d2d2d2]/25 text-justify break-words font-display">
+          <h2 className="text-[clamp(2.75rem,7.5vw,10.5rem)] font-bold uppercase tracking-[-0.04em] leading-[0.85] text-[#141413]/10 text-justify break-words font-display">
             {t(
               'Somewhere between structure and disorder new forms quietly start to emerge'
             )}
           </h2>
 
-          <div className="flex items-center justify-between text-[11px] sm:text-xs font-mono uppercase tracking-[0.2em] text-white/40">
+          <div className="flex items-center justify-between text-[11px] sm:text-xs font-mono uppercase tracking-[0.2em] text-[#555555]">
             <span>{t('SCROLL / DRAG TO ROTATE')}</span>
             <span>{t('100% ON-DEVICE GPU')}</span>
           </div>
@@ -385,3 +386,4 @@ export default function ShaderGallerySection() {
     </section>
   );
 }
+
