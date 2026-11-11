@@ -4,7 +4,7 @@ import { Eyebrow, Heading, Prose } from '@/components/ui/Typography';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Refund Policy — Faceify Labs',
+  title: 'Refund Policy',
   description: 'Refund terms for Faceify Labs clinical subscription plans.',
 };
 

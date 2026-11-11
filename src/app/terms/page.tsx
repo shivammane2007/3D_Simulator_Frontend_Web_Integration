@@ -4,7 +4,7 @@ import { Eyebrow, Heading, Prose } from '@/components/ui/Typography';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service — Faceify Labs',
+  title: 'Terms of Service',
   description: 'Terms of Service and Clinical Use Disclaimer for Faceify Labs visual simulation tools.',
 };
 

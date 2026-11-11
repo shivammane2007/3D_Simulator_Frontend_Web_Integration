@@ -24,7 +24,7 @@ import {
 import { routes } from '@/config/routes';
 
 export const metadata: Metadata = {
-  title: "For Patients — See Your Face, Not Someone Else's",
+  title: "For Patients: See Your Face, Not Someone Else's",
   description:
     "A photoreal AI preview of your rhinoplasty on your own photo, reviewed by a real surgeon. First preview free. No app download. $19 unlocks 24 hours of unlimited previews.",
   openGraph: {

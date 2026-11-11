@@ -4,7 +4,7 @@ import { Eyebrow, Heading, Prose } from '@/components/ui/Typography';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Cancellation Policy — Faceify Labs',
+  title: 'Cancellation Policy',
   description: 'Subscription cancellation terms for Faceify Labs.',
 };
 

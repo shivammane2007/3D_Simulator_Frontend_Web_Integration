@@ -7,7 +7,7 @@ import { routes } from '@/config/routes';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Virendra Ghaisas — Executive Director | Faceify Labs',
+  title: 'Virendra Ghaisas: Executive Director',
   description:
     'Executive Director profile for Virendra Ghaisas at Faceify Labs (Formir Technologies Private Limited).',
 };

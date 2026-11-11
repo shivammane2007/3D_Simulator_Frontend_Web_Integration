@@ -15,7 +15,7 @@ export const metadata: Metadata = {
         url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'Faceify Labs — AI Surgical Simulation Platform',
+        alt: 'Faceify Labs: AI Surgical Simulation Platform',
       },
     ],
   },

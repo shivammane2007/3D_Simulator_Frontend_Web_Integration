@@ -5,7 +5,7 @@ import PricingClient from "@/components/PricingClient";
 import { FOUNDING_PARTNER_CAP } from "@/lib/billing/pricing";
 
 export const metadata: Metadata = {
-    title: "Pricing: Plans for Surgeons & Clinics — Faceify Labs",
+    title: "Pricing: Plans for Surgeons & Clinics",
     description:
         "Transparent pricing for aesthetic surgeons and clinics. Browser-native 3D simulations with surgeon approval gate. No hardware, no per-patient fees.",
     openGraph: {

@@ -5,7 +5,7 @@ import { routes } from '@/config/routes';
 import AdverseEventForm from '@/components/clinical-safety/AdverseEventForm';
 
 export const metadata: Metadata = {
-  title: 'Clinical Safety — Faceify Labs',
+  title: 'Clinical Safety & Ethics',
   description:
     'How Faceify Labs handles clinical claims, patient privacy, advisor input, and pilot studies. Plain language, by design.',
   robots: { index: true, follow: true },

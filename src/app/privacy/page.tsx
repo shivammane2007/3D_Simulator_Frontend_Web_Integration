@@ -4,7 +4,7 @@ import { Eyebrow, Heading, Prose } from '@/components/ui/Typography';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — Faceify Labs',
+  title: 'Privacy Policy',
   description:
     'Comprehensive privacy policy covering on-device data processing, GDPR/PDPA alignment, and zero-training commitments.',
 };

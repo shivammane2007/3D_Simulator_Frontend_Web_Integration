@@ -5,10 +5,10 @@ import DayPassPicker from "@/components/DayPassPicker";
 import { resolveCreditCurrency } from "@/lib/billing/pricing";
 
 export const metadata: Metadata = {
-    title: "Simulation Credits — ₹1,999 per credit · Faceify Labs",
+    title: "Simulation Credits: ₹1,999 per credit",
     description: "Buy 24-hour single-procedure credits. No subscription, 100% on-device privacy.",
     openGraph: {
-        title: "Simulation Credits — 24-Hour Access · Faceify Labs",
+        title: "Simulation Credits: 24-Hour Access",
         description: "Buy 24-hour single-procedure credits. No subscription, 100% on-device privacy.",
         images: [
             {

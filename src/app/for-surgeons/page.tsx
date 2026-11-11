@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import ForSurgeonsPage from "@/components/ForSurgeonsPage";
 
 export const metadata: Metadata = {
-    title: "For Surgeons: Convert More DM Enquiries Into Consultations — Faceify Labs",
+    title: "For Surgeons: Convert More DM Enquiries Into Consultations",
     description:
         "AI cosmetic preview your patients use privately. You review every result before they see it final. Embed on your Instagram bio link in 15 minutes. Founding Partner spots: 100 only.",
     openGraph: {

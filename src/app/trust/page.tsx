@@ -15,7 +15,7 @@ import {
 import { routes } from '@/config/routes';
 
 export const metadata: Metadata = {
-  title: 'Trust & Privacy Architecture — Transparent Security Posture',
+  title: 'Trust & Privacy Architecture: Transparent Security Posture',
   description:
     'The base simulator runs 100% in your browser. No patient photo reaches our servers. Detailed compliance alignment, sub-processor matrix, and patient consent architecture.',
 };

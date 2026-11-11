@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
     const t = await getTranslations("Directory");
 
     return {
-        title: `${t("metaTitle") || "Find a Surgeon"} — Faceify Labs`,
+        title: t("metaTitle") || "Find a Surgeon",
         description: t("metaDescription") || "Browse verified Faceify-powered surgeons and clinics across Asia-Pacific. Filter by city, country, and specialty.",
         alternates: buildAlternates("/directory", "en"),
         openGraph: {
@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
                     url: "/opengraph-image",
                     width: 1200,
                     height: 630,
-                    alt: t("metaOgAlt") || "Faceify Labs — AI Surgical Simulation Platform",
+                    alt: t("metaOgAlt") || "Faceify Labs: AI Surgical Simulation Platform",
                 },
             ],
         },

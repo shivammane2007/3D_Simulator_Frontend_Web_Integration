@@ -4,7 +4,7 @@ import { Eyebrow, Heading, Prose } from '@/components/ui/Typography';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
-  title: 'Grievance Officer & Data Redressal — Faceify Labs',
+  title: 'Grievance Officer & Data Redressal',
   description: 'Designated Grievance Officer details for Formir Technologies Private Limited.',
 };
 

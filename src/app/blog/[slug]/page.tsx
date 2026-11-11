@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   if (!post) {
     return {
-      title: 'Article Not Found — Faceify Labs Blog',
+      title: 'Article Not Found',
     };
   }
 

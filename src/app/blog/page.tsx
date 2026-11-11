@@ -4,7 +4,7 @@ import { BookOpen, ArrowRight, Rss, Bell } from 'lucide-react';
 import { routes } from '@/config/routes';
 
 export const metadata: Metadata = {
-  title: 'Blog & Clinical Insights — Faceify Labs',
+  title: 'Blog & Clinical Insights',
   description:
     'Case studies, clinical deep-dives, and product updates written for plastic surgeons and aesthetic practitioners.',
 };
